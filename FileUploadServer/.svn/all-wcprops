@@ -1,0 +1,21 @@
+K 26
+svn:wc:ra_dav:activity-url
+V 19
+/projects/!svn/act/
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/projects/!svn/ver/537/AppletLoaderServer
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/!svn/ver/504/AppletLoaderServer/.project
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/!svn/ver/510/AppletLoaderServer/pom.xml
+END
