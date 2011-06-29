@@ -1,0 +1,94 @@
+<html><head>
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            #myCanvas {
+                border: 1px solid #9C9898;
+            }
+            #container { position: relative; }
+        </style>
+        <script type="text/javascript" src="../lib/kinetic-v1.0.1.js">
+        </script>
+        <script>
+            
+            window.onload = function(){
+                // load image
+                var darthVaderImg = new Image();
+                darthVaderImg.src = "darth-vader.jpg";
+                darthVaderImg.onload = function(){
+                    drawImage(darthVaderImg);
+                };
+            };
+            
+            function drawImage(img){
+            	var draggingRect = false;
+                var draggingRectOffsetX = 0;
+                var draggingRectOffsetY = 0;
+            	
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                
+                var rectX = canvas.width / 2 - 200 / 2;
+                var rectY = canvas.height / 2 - 137 / 2 + 10;
+                
+                var myStage = new Kinetic.Stage(canvas);
+                
+                myStage.setDrawStage(function(){
+                    var mousePos = myStage.getMousePos();
+                    
+                    if (draggingRect) {
+                        rectX = mousePos.x - draggingRectOffsetX;
+                        rectY = mousePos.y - draggingRectOffsetY;
+                    }
+                    
+                    //writeMessage();
+                    
+                    myStage.beginRegion();
+                    
+                    context.drawImage(img, rectX, rectY, 200, 137);
+                    // draw rectangular region for image
+                    context.beginPath();
+                    context.rect(rectX, rectY, 200, 137);
+                    context.closePath();
+                    
+                    
+                    myStage.addRegionEventListener("onmousedown", function(){
+                        draggingRect = true;
+                        var mousePos = myStage.getMousePos();
+                        
+                        draggingRectOffsetX = mousePos.x - rectX;
+                        draggingRectOffsetY = mousePos.y - rectY;
+                    });
+                    myStage.addRegionEventListener("onmouseup", function(){
+                        draggingRect = false;
+                    });
+                    myStage.addRegionEventListener("onmouseover", function(){
+                        document.body.style.cursor = "pointer";
+                    });
+                    myStage.addRegionEventListener("onmouseout", function(){
+                        document.body.style.cursor = "default";
+                    });
+                    
+                    myStage.closeRegion();
+                });
+            }
+        </script>
+    </head>
+    <body style="text-align:center">
+  		<div id="container">
+	      <canvas id="myCanvas" width="800" height="600">
+	        <p>Unfortunately, your browser is currently unsupported by our web 
+	        application.  We are sorry for the inconvenience. Please use one of the 
+	        supported browsers listed below, or draw the image you want using an 
+	        offline tool.</p>
+	        <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
+	          href="http://www.mozilla.com">Firefox</a>, <a 
+	          href="http://www.apple.com/safari">Safari</a>, and <a 
+	          href="http://www.konqueror.org">Konqueror</a>.</p>
+	      </canvas>
+	    </div>
+	</body>
+</html>
