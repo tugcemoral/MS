@@ -1,0 +1,16 @@
+Project Name stands for "Multi Objective Moving Target Genetic Path Planning"
+
+//add IEEETran.layout class by "sudo apt-get install texlive-publishers" and reconfigure lyx.
+
+Required Links:
+
+PSO in java:
+	http://www.google.com.tr/search?sourceid=chrome&client=ubuntu&channel=cs&ie=UTF-8&q=particle+swarm+optimization+in+java
+	http://sourceforge.net/projects/jswarm-pso/files/jswarm-pso/
+	http://gandhim.wordpress.com/2010/04/04/particle-swarm-optimization-pso-sample-code-using-java/
+	
+General GA in java: 
+	http://www.google.com.tr/search?hl=tr&q=genetic+algorithm+path+planner+in+java&aq=f&aqi=&aql=&oq=
+	http://stackoverflow.com/questions/1575061/ga-written-in-java
+	http://www.hackchina.com/en/cont/161717
+	http://en.pudn.com/downloads19/sourcecode/math/detail66529_en.html

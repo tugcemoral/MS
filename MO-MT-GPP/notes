@@ -1,0 +1,11 @@
+#1: Each individual is a solution, a path from start cell to goal cell.
+#2: To find this solution, an algorithm should be executed (which finds paths from start to goal cells)
+	#i: at each iteration of this algorithm, first; obstacles moves simultaneously, and then agent moves through to the goal 
+	#ii: Target cell is always immobile.
+#3: Agent can goes crosswise, but and obstacles can go only up-down and left-right.
+
+
+Crossover?? (Path based? Find intersected two paths and xover from intersection point?)
+Fitness Function?? (# of cells + total weights of each cells in the path?)
+Mutation?? (probably will not included)
+
