@@ -1,0 +1,416 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Paragraph
+Introduction:
+\end_layout
+
+\begin_layout Standard
+Hi everyone, I'm Tugcem.
+ Today i'll talk about my thesis topic.
+ Currently i am working on multi-objective path planning in virtual environments
+ with Faruk Polat.
+\end_layout
+
+\begin_layout Paragraph*
+Outline:
+\end_layout
+
+\begin_layout Standard
+Before beginning, i'd like to introduce the outline of presentation.
+ First of all, i will give the motivation and the definition of the thesis
+ that why we are getting deal with this problem.
+ Then, I will give some related studies about this area.
+ After, I will get into dynamics of the topic and elaborate the problem.
+ I will consider about the boundaries and concepts of thesis.
+ Then, I'll give what we have done so far, in which phase we are, and further
+ to-do list.
+\end_layout
+
+\begin_layout Paragraph
+The Basic Concepts:
+\end_layout
+
+\begin_layout Standard
+First of all, I want to give the basic concepts we are dealing with on this
+ study.
+ The path planning is basically a process that an agent or an intelligent
+ structure finds a way out from initial location to a target one.
+ We can diverse path planning into two main categories.
+ The first one is offline planning, which is not bounded by a time period.
+ The planning process is executed and the optimal paths are generated on
+ offline time.
+ After one or more optimal paths are found, the path is used to reach to
+ the target.
+ This method could be used on static environments.
+ However, if we want to have a more realistic solution, we must consider
+ real-time dynamics.
+ The online path planning provides this constraint that the planned path
+ changes on runtime according to evironment dynamics.
+\end_layout
+
+\begin_layout Standard
+The other concept we are thinking over on this study is multi-objectivity.
+ Single-objectivity oriented path planning considers only one constraint
+ that could be the shortest or the easiest path.
+ But this concept is again could not provide a realistic modeling of real-life
+ problems.
+ Actually, almost all of the real world problems contains more than one
+ constraint.
+ Thus, we consider more than one constraints while finding a path.
+ The comparison between two solituons can be done via domination of these
+ solutions to each other.
+ The formulisation of this domination is another issue.
+ Some constraints could conflict, so we need to think about all of them
+ at the same time.
+\end_layout
+
+\begin_layout Standard
+The third concept is thinking about a target which moves intelligently or
+ unintelligently.
+ This brings the pursuit operation into domain.
+ The agent should re-generate its path according to target's movements.
+\end_layout
+
+\begin_layout Paragraph*
+The Problem Definition:
+\end_layout
+
+\begin_layout Standard
+So far, we have seen the basic concepts of this study.
+ The general problem can be simplified such that we must find valid paths
+ through a moving target with several constraints in a dynamic environment.
+ Of course, environmental properties and restrictions matter on finding
+ the solution for this problem.
+ When we try to organize all of these aspects in the same problem, it is
+ inevitable to encounter with some issues like complexity of algorithm,
+ consumed time to find the solution and the resources that consumed.
+ Actually, time complexity could be the most significant issue among all
+ of these problems (issues).
+ Thus, we are trying to come up to a new algorithm that covers all of these
+ aspects and considers the time manner at the same time.
+ That means our algorithm should run fast - according to existing solutions-
+ 
+\series bold
+Note: 
+\series default
+Should be extended.
+\end_layout
+
+\begin_layout Paragraph*
+Related Studies:
+\end_layout
+
+\begin_layout Standard
+So, lets look into some related work around this research area.
+ Actually, we could seperate these studies into 3 main captions.
+ The first one centers on multi-objectivity concept while finding optimal
+ paths.
+ The second one centers on pursuit and chasing of a moving target.
+ The third one simulates alternative scenarios and solutions around similar
+ concepts.
+ I wont give into details of these studies but just explain their methods
+ briefly.
+\end_layout
+
+\begin_layout Subparagraph*
+Multiobjective-based:
+\end_layout
+
+\begin_layout Standard
+Guo and others handles multi-objective path planning (MOPP) for the ball
+ and plate system.
+ The environment is represented by distance map (the euclidean distances
+ between initial and target cells) and hazard map (which represents possible
+ collisions between the ball and the obstacles).
+ They use entropy method to calculate weights of objectives for each grid
+ node.
+ Simply, Dijkstra algorithm is employed as a solution.
+ In simulation results, the path obtained by multi-objective method is much
+ safer compared with single-objective A* algorithm.
+\end_layout
+
+\begin_layout Standard
+Tarapata presents selected multi-objective approaches to shortest path problems
+ in his paper.
+ He gives a classification of multi-objective shortest path (MOSP) problems.
+ and discuss different models of them.
+ He uses terrain based grid network and use modified Dijkstra’s algorithm.
+\end_layout
+
+\begin_layout Standard
+Mitchell and his team examine the problem of planning a path through a low
+ dimensional continuous state space subject to upper bounds on several additive
+ cost metrics.
+ They propose an auxiliary partial differential equation with which they
+ evaluate multiple additive cost metrics for paths which are generated.
+ The paper has heavy mathematical notations hard to follow.
+\end_layout
+
+\begin_layout Subparagraph*
+Moving-target:
+\end_layout
+
+\begin_layout Standard
+Goldberg and others use multi-agent systems to pursue and capture the moving
+ target in a virtual environment.
+ Agents are allowed to communicate with each other if they are within their
+ sight-area.
+ Environment is a 
+\emph on
+m x n 
+\emph default
+grid with randomly-placed obstacles, all agents and the target knows the
+ topology of the world.
+ They target is positioned at the middle of the grid and all the agents
+ are placed at the lower left corner of the grid at initial.
+ At least one of the agents can 
+\emph on
+see 
+\emph default
+the target.
+ The objective is catching the target in the minimum number of movement.
+\end_layout
+
+\begin_layout Standard
+Hollinger et al.
+ concentrate on finding a moving, non-adversarial, known motion modelled
+ target using multiple agents.
+ non-adversarial, known motion modeled target using multiple agents (robotic
+ searchers) in a closed virtual environment.
+ They define this as Multi-robot Efficient Search Path Planning (MESPP)
+ problem.
+ These typical problems are NP-hard and number of searchers increase the
+ solution space exponentially.
+\end_layout
+
+\begin_layout Standard
+In moving target context, Koneig and his team publish several papers after
+ 2009.
+ They extend A* by covering moving targets and they present D* and D*lite
+ algorithms.
+ They are really efficient incremental search algorithms.
+ Actually, we will go through these algorithms on our study.
+\end_layout
+
+\begin_layout Subparagraph*
+Other Methods:
+\end_layout
+
+\begin_layout Standard
+There are also several other methods center on multiobjective path planning
+ problem.
+ These methods are generally evolutinary methods.
+\end_layout
+
+\begin_layout Standard
+Pangilinan and others introduce an evolutionary algorithm for multi-objective
+ shortest path problem.
+ Their algorithm is based on Strength Pareto Evolutionary Algorithm (SPEA2).
+\end_layout
+
+\begin_layout Standard
+Castillo and others define a genetic 
+\emph on
+offline
+\emph default
+ point-to-point agent path planner to find valid paths towards target.
+ They concentrate on two constraints which are path length and difficulty
+ and use a 2D environment.
+\end_layout
+
+\begin_layout Standard
+Nasrollahy proposes a particle swarm optimization algorithm as a multi-agent
+ search technique for a dynamic fully observable environment to minimize
+ total path planning time while avoiding the local optimums.
+ They try to optimize global best path through the goal position.
+\end_layout
+
+\begin_layout Paragraph*
+Aim of Thesis:
+\end_layout
+
+\begin_layout Standard
+If we turn back into our study, I'd like to give the details of thesis topic.
+\end_layout
+
+\begin_layout Standard
+First of all, i try to give the boundaries and tradeoffs.
+ In this thesis, we are trying come up with a Multi-objective real-time
+ path planning algorithm.
+ As multiobjectivity, this algorithm should accept not only two constraints
+ but also n constraints.
+ That means the formulation of constraints should be independent from constraint
+ number.
+ Also, the multiobjectivity brings the domination concept between solutions,
+ which is used to determine which one is better.
+ We also should formulate it well.
+ On the other hand, we are dealing with a dynamic environment, so we time
+ is an important issue for us.
+ The algorithm should run fast and catch the target as soon as possible.
+ Also, the dynamic environment brings the synchronization issue of domain
+ concepts that this is another issue to handle.
+\end_layout
+
+\begin_layout Standard
+Right now, we are studying on the properties of virtual environment to develop
+ the algorithm.
+ First of all, we are using a 2D grid environment.
+ This environment is partially observable to agent and of course, dynamic.
+ That means other concepts should also be mobile or stationary.
+ We assume that we know the initial location of target.
+ 
+\series bold
+(the target is stationary in a known location.
+ As we progress, we will mobilize the target as well.)
+\series default
+ And as all you predict, we have several obstacles and threads to harden
+ the planning process.
+\end_layout
+
+\begin_layout Standard
+As obstacles, we think that they can be both stationary and mobile.
+ Some of these obstacles are transitive that we can refer rivers or hills
+ from real-world model.
+ But of course they consumes much more energy.
+ We also have intransitive obstacles, too.
+\end_layout
+
+\begin_layout Standard
+We can simply say that threads in environment try to prevent the agent to
+ catch the target.
+ Each thread could be stationary, mobile, or both.
+ Threads have zones and each zone has a probabity to shoot agent - 
+\emph on
+shot risk percent
+\emph default
+.
+ Basically, the thread is more probable to shoot the agent if it is closer
+ to the center point of thread.
+ Threads neighter try to catch the agent nor pursuits it.
+ They have a sight area and if they observe agent within this, they gain
+ a probability to shoot agent.
+ Mobile agents have a movement schedule and moves accordinly.
+\end_layout
+
+\begin_layout Standard
+The agent enacts the path planner role to navigate towards the target.
+ It has a sight area that it can only observes the environment within this
+ area.
+ It only knows the observations within its sight area and the target location.
+ Thus, it should re-plan its path in every time step if these information
+ is updated.
+ When it enters to a thread zone, it identifies the thread and gets the
+ properties of it such as shot risk percent and movement schedule.
+ The agent has a predefined life, so when a thread shoots the agent, its
+ life decreases until reaches to zero.
+ So the agent should try to find a riskless, shortest path with minimum
+ life loss in a highly dynamic changing environment.
+\end_layout
+
+\begin_layout Paragraph*
+What we have done, what are we doing and todo list:
+\end_layout
+
+\begin_layout Standard
+So what have we done so far? First of all, we initialized our motivation.
+ Then we examined related studies around this research topic and this helps
+ to define the boundaries of working area.
+ We formulate our problem and construct the basic structure of the algorithm.
+ We reduce the problem into more simpler problems.
+ Up to now, we are studying on a partially observable static environment.
+ Then, we will try to evolve the algorithm with considering moving threads
+ and finally we will include the mobilization of target to pursuit it.
+ Also, all of the formal documentation of these steps are done.
+ 
+\end_layout
+
+\begin_layout Standard
+In the next milestone, we are planning to start to the implementation of
+ simulation environment.
+ While implementing, the core structures within algorithm will also develop.
+ Also, environmental and conceptual properties will be defined more precisely.
+\end_layout
+
+\begin_layout Standard
+Actually, we are at the very beginning of everything and we have a lot of
+ work to do.
+ First of all, we did not decide on a specific domain for test environment.
+ Algorithm will grow by simulation environment.
+ As we start with are reduced problem, we should also include the mobilization
+ of threads and target as well.
+ And also the formal documentation should be generated.
+\end_layout
+
+\begin_layout Standard
+This is what i have done and will do for my thesis, thank you for listening.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+---
+\series default
+We must formulate the definitions and dynamics of the thesis.
+\end_layout
+
+\end_body
+\end_document

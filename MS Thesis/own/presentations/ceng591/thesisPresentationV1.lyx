@@ -1,0 +1,1285 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multi-Objective Path Planning in Virtual Environments
+\end_layout
+
+\begin_layout Author
+Tuğcem
+\begin_inset space ~
+\end_inset
+
+Oral
+\end_layout
+
+\begin_layout Institute
+Advisor: Prof.
+ Dr.
+ Faruk Polat
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{metu-ceng.jpg}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Outline
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Structuring a talk is a difficult task and the following structure may not
+ be suitable.
+ Here are some rules that apply for this solution: 
+\end_layout
+
+\begin_layout Itemize
+Exactly two or three sections (other than the summary).
+ 
+\end_layout
+
+\begin_layout Itemize
+At *most* three subsections per section.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk about 30s to 2min per frame.
+ So there should be between about 15 and 30 frames, all told.
+\end_layout
+
+\begin_layout Itemize
+A conference audience is likely to know very little of what you are going
+ to talk about.
+ So *simplify*! 
+\end_layout
+
+\begin_layout Itemize
+In a 20min talk, getting the main ideas across is hard enough.
+ Leave out details, even if it means being less precise than you think necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+If you omit details that are vital to the proof/implementation, just say
+ so once.
+ Everybody will be happy with that.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Path-planning algorithms on 2D or 3D virtual environment can be diversed
+ into many different topics - say categories.
+ (EA based - Classic (CS based) / offline - online algorithms / pursuiting
+ a target - consider more than one criteria through a specific target -
+ consider both situations / etc...
+ ).
+ We must give the basic ideas of each category, cite related studies and
+ finally concentrate on multi-objectivity.
+\end_layout
+
+\begin_layout Plain Layout
+Especially in gaming world (say virtual environments), it is desired from
+ system concepts - 
+\emph on
+agents
+\emph default
+ (opponents, enemies, threads - differs with respect to the domain) to behave
+ 
+\emph on
+intelligently
+\emph default
+.
+ This intelligence attracts players' attention because of enhancing interactivit
+y and gameplay 
+\series bold
+(The importance of intelligence should be concerned on specified domain
+ - later)
+\series default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bold sentences are comments about their ancestors
+\end_layout
+
+\end_inset
+
+.
+ In 2D or 3D environments, one of the most crucial indicator of intelligence
+ is navigation.
+ Agents should move from one predefined place to another one
+\emph on
+ -intelligently
+\emph default
+- that they should plan and design their path by considering several constraints
+ at the same time.
+ As an example, these constraints should be planning a path which is shortest
+ and thread-safe 
+\series bold
+(some risky situations might be acceptable)
+\series default
+ to the target.
+\end_layout
+
+\begin_layout Plain Layout
+There are many both well accepted 
+\series bold
+(cite a*, multi objective a*, etc...)
+\series default
+ and newish, complexity based methods 
+\series bold
+(cite new-published papers)
+\series default
+ to solve multi objectivity issues of path planning problems.
+ These new-published algorithms are generally built as an extension of cult
+ algorithms such as A* and consider execution time and complexity.
+ A 
+\emph on
+basic 
+\emph default
+and 
+\emph on
+faster 
+\emph default
+algorithm is much more suitable for real-life problems when matching them
+ to virtual environments.
+\end_layout
+
+\begin_layout Plain Layout
+Observing the importance of time and space complexities of path planning
+ algorithms, we decide to concentrate on coming up a better idea when several
+ constraints are considered to be achieved 
+\series bold
+(the criterias must be defined and kept constant?)
+\series default
+.
+ In this study 
+\series bold
+(or thesis)
+\series default
+, we try focus on a new algorithm which overcomes the issues of multi-objective
+ path planning problems in timely manner.
+ This algorithm should be optimal (or yield satisfiable 
+\emph on
+suboptimal
+\emph default
+ results) and complete.
+ It must be compared with well known and new published, well defined (has
+ space and time complexity as an idea) search algorithms and results should
+ be visualized.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This document is only scratches of a self-brainstorm and it must be extended!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Concepts on Problem
+\end_layout
+
+\begin_layout Itemize
+Path planning
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Offline / Online (Real Time) planning
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Objectivity
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Single & Multi-objectivity
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Moving targets
+\end_layout
+
+\begin_layout BeginFrame
+Path Planning
+\end_layout
+
+\begin_layout Itemize
+Finding a route from initial position to a target one.
+\end_layout
+
+\begin_layout Itemize
+Online and offline methods.
+\end_layout
+
+\begin_layout Itemize
+What if target moves?
+\end_layout
+
+\begin_layout BeginFrame
+Multi-Objectivity
+\end_layout
+
+\begin_layout Itemize
+Thinking about optimization for more than one criteria.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Optimization is based on more than one criteria.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ex.
+ Minimum path length (or associated time), minimum exposure to a hostile
+ observer, safest path ...
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Domination between constraints.
+\end_layout
+
+\begin_layout Itemize
+Pareto Optimal sets.
+\end_layout
+
+\begin_layout BeginFrame
+Moving Targets
+\end_layout
+
+\begin_layout Itemize
+Could move intelligently / unintelligently.
+\end_layout
+
+\begin_layout Itemize
+Pursuit / Catch operation.
+\end_layout
+
+\begin_layout BeginFrame
+The Problem Definition
+\end_layout
+
+\begin_layout Itemize
+Finding paths toward target considering multiple criterias.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Ex.
+ Finding shortest and riskless paths.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Environment differs & matters!
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dynamic and partially observable environments are much more realistic.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Existing solutions suffer from time complexity (fast planning).
+\end_layout
+
+\begin_layout Itemize
+Come up with an algorithm covers all these aspects.
+\end_layout
+
+\begin_layout Section
+Related Studies
+\end_layout
+
+\begin_layout BeginFrame
+Studies centered on multiobjectivity
+\end_layout
+
+\begin_layout Itemize
+Guo et.
+ al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Guo"
+
+\end_inset
+
+ considers multi-objective path planning (MOPP) for the ball and plate system.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The goal of MOPP is to obtain the safe (without colliding hazardous obstacles)
+ and shortest path for the ball to follow.
+ The environment is represented by distance map (the euclidean distances
+ between initial and target cells) and hazard map (which represents possible
+ collisions between the ball and the obstacles).
+ They use entropy method to calculate weights of objectives for each grid
+ node.
+ Simply, Dijkstra algorithm is employed as a solution.
+ In simulation results, the path obtained by multi-objective method is much
+ safer compared with single-objective A* algorithm.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tarapata
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tarapata"
+
+\end_inset
+
+ presents selected multi-objective approaches to shortest path problems
+ in his paper.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+He gives a classification of multi-objective shortest path (MOSP) problems.
+ and discuss different models of them.
+ Also he present methods of solving the formulated optimization problems.
+ Analysis of the complexity of the presented methods and ways of adapting
+ of classical algorithms for solving MOSP problems are described in detail.
+ The comparison of the effectiveness of solving selected MOSP problems are
+ defined as mathematical programming problems (using by the CPLEX 7.0 solver)
+ and multi-weighted graph problems (using modified Dijkstra’s algorithm).
+ Experimental results of using the presented methods for multi criteria
+ path selection in a terrain-based grid network are given.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mitchell et al.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mitchell"
+
+\end_inset
+
+ examine the problem through a low dimensional continuous state space subject
+ to upper bounds on several additive cost metrics.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Mitchell et al.
+ examine the problem of planning a path through a low dimensional continuous
+ state space subject to upper bounds on several additive cost metrics.
+ For the single cost case, their previously published research has proposed
+ constructing the paths by gradient descent on a local minimal free value
+ function.
+ This value function is the solution of the 
+\emph on
+Eikonal partial differential equation
+\emph default
+, and efficient algorithms have been designed to compute it.
+ In their paper, they propose an auxiliary partial differential equation
+ with which they evaluate multiple additive cost metrics for paths which
+ are generated by value functions; solving this auxiliary equation adds
+ little more work to the value function computation.
+ They also propose an algorithm which generates paths whose costs lie on
+ the Pareto optimal surface for each possible destination locations, and
+ a path can be chosen from these paths those which satisfy the constraints.
+ The procedure is practical when the sum of the state space dimension and
+ number of cost metrics is roughly six or below.
+ Their paper includes heavy mathematical notations that it is hard to keep
+ track of reading.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Studies centered on moving targets
+\end_layout
+
+\begin_layout Itemize
+Goldenberg et al.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Golderberg"
+
+\end_inset
+
+ use multi-agent systems to pursue and capture the moving target.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Agents are allowed to communicate with each other if they are within their
+ sight-area.
+ Environment is a 
+\emph on
+m x n 
+\emph default
+grid with randomly-placed obstacles, all agents and the target knows the
+ topology of the world.
+ They target is positioned at the middle of the grid and all the agents
+ are placed at the lower left corner of the grid at initial.
+ At least one of the agents can 
+\emph on
+see 
+\emph default
+the target.
+ The objective is catching the target in the minimum number of movement.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Hollinger et al.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hoolinger"
+
+\end_inset
+
+ concentrate on finding a moving, non-adversarial, known motion modelled
+ target using multiple agents.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Hollinger et al.
+ concentrate on the problem of finding a moving, non-adversarial, known
+ motion modeled target using multiple agents (robotic searchers) in a closed
+ virtual environment.
+ They define this as Multi-robot Efficient Search Path Planning (MESPP)
+ problem.
+ These typical problems are NP-hard and number of searchers increase the
+ solution space exponentially.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Koenig and his team proposes an efficient incremental search algorithm in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sun-inc"
+
+\end_inset
+
+ and come up with D* lite in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sun-D*lite"
+
+\end_inset
+
+ for moving target search.
+\end_layout
+
+\begin_layout BeginFrame
+Other Alternative Methods
+\end_layout
+
+\begin_layout Standard
+Generally evolutionary methods are used:
+\end_layout
+
+\begin_layout Itemize
+Pangilinan et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pangilinan"
+
+\end_inset
+
+ introduce an evolutionary algorithm for multi-objective shortest path problem.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+introduce an evolutionary algorithm for multi-objective shortest path problem
+ (MOSSP).
+ They draw the picture of their 2-D static (stable obstacles and target)
+ environment as a graph.
+ Initial population is created by randomly generated individuals where each
+ has a random ordered path from initial position to goal position.
+ They use binary tournament selection for mating.
+ Strength Pareto Evolutionary Algorithm (SPEA2) evaluates fitness values
+ of individuals and selects them for survival.
+ They define density function of fitness evaluation to avoid from genetic
+ drift.
+ For genetic operators, they use one-point crossover and mutation.
+ Their results show that their algorithm is a good alternative in finding
+ a subset of efficient solutions for multi-objective shortest path problems
+ when performance issues like complexity, diversity and non-dominal optimal
+ solutions become obstructions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Castillo et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Castillo"
+
+\end_inset
+
+ define a genetic 
+\emph on
+offline
+\emph default
+ point-to-point agent path planner to find valid paths towards target.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+They define a genetic 
+\emph on
+offline
+\emph default
+ point-to-point agent path planner which tries to find valid paths.
+ They concentrate on two constraints which are path length and difficulty
+ (each path has a difficulty which calculated from predefined weights) in
+ their 2-D static grid environment.
+ They compare their results with papers from 90's and get better results.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nasrollahy et al.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Nasrollahy"
+
+\end_inset
+
+ proposes a particle swarm optimization algorithm as a multi-agent search
+ technique for dynamic fully observable environments.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Nasrollahy et al.
+ proposes a particle swarm optimization algorithm as a multi-agent search
+ technique, for path planning in dynamic and known environments in order
+ to minimize total path planning time while avoiding the local optimums.
+ They create a small-scale model of search system moving goal position and
+ obstacles.
+ These obstacles are defined as circular shapes and agents get around of
+ these obstacles.
+ They try to optimize global best path through the goal position.
+ Although they mention about effectivity of proposed algorithm, they don't
+ give concrete results and comparisons with other methods.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Aim of Thesis
+\end_layout
+
+\begin_layout Subsection
+The Boundaries
+\end_layout
+
+\begin_layout BeginFrame
+The Boundaries & Tradeoffs
+\end_layout
+
+\begin_layout Itemize
+A Multi-objective real-time path planning algorithm should come up.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Objectives must be at least two, but also the algorithm should accept 
+\emph on
+n 
+\emph default
+objectives.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Domination between objectives is crucial.
+\end_layout
+
+\begin_layout Itemize
+Should run fast (due to real-time).
+\end_layout
+
+\begin_layout Itemize
+Timing and synchronizing between concepts is important.
+\end_layout
+
+\begin_layout Subsection
+Environmental Properties
+\end_layout
+
+\begin_layout BeginFrame
+Environmental Properties
+\end_layout
+
+\begin_layout Itemize
+2-D grid environment.
+\end_layout
+
+\begin_layout Itemize
+Partially observable and dynamic.
+\end_layout
+
+\begin_layout Itemize
+Know & observe target location.
+\end_layout
+
+\begin_layout Itemize
+Has an agent, threads and obstacles.
+\end_layout
+
+\begin_layout BeginFrame
+Obstacle Properties
+\end_layout
+
+\begin_layout Itemize
+Might be both stationary and mobile.
+\end_layout
+
+\begin_layout Itemize
+Some obstacles are transitive, but consumes time / energy.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Ex.
+ river, hill, etc...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Also intransitive obstacles.
+\end_layout
+
+\begin_layout BeginFrame
+Thread Properties
+\end_layout
+
+\begin_layout Itemize
+Might be both stationary and mobile.
+\end_layout
+
+\begin_layout Itemize
+Have 
+\emph on
+thread zones 
+\emph default
+where they have probability to shoot agent within.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The closer the agent, the more probable to shoot.
+ - 
+\emph on
+shoot risk percent
+\end_layout
+
+\begin_layout Itemize
+Zones can change by time.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Do not try to catch or pursuit the agent.
+\end_layout
+
+\begin_layout Itemize
+Mobile ones have movement schedule.
+\end_layout
+
+\begin_layout BeginFrame
+Agent Properties
+\end_layout
+
+\begin_layout Itemize
+An 
+\emph on
+agent 
+\emph default
+enacts 
+\emph on
+path planner 
+\emph default
+role to navigate towards target.
+\end_layout
+
+\begin_layout Itemize
+Has a sight area to observe environment.
+\end_layout
+
+\begin_layout Itemize
+Only knows the location of target and withing its sight area at time 
+\emph on
+t
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Should re-plan its path every time step if world is updated.
+\end_layout
+
+\begin_layout Itemize
+When enters to a thread zone, knows thread's movement schedule and move
+ accordinly.
+\end_layout
+
+\begin_layout Itemize
+Has life, when shot, it decreases.
+\end_layout
+
+\begin_layout Section
+What we have done
+\end_layout
+
+\begin_layout BeginFrame
+What we have done so far
+\end_layout
+
+\begin_layout Itemize
+Motivation is initialized.
+\end_layout
+
+\begin_layout Itemize
+Related studies are examined.
+\end_layout
+
+\begin_layout Itemize
+Problem definition is formalized.
+\end_layout
+
+\begin_layout Itemize
+A basic structure for developing the algorithm is constructed.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Target is considered on a static location.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Documentation of these studies are done.
+\end_layout
+
+\begin_layout Section
+What to do
+\end_layout
+
+\begin_layout BeginFrame
+Next Milestone
+\end_layout
+
+\begin_layout Itemize
+Start to implement simulation environment.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+While implementing, the predefined structures within algorithm will also
+ develop.
+\end_layout
+
+\begin_layout Itemize
+Also, environmental concepts can be defined more precisely.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Further Studies
+\end_layout
+
+\begin_layout Itemize
+We are at the very beginning of everything.
+\end_layout
+
+\begin_layout Itemize
+Domain is not specified yet.
+\end_layout
+
+\begin_layout Itemize
+Algorithm will be enhanced and test on simulated environment.
+\end_layout
+
+\begin_layout Itemize
+Moving target concept should be added to environment.
+\end_layout
+
+\begin_layout Itemize
+Formal documentation should be written.
+\end_layout
+
+\begin_layout BeginFrame
+Q & A
+\end_layout
+
+\begin_layout Standard
+\align center
+Any Questions?
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Guo"
+
+\end_inset
+
+Feng Guo and Hongrui Wang and Yantao Tian, Multi-objective path planning
+ for unrestricted mobile (2009), pp.
+ 1046 -1051
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Tarapata"
+
+\end_inset
+
+Tarapata, Zbigniew, Selected Multicriteria Shortest Path Problems: An Analysis
+ of Complexity, Models and Adaptation of Standard Algorithms, Int.
+ J.
+ Appl.
+ Math.
+ Comput.
+ Sci.
+ (2007), pp.
+ 269--287
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Mitchell"
+
+\end_inset
+
+Mitchell, I.M.
+ and Sastry, S., Continuous path planning with multiple constraints (2003),
+ pp.
+ 5502 - 5507 Vol.5
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Golderberg"
+
+\end_inset
+
+Goldenberg, Mark and Kovarsky, Alexander and Wu, Xiaomeng and Schaeffer,
+ Jonathan, Multiple agents moving target search, Morgan Kaufmann Publishers
+ Inc.
+ (2003), pp.
+ 1536--1538
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Hoolinger"
+
+\end_inset
+
+Hollinger, Geoffrey and Singh, Sanjiv and Djugash, Joseph and Kehagias,
+ Athanasios, Efficient Multi-robot Search for a Moving Target, Int.
+ J.
+ Rob.
+ Res.
+ (2009), pp.
+ 201--219
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Sun-inc"
+
+\end_inset
+
+Sun, Xiaoxun and Yeoh, William and Koenig, Sven, Efficient incremental search
+ for moving target search, Morgan Kaufmann Publishers Inc.
+ (2009), pp.
+ 615--620
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Sun-D*lite"
+
+\end_inset
+
+Sun, Xiaoxun and Yeoh, William and Koenig, Sven, Moving target D* Lite,
+ International Foundation for Autonomous Agents and Multiagent Systems (2010),
+ pp.
+ 67--74
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Pangilinan"
+
+\end_inset
+
+Pangilinan, J.M.A.
+ and Janssens, G.K., Evolutionary algorithms for the multiobjective shortest
+ path problem, World Academy of Science, Engineering and Technology
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Nasrollahy"
+
+\end_inset
+
+Amin Zargar Nasrollahy and Hamid Haj Seyyed Javadi, Using Particle Swarm
+ Optimization for Robot Path Planning in Dynamic Environments with Moving
+ Obstacles and Target, Computer Modeling and Simulation, UKSIM European
+ Symposium on (2009), pp.
+ 60-65
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Castillo"
+
+\end_inset
+
+Castillo, Oscar and Trujillo, Leonardo and Melin, Patricia, Multiple Objective
+ Genetic Algorithms for Path-planning Optimization in Autonomous Mobile
+ Robots, Soft Comput.
+ (2006), pp.
+ 269--279
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document
