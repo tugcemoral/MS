@@ -62,7 +62,8 @@ public class GridMODStarPlanning {
 	
 	private static ObjectiveArray actualPathCost = ObjectiveArray.SINGLE_ZERO;
 	
-	private static final String EXECUTION_FILE = "/demo/full_obs";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/randomized/40x40/40x40";
+//	private static final String EXECUTION_FILE = "/demo/full_obs";
 //	private static final String EXECUTION_FILE = "/demo/partial_obs";
 //	private static final String EXECUTION_FILE = "/demo/partial_obs2";
 	

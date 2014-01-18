@@ -67,7 +67,7 @@ public class EmptyMapPlanner {
 			tzRatio = calculateTZRatioManually(sm);
 			obstacleRatio = calculateObstacleRatioManually(sm);
 		}
-		while(tzRatio <= 30d /* || tzRatio > 40d */ || obstacleRatio <= 14d);
+		while(tzRatio <= 10d /* || tzRatio > 40d */ || obstacleRatio <= 14d);
 
 		Rectangle2D mapBounds = new Rectangle2D.Double(0.0, 0.0, sm.size(0),
 				sm.size(1));
