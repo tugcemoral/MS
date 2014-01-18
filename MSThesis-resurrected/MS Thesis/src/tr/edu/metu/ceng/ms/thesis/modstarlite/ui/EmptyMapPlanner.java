@@ -34,7 +34,7 @@ public class EmptyMapPlanner {
 
 	// private static Random rnd = new Random();
 
-	private static final String EXECUTION_FILE = "/demo/partial_obs2";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/randomized/default";
 	
 	private static final String EXECUTION_FILE_PROPERTIES = EXECUTION_FILE + ".properties";
 
@@ -59,7 +59,15 @@ public class EmptyMapPlanner {
 		// generate the multi-objective map.
 		GridMapGenerator mapGen = new GridMapGenerator(
 				EXECUTION_FILE_PROPERTIES);
-		sm = mapGen.generateMap();
+
+		double tzRatio;
+		double obstacleRatio;
+		do {
+			sm = mapGen.generateMap();
+			tzRatio = calculateTZRatioManually(sm);
+			obstacleRatio = calculateObstacleRatioManually(sm);
+		}
+		while(tzRatio <= 30d /* || tzRatio > 40d */ || obstacleRatio <= 14d);
 
 		Rectangle2D mapBounds = new Rectangle2D.Double(0.0, 0.0, sm.size(0),
 				sm.size(1));
@@ -105,6 +113,32 @@ public class EmptyMapPlanner {
 
 		System.out.println("Threat zone Ratio : " + mp.calculateTZRatio());
 		System.out.println("Obstacle Ratio : " + mp.calculateObstacleRatio()  + "%");
+	}
+	
+	private double calculateTZRatioManually(MOStaticMap sm) {
+		int numberOfThreatCells = 0;
+		for (int i = 0; i < sm.sizes()[0]; i++) {
+			for (int j = 0; j < sm.sizes()[1]; j++) {
+				if (sm.get(i, j).isInThreat()) {
+					numberOfThreatCells++;
+				}
+			}
+		}
+		
+		return (double)((numberOfThreatCells * 100) / (sm.sizes()[0] * sm.sizes()[1]));
+	}
+	
+	private double calculateObstacleRatioManually(MOStaticMap sm) {
+		int numberOfObstacles = 0;
+		for (int i = 0; i < sm.sizes()[0]; i++) {
+			for (int j = 0; j < sm.sizes()[1]; j++) {
+				if (sm.get(i, j).hasObstacle()) {
+					numberOfObstacles++;
+				}
+			}
+		}
+		
+		return (double)((numberOfObstacles * 100) / (sm.sizes()[0] * sm.sizes()[1]));
 	}
 
 	public class VisualizedOperationsPanel extends OperationsPanel {
