@@ -1,0 +1,423 @@
+\chapter{Partially Observable Markov Decision Processes and Factored Representations}
+\label{chapter:background}
+
+In this chapter, we presented the fundementatl concepts on Partially Observable Markov Decision Processes and factored represenation schemas used to represent and efficiently solve POMDP problems.
+
+\section{Markov Decision Processes}
+
+Markov Decision Process (MDP) is a framework for studying decision making problems in probabilistic domains.
+
+An MDP is based on stochastic processes, decision problems and Markovian property.
+
+Probabilistic decision making can be modeled similar to a stochastic process. In AI perspective an agent interacts with an environment and after each action executed by the agent, environment changes in a probabilistic way.
+
+The Markovian property indicates that, at any state, the following state will not be related to previous states. Formally,
+
+\begin{displaymath}
+\Pr(s^{k+1} | s^{k}, s^{k-1}, \ldots , s^0) = \Pr(s^{k+1} | s^{k}). \,
+\end{displaymath}
+
+A decision problem with a Markovian property has distinct states and at each state the following states are determined by actions taken and world dynamics. Most of the probabilistic decision problems fall into this category. In general for real-life problems and even for simple demonstrative problems, different histories of execution that lead to the same state have no distinct importance.
+
+Also, the Markovian property reduces the solution complexity, since a solution attempt does not have to deal with execution histories.
+
+\subsection{Formulation}
+
+An MDP is formulated as
+
+\begin{itemize}
+\item Set of state space, $S$
+\item Set of actions, $A$
+\item State transition function, $T : S \times S \times A \to [0,1]$
+\end{itemize}
+
+These three factors determine \emph{how the world changes}. As the nature of a decision problem dictates, some states are desirable and some states are not desirable in an MDP. Reward function captures this notion.
+
+\begin{itemize}
+\item Reward Function, $R : S \times S \times A \to \mathbb{R}$
+\end{itemize}
+
+$T(s, s', a)$ is the probability that taking action $a$ at state $s$ leads to state $s'$. $R(s, s', a)$ is the amount of reward received \emph{immediately} when system changes from state $s$ to state $s'$ via action $a$.
+
+\subsection{Deterministic Case}
+
+When state transition function is formulated as
+
+\begin{displaymath}
+T : S \times A \to S
+\end{displaymath}
+
+or
+
+\begin{displaymath}
+T : S \times S \times A \to \{0,1\}
+\end{displaymath}
+
+the system is deterministic, i.e. there is a single next state for a given state-action pair. In this setting the problem reduces to a classical planning problem.
+
+\subsection{Acting on an MDP Problem}
+
+In AI perspective, an agent acting on an MDP reacts to the environment via $S, A, T$ and $R$. At any state $s$, agent chooses an action among $A$. This action changes the world, according to $T$ and the world enters a new state $s'$. Agent is noticed the reward received upon this transition. Thus, a time-tick is completed. Agent now chooses a new action for $s'$.
+
+An execution history is a string of states and actions of such an agent acting on an MDP. It is a snapshot of lifetime of an agent in a given time frame.
+
+\begin{displaymath}
+H = s^0a^0s^1a^1s^2 \ldots a^{n-1}s^{n}
+\end{displaymath}
+
+The cumulative reward gained at such an execution history is the sum of rewards gained at each step.
+
+\begin{displaymath}
+Cumulative Reward(H) = \sum_{i=1}^{i=n} R(s^{i-1}, s^i, a^{i-1})
+\end{displaymath}
+
+The agent may decide which action to take according to its internal architecture. For MDP problems, it is assumed that the agent knows all problem dynamics ($S, A, T$ and $R$) perfectly. Also it is assumed that at each time-tick, the new state $s'$ is perfectly observable by the agent (See Section \ref{section:pomdp} for generalization). For MDP problems general practice is constructing a policy in form of a mapping from states to actions. Thus acting on an MDP environment is simply executing the action that the policy dictates for the current state.
+
+\subsection{Solving an MDP Problem}
+
+In simple terms, solving an MDP problem is finding a way to act optimally.
+
+The optimality is measured generally in terms of cumulative reward. Cumulative reward of an execution history might be quite precise to measure the optimality of a solution. However there are two factors that complicate this view:
+
+\begin{enumerate}
+\item There is an infinite number of execution histories, since there is no boundary for the length of an execution history and the formulation of MDP does not specify any concept of termination.
+\item Even considering execution histories of some fixed length, since state transition is probabilistic in nature, applying same actions starting with the same initial state might lead to different execution histories.
+\end{enumerate}
+
+Since there are infinitely many execution histories, it is essential to formulate an \emph{expected cumulative reward} of a policy $\delta$, given a fixed execution history length $t$ (which is commonly called \emph{horizon}).
+
+\begin{displaymath}
+\begin{array}{rl}V_t^\delta (s) = \sum_{s'} T(s ,s', \delta(s)) [ R(s, s', \delta(s)) + V_{t-1}^\delta (s')]  & t>0 \\
+& \\
+V_0^\delta (s) = \sum_{s'} T(s, s', \delta(s)) [ R(s, s', \delta(s)) ]\end{array}
+\end{displaymath}
+
+$V_t^\delta (s)$ is the expected cumulative reward of applying policy $\delta$ for $t+1$ steps, starting at state $s$.
+
+\subsection{Algorithms for Solving MDP Problems}
+
+\subsubsection{Value Iteration}
+
+\emph{Value Iteration} is a dynamical programming method used in learning and decision problems. The pseudocode for the algorithm is given in Figure \ref{figure:valueiterationalgorithm}.
+
+In a state oriented view of the world each state has a value, based on the reward received at that state, and possible next states. Value Iteration algorithm tries to approximate this value iteratively. Modified version of value iteration algorithms try to approximate value of state-action pairs.
+
+In a dynamical system, value of a state is the expected cumulative reward gained after that state. It is possible to formulate this statement recursively. At a given state, there are finite number of possible next states, even we do not have a restriction for the action taken. Thus, if we know the value of all the next states, we can calculate the value of the current state.
+
+Below formulation is used for calculating expected cumulative reward with an arbitrary horizon $t$:
+
+\begin{displaymath}
+\ V_t^\delta (s) = \sum_{s'} T(s ,s', \delta(s)) [ R(s, s', \delta(s)) + V_{t-1}^\delta (s')]
+\end{displaymath}
+
+We can use this formula for finding the real value function, $V^*$.
+
+Then we find the $V^*$, $\delta(s)$ follows as:
+
+\begin{displaymath}
+\ \delta(s) = \underset{a}{\mbox{argmax}} \sum_{s'} T(s,s',a) [ R(s, s', a) + V^* (s')]
+\end{displaymath}
+
+With combining these two ideas, we can formulate an algorithm to calculate $V^*$. Algoritm starts with an initial random guess of $V^*$, called $V^0$ \footnote{It's important not to confuse this superscript with the numerical subscript used to indicate the horizon of the function.}.A refined version of $V^0$, $V^1$ can be constructed by using the cummulative reward formula and using $V^0$ for value of the next state (operator $:=$ symbolizes ''update'')
+
+\begin{displaymath}
+\ V^1(s) := \sum_{s'} T(s ,s', \delta(s)) [ R(s, s', \delta(s)) + V^0 (s')]
+\end{displaymath}
+
+It's usually preffered to use a discount factor $\gamma (0 < \gamma < 1)$ to speed up the convergence to $V^*$:
+
+\begin{displaymath}
+\ V^1(s) := \sum_{s'} T(s ,s', \delta(s)) [ R(s, s', \delta(s)) + \gamma . V^0 (s')]
+\end{displaymath}
+
+Thus the actual reward values influence $V^1$ more then $V^0$ values.
+
+Since delta formula and this formula are similar, it is possible to rewrite this formula with eliminating delta:
+
+\begin{displaymath}
+\ V^1(s) := \max_a \sum_{s'} T(s ,s', a) [ R(s, s', a) + \gamma . V^0 (s')] \qquad (0 < \gamma <1 )
+\end{displaymath}
+
+Note that this formula should be applied to each state. At each application, we have a maximization over all actions and we have a summation over all states. Generalizing this formula we have:
+
+\begin{displaymath}
+\ V^{k+1}(s) := \max_a \sum_{s'} T(s ,s', a) [ R(s, s', a) + \gamma . V^k (s')] \qquad (0 < \gamma <1 )
+\end{displaymath}
+
+We can apply this formula repeatedly to find better approximations to $V^*$. It is possible to show that this iteration converges to $V^*$, if it exists.
+
+It's also possible to forget to maintain separate $V^k$ and $V^{k+1}$ values, or we can use a dynamic programming approach, eliminating the indexes and iterating continously for all states:
+
+\begin{displaymath}
+\ V(s) := \max_a \sum_{s'} T(s ,s', a) [ R(s, s', a) + \gamma . V (s')] \qquad (0 < \gamma <1 )
+\end{displaymath}
+
+When $V$ converges to $V^*$, right and left sides of the formula get equal and no update is done. Thus, it is possible to terminate the iteration by examining the '''update amount''':
+
+\begin{displaymath}
+\ \Delta := \max_s | V(s) - \max_a \sum_{s'} T(s ,s', a) [ R(s, s', a) + \gamma . V(s')]
+\end{displaymath}
+
+When $\Delta$ gets low enough, algorithm is terminated.
+
+\begin{algorithm}
+\SetLine
+   Initialize $V$ arbitrarily, e.x. $V(s) := 0$, for all s\;
+   \Repeat{ $\Delta < /Theta$ }{
+	   $\Delta := 0$\;
+	   \ForEach {$s \in S$} {
+		   $\ v := V(s)$\;
+		   $\ V(s) := \ \max_a \sum_{s'} T(s,s',a) [R(s,s',a) + \gamma . V(s')]$\;
+		   $\ \Delta := \max (\delta, | v - V(s) |)$\;
+	   }
+   }
+   $\ \delta(s) = \underset{a}{\mbox{argmax}} \sum_{s'} T(s,s',a) [ R(s, s', a) + V^* (s')]$\;
+\caption{Value Iteration Algorithm}\label{figure:valueiterationalgorithm}
+\end{algorithm}
+
+Each iteration of Value Iteration Algorithm (Do-While loop) takes $\ \mathcal{O} (|S|^2|A|)$ operations, due to maximization on actions and summation over next state. The number of iterations is polynomial in terms of $|S|$.
+
+\subsection{Q-Learning Algorithm}
+
+It's sometimes preferable to refine the value function and define it from $S \times A$. So instead of $V(s)$ we have $Q(s,a)$. A similar iterative algorithm can update Q values.
+
+\begin{displaymath}
+\ Q(s,a) := \sum_{s'} T(s ,s', a) [ R(s, s', a) + \gamma . V (s')] \qquad (0 < \gamma <1 )
+\end{displaymath}
+
+At each iteration of the formula, we should apply it to all ''state-action pairs''.
+
+The advantage of Q-Learning Algorithm is, we know the exact value of each action at each state.
+
+Q-Learning algorithm has the same time complexity with the Simple Value Iteration Algorithm. However if we are using dynamic programming, the size of the Q-table is $\mathcal{O} (|S||A|)$ which is much bigger then an ordinary value table. And more importantly the extra information that the Q values supply is redundant for solving an MDP problem. It is possible to deduce a policy without this extra knowledge.
+
+Q-values becomes important if the problem is a learning problem, where state transition function is unknown to agent (as the name Q-Learning suggests). For such problems, it is not possible to maximize over all actions, unless the agent has not executed them and perceived the actual next state. So it is not easy to apply Value Iteration algorithm. Since Q-Learning does not have a maximization over actions, traces of agent's actions can be fed into Q-update rule as $(s,s',a)$ triplets.
+
+\subsection{Policy Iteration}
+
+\emph{Policy Iteration} is an algorithm based on improving a policy for a learning problem or a decision problem.
+
+The main idea behind policy iteration is, given a policy, it is possible to calculate a value function based on this policy. And given a value function, it is possible to refine the policy.
+
+Policy Iteration Algorithm is similar to Value Iteration, in the sense that both algorithms try to improve the solution in iterations. Solution of Policy Iteration Algorithm is policy itself.
+
+Policy Iteration Algorithm starts with an initial arbitrary policy $\pi$. Each iteration of algorithm has two phases:
+
+\begin{enumerate}
+\item Value Calculation Phase
+\item Policy Improvement Phase:
+\end{enumerate}
+
+\subsubsection{Value Calculation Phase}
+
+In this phase the value function of the policy $\pi$ is calculated. The classical value function formula is sufficient for this calculation:
+
+\begin{displaymath}
+\ V_\pi(s) = \sum_{s'} T(s, s', \pi(s)) [ R(s, s', \pi(s)) + \gamma . V_\pi(s') ]
+\end{displaymath}
+
+Writing this equation for each $s \in S$ gives us $|S|$ different equations. $V_\pi(s)$ and $V_\pi(s')$ are unknowns in these equation, for each $s,s' \in S$. We have a linear system of $|S|$ variables and $|S|$ unknowns, it is possible to find a solution. The solution for $V_\pi(s)$ gives us value function of the policy.
+
+\subsubsection{Policy Improvement Phase}
+
+It is possible to create a refined version of the policy by using the value function. This phase is identical to policy extraction step of Value Iteration algorithm.
+
+\begin{displaymath}
+\ \pi'(s) := \underset{a}{\mbox{argmax}} (\sum_{s'} T(s,s',a) [ R(s,s',a) + \gamma . V(s')])
+\end{displaymath}
+
+\subsubsection{Termination Condition}
+
+When policy converges to optimal policy, value function calculated at the first phase converges to optimal value function. Thus the refined policy extracted at the second phase is the optimal policy again.
+
+This fact gives us a sufficient termination condition. When an iteration does not refine the policy anymore, i.e. refined policy is equal to the original one, the algorithm terminates, converging to optimal policy.
+
+\subsubsection{Computational Complexity of the Algorithm}
+
+Each iteration of the Algorithm has two phases. Value Calculation phase is simply solving a linear system with $|S|$ equations. This phase has polynomial complexity, specifically $\mathcal{O}(|S|^3)$ if Gaussian Elimination is used. Policy Improvement phase has complexity $\mathcal{O}(|S|)$.
+
+At the worst case, the policy algorithm iterates over all possible policies until finding the optimal one. Since there is $|A|^{|S|}$ possible policies, the number of policies have exponential complexity. However it is shown that the running time is pseudo polynomial\cite{littman95}.
+
+\section{Partially Observable Markov Decision Processes}
+\label{section:pomdp}
+A POMDP is a framework for modeling probabilistic decision making problems featuring partial observability.
+The framework is similar to MDPs, where there is no partial observability and the state information is known
+perfectly. However, in the POMDP framework, it is not possible to observe the state perfectly, instead an
+imperfect observation~is~available \cite{Kaelbling98,Cassandra94,Cassandra98}.
+
+The model is formulated as
+
+\begin{itemize}
+\item Set of state space, $S$
+\item Set of actions, $A$
+\item State transition function, $T : S \times S \times A \to [0,1]$
+\end{itemize}
+
+These model elements are identical to elements of an MDP. The distinction between MDPs and POMDPs is in a POMDP system any executing action does not have any knowledge about current world state $s \in S$. An agent acting on a POMDP perceives an ''observation'' at each time-tick, which is different than the state information.
+
+\begin{itemize}
+\item Set of observations, $O$
+\item Observation function, $\O : S \times A \times O \to [0,1]$
+\end{itemize}
+
+The observation function is a function of observations, states and actions, gives the probability of perceiving given observation ''after'' the world goes to given state with the effect of given action. The reward function is also a function of observations, reward given at any time-tick is dependent to the observation perceived.
+
+\begin{itemize}
+\item Reward Function, $R : S \times S \times A \times O \to \mathbb{R}$
+\end{itemize}
+
+The major impact of partially observability is that the system no longer has the Markovian property ''by agent's view''. The underlying state based model is still Markovian. However observation based view of the system does not hold this property. Any observation to be perceived in the future is not only dependent to current observation, since this current observation might not uniquely map to the current state. Different observation might be perceived at any state and an observation might be perceived at a number of states.
+
+Also since the observations are probabilistic it is not generally possible to establish a mapping between states and observations. Still some of the solution methods try to establish such a mapping, even if it is probabilistic.
+
+An agent acting on a POMDP problem has a similar view with the MDP version. The only major difference is the agent perceives an observation at each time-tick, instead of a new world state. Thus an execution history has form
+
+\begin{displaymath}
+H = o^0a^0o^1a^1o^2 \ldots a^{n-1}o^n
+\end{displaymath}
+
+at agent's perspective.
+
+Since the reward function is dependent to state information and state information is inaccessible to agent, it is not possible to calculate a cumulative reward in any way except summing the actual rewards. Thus reward information might be added to execution history.
+
+\begin{displaymath}
+H = o^0a^0r^0o^1a^1r^1o^2 \ldots a^{n-1}r^{n-1}o^n
+\end{displaymath}
+
+Solving a POMDP problem is still about finding a way to act optimally. For POMDP problems, an agent may act upon a policy but it is not possible to construct a policy simply as a mapping.
+
+It is possible, however worthless, to construct the policy as a state-action mapping since state information is not accessible. Then the policy should also contain a way to determine the current state to use this state-action pair.
+
+It is not possible to construct the policy as an observation-action mapping since this view does not hold the Markovian property and current observation does not implicate current state.
+
+Since these approaches should not work, it is necessary to construct a more sophisticated policy for agents acting at POMDP problems.
+
+Since there is no simple policy structure for a POMDP, it is also not possible for a simple optimality metric. The principal of optimality is same with the MDP case. A policy is optimal if and only if expected cumulative reward received by applying the policy is optimal. Calculation of expected cumulative reward should be similar to MDP case for any policy type. It is important to note that next state should be dependent to observations too.
+
+\subsection{Algorithms for Solving POMDP problems}
+
+\subsubsection{History Based Algorithms}
+
+Most important challenge of solving POMDP problems is their lack of Markov property, in terms of observations and actions. However, if an execution history is available, it can be used for defining a new MDP problem in terms of history states.
+
+In order to apply a history based algorithm, one should have sufficient history data on all the state space. Thus an history-based algorithm can be configured in a generative way, which involves producing history data from known world dynamics; or it can be configured as a learning problem.
+
+Set of states of the new problem is strings of execution histories of the POMDP problem, containing alternating actions and observations.
+
+Set of actions of the new problem is set of action of the POMDP problem.
+
+An important probability function is ''belief state probability function'', which is a probability distribution of current state, given a history-state. This function can be computed iteratively, by using initial state distribution, state transition function of POMDP and observation distribution function of POMDP.
+
+Transition function of the new problem is defined as probability of perceiving an observation of POMDP problem, given a history-state and an action. New state is just the history-state, concatanated with given action and observation. This transition function can be computed using transition and observation functions of POMDP with ''belief state probability function''.
+
+Reward function of the new problem is similarly probability of receiving a certain reward after executing a given action at a given history-state. This function can be computed using original reward function and observation distribution functions of POMDP with the ''belief state probability function''
+
+The calculation of both functions just consists of taking expected value over the ''belief state probability function''.
+
+With all the components of an MDP system, the new derived MDP problem can be solved using Value Iteration or any other MDP solving method.
+
+This approach is successful in the sense that, even we don't know the transition and observation distributions of the POMDP, we can generate estimates from the execution history and use them in the algorithm. This algorithm can be constructed as a pure model-free method to solve a POMDP online.
+
+However it is apparent that the state space of the constructed MDP is exponential in terms of state and action spaces of the original POMDP.
+
+\subsubsection{Belief State Based Algorithms}
+
+History-state based approach has a huge state space and a simpler approach is possible if the system dynamics are well known. When the transition function and and observation function are known, ''belief state probability function'' can be used to maintain a policy.
+
+The general approach of all belief state based algorithms is similar to the Value Iteration algorithm of MDP problems. As state information, we have belief states, which is the domain of the ''belief state probability function''. A belief state can be formulated as a vector.
+
+The value function over belief states is a piecewise linear function. So similarly value function can be represented as a set of $n$ dimension vectors, too.
+
+With such vectorial representation, value of an arbitrary belief state, w.r.t to value function is the maximum value of the dot product of each vector in value function with the belief state vector.
+
+It is possible to use Value Iteration and find the vectors that form value function. However there is one important obstacle, the belief state space is the set of all $n-dimensional$ probability distribution vectors, and this state space is a continuous one. It is known that the problem is inherently a discrete problem, however discritizing the continuous belief state space is a difficult problem.
+
+Different algorithms are proposed for maintaining a discrete view by using the Value Iteration.
+
+\begin{itemize}
+\item Sondik/Monahan's Enumeration Algorithm tries to enumerate all possible useful belief states and apply Value Iteration algorithm only considering these belief states.
+\item Sondik's One Pass Algorithm tries to find a value function component for a single belief state, and then explore the belief state interval, on which this component of value function is dominating by examining possible actions and outcomes.
+\item Cheng's Linear Support Algorithm tries to build the Value Function directly.  The approach is similar to the One Pass Algorithm, however Linear Support Algorithm relies of geometric properties of Piecewise Linear Value Function, rather then using possible actions and their outcomes.
+\item Witness Algorithm is similar to Linear Support Algorithm, but it also uses observations in order to simplify the calculation of real value of belief points.
+\end{itemize}
+
+\section{Factoring of POMDP Problems}
+
+\subsection{Factored MDP and POMDP}
+There are a number of challenges, of which all POMDP algorithms, especially belief based ones, suffer from:
+
+\begin{itemize}
+\item Continuity of belief space is an important challenge for belief based POMDP algorithms. A belief based algorithm has to find a way to deal with the continuous space as a first task. Luckily a value function of a PODMP problem is a piecewise linear and we have a simple finite mean to represent it. This also allows overcoming the challenge of the continuity.
+\item \emph{Curse of Dimensionality} is the difficulty of manipulating value function for huge problems, which have many states and actions. Value function should be calculated by considering all states and actions even in the simples possible form. Thus huge number of states and actions increases both the size of value function and time/space necessary to compute it.
+\item \emph{Curse of Horizon} is an effect of Curse of Dimensionality. Most of the problems proposed for POMDP problems are iterative. Each iteration produces a policy for a specific horizon. At each iteration, horizon is increased. Since the horizon increases, each iteration deals with a more complex belief state, a more complex value function. We can simply say that Curse of Dimensionality gets worse as the horizon increases.
+\end{itemize}
+
+It is possible to formulate more efficient algorithms to overcome this issues. However one of the underlying reasons of these difficulties is POMDP models use representations more inefficient then should be. Most of the real life problems do not have distinct unique states, actions and observations. Most of the real world problems exhibit some structure in action space, state space and observation space \cite{schut02}.
+
+Factored POMDPs could be seen as the most important attempt made to exhibit the structure of POMDP
+problems~\cite{Boutilier95}. The idea was originally used for MDP problems. Instead of representing the
+problem with a set of states and actions, the factored approach represents MDP problems with ``state
+variables'' and actions. The state notion is simply the cross product of all state variables. This idea is
+also applicable to POMDP problems where the state space is only partially observable. Partial observability
+provides a natural factorization among states. This is known as mixed observability. Using factorization
+structure of the state space can be used to simplify the problem~\cite{Smith07, Kveton06}. Our intention is
+to use the factored PODMP in tackling the GRN control problem. 
+
+Factored POMDP can be demostrated by using an example problem. For this purpose we used RockSample problem. RockSample is a simple 2-D robot problem. A robot is navigating in an obstacle free environment with some rocks available to collect. Some rocks have value and others do not. The robot knows its location and the locations of rocks, but does not know the quality of rocks, which makes the problem partially observable. The robot can use its long range sensor to determine the value of any rock. The sensor reading is noisy proportional to the distance to the rock sensed. The robot have specific start and goal locations.
+
+In our examples a 4x4 environment RockSample problem is used with 4 rocks in the environment.
+
+For RockSample domain, a possible representation is
+
+\begin{itemize}
+\item $S = \{ L , RQ1, RQ2, RQ3, RQ4\}$ where $Val(L) \in \{(a,b) | 1 \le a,b \le 4\}$ and $Val(RQ1),Val(RQ2),Val(RQ3),Val(RQ4) \in \{havevalue, novalue\}$
+\item $A = \{ ML, MR, MU, MD, SR1, SR2, SR3, SR4, G\}$
+\item $O = {SR}$ where $SR \in {positive, negative}$
+\end{itemize}
+
+In this representation, $L, RQ1, RQ2, RQ3$ and $RQ4$ are state variables where $L$ is the location of agent, $RQ1,RQ2,RQ3$ and $RQ4$ are qualities of 4 rocks in the environment. Action set contains four actions for moving ($M MR, MU$ and $MD$), four actions for sensing the rocks in the environment ($SR1, SR2, SR3$ and $SR4$) and a grab action to collect the rock at the agent's location. After trying to sense any rock in the environment, agent receives an observation of positive or negative. Without activating the senses, agent does not receive any observation.
+
+The transition function is deterministic and the observation function has probabilities associated with sense actions dependent to the distance between the agent and the sensed rock.
+
+The reward function maps +10 reward to sampling a rock with value, -10 reward to sampling a rock without value. Also the reward function maps +10 to reaching the goal location.
+
+This representation is previously used for algorithms working on Factored representation of POMDP problems. There is only single modification we made . We did not used extra observations or extra rewards for reinforcing the agent not to execute illegal actions. Generally to provide homogeneity in problem description, such minor modifications are embedded as extra observations or extra rewards. However our aim is not homogeneity, on the contrary, to partition the problem using the structure it exhibits. So we were fine with omitting such modifications for the sake of homogeneity.
+
+Last element of the factored representation is determining the relations between state variables in the given problem description. It is possible to use Dynamic Bayesian Networks for this purpose.
+
+Figure \ref{figure:rocksample} depicts the factored representation of RockSample problem. Each part of the figure presents the world and observation dynamics for a single action. For any action that involves moving (in particular $ML$ for the figure), only the state variable $L$ changes. For any action that involves sensing rock quality (in particular $SR2$ for the figure) the value of the onservation perceived is determined by the actual quality of the rock and the location of the agent. No state variable changes for this action. Finally grab action possibly changes all the rock quality state variables, depending to the location of the agent. If the agent is adjacent to a certain rock, after grabbing the rock quality variable related to that rock will change while other variables remain the same; if the agent is not adjacent to any rock, no rock quality variable will change.
+
+\begin{figure}
+\begin{displaymath}
+\entrymodifiers={++[o][F-]}
+\fbox{\xymatrix{
+*\txt{ML} \\
+L_{t-1} \ar[r] & L_t \\
+RQ1_{t-1} & RQ1_t \\
+RQ2_{t-1} & RQ2_t \\
+RQ3_{t-1} & RQ3_t \\
+RQ4_{t-1} & RQ4_t
+}}
+\qquad
+\fbox{\xymatrix{
+*\txt{SR2} \\
+L_{t-1} \ar@/_20pt/[ddddd] & L_t \\
+RQ1_{t-1} & RQ1_t \\
+RQ2_{t-1} \ar@/_20pt/[ddd]& RQ2_t \\
+RQ3_{t-1} & RQ3_t \\
+RQ4_{t-1} & RQ4_t
+\\
+SR
+}}
+\qquad
+\fbox{\xymatrix{
+*\txt{G} \\
+L_{t-1} \ar[dr] \ar [ddr] \ar[dddr] \ar[ddddr] & L_t \\
+RQ1_{t-1} \ar[r] & RQ1_t \\
+RQ2_{t-1} \ar[r] & RQ2_t \\
+RQ3_{t-1} \ar[r] & RQ3_t \\
+RQ4_{t-1} \ar[r] & RQ4_t
+}}
+\end{displaymath}
+\caption{Factored dependencies of the problem}\label{figure:rocksample}
+\end{figure}

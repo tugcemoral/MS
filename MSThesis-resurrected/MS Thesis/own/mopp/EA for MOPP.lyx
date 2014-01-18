@@ -1,0 +1,2080 @@
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass IEEEtran
+\use_default_options false
+\language english
+\inputencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement tbh
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+title{An Evolutionary Algorithm for Multi-Objective Path Planning Problem
+ in Virtual Environments}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{
+\backslash
+authorblockN{Tu
+\backslash
+u{g}cem Oral}
+\backslash
+
+\backslash
+ 
+\backslash
+authorblockA{Department of Computer Engineering 
+\backslash
+
+\backslash
+ Middle East Technical University, 06800 Ankara, Turkey 
+\backslash
+
+\backslash
+ tugcem.oral@gmail.com}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Path planning in virtual environments still remains as an issue while reflecting
+ it to real world applications.
+ In this paper, we present an evolutionary solution to multi-objective path
+ planning (MOPP) problems and describe its behaviors in terms of diversity
+ and optimality.
+ These problems consist of generating valid paths for an agent from an initial
+ position to a goal across a flat map of a terrain, represented by a two
+ dimensional grid, with obstacles and different weighted cells.
+ The algorithm execution results show that several optimal solutions can
+ be found in polynomial time.
+ This situation creates an alternative way for other problems which are
+ intractable.
+\end_layout
+
+\begin_layout Keywords
+Multi-objective, path planning, evolutionary algorithms.
+\end_layout
+
+\begin_layout Section
+Introduction
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Introduction"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+PARstart{M}{ulti}
+\end_layout
+
+\end_inset
+
+-objective problems differ itself from classical (single-objective) problems
+ via considering more than one criteria (objectives) at the same time while
+ finding a solution.
+ The task in a multi-objective problem is not to find an optimal solution
+ for each objective but to find an optimal solution that simultaneously
+ optimizes 
+\emph on
+all
+\emph default
+ objectives.
+ And in most cases, there exist a set of optimal or non-dominated solutions
+ rather than a single solution.
+ 
+\end_layout
+
+\begin_layout Standard
+As looking from path planning perspective, single-objective path planning
+ considers only one constraint (i.e.
+ the shortest or the longest path) while finding a valid path from initial
+ to goal position.
+ However, multi-objective path planning (MOPP) comes into play with more
+ than one constraints while deciding a path.
+ The MOPP problem has been studied extensively by various researchers in
+ the fields of optimization, information & communications in a network and
+ route planning for traffic.
+ For instance, the problem of finding a valid path to a target of an Unmanned
+ Aerial Vehicle (UAV) which considers fuel consumption and getting the optimal
+ path which might includes anti-aircraft risky radar regions could be given
+ as an issue for MOPP.
+\end_layout
+
+\begin_layout Standard
+Multi-objective path planners must be able to generate valid paths from
+ initial to goal position, and in order to truly show a level of intelligence
+ these paths must be 
+\emph on
+optimized
+\emph default
+ under the criteria as given with problem.
+ A perfect and precise path planner, which finds the path if one exists,
+ otherwise reports no path existence, is NP-hard 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Canny:1988:CRM:49142"
+
+\end_inset
+
+.
+ It has been shown that a set of problems exist wherein the number of Pareto-opt
+imal solutions is 
+\emph on
+exponential
+\emph default
+ which implies that any deterministic algorithm that attempts to solve it
+ is also exponential in terms of runtime complexity at least in the worst
+ case.
+\end_layout
+
+\begin_layout Standard
+Even there exists many old research about MOPP algorithms, there still seems
+ to be a lack of reported literature in evolutionary approaches in relation
+ to the MOPP.
+ In order to demonstrate a clearer picture of the advantages and disadvantages
+ of evolutionary algorithms in optimization, this paper attempts to investigate
+ a multi-objective evolutionary algorithm applied to MOPP.
+ 
+\end_layout
+
+\begin_layout Standard
+The paper is organized as follows.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Related-Work"
+
+\end_inset
+
+ gives related literature.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Background"
+
+\end_inset
+
+ presents background concepts of proposed algorithm.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MOEA"
+
+\end_inset
+
+ proposes and elaborates the multi-objective evolutionary algorithm for
+ path planning.
+ Experimental results are discussed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experimental-Results"
+
+\end_inset
+
+.
+ Finally, Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusion-&-Future"
+
+\end_inset
+
+ gives the conclusion and details future work.
+\end_layout
+
+\begin_layout Section
+Related Work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Related-Work"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For virtual environments, there exist many proposed heuristic solutions
+ to MOPP.
+ Koneig et al.
+ introduce a new incremental heuristic search algorithm, D* lite in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Koenig:2002:D*L:777092.777167"
+
+\end_inset
+
+.
+ This algorithm reuses search trees from previous searches to speed up the
+ current search and finally finds cost-minimal paths for series of similar
+ search problems.
+ They mention that this method is faster than by solving each search problem
+ from scratch.
+ 
+\end_layout
+
+\begin_layout Standard
+Bukhari et al.
+ comes up with an optimization technique for dynamic online path planning
+ and optimization of the path 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key:article"
+
+\end_inset
+
+.
+ It addresses the issues involved during path planning in dynamic and unknown
+ environments cluttered with obstacles and objects.
+ A simulated ant agent system is proposed using modified ant colony optimization
+ algorithm for dealing with online path planning.
+ It is compared with evolutionary techniques on randomly generated environments
+ with different obstacle ratios and grid sizes.
+ The proposed algorithm generates and optimizes paths in complex and large
+ environments with several constraints.
+\end_layout
+
+\begin_layout Standard
+Nasrollahy et al.
+ proposes a particle swarm optimization algorithm as a multi-agent search
+ technique, for path planning in dynamic and known environments in order
+ to minimize total path planning time while avoiding the local optimums
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10.1109/EMS.2009.67"
+
+\end_inset
+
+.
+ They create a small-scale model of search system moving goal position and
+ obstacles.
+ These obstacles are defined as circular shapes and agents get around of
+ these obstacles.
+ They try to optimize global best path through to the goal position.
+ Although they mention about effectivity of proposed algorithm, they don't
+ give concrete results and comparisons with other methods.
+\end_layout
+
+\begin_layout Standard
+As well as heuristic approaches, there are several proposed evolutionary
+ solutions for MOPP.
+ A recent study by Pangilinan et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pangilinan:EAforMSPP"
+
+\end_inset
+
+ introduce an evolutionary algorithm for multi-objective shortest path problem.
+ They draw the picture of their 2-D static (stable obstacles and target)
+ environment as a graph.
+ Initial population is created by randomly generated individuals where each
+ has a random ordered path from initial position to goal position.
+ They use binary tournament selection for mating.
+ Strength Pareto Evolutionary Algorithm (SPEA2) evaluates fitness values
+ of individuals and selects them for survival.
+ They define density function of fitness evaluation to avoid from genetic
+ drift.
+ For genetic operators, they use one-point crossover and mutation.
+ Their results show that their algorithm is a good alternative in finding
+ a subset of efficient solutions for multi-objective shortest path problems
+ when performance issues like complexity, diversity and nondominal optimal
+ solutions become obstructions.
+\end_layout
+
+\begin_layout Standard
+Dozier et al.
+ gives a new selection methodology for MOPP in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "700122"
+
+\end_inset
+
+.
+ They introduce fuzzy tournament selection algorithm which combines fuzzy
+ inference with tournament selection to select candidate solution paths.
+ This selection is based on the euclidean distance from initial to goal
+ position, the sum of the changes and the average change in the slope of
+ a path.
+\end_layout
+
+\begin_layout Standard
+Castillo et al.
+ also worked on evolutionary algorithms for MOPP in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Castillo:2006:MOG:1178398.1178406"
+
+\end_inset
+
+.
+ They define a genetic offline point-to-point agent path planner which tries
+ to find valid paths.
+ They concentrate on two constraints which are path length and difficulty
+ (each path has a difficulty which calculated from predefined weights) in
+ their 2-D static grid environment.
+ They compare their results with 90's papers and get better results.
+\end_layout
+
+\begin_layout Standard
+A complete discussion of multi-objective evolutionary algorithms (MOEA)
+ can be found in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MOOUEA"
+
+\end_inset
+
+.
+ Also 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Coello:2000:USG:358923.358929"
+
+\end_inset
+
+, gives a summary of current approaches in MOEA and emphasizes the importance
+ of new approaches in exploiting the capabilities of evolutionary algorithms
+ in multi-objective optimization.
+\end_layout
+
+\begin_layout Section
+Background
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Background"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In our proposed solution to MOPP, we decide to use 2-D grid environment
+ for working around.
+ Given a grid 
+\begin_inset Formula $G=\{C,\, n\}$
+\end_inset
+
+ where C is the set of cells and 
+\begin_inset Formula $n\in\mathbb{Z}^{+}$
+\end_inset
+
+ is the size of this grid.
+ Note that 
+\begin_inset Formula \[
+C={\displaystyle \left\{ c_{1,1},\, c_{1,2},\,...,\, c_{n,1},\, c_{n,2},\,...,c_{n,n}\right\} }\]
+
+\end_inset
+
+has 
+\emph on
+
+\begin_inset Formula $n\times n$
+\end_inset
+
+ 
+\emph default
+cells.
+ If initial cell of the path finder agent is 
+\begin_inset Formula $\varsigma=\sigma_{0}=c_{1,1}$
+\end_inset
+
+ and the goal cell is 
+\begin_inset Formula $\tau=\sigma_{k+1}=c_{n,n}$
+\end_inset
+
+, a path 
+\begin_inset Formula $p$
+\end_inset
+
+ can be defined as a set of specified cells from initial to goal cell as
+ follows:
+\begin_inset Formula \[
+p=\left\{ \varsigma,\sigma_{1},\sigma_{2}=adj(\sigma_{1}),...,\sigma_{k}=adj(\sigma_{k-1}),\tau=adj(\sigma_{k})\right\} \]
+
+\end_inset
+
+ where 
+\begin_inset Formula $i,\, j=\{1,\,2,\,3,\,...,\, n\}$
+\end_inset
+
+, 
+\begin_inset Formula $k=\{0,\,1,\,2,\,3,\,...,\, n\times n-1\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{1}=adj(\varsigma)=adj(c_{1,1})$
+\end_inset
+
+.
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ should get 
+\begin_inset Formula $n\times n-1$
+\end_inset
+
+ as maximum value that a valid path 
+\begin_inset Formula $p$
+\end_inset
+
+ should not pass through same cell twice.
+ The 
+\begin_inset Formula $adj(\sigma_{k})$
+\end_inset
+
+ function finds the 
+\emph on
+available adjacent
+\emph default
+ of given cell 
+\begin_inset Formula $\sigma_{k}$
+\end_inset
+
+ and returns one of them randomly if finds more than one.
+ Notice that a cell can has maximum eight adjacent, cardinal and intercardinal
+ points.
+ A cell 
+\begin_inset Formula $c_{i,j}$
+\end_inset
+
+ is available for an agent if this cell is inside the grid (
+\begin_inset Formula $1\leq i,\, j\leq n$
+\end_inset
+
+) and does not have any obstacle on it.
+\end_layout
+
+\begin_layout Standard
+Each cell on the grid has the following properties: 
+\begin_inset Formula \[
+c=\left\{ x,\, y,\, w\right\} \]
+
+\end_inset
+
+
+\emph on
+
+\begin_inset Formula $x$
+\end_inset
+
+ 
+\emph default
+and
+\emph on
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ 
+\emph default
+are the coordinates of the cell, respectively.
+ 
+\begin_inset Formula $w$
+\end_inset
+
+ is the weight of the cell which 
+\begin_inset Formula $0\leq w\leq1$
+\end_inset
+
+.
+ The more weight a cell has, the more difficult to pass through for agent.
+ If 
+\begin_inset Formula $w=1$
+\end_inset
+
+, that means this cell has an obstacle.
+ 
+\end_layout
+
+\begin_layout Standard
+The obstacles and goal cell are preferred to be static and predefined before
+ the execution of the algorithm.
+ However, agent doesn't know the environment and it tries to find a path
+ to goal cell.
+ Weights of cells are randomly generated and does not change during the
+ execution.
+\end_layout
+
+\begin_layout Standard
+As a result of multi-optimality, we mentioned that there could be more than
+ one optimal solution as a result.
+ These results are paths, indeed.
+ Set of results, or paths are represented like 
+\begin_inset Formula $P(\varsigma,\,\tau)=\{p_{1},\, p_{2},p_{3},\,...,\, p_{m}\}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $m$
+\end_inset
+
+ is the number of the found solutions.
+\end_layout
+
+\begin_layout Standard
+Optimality is a crucial concept for MOPP.
+ We define the optimality vector 
+\begin_inset Formula $o(p)$
+\end_inset
+
+ of a path 
+\begin_inset Formula $p$
+\end_inset
+
+ as the sum of optimalities of each cell on the path (
+\begin_inset Formula $o(\sigma_{i})$
+\end_inset
+
+), that is
+\begin_inset Formula \[
+o(p)=\sum_{_{i=0}}^{^{k}}o(\sigma_{i})\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If all objectives are to be maximized, a path 
+\begin_inset Formula $p\in P(\varsigma,\,\tau)$
+\end_inset
+
+ dominates a path 
+\begin_inset Formula $q\in P(\varsigma,\,\tau)$
+\end_inset
+
+ iff 
+\begin_inset Formula $o(p)\geq o(q)$
+\end_inset
+
+ and we could write 
+\begin_inset Formula $p\preceq q$
+\end_inset
+
+.
+ A path 
+\begin_inset Formula $p$
+\end_inset
+
+ is Pareto-optimal if it is not dominated by any other path and the set
+ of non dominated solutions (paths) is called the Pareto-optimal set.
+ The objective of the multi-objective path planning algorithm is to compute
+ the set of non dominated solutions that is the Pareto-optimal set 
+\begin_inset Formula $P$
+\end_inset
+
+ of 
+\begin_inset Formula $P(\varsigma,\,\tau)$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $o(\sigma_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Like every evolutionary algorithm, we have a population which is a set of
+ individuals in our solution.
+ These individuals are represented by possible valid paths.
+ Each individual has a path from initial to goal cell.
+ 
+\end_layout
+
+\begin_layout Section
+Multi-Objective Evolutionary Algorithm
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:MOEA"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now get into the architecture of proposed multi-objective evolutionary
+ algorithm (MOEA) to find paths between initial and goal cells.
+ Simply the algorithm schema is given as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+function 
+\series default
+findMultiObjectivePaths()
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+input 
+\series default
+grid, initialCell, finalCell
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+output 
+\series default
+listOfOptimalPaths
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+population = initializePopulation();
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+repeat
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+newPopulation = defineNewPopulation();
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+newPopulation.add(population.getElites());
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+repeat
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+parents = population.rouletteWheelSelection();
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+crossover(parents);
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+mutation(parents);
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+newPopulation.add(parents);
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+until 
+\series default
+newPopulationIsConstructed();
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+evaluatePopulation(newPopulation);
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+population = newPopulation;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+until 
+\series default
+MAX_ITERATION
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+end
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The MOEA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As it can be seen, it is quite similar with a classic evolutionary algorithms.
+ We first create the initial population, than evolve this population until
+ a predefined iteration number.
+ While evolving; at each generation, a new set of individuals are created.
+ We use elitist replacement for survival selection, roulette-wheel selection
+ for mating selection, one-point crossover and mutation as genetic operators.
+ We evaluate the newish population with a fitness function and replace with
+ old population.
+ Finally, we could gather our optimal solutions, or paths.
+ This process leads to the evolution of populations of individuals that
+ are better suited to their environment than their ancestors, just as in
+ natural adaptation.
+ A complete discussion of multi-objective evolutionary algorithms can be
+ found in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MOOUEA"
+
+\end_inset
+
+.
+ We can now elaborate our each step deeply:
+\end_layout
+
+\begin_layout Subsection
+Initial Population
+\end_layout
+
+\begin_layout Standard
+The initial population, set of individuals 
+\begin_inset Formula $S$
+\end_inset
+
+ is initialized with 
+\begin_inset Formula $m$
+\end_inset
+
+ total individuals.
+ Each individual's path is generated 
+\emph on
+randomly.
+ 
+\emph default
+For each individual; the algorithm starts from initial cell 
+\begin_inset Formula $c_{1,1}$
+\end_inset
+
+, gets available adjacent of corresponding cell with 
+\begin_inset Formula $adj(\sigma_{actual})$
+\end_inset
+
+ and select one of the adjacent randomly.
+ This process is iterated until goal cell is reached.
+\end_layout
+
+\begin_layout Standard
+As given the method to create valid feasible paths, the problem of population
+ size 
+\begin_inset Formula $m$
+\end_inset
+
+ remains as an issue.
+ It is known that the population size increases exponentially with the number
+ of objectives in multi-objective domain.
+ Thus, there are two common options to overcome this problem.
+ First one is using a large population, second one is making the population
+ sizing dynamic.
+ However, dynamic resizing remains as a challenge to MOEAs and does not
+ yield precise results.
+ So, Deb’s 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MOOUEA"
+
+\end_inset
+
+ approximation chart for finding the minimum population size according to
+ the number of objectives is used as a guide.
+ 
+\end_layout
+
+\begin_layout Subsection
+Fitness Evaluation
+\end_layout
+
+\begin_layout Standard
+After initialization of first population and at the end of each evolution
+ step, the individuals in actual population must be evaluated with fitness
+ function.
+ This evaluation is crucial to provide the evolution of the population.
+ The evaluation of a population means evaluating every single individual
+ and putting them into an order.
+ We expect that the population evaluation value should increase in each
+ step.
+ As we consider 
+\emph on
+weights
+\emph default
+ and 
+\emph on
+number of cells on a path
+\emph default
+ as constraints, we use the following fitness function:
+\begin_inset Formula \[
+f(p)=\frac{1}{\left(\frac{\sum_{_{i=0}}^{^{k}}w_{i}}{k}\right)^{2}+(k)^{2}}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $k$
+\end_inset
+
+ is the number of the cells in the path, 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+is the weight of a cell.
+ We simply get the average of the weights of cells on the path and add its
+ square with the square of number of the cells on the path.
+ This result is divided with 1 to keep the fitness function between 0 and
+ 1 to increment sensitivity of fitness value.
+\end_layout
+
+\begin_layout Subsection
+Selection for Mating
+\end_layout
+
+\begin_layout Standard
+To breed new individuals and to use the operators borrowed from natural
+ genetics, we must select parents first.
+ We use 
+\emph on
+roulette-wheel selection
+\emph default
+ while selecting parents.
+ After evaluating each individual as indicated above, slots are generated
+ and individuals' fitness values are added cumulatively to these slots.
+ Thus, bigger fitness evaluation owners have greater opportunity to be selected.
+ This mechanism facilitates the population to evolve.
+\end_layout
+
+\begin_layout Standard
+While selecting two individuals, it is constrained that paths of these individua
+ls must intersect at least on one point due to perform crossover operation
+ between these parents.
+ This point should be any cell except initial and goal cells.
+ 
+\end_layout
+
+\begin_layout Subsection
+Genetic Operators
+\end_layout
+
+\begin_layout Standard
+As genetic operators, we use one-point crossover and a specific-mutation:
+\end_layout
+
+\begin_layout Subsubsection
+Crossover
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename xover.bmp
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Crossover-Operation"
+
+\end_inset
+
+Crossover Operation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After selecting two parents for mating, in a probability of 80% 
+\begin_inset Formula $(\mu=0.8)$
+\end_inset
+
+, these parents breed two new individuals with crossover.
+ To perform crossover, parents which have intersecting cells are selected
+ on purpose.
+\end_layout
+
+\begin_layout Standard
+Suppose that 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $q$
+\end_inset
+
+ are selected as parents.
+ Each path has a set of cells, say 
+\begin_inset Formula $p=\{\sigma_{0},\,...,\,\sigma_{k}\}$
+\end_inset
+
+ and 
+\begin_inset Formula $q=\{\theta_{0},\,...,\,\theta_{l}\}$
+\end_inset
+
+.
+ It is absolute that 
+\begin_inset Formula $\sigma_{0}=\theta_{0}=c_{1,1}$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+
+\begin_inset Formula $\sigma_{k}=\theta_{l}=c_{n,n}$
+\end_inset
+
+.
+ Now assume that 
+\begin_inset Formula $\sigma_{i}=\theta_{j}$
+\end_inset
+
+ where 
+\begin_inset Formula $1\leq i<k$
+\end_inset
+
+ and 
+\begin_inset Formula $1\leq j<l$
+\end_inset
+
+ is selected as a crossover point.
+ If so, new individuals' paths are generated as follows:
+\begin_inset Formula \[
+pq_{1}=\{\sigma_{0},\,...,\,\sigma_{i-1},\,\theta_{j},\,...,\,\theta_{l}\}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+pq_{2}=\{\theta_{0},\,...,\,\theta_{j-1},\,\sigma_{i},\,...,\,\sigma_{k}\}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Put it in a nutshell, parents switch their sub-paths to perform crossover
+ and generate new offsprings.
+ One of the offsprings takes the sub-path from initial cell to selected
+ intersection cell (excluded) of 
+\emph on
+parent one
+\emph default
+ and concatenates with the sub-path which is from selected intersection
+ cell (included) to goal cell of 
+\emph on
+parent 
+\emph default
+two.
+ The other offspring takes the sub-path from initial cell to selected intersecti
+on cell (excluded) of 
+\emph on
+parent two
+\emph default
+ and concatenates with the sub-path which is from selected intersection
+ cell (included) to goal cell of 
+\emph on
+parent one
+\emph default
+.
+ The illustration is given in Figure
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Crossover-Operation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsubsection
+Mutation
+\end_layout
+
+\begin_layout Standard
+In mutation phase, new offsprings are mutated in a probability of 5% 
+\begin_inset Formula $(\gamma=0.05)$
+\end_inset
+
+.
+ Note that each offspring are mutated independently.
+ To mutate an individual's path, we simply select a random cell over the
+ path -except initial and goal cells- and re-generate a new path between
+ selected and final cells randomly.
+ Re-generation of a random path works same with generation of initial population
+ individuals' paths.
+ This operation avoids genetic drift that different new paths to goal cell
+ can be found simultaneously.
+ Illustration of this specific mutation is given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mutation-Operation"
+
+\end_inset
+
+.
+ Dashed path shows the new-generated path after mutation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mutation.bmp
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mutation-Operation"
+
+\end_inset
+
+Mutation Operation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Selection for Survival
+\end_layout
+
+\begin_layout Standard
+In our approach, every offspring / parent (if crossover operation does not
+ get in action) is added to new population until a fixed number 
+\begin_inset Formula $m-e$
+\end_inset
+
+ is reached.
+ Here, the 
+\begin_inset Formula $e$
+\end_inset
+
+ is number of elitists.
+ Just before selection for mating, 
+\begin_inset Formula $e$
+\end_inset
+
+ best individuals -according to their fitness values- are chosen and put
+ into new population.
+ This method, elitists replacement prevents loss of good solution candidates
+ at next iteration.
+ 
+\end_layout
+
+\begin_layout Section
+Experimental Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Experimental-Results"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we explain and give details about proposed MOEA, we can give experimental
+ conditions and results of this algorithm.
+ We specify our predefined constraints for our problem domain.
+ We take the number of elitists as 5 (
+\begin_inset Formula $e$
+\end_inset
+
+) and rest of the population size as 250.
+ So, our total population size 
+\begin_inset Formula $m$
+\end_inset
+
+ is 255 and this size is stable during the evolution process.
+ We take crossover and mutation ratios as same with algorithm definition,
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+ 
+\begin_inset Formula $\mu=0.8$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma=0.05$
+\end_inset
+
+, respectively.
+ Our grid size 
+\begin_inset Formula $n$
+\end_inset
+
+, takes different values; 10,20 and 30.
+ Finally, we evolve the population in 3500 iterations.
+ Note that this maximum iteration number is dependent with 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ Thus, smaller values of these numbers might cause the algorithm to yield
+ optimal solution in earlier iterations.
+\end_layout
+
+\begin_layout Standard
+Below, we give some outputs through the algorithm.
+ In figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial-Population's-Best"
+
+\end_inset
+
+ initial population's best individual can be seen.
+ Note that this individual is generated randomly.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+X
+\begin_inset Quotes erd
+\end_inset
+
+ values represent obstacles, numbers on the cells represent the following
+ path for this individual.
+ For instance, initial population's best individual starts from 
+\begin_inset Formula $0^{th}$
+\end_inset
+
+cell and finishes its path on 
+\begin_inset Formula $97^{th}$
+\end_inset
+
+cell.
+ Notice that some of the numbers can not be seen on the path.
+ That shows overlapped cells on the path exist, or there exist cells which
+ are visited more than one, in other words.
+ We simply get the first value as an output of a cell.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename initial.bmp
+	scale 50
+	BoundingBox 3bp 0bp 501bp 408bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Initial-Population's-Best"
+
+\end_inset
+
+Initial Population's Best Individual
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Population's-Best-Individual"
+
+\end_inset
+
+, we show 
+\begin_inset Formula $4^{th}$
+\end_inset
+
+iteration's best individual.
+ Fitness value of whole population and best individual is increased.
+ Also number of visited and overlapped cells are decreased to nearly half
+ with respect to initial population.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 4.bmp
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Population's-Best-Individual"
+
+\end_inset
+
+
+\begin_inset Formula $\#4^{th}$
+\end_inset
+
+Population's Best Individual
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Population's-Best"
+
+\end_inset
+
+ gives the 
+\begin_inset Formula $42^{th}$
+\end_inset
+
+ iteration of evolution process.
+ Many of the overlapped cells are removed and path is converging to optimal
+ path.
+ This fact can be shown from best and total fitness values of population.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 42.bmp
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Population's-Best"
+
+\end_inset
+
+
+\begin_inset Formula $\#42^{th}$
+\end_inset
+
+ Population's Best Individual
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Last-Population's-Best"
+
+\end_inset
+
+ shows the final evolved individual's path.
+ This individual is obtained in 
+\begin_inset Formula $1524$
+\end_inset
+
+ iteration.
+ Note that this path does not cover any overlapped cells and it minimizes
+ both average weight and number of visited cells.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename last.bmp
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Last-Population's-Best"
+
+\end_inset
+
+Last Population's Best Individual
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion & Future Work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusion-&-Future"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This paper gives essential aspects about multi-optimization path planning
+ and propose a solution for this planning problem.
+ Results show that evolutionary approaches can be used to determine optimal
+ paths instead of other heuristic methods like A* or D*.
+ In this paper, we consider the problem domain as two-constrained environment.
+ More than two constraints can be considered with just adapting the fitness
+ function of this algorithm.
+\end_layout
+
+\begin_layout Standard
+For future studies, we are planning to extend this algorithm and consider
+ moving targets and obstacles.
+ In other words, we adjust this algorithm to dynamic environments and use
+ the power of evolutionary methods in this manner.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

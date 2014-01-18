@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: modstar_iat2012.aux
+The style file: ieeetr.bst
+Database file #1: modstar_iat2012.bib
+Warning--string name "aug." is undefined
+--line 146 of file modstar_iat2012.bib
+You've used 17 entries,
+            1876 wiz_defined-function locations,
+            616 strings with 6994 characters,
+and the built_in function-call counts, 5789 in all, are:
+= -- 621
+> -- 149
+< -- 0
++ -- 57
+- -- 40
+* -- 403
+:= -- 744
+add.period$ -- 19
+call.type$ -- 17
+change.case$ -- 17
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 307
+empty$ -- 546
+format.name$ -- 40
+if$ -- 1447
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 18
+newline$ -- 56
+num.names$ -- 17
+pop$ -- 50
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 258
+stack$ -- 0
+substring$ -- 538
+swap$ -- 155
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 60
+width$ -- 19
+write$ -- 176
+(There was 1 warning)

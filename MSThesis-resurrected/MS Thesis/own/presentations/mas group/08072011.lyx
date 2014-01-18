@@ -1,0 +1,1369 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multi-Objective Path Planning in Virtual Environments
+\end_layout
+
+\begin_layout Author
+Tuğcem
+\begin_inset space ~
+\end_inset
+
+Oral
+\end_layout
+
+\begin_layout Institute
+Advisor: Prof.
+ Dr.
+ Faruk Polat
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{metu-ceng.jpg}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Outline
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Structuring a talk is a difficult task and the following structure may not
+ be suitable.
+ Here are some rules that apply for this solution: 
+\end_layout
+
+\begin_layout Itemize
+Exactly two or three sections (other than the summary).
+ 
+\end_layout
+
+\begin_layout Itemize
+At *most* three subsections per section.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk about 30s to 2min per frame.
+ So there should be between about 15 and 30 frames, all told.
+\end_layout
+
+\begin_layout Itemize
+A conference audience is likely to know very little of what you are going
+ to talk about.
+ So *simplify*! 
+\end_layout
+
+\begin_layout Itemize
+In a 20min talk, getting the main ideas across is hard enough.
+ Leave out details, even if it means being less precise than you think necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+If you omit details that are vital to the proof/implementation, just say
+ so once.
+ Everybody will be happy with that.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Path-planning algorithms on 2D or 3D virtual environment can be diversed
+ into many different topics - say categories.
+ (EA based - Classic (CS based) / offline - online algorithms / pursuiting
+ a target - consider more than one criteria through a specific target -
+ consider both situations / etc...
+ ).
+ We must give the basic ideas of each category, cite related studies and
+ finally concentrate on multi-objectivity.
+\end_layout
+
+\begin_layout Plain Layout
+Especially in gaming world (say virtual environments), it is desired from
+ system concepts - 
+\emph on
+agents
+\emph default
+ (opponents, enemies, threats - differs with respect to the domain) to behave
+ 
+\emph on
+intelligently
+\emph default
+.
+ This intelligence attracts players' attention because of enhancing interactivit
+y and gameplay 
+\series bold
+(The importance of intelligence should be concerned on specified domain
+ - later)
+\series default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bold sentences are comments about their ancestors
+\end_layout
+
+\end_inset
+
+.
+ In 2D or 3D environments, one of the most crucial indicator of intelligence
+ is navigation.
+ Agents should move from one predefined place to another one
+\emph on
+ -intelligently
+\emph default
+- that they should plan and design their path by considering several constraints
+ at the same time.
+ As an example, these constraints should be planning a path which is shortest
+ and threat-safe 
+\series bold
+(some risky situations might be acceptable)
+\series default
+ to the target.
+\end_layout
+
+\begin_layout Plain Layout
+There are many both well accepted 
+\series bold
+(cite a*, multi objective a*, etc...)
+\series default
+ and newish, complexity based methods 
+\series bold
+(cite new-published papers)
+\series default
+ to solve multi objectivity issues of path planning problems.
+ These new-published algorithms are generally built as an extension of cult
+ algorithms such as A* and consider execution time and complexity.
+ A 
+\emph on
+basic 
+\emph default
+and 
+\emph on
+faster 
+\emph default
+algorithm is much more suitable for real-life problems when matching them
+ to virtual environments.
+\end_layout
+
+\begin_layout Plain Layout
+Observing the importance of time and space complexities of path planning
+ algorithms, we decide to concentrate on coming up a better idea when several
+ constraints are considered to be achieved 
+\series bold
+(the criterias must be defined and kept constant?)
+\series default
+.
+ In this study 
+\series bold
+(or thesis)
+\series default
+, we try focus on a new algorithm which overcomes the issues of multi-objective
+ path planning problems in timely manner.
+ This algorithm should be optimal (or yield satisfiable 
+\emph on
+suboptimal
+\emph default
+ results) and complete.
+ It must be compared with well known and new published, well defined (has
+ space and time complexity as an idea) search algorithms and results should
+ be visualized.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This document is only scratches of a self-brainstorm and it must be extended!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Concepts on Problem
+\end_layout
+
+\begin_layout Itemize
+Path planning
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Incremental
+\end_layout
+
+\begin_layout Itemize
+Heuristic
+\end_layout
+
+\begin_layout Itemize
+Real time (online)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Multiobjectivity
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ex.
+ Minimum path length (or associated time), minimum exposure to a hostile
+ observer, safest path ...
+ 
+\end_layout
+
+\begin_layout Itemize
+Domination between constraints.
+\end_layout
+
+\begin_layout Itemize
+Pareto Optimal sets.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Against moving targets
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Could move intelligently / unintelligently.
+\end_layout
+
+\begin_layout Itemize
+Pursuit / Catch operation.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+The Problem Definition
+\end_layout
+
+\begin_layout Itemize
+Finding paths toward target considering multiple criterias.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Ex.
+ Finding shortest and riskless paths.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Environment differs & matters!
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dynamic and partially observable environments are much more realistic.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Existing solutions suffer from time complexity (fast planning).
+\end_layout
+
+\begin_layout Itemize
+Come up with an algorithm covers all these aspects.
+\end_layout
+
+\begin_layout Section
+Aim of Thesis
+\end_layout
+
+\begin_layout BeginFrame
+The Boundaries & Tradeoffs
+\end_layout
+
+\begin_layout Itemize
+A Multi-objective real-time path planning algorithm should come up.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Objectives must be at least two, but also the algorithm should accept 
+\emph on
+n 
+\emph default
+objectives.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Should run on a partial observable dynamic environment.
+\end_layout
+
+\begin_layout Itemize
+Domination between objectives is crucial.
+\end_layout
+
+\begin_layout Itemize
+Should run fast (due to real-time).
+\end_layout
+
+\begin_layout Itemize
+Timing and synchronizing between concepts is important.
+\end_layout
+
+\begin_layout Subsection
+Environmental Properties
+\end_layout
+
+\begin_layout BeginFrame
+Environmental Properties
+\end_layout
+
+\begin_layout Itemize
+2-D grid environment.
+\end_layout
+
+\begin_layout Itemize
+Partially observable and dynamic.
+\end_layout
+
+\begin_layout Itemize
+Known target location.
+\end_layout
+
+\begin_layout Itemize
+Has an agent, threats and obstacles.
+\end_layout
+
+\begin_layout BeginFrame
+Obstacle Properties
+\end_layout
+
+\begin_layout Itemize
+Might be both stationary and mobile.
+\end_layout
+
+\begin_layout Itemize
+Some obstacles are transitive, but consumes time / energy.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Ex.
+ river, hill, etc...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Also intransitive obstacles.
+\end_layout
+
+\begin_layout BeginFrame
+Threat Properties
+\end_layout
+
+\begin_layout Itemize
+Might be both stationary and mobile.
+\end_layout
+
+\begin_layout Itemize
+Have 
+\emph on
+zones 
+\emph default
+where they have probability to shoot agent within.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The closer the agent, the more probable to shoot.
+ - 
+\emph on
+shoot risk percent
+\end_layout
+
+\begin_layout Itemize
+Zones can change by time.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Do not try to catch or pursuit the agent.
+\end_layout
+
+\begin_layout Itemize
+Mobile ones have movement schedule.
+\end_layout
+
+\begin_layout BeginFrame
+Agent Properties
+\end_layout
+
+\begin_layout Itemize
+Agent enacts 
+\emph on
+path planner
+\emph default
+ 
+\emph on
+role 
+\emph default
+to navigate towards target.
+\end_layout
+
+\begin_layout Itemize
+Has a sight area to observe environment.
+\end_layout
+
+\begin_layout Itemize
+Only knows the location of target and withing its sight area at time 
+\emph on
+t
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Should re-plan its path in every time step if the world is updated.
+\end_layout
+
+\begin_layout Itemize
+When enters to a threat zone, knows threat's movement schedule and move
+ accordinly.
+\end_layout
+
+\begin_layout Itemize
+Has life, when shot, it decreases.
+\end_layout
+
+\begin_layout Section
+Searching
+\end_layout
+
+\begin_layout Subsection
+Lifelong Planning A* (LPA*)
+\end_layout
+
+\begin_layout BeginFrame
+Overview
+\end_layout
+
+\begin_layout Itemize
+Incremental version of A*
+\end_layout
+
+\begin_layout Itemize
+Reuse data from previous searches
+\end_layout
+
+\begin_layout Itemize
+Determines a shortest path from start node to goal node.
+\end_layout
+
+\begin_layout Itemize
+Initial execution gives the same result with A*
+\end_layout
+
+\begin_layout Itemize
+After the initial path has been stored any future paths can refer to it
+ in order to reduce the amount of computations required to compute a new
+ path.
+\end_layout
+
+\begin_layout BeginFrame
+Variables & Invariants
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ is the finite set of vertices on graph
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Succ(s)\subseteq S$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $Pred(s)\subseteq S$
+\end_inset
+
+ are successors and predecessors of vertex 
+\begin_inset Formula $s\in S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c(s,s')$
+\end_inset
+
+ is the moving cost from vertex 
+\begin_inset Formula $s$
+\end_inset
+
+ to 
+\begin_inset Formula $s'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g*(s)$
+\end_inset
+
+ is the shortest path length between s and 
+\begin_inset Formula $s_{start}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Uses heuristics: 
+\begin_inset Formula $h(s,s_{goal})$
+\end_inset
+
+ (non-negative and consistent)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $h(s_{goal},s_{goal})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $h(s,s_{goal})\leq c(s,s')+h(s',s_{goal})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Variables & Invariants (cont'd)
+\end_layout
+
+\begin_layout Itemize
+rhs values are used to evaluate change to cost values.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $rhs(s)=\begin{cases}
+0 & s=s_{start}\\
+min_{s'\in Pred(s)}(g(s')+c(s',s)) & otherwise
+\end{cases}$
+\end_inset
+
+ (Invariant 1)
+\end_layout
+
+\begin_layout Itemize
+if 
+\begin_inset Formula $rhs(s)=g(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-consistent, 
+\emph default
+o/w
+\emph on
+ locally-inconsistent
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $g(s)>rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-overconsistent
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g(s)<rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-underconsistent
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+No need to make all vertices locally consistent.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+after some edge costs have changed.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Instead, uses heuristics and updates relevant g-values.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Thus, has a priority queue which holds 
+\series bold
+only
+\series default
+ 
+\emph on
+locally-inconsistent
+\emph default
+ vertices (Invariant 2)
+\end_layout
+
+\begin_layout BeginFrame
+Variables & Invariants (cont'd)
+\end_layout
+
+\begin_layout Itemize
+Priority of a vertex in the priority queue is always the same as its key
+ (Invariant 3), where;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k(s)=[k_{1}(s);k_{2}(s)]$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $k_{1}(s)=min(g(s),rhs(s))+h(s,s_{goal})$
+\end_inset
+
+ (
+\begin_inset Formula $f(x)$
+\end_inset
+
+ function in A*)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{2}(s)=min(g(s),rhs(s))$
+\end_inset
+
+ (
+\begin_inset Formula $g(x)$
+\end_inset
+
+ function in A*)
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+The Algorithm
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+7cm
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+initialize():
+\emph default
+ initializes the graph
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+updateVertex(u):
+\emph default
+ updates rhs-values and the key of vertex 
+\emph on
+u
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+calculateKey(s):
+\emph default
+ calculates the priority queue key value of vertex 
+\emph on
+s
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+computeShortestPath(): 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+updates rhs-values, checks consistency and add to / remove from queue
+\end_layout
+
+\begin_layout Itemize
+repeatedly expands inconsistent vertices in the order of their priorities
+ until 
+\begin_inset Formula $s_{goal}$
+\end_inset
+
+ is consistent
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+The Algorithm
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+LDA* pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+D* Lite
+\end_layout
+
+\begin_layout BeginFrame
+Overview
+\end_layout
+
+\begin_layout Itemize
+Based on LPA*
+\end_layout
+
+\begin_layout Itemize
+Can be used to solve goal-directed navigation problem in unknown terrain.
+\end_layout
+
+\begin_layout Itemize
+Searches from goal vertex to start vertex.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the g-values are estimates of the 
+\emph on
+goal distances
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Guarantees that vertices are expanded no more than two times each.
+\end_layout
+
+\begin_layout Itemize
+Initial running yields same result with A* - like LPA*
+\end_layout
+
+\begin_layout Itemize
+Basically, when a node changes, just considers inconsistent vertices.
+\end_layout
+
+\begin_layout BeginFrame
+The Algorithm - Differences
+\end_layout
+
+\begin_layout Itemize
+To avoid recalculation of priorities when a node changed, uses heap reordering.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Do not extract 
+\begin_inset Formula $h(s,s')$
+\end_inset
+
+ value for each vertex in queue, add it to newcomers.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{m}$
+\end_inset
+
+ variable is used to handle this.
+\end_layout
+
+\begin_layout Itemize
+this variable also effects calculateKeys(), added up to 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ key.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+computeShortestPath() checks priority key and update queue responsibly.
+\end_layout
+
+\begin_layout BeginFrame
+The Algorithm - Differences (cont'd)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+D* Lite pseudo-code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+What we have done
+\end_layout
+
+\begin_layout BeginFrame
+What we have done so far
+\end_layout
+
+\begin_layout Itemize
+Motivation is initialized.
+\end_layout
+
+\begin_layout Itemize
+Related studies are examined.
+\end_layout
+
+\begin_layout Itemize
+Problem definition is formalized.
+\end_layout
+
+\begin_layout Itemize
+A basic structure for developing the algorithm is constructed.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Target, obstacles and threats are considered as stationary.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Documentation of these studies are done.
+\end_layout
+
+\begin_layout Section
+What to do
+\end_layout
+
+\begin_layout BeginFrame
+Next Milestone
+\end_layout
+
+\begin_layout Itemize
+Improve simulation environment.
+\end_layout
+
+\begin_layout Itemize
+Add multiobjectivity constraints to algorithms.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+g-values and h-values should be considered.
+\end_layout
+
+\begin_layout Itemize
+computeShortestPath() procedure should be reshaped.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Visualize the results.
+\end_layout
+
+\begin_layout BeginFrame
+Further Studies
+\end_layout
+
+\begin_layout Itemize
+Algorithm will be enhanced and test on simulated environment.
+\end_layout
+
+\begin_layout Itemize
+Incrementally, other aspects should be considered.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Mobile threats, obstacles
+\end_layout
+
+\begin_layout Itemize
+Moving target
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Formal report should be written.
+\end_layout
+
+\begin_layout BeginFrame
+Q & A
+\end_layout
+
+\begin_layout Standard
+\align center
+Any Questions?
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Sun-inc"
+
+\end_inset
+
+Sun, Xiaoxun and Yeoh, William and Koenig, Sven, Efficient incremental search
+ for moving target search, Morgan Kaufmann Publishers Inc.
+ (2009), pp.
+ 615--620
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Sun-D*lite"
+
+\end_inset
+
+Sun, Xiaoxun and Yeoh, William and Koenig, Sven, Moving target D* Lite,
+ International Foundation for Autonomous Agents and Multiagent Systems (2010),
+ pp.
+ 67--74
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "D*Lite"
+
+\end_inset
+
+Sven Koenig and Maxim Likhachev.
+ 2002.
+ D*lite.
+ In Eighteenth national conference on Artificial intelligence, Rina Dechter,
+ Michael Kearns, and Rich Sutton (Eds.).
+ American Association for Artificial Intelligence, Menlo Park, CA, USA,
+ 476-483.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "LPA*"
+
+\end_inset
+
+Sven Koenig, Maxim Likhachev, and David Furcy.
+ 2004.
+ Lifelong planning A*.
+ Artif.
+ Intell.
+ 155, 1-2 (May 2004), 93-146.
+ DOI=10.1016/j.artint.2003.12.001 http://dx.doi.org/10.1016/j.artint.2003.12.001
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

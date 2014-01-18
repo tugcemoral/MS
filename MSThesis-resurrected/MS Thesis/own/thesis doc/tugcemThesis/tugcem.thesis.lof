@@ -1,0 +1,21 @@
+\contentsline {nodots}{\numberline {}FIGURES}{1}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Multi Objective A* Outline}}{8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Cont'd of Multi Objective A* Outline}}{9}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A Simple Grid Search Representation}}{12}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A 75 x 75 Visualized Grid Environment}}{21}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Directed Acyclic State Expansion Graph}}{25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces State Expansion Graph after Adding State $S8$}}{26}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Crossover Operation}}{34}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Mutation Operation}}{34}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Execution Times of Randomly Generated Fully Observable Maps}}{39}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Execution Times of Handcrafted Fully Observable Maps}}{41}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A 100x100 Partially Observable Map with 30\% Sensor Range}}{41}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 75x75 Partially Observable Map on Different Sensor Ranges}}{43}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces 100x100 Partially Observable Map on Different Sensor Ranges}}{43}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces 125x125 Partially Observable Map on Different Sensor Ranges}}{44}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Execution times of 75x75 Fully Observable Map on Different Threat Zone Percents}}{44}
+\addvspace {10pt}

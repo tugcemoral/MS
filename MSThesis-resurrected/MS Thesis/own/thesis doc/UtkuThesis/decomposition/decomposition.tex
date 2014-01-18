@@ -1,0 +1,223 @@
+\chapter{POMDP Decomposition}
+\label{chapter:decomposition}
+
+ The previous chapters presented the POMDP problem formulation of the GRN control
+problem. As we have stated above, after this formulation, it is possible to use any POMDP solver to generate
+a policy and intervene with the GRN accordingly. In order to efficiently solve the POMDP problem, we also
+developed a method to pre-process the POMDP problem. The goal of this method is decomposing the POMDP problem
+into subproblem. Each subproblem will contain genes closely related and exhibiting similar behavior. The
+motivation behind this decomposition is separating different parts of the problem from each other.
+
+One of the important problems of the existing POMDP solution methods is curse of
+dimensionality~\cite{Bellman61}. The complexity of solving the problem is dominated by the number of possible
+states and for a flat representation, POMDP problems have huge state space (exponential in terms of state
+variables). Fortunately, factored representation is a way to represent the problem in a more compact form.
+However, without taking advantage from this compact representation, the computational cost of the solution
+methods does not decrease. Decomposing the problem into subproblems produces a number of subproblems; each
+subproblem can be solved with a very small computational cost compared to the cost of solving complete large
+problem. Moreover, separating different parts of the problem provides the chance to identify and remove the
+unrelated subproblems from the solution process.
+
+The gene expression data analysis explained in Section~\ref{section:dataanalysis} is the method we used for
+identifying classes of genes. The next subsections present how the subproblems are created for each class and
+how these subproblems are coordinated for the~solution.  Algorithm \ref{algorithm:decompose} gives a brief outline
+of POMDP decomposition.
+
+{\small
+\begin{algorithm}
+\dontprintsemicolon
+\KwIn{M: POMDP Problem Formulation of GRN Control Task, G: Gene Regulatory Network, P: Partitioning of genes }
+\ForEach{partition p in P}{Formulate pomdp problem for p using M   and add it to DEC-POMDP\;}
+Eliminate Redundant Subproblems in DEC-POMDP\;
+\ForEach{problem dp in DEC-POMDP}{
+Determine Goal Description of dp\;
+Postulate Action Set of dp\;
+}
+Construct Execution Graph EG using DEC-POMDP\;
+Solve subproblems in DEC-POMDP\;
+Execute Policy using solutions of DEC-POMDP and EG
+\caption{POMDP Decomposition and Execution}~\label{algorithm:decompose}
+\end{algorithm}
+}
+
+\subsection{POMDP Formulation of subproblems}
+
+It is possible to apply the POMDP formulation presented in Chapter~\ref{chapter:formulation} to each
+class of genes in order to produce POMDP formulation for the subproblems. However, we did not apply the same
+method, instead we partitioned the POMDP problem into subproblems by using some elements of the POMDP
+formulation in the process.
+
+The main motivation for not using the same POMDP formulation as a constructive manner is the fact that the
+main problem is something more than the union of the subproblems. It is possible to use the POMDP formulation
+for constructing every component of every subproblem. However, some of the subproblems may contain genes that are influenced by genes that belong to other subproblems. Similarly, some of the subproblems may contain genes that influence genes that belong to other subproblems. We call these relations \emph{dependencies} and these dependencies are not components of any single subproblem. If we use this approach, we
+should also regenerate these dependencies by repeating some of the steps used in constructing the main
+problem. Moreover, generating components of the subproblems (e.g., transition functions) also require
+multiple repetition of the already carried POMDP formulation. So, using the POMDP formulation for subproblems
+brings a lot of excessive computation if we want the subproblems to fully express the main problem. Thus,
+instead of repeating the same process, we adapted a decomposition approach which basically uses projections
+or subsets of POMDP components of the main~problem.
+
+Another motivation underlying not using the POMDP formulation is to keep the formulation and solving methods
+independent from each other as much as possible. In this work, POMDP formulation and POMDP solving methods
+have only a single common element, which is the gene expression data analysis. The POMDP solving method can
+be adapted to any other partially observable probabilistic control problem by replacing the gene expression
+data analysis with an appropriate method particular to the investigated problem (possibly a similar data
+analysis component). However, if we had used the POMDP formulation for defining the subproblems, the solving
+method would have been dependent on the POMDP problem formulation, which would have been customized for the
+GRN control problem. This would severely affect the portability of the POMDP solving method.
+
+In order to partition a POMDP problem, it is sufficient to partition each problem element. Partitioning the
+state space, action space, observation space and observation function are trivial, since all of them are made
+up of elements related to a single gene. For each existing partition, we identify the states, actions and
+observations related to the genes in the partition. For each observation, the function can be defined based
+on the same genes and by obeying the specifications given in Section~\ref{section:observation}.
+
+The reward function for each subproblem is the same as the reward function defined for the main problem,
+however the goal description might change. The goal of the main problem mentions a number of genes. For each
+subproblem, we modify the goal description, such that it only mentions genes (i.e., state variables) related
+to the subproblem.
+
+Note that, some of the subproblems might not be related to any gene (state variable) mentioned in the goal
+description. Thus, their goal descriptions become empty and the reward function becomes meaningless after
+decomposition. Similarly, some of the subproblems might not be related to any input gene. Thus, these
+subproblems would not contain any action after decomposition. We will enumerate and process these cases
+further when coordinating the subproblems in the next~section.
+
+The transition function is derived as explained in Section~\ref{section:transitionf}. The conditional
+probability values extracted from the gene expression data are used for constructing the transition function
+for each subproblem. However, for each subproblem, the transition function only contains probability
+distributions for expression levels of related genes.
+
+Note that a gene $g$ might be influenced by gene $g'$ from another partition. In this case, the similarity
+value between the two genes should be used when constructing the transition function. However, using this
+dependency in the transition functions of both subproblems is redundant. We only add the influenced gene
+($g$) to the subproblem containing influencing gene ($g'$), and we use the similarity value to calculate the
+transition function value regarding $g$ and $g'$. Influenced gene ($g$), which now exists in both
+subproblems, is called \emph{subproblem input} for the original subproblem in which it exists; and it is
+called \emph{subproblem output} for the other subproblem to which it is added.
+
+This is the outline for producing each subproblem from the main POMDP problem components and gene expression
+data analysis. When all the subproblems are constructed, what is left is to postprocess them in order to fill
+any remaining detail in their formulation, and coordinating the subproblems to produce a policy for the main
+problem.
+
+\subsection{Coordinating Subproblems}
+\subsubsection{Idea Behind Coordination}
+By decomposing the POMDP problem, we obtained a number of subproblems. It is possible to solve these problems
+by a POMDP solver; however, we need to organize the solution process by coordinating these subproblems. The
+idea behind this organization is to establish how each subproblem contributes to the main problem. Each
+subproblem contains three kinds of genes (or state variables in a more general form):
+
+\begin{enumerate}
+  \item \textbf{Influencing Genes:} It is possible to influence the expression levels of these genes. This group contains:
+  \begin{enumerate}
+    \item \textbf{Input genes:} These are genes that are in the input gene set of the main control problem
+    \item \textbf{Subproblem input genes:} These are genes that are not in the input gene set of the main control problem
+    (i.e., can not be influenced directly), however their expression level is influenced by gene(s) that belong to another subproblem.
+  \end{enumerate}
+  \item \textbf{Influenced Genes:} The expression levels of the genes in this group are important because this group
+  contains:
+  \begin{enumerate}
+    \item \textbf{Target genes:} These are genes that are in the target gene set of the main problem
+    \item \textbf{Subproblem output genes:} These are genes that are not in the target gene set, however their expression
+    levels influence gene(s) that belong to another subproblem.
+  \end{enumerate}
+  \item \textbf{Abstract Genes:} It is not possible to influence the expression levels of these genes, and furthermore
+  their expression levels are not important because they are neither influencing nor influenced genes.
+\end{enumerate}
+
+Note that a gene can be a member of more than one group. For example, an input gene might also be a subproblem output gene.
+
+Each subproblem can be viewed as a small portion of the main control problem. Each subproblem has two
+purposes:
+\begin{enumerate}
+  \item If all of the subproblems have little or no dependency (i.e., there is only a small number of subproblem
+  input and output genes) then solving each subproblem is enough for deducing a policy to control target genes that
+  belong to this subproblem. In this case, we can see each subproblem as a portion of the main control
+  problem; it is concentrated on a group of target genes and all unrelated problem elements are discarded.
+  \item If subproblems have dependencies among themselves, beside solving each subproblem for controlling target
+  genes, we should also take into consideration effects of each subproblem on others. Subproblem input and output
+  genes are formulated for this purpose. They maintain the dependencies between subproblems and can be used for
+  controlling how one subproblem influences another.
+\end{enumerate}
+
+By solving subproblems it is possible to control the influenced genes, which contains target genes and subproblem output genes. Controlling target genes is the main purpose, and controlling subproblem output genes allows us to control subproblem input genes. Subproblem input genes, with input genes, are used as control inputs of the sub problems when solving them. Abstract genes acts as hidden state elements that effect the system dynamics, but can not be controlled directly and their expression values are not important for our purposes.
+
+As an example. assume a gene regulatory network of genes labelled from 1 to 8 as shown in Figure \ref{figure:grn1}. Genes 1, 2, 3, 4, and 5 are observable. Genes 1 is input genes and gene 2 is the target gene. Assume a subproblem set generated by our approach is $\{\{1,3\},\{2,4,8\},\{5,6,7\}\}$. For the first subproblem, gene 1 is both an input gene and a subproblem output gene; gene 3 is a subproblem output gene. For the second subproblem genes 4 and 8 are subproblem input genes since all of them are influenced by gene 1;  gene 2 is a target gene. For the third subproblem gene 5 is influenced by gene 3; genes 6 and  7 are influenced by gene 1 so all of them are subproblem input genes.
+
+\subsubsection{Eliminating Redundant Subproblems}
+The first step in coordinating the subproblems is to decide for each subproblem, whether we should solve it
+or not. It is obvious that we should solve the subproblems with a goal description (i.e., subproblems related
+to at least one of the target genes). However, we mentioned before that some of the subproblems might not
+have a goal description (i.e., not related to any of the target genes). We should decide which one of them
+should be solved.
+
+We use a simple algorithm for this purpose. First, we mark all subproblems with a goal description to be
+solved. Then, we iterate over the remaining subproblems. If any of these subproblems contain a subproblem
+output which is related to a subproblem previously marked ``to be solved'', then the subproblem containing
+the output is also marked ``to be solved''. We repeat this iteration until no more subproblem could be marked
+``to be solved''.
+
+By using this simple algorithm, we identify all subproblems directly or indirectly related to the controlling
+target genes. It is sufficient to solve only these subproblems and the other subproblems are discarded.
+
+Note that there is a slight possibility that subproblems marked ``to be solved'' do not contain any of the
+input genes. In this case, we can conclude that the input genes are not influential on the target genes and
+the control problem has no possible solution, regardless of the formulation used.
+
+Considering the example of the previous subsection, subproblem $\{5,6,7\}$ can safely be eliminated since all subproblem input genes of the subproblem $\{2,4,8\}$ are related to subproblem $\{1,3\}$ and this subproblem does not have any subproblem inputs.
+
+\subsubsection{Determining Goal Descriptions}
+For the second step, we should formulate goal descriptions for subproblems marked ``to be solved''. It is
+guaranteed that these subproblems have subproblem outputs (If they did not have, then either they would not
+be marked ``to be solved'', or they would already have a goal description). The outputs of these subproblems
+should be used as goal description. However, it is not possible to automatically specify whether it is
+desirable for these genes to be expressed or not.And also there is a non-trivial relationship between these subproblem output genes and related subproblem input genes. In order to postulate a complete problem description, we add the related subproblem input genes to the problem and mark them as goal of the subproblem. However,  it is still not possible to state whether it is desirable for these genes to be satisfied, or not. Thus, we produce multiple copies of these subproblems, one
+for each expression level of the goal genes. If there are $k$ goal genes for a given
+subproblem, we produce $2^k$ copies of the problem, assuming a binary expression level. In the worst case,
+this approach produces exponential number of copies of each problem and the total performance of the method
+suffers from this step. However, for most cases, if the gene expression data properly partitions the genes,
+then each subproblem would have very few number of (typically 1 or 2) goal genes. Thus, we predict
+that this approach will on average contribute a constant factor to the computational complexity.
+
+Continuing with our example, for the first subproblem ${1,3}$ we extend the problem to ${1,3,4,8}$ and the goal description includes genes 4 and 8. For the second subproblem, goal description only includes gene 2. This means we have to solve 4 copies of problem 1 for each possible goal description regarding genes 4 and 8; we only need to solve a single copy of the second subproblem.
+
+\subsubsection{Postulating Action Sets}
+For the third step, we formulate actions for all subproblems. We have already mentioned above that some of
+the subproblems might not contain any action at all. If these subproblems contain subproblem inputs, these
+genes are treated as input genes and action descriptions for controlling these genes are provided. If these
+subproblems do not contain any input gene or subproblem input, then they are discarded and marked as ``not to
+be solved''. We repeat this process until no subproblem is discarded.
+
+Note that there is also a slight possibility that the subproblems discarded in this step contain target
+genes. In this case, we can conclude that these target genes can not be controlled by any input gene. If all
+of the target genes are removed in this fashion, we can conclude that the problem has no possible solution,
+regardless of the formulation used.
+
+For our example since both subproblems contains input genes or subproblem input genes, none of them can be eliminated. Action set for the subproblem $\{1,3,4,8\}$ only contains gene 1; action set of subproblem $\{2,4,8\}$ contains genes 4 and 8.
+
+\subsubsection{Construction of Execution Graph}
+For the fourth step, we construct a directed graph of subproblems. Vertices of the graph are subproblems and
+there is a directed edge between two subproblems connected with a subproblem input-output pair. This graph
+structure is our scheme for solving subproblems. For simplicity, we process this graph and remove all loops.
+We detect loops from short to longer, and for each loop found, all subproblems in the loop are merged into a
+single problem. The merging process can be carried out as the inverse of decomposition. State, action, and
+observation spaces are merged; observation functions are merged; new reward functions and transition
+functions are formulated. Finally, as a binding element, all subproblems on the directed graph are solved
+using POMDP solver. Each subproblem generates a policy for intervening its input genes. Note that these input
+genes might be actual input genes, or subproblem inputs. The policy elements with actions intervening actual
+input genes can be realized; however, it is not possible to realize the policy elements with actions
+intervening subproblem inputs. So, we apply a controlled execution scheme.
+
+We select the subproblems with target genes as main execution subproblems. At each instance, the policies
+generated by these subproblems are always executed. For input genes related to these subproblems, intervening
+actions are executed directly. However, for actions intervening subproblem inputs, we do not execute any
+action; we just select the related subproblem's policy for execution. For example, assume that $SP_a$ is a
+subproblem containing a target gene as state variable and gene $i$ as subproblem input. There exists another
+subproblem $SP_b$ with subproblem output gene $i$ (there should be an edge in the binding graph from $SP_b$
+to $SP_a$). Then if the policy generated by $SP_a$ tells us to intervene with gene $i$ and set its expression
+level to $on$, then we execute the policy related to $SP_b$. At each instance, we can just select the
+policies to be executed in this fashion. Since each subproblem contains different genes and different action,
+no inconsistency arises from executing multiple policies.
+
+For our example, the execution graph is a simple 2-node graph. There is a directed edge from subproblem $\{1,3,4,8\}$ to subproblem $\{2,4,8\}$. Execution is based on subproblem $\{2,4,8\}$. Genes 4 and 8 are input to this subproblem. A policy is based on these input genes. Four copies of subproblem $\{1,3,4,8\}$ are solved for each possible expression level of genes 4 and 8. Whenever the policy for the subproblem $\{2,4,8\}$ requires genes 4 and 8 are set to specific expression levels, the related policy is fetched and input gene $1$ is set to the expression level designated in the fetched policy.

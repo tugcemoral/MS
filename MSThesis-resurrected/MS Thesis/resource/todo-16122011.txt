@@ -1,0 +1,7 @@
+c fonksiyonu için : c(s', s) = [1, threatRisk(s)]
+
+h fonksiyonu için: bütün harita üzerinde konumlanmış threat zone lar için 
+
+- (tz alanı / total alan) * tzRisk ler toplamı olabilir.
+- her state için olanı toplayıp bunun average i alınabilir.
+- Viewing frust için bi H değeri olacak, bu H değeri incremental yeni vf a göre artacak.

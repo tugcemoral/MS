@@ -1,0 +1,158 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Letter of Intention for Doctorate Degree
+\end_layout
+
+\begin_layout Author
+Tugcem Oral
+\end_layout
+
+\begin_layout Standard
+The most enchanting part of computer engineering is actualizing all imaginations
+ and ideas.
+ When it is combined with endless creativity and thinking, no one can imagine
+ what will come out.
+ Also, in contrast to other diciplines such as electronics or civil engineering,
+ computer engineering has slight limits and almost no restrictions.
+ Thinking that the only limit is the ideas, one can never think that working
+ on this area is sufficient.
+ When I consider my undergraduate and graduate studies, I can clearly specify
+ that I gained the ability to search and learn things by myself and working
+ individually as well as with teams.
+ Also my studies gave me experience, basic and advanced knowledge about
+ computer science and fundamentals of engineering.
+ However, I think a deeper study is required to enlarge such a perspective
+ for this area and become a qualified engineer and researcher.
+\end_layout
+
+\begin_layout Standard
+Since I begun my graduate study in METU, I have been working as a software
+ engineer.
+ This experience gave me great opportunity to observe what is really going
+ on in software industry and how academic researches can be combined with
+ it.
+ I tried to use novel and new academic methods from most of disciplines
+ I took in industrial projects and this effort to combine academical and
+ industrial life always keeps my attention live on researching.
+ The actual reason why I want to keep on going to Doctorate is this inclination.
+\end_layout
+
+\begin_layout Standard
+In my graduate thesis, I come up with a novel path planning algorithm in
+ the light of the knowledge of my advisor, Faruk Polat.
+ This algorithm can be used by mobile agents in 
+\emph on
+dynamic
+\emph default
+ and 
+\emph on
+unknown
+\emph default
+ virtual environments where agents goal is to traverse from an initial location
+ to a target one.
+ However, only finding the shortest path can not be applied to many real-life
+ search problems.
+ Thus, this could not be 
+\emph on
+the
+\emph default
+ 
+\emph on
+only constraint
+\emph default
+, there may exist at least two or more constraint to optimize.
+ For example, both finding the shortest and the safest path in a threat-based
+ environment among threats could be a scenario to consider.
+ The multi-objectivity covers more realistic problems with respect to single-obj
+ectivity.
+ Thus, we focus on this problem and expand problem space in multi-objective
+ perspective.
+ The results and performance of algorithm is compared with a very common
+ multi-objective path planner algorithm, MOA*, and great performance differences
+ are observed especially in dynamic unknown environments.
+ We sent a conference paper of this study to Intelligent Agent Technology
+ (IAT 2012
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+http://www.fst.umac.mo/wic2012/IAT/
+\end_layout
+
+\end_inset
+
+) Conference and we are expecting an acceptance.
+ The front page of sent paper is also attached to this letter.
+ Currently, I am trying to finalize my thesis document and I will give my
+ defense as soon as possible.
+\end_layout
+
+\begin_layout Standard
+Since, research areas in computer science develop rapidly and there is much
+ more work to do, I want to continue my graduate studies in doctorate and
+ grow my experience and knowledge in order to research and solve more complicate
+d real-life problems.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,166 @@
+\documentclass[11pt,oneandhalf,chaparabic]{metu}
+
+\usepackage{appendix}
+%\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{example}[theorem]{Example}
+
+%\newcommand{\eod}{$\quad\triangleleft$}
+
+%\newenvironment{defn}{\begin{definition}}{\hfill$\blacksquare$\end{definition}}
+%\newenvironment{defn*}{\begin{definition}}{\end{definition}}
+%\newenvironment{proof}{\noindent{\bf Proof.}}{\hfill$\blacksquare$}
+
+% mypackages
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,backgrounds,fit,matrix}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[boxed,figure]{algorithm2e}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage{multirow}
+
+\newcommand\fBold[1]{\textbf #1\relax}
+
+\author{Utku Erdoğdu}
+\authoruppercase{UTKU ERDOĞDU}
+\graduateschool{Natural and Applied Sciences}
+\shortdegree{Ph.D.}
+%\shortdegree{M.S.}
+\director{Prof. Dr. Canan Özgen}
+\headofdept{Prof. Dr. Adnan Yazıcı}
+
+\title{EFFICIENT PARTIALLY OBSERVABLE MARKOV DECISION PROCESS BASED FORMULATiON OF GENE REGULATORY NETWORK CONTROL PROBLEM}
+\degree{Doctor of Philosophy}
+%\degree{Master of Science}
+\department{Computer Engineering}
+\date{September 2011}
+\supervisor{Prof. Dr. Faruk Polat}
+\departmentofsupervisor{Computer Engineering Department, METU}
+\cosupervisor{Prof. Dr. Reda Alhajj}
+\departmentofcosupervisor{Computer Science Department, University of Calgary}
+
+
+\turkishtitle{GEN AĞLARININ KISMİ GÖZLEMLENEBİLİR MARKOV KARAR SÜREÇLERİ İLE MODELLENEREK ETKİN OLARAK KONTROLÜ}
+\turkishdegree{Doktora}
+%\turkishdegree{Yüksek Lisans}
+\turkishdepartment{Bilgisayar Mühendisliği Bölümü}
+\turkishdate{Eylül 2011}
+\turkishsupervisor{Prof. Dr. Faruk Polat}
+\turkishcosupervisor{Prof. Dr. Reda Alhajj}
+
+
+\keywords{Gene Regulatory Networks, Partially Observable Markov Decision Process, Control of GRN}
+\anahtarklm{Gen Düzenleyici Ağlar, Kısmi Gözlemlenebilir Markov Karar Süreçleri, GDA'ların Kontrolü}
+
+\committeememberi{Prof. Dr. Varol Akman}
+\affiliationi{Computer Engineering, Bilkent University}
+\committeememberii{Prof. Dr. Faruk Polat}
+\affiliationii{Computer Engineering, METU}
+\committeememberiii{Assoc. Prof. Dr. Tolga Can}
+\affiliationiii{Computer Engineering, METU}
+\committeememberiv{Assoc. Prof. Dr. Halit Oğuztüzün}
+\affiliationiv{Computer Engineering, METU}
+\committeememberv{Assist. Prof. Dr. Mehmet Tan}
+\affiliationv{Computer Engineering, TOBB ETÜ}
+
+\begin{document}
+\begin{preliminaries}
+\maketitle
+\makeapproval
+\plagiarism
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\begin{abstract} \oneandhalfspacing
+The need to analyze and closely study the genes related mechanism motivated for the research on the 
+modeling and control of gene regulatory networks (GRN). Different approaches exist to model GRNs; they 
+are mostly simulated as mathematical models that represent relationships between genes. The GRN control 
+problem has been studied mostly with the aid of probabilistic boolean networks, and corresponding control 
+policies have been devised. Though turns into a more challenging problem, we argue that partial observability 
+would be a more natural and realistic method for handling the control of GRNs. Partial observability 
+is a fundamental aspect of the problem; it is mostly ignored and substituted by assumption that states 
+of GRN are known precisely, prescribed as full observability. On the other hand, current works addressing 
+partially observability focus on formulating algorithms for the finite horizon GRN control problem. 
+So, in this work we explore the feasibility of realizing the problem in a partially observable 
+setting, mainly with Partially Observable Markov Decision Processes (POMDP). The method proposed in 
+this work is a POMDP formulation for the infinite horizon version of the problem. This formulation 
+first decomposes the problem by isolating different unrelated parts of the problem, and then makes 
+use of existing POMDP solvers to solve the obtained subproblems; the final outcome is a control mechanism 
+for the main problem. The reported test results using both synthetic and real GRNs are promising in 
+demonstrating the applicability, effectiveness and efficiency of the proposed approach.
+\end{abstract}
+
+\begin{oz} \oneandhalfspacing
+Genlerin çalışma prensiplerini inceleme gereksinimi gen düzenleyici ağların (GDA) modellenmesi ve kontrolü
+üzerine bilimsel çalışmalar yapılmasına yol açmıştır. GDA'ları modellemek için değişik yaklaşımlar mevcuttur
+ve bu yaklaşımların çoğu genler arasındaki ilişkileri matematiksel modeller vasıtasıyla modellemektedir.
+GDA kontrol problemi en çok olasılıksal boole ağları yardımıyla çalışılmaktadır ve bu model yardımıyla
+kontrol problemlerine çözümler üretilmektedir. Problemi daha zorlaştırmasına rağmen, GDA kontrol problemlerinin
+daha doğal ve gerçekçi çözülebilmesi için kısmi gözlemlenebilirliğin önerilmesi gerektiğini savunuyoruz. 
+Kısmi gözlemlenebilirlik bu problemin temel bir bileşeni olmasına rağmen çoğunlukla gözardı edilmiş ve
+problemin çözümünde GDA'nın tüm durumlarının mükemmel olarak bilinebileceği varsayımı yapılmıştır, yani
+problem tam gözlemlenebilir kabul edilmiştir. Bir yandan da literatürdeki kısmi gözlemlenebilirliği
+dikkate alan yöntemler sınırlı adımdan oluşan bir problem tanımı ile GDA kontrol problemini çözen algoritmalar
+üretmeye çalışmaktadır. Bu çalışmada problemin kısmi gözlemlenebilir bir kurgu ile tanımlanması üzerinde
+çalışılmakta ve Kısmi Gözlemlenebilir Markov Karar Süreçleri (POMDP) bu kurguda kullanılmaktadır. Bu çalışmada
+önerilen metot problemin sonsuz adımdan oluşan bir halinin POMDP ile tanımlanmasıdır. Bu tanımlama
+öncelikle problemin birbirinden bağımsız kısımlarını soyutlamakta ve daha sonra elde edilen alt-problemleri
+varolan bir POMDP çözücü yardımıyla çözmektedir; sonuçta ana problem için bir çözüm elde edilmektedir. 
+Sunulan test sonuçları önerilen metodun hem doğal hem de yapay GDA'lar için uygulanabilirliğini, etkisini
+ve başarımını göstermek konusunda başarılıdır.
+
+\end{oz} 
+
+\dedication{\textit{Dedication Goes Here}}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\begin{acknowledgments} \oneandhalfspacing
+Acknowledgements Goes Here
+\end{acknowledgments}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{3pt}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\end{preliminaries}
+   
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\input{introduction/introduction.tex}
+\newpage
+
+\input{relatedwork/relatedwork.tex}
+\newpage
+
+\input{background/background.tex}
+\newpage
+
+\input{formulation/formulation.tex}
+\newpage
+
+\input{dataanalysis/dataanalysis.tex}
+\newpage
+
+\input{decomposition/decomposition.tex}
+\newpage
+
+\input{experiments/experiments.tex}
+\newpage
+
+\input{conclusion/conclusion.tex}
+\newpage
+
+\bibliography{thesis_references}{}
+\bibliographystyle{plain}
+%\appendix
+%\input{appendix1/appendix1.tex}
+\end{document}

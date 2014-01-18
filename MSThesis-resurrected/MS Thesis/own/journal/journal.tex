@@ -1,0 +1,77 @@
+\documentclass[10pt,journal]{IEEEtran}
+
+\usepackage{amssymb}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,backgrounds,fit,matrix}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage[boxed,figure]{algorithm2e}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage{multirow}
+
+% enumerate MOA* algorithm overview.
+%\usepackage{enumitem}
+%%
+
+\newcommand\fBold[1]{\textbf #1\relax}
+
+%error gave "unknown graphics extension: eps" in Bil Software machine
+\usepackage{epstopdf}
+
+% thesis document classes extended from iat paper
+\usepackage{amssymb}
+
+\usepackage[noend]{algpseudocode}
+%\usepackage{setspace}
+\makeatletter
+\renewcommand{\ALG@beginalgorithmic}{\small}
+\makeatother
+
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{colortbl}
+\usepackage{color}
+
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.eps}
+
+\usepackage{comment}
+% end of iat paper package extensions
+
+\usepackage{tabularx}
+\usepackage[footnotesize]{subfigure}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{MOD* Lite}
+
+\author{???}
+
+\maketitle
+
+\begin{abstract}
+Path planning is a crucial issue for virtual environments where autonomous agents try to navigate from a specific location to a desired one. There are several algorithms developed for path planning, but several domain requirements make engineering of these algorithms difficult. In complex environments, considering single objective for searching and finding optimal or sub-optimal paths becomes insufficient. Thus, multi objective cases are distinguished and more complicated algorithms to be employed is required. It can be seen that more realistic and robust results can be obtained with these algorithms because they expand solution perspective into more than one criteria. Today, they are used in various games and simulation applications.
+
+On the other hand, most of these algorithms are off-line  and delimitate interactive behaviours and dynamics of real world into a stationary virtuality. This situation reduces the solution quality and boundaries. Hence, the necessity of solutions where multi objectivity is considered in a dynamic environment is obvious. With this motivation, in this work, a novel multi objective incremental algorithm, MOD* Lite, is proposed. It is  based on a known complete incremental search algorithm, D* Lite. Solution quality and execution time requirements of MOD* Lite are compared with existing complete multi objective off-line search algorithm, MOA*, and better results are obtained.
+\end{abstract}
+
+\input{introduction/introduction.tex}
+
+\input{relatedwork/relatedwork.tex}
+
+\input{proposed/MODStarLiteAndMOGPP.tex}
+
+\input{experiments/experiments.tex}
+
+\input{conclusion/conclusion.tex}
+
+\bibliography{journal}{}
+\bibliographystyle{ieeetr}
+
+\end{document}

@@ -1,0 +1,168 @@
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Motivation & Problem Definition
+\end_layout
+
+\begin_layout Author
+Tugcem Oral
+\end_layout
+
+\begin_layout Standard
+Path-planning algorithms on 2D or 3D virtual environment can be diversed
+ into many different topics - say categories.
+ (EA based - Classic (CS based) / offline - online algorithms / pursuiting
+ a target - consider more than one criteria through a specific target -
+ consider both situations / etc...
+ ).
+ We must give the basic ideas of each category, cite related studies and
+ finally concentrate on multi-objectivity.
+\end_layout
+
+\begin_layout Standard
+Especially in gaming world (say virtual environments), it is desired from
+ system concepts - 
+\emph on
+agents
+\emph default
+ (opponents, enemies, threads - differs with respect to the domain) to behave
+ 
+\emph on
+intelligently
+\emph default
+.
+ This intelligence attracts players' attention because of enhancing interactivit
+y and gameplay 
+\series bold
+(The importance of intelligence should be concerned on specified domain
+ - later)
+\series default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bold sentences are comments about their ancestors
+\end_layout
+
+\end_inset
+
+.
+ In 2D or 3D environments, one of the most crucial indicator of intelligence
+ is navigation.
+ Agents should move from one predefined place to another one
+\emph on
+ -intelligently
+\emph default
+- that they should plan and design their path by considering several constraints
+ at the same time.
+ As an example, these constraints should be planning a path which is shortest
+ and thread-safe 
+\series bold
+(some risky situations might be acceptable)
+\series default
+ to the target.
+\end_layout
+
+\begin_layout Standard
+There are many both well accepted 
+\series bold
+(cite a*, multi objective a*, etc...)
+\series default
+ and newish, complexity based methods 
+\series bold
+(cite new-published papers)
+\series default
+ to solve multi objectivity issues of path planning problems.
+ These new-published algorithms are generally built as an extension of cult
+ algorithms such as A* and consider execution time and complexity.
+ A 
+\emph on
+basic 
+\emph default
+and 
+\emph on
+faster 
+\emph default
+algorithm is much more suitable for real-life problems when matching them
+ to virtual environments.
+\end_layout
+
+\begin_layout Standard
+Observing the importance of time and space complexities of path planning
+ algorithms, we decide to concentrate on coming up a better idea when several
+ constraints are considered to be achieved 
+\series bold
+(the criterias must be defined and kept constant?)
+\series default
+.
+ In this study 
+\series bold
+(or thesis)
+\series default
+, we try focus on a new algorithm which overcomes the issues of multi-objective
+ path planning problems in timely manner.
+ This algorithm should be optimal (or yield satisfiable 
+\emph on
+suboptimal
+\emph default
+ results) and complete.
+ It must be compared with well known and new published, well defined (has
+ space and time complexity as an idea) search algorithms and results should
+ be visualized.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This document is only scratches of a self-brainstorm and it must be extended!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,36 @@
+\contentsline {leads}{\numberline {}ABSTRACT}{iv}
+\contentsline {leads}{\numberline {}\"OZ}{vi}
+\contentsline {leads}{\numberline {}ACKNOWLEDGMENTS}{ix}
+\contentsline {leads}{\numberline {}TABLE OF CONTENTS}{x}
+\contentsline {leads}{\numberline {}LIST OF TABLES}{xii}
+\contentsline {leads}{\numberline {}LIST OF FIGURES}{xiii}
+\contentsline {nodots}{\numberline {}CHAPTERS}{1}
+\contentsline {chapter}{\numberline {1}\uppercase {Introduction}}{1}
+\contentsline {chapter}{\numberline {2}\uppercase {Related Work \& Background}}{4}
+\contentsline {section}{\numberline {2.1}Multi Objective A* (MOA*)}{7}
+\contentsline {section}{\numberline {2.2}D* Lite}{10}
+\contentsline {subsection}{\numberline {2.2.1}Overview}{10}
+\contentsline {subsection}{\numberline {2.2.2}The Algorithm}{11}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Notation \& Formulation}{11}
+\contentsline {subsubsection}{\numberline {2.2.2.2}Core Components and Details}{13}
+\contentsline {chapter}{\numberline {3}\uppercase {Proposed Solutions}}{18}
+\contentsline {section}{\numberline {3.1}Motivation}{18}
+\contentsline {section}{\numberline {3.2}Multi Objective D* Lite : MOD* Lite}{19}
+\contentsline {subsection}{\numberline {3.2.1}Overview}{19}
+\contentsline {subsection}{\numberline {3.2.2}Environmental Properties}{20}
+\contentsline {subsection}{\numberline {3.2.3}The Components and Variables}{21}
+\contentsline {subsection}{\numberline {3.2.4}Key Formulation}{26}
+\contentsline {subsection}{\numberline {3.2.5}Details of MOD* Lite}{28}
+\contentsline {section}{\numberline {3.3}A Multi Objective Genetic Path Planner : MOGPP}{31}
+\contentsline {subsection}{\numberline {3.3.1}Overview}{32}
+\contentsline {subsection}{\numberline {3.3.2}Chromosome Representation}{32}
+\contentsline {subsection}{\numberline {3.3.3}Fitness Function}{32}
+\contentsline {subsection}{\numberline {3.3.4}Crossover Operation}{33}
+\contentsline {subsection}{\numberline {3.3.5}Mutation Operation}{34}
+\contentsline {subsection}{\numberline {3.3.6}Details of Algorithm}{35}
+\contentsline {chapter}{\numberline {4}\uppercase {Experimental Results}}{37}
+\contentsline {section}{\numberline {4.1}Fully Observable Tests}{38}
+\contentsline {section}{\numberline {4.2}Partially Observable Tests}{40}
+\contentsline {section}{\numberline {4.3}Multi Objectivity Tests}{45}
+\contentsline {chapter}{\numberline {5}\uppercase {Conclusion and Future Work}}{46}
+\contentsline {leads}{\numberline {}\uppercase {REFERENCES}}{48}

@@ -1,0 +1,33 @@
+* This package represents a multi-objective genetic path planning algorithm. Inputs and visualizations 
+look like MOA* and MOD* Lite.
+* mogpp stands for "Multi-Objective Genetic Path Planning"
+
+INFO
+Project Name stands for "Multi Objective Moving Target Genetic Path Planning"
+
+//add IEEETran.layout class by "sudo apt-get install texlive-publishers" and reconfigure lyx.
+
+Required Links:
+
+PSO in java:
+	http://www.google.com.tr/search?sourceid=chrome&client=ubuntu&channel=cs&ie=UTF-8&q=particle+swarm+optimization+in+java
+	http://sourceforge.net/projects/jswarm-pso/files/jswarm-pso/
+	http://gandhim.wordpress.com/2010/04/04/particle-swarm-optimization-pso-sample-code-using-java/
+	
+General GA in java: 
+	http://www.google.com.tr/search?hl=tr&q=genetic+algorithm+path+planner+in+java&aq=f&aqi=&aql=&oq=
+	http://stackoverflow.com/questions/1575061/ga-written-in-java
+	http://www.hackchina.com/en/cont/161717
+	http://en.pudn.com/downloads19/sourcecode/math/detail66529_en.html
+
+NOTES
+#1: Each individual is a solution, a path from start cell to goal cell.
+#2: To find this solution, an algorithm should be executed (which finds paths from start to goal cells)
+	#i: at each iteration of this algorithm, first; obstacles moves simultaneously, and then agent moves through to the goal 
+	#ii: Target cell is always immobile.
+#3: Agent can goes crosswise, but and obstacles can go only up-down and left-right.
+
+
+Crossover?? (Path based? Find intersected two paths and xover from intersection point?)
+Fitness Function?? (# of cells + total weights of each cells in the path?)
+Mutation?? (probably will not included)

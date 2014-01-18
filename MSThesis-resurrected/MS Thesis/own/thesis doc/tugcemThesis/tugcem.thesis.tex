@@ -1,0 +1,165 @@
+\documentclass[11pt,oneandhalf,chaparabic]{metu}
+
+\usepackage{appendix}
+%\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{example}[theorem]{Example}
+
+%\newcommand{\eod}{$\quad\triangleleft$}
+
+%\newenvironment{defn}{\begin{definition}}{\hfill$\blacksquare$\end{definition}}
+%\newenvironment{defn*}{\begin{definition}}{\end{definition}}
+%\newenvironment{proof}{\noindent{\bf Proof.}}{\hfill$\blacksquare$}
+
+% mypackages
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,backgrounds,fit,matrix}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage[boxed,figure]{algorithm2e}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage{multirow}
+
+% enumerate MOA* algorithm overview.
+%\usepackage{enumitem}
+%%
+
+\newcommand\fBold[1]{\textbf #1\relax}
+
+%error gave "unknown graphics extension: eps" in Bil Software machine
+\usepackage{epstopdf}
+
+% thesis document classes extended from iat paper
+\usepackage{amssymb}
+
+\usepackage[noend]{algpseudocode}
+%\usepackage{setspace}
+\makeatletter
+\renewcommand{\ALG@beginalgorithmic}{\small}
+\makeatother
+
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{colortbl}
+\usepackage{color}
+
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.eps}
+
+\usepackage{comment}
+% end of iat paper package extensions
+
+\usepackage{tabularx}
+\usepackage[footnotesize]{subfigure}
+%\usepackage[tight,footnotesize]{subfigure}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\author{Tuğcem Oral}
+\authoruppercase{TUĞCEM ORAL}
+\graduateschool{Natural and Applied Sciences}
+\shortdegree{M.S.}
+\director{Prof. Dr. Canan Özgen}
+\headofdept{Prof. Dr. Adnan Yazıcı}
+
+\title{MULTI-OBJECTIVE PATH PLANNING FOR VIRTUAL ENVIRONMENTS}
+\degree{Master of Science}
+\department{Computer Engineering}
+\date{September 2012}
+\supervisor{Prof. Dr. Faruk Polat}
+\departmentofsupervisor{Computer Engineering Department, METU}
+
+\turkishtitle{SANAL ORTAMLAR İÇİN ÇOK HEDEFLİ YOL PLANLAMA}
+\turkishdegree{Yüksek Lisans}
+\turkishdepartment{Bilgisayar Mühendisliği Bölümü}
+\turkishdate{Eylül 2012}
+\turkishsupervisor{Prof. Dr. Faruk Polat}
+
+\keywords{Path Planning, Multi Objectivity, Dynamic Environment}
+\anahtarklm{Yol Planlama, Çok Kriterlilik, Dinamik Ortamlar}
+
+\committeememberi{Prof. Dr. İsmail Hakkı Toroslu}
+\affiliationi{Dept. of Computer Engineering, METU}
+\committeememberii{Prof. Dr. Faruk Polat}
+\affiliationii{Dept. of Computer Engineering, METU}
+\committeememberiii{Prof. Dr. Göktürk Üçoluk}
+\affiliationiii{Dept. of Computer Engineering, METU}
+\committeememberiv{Asst. Prof. Dr. Selim Temizer}
+\affiliationiv{Dept. of Computer Engineering, METU}
+\committeememberv{Asst. Prof. Dr. Mehmet Tan}
+\affiliationv{Dept. of Computer Engineering, TOBB ETU}
+
+\begin{document}
+\begin{preliminaries}
+\maketitle
+\makeapproval
+\plagiarism
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\begin{abstract} \oneandhalfspacing
+Path planning is a crucial issue for virtual environments where autonomous agents try to navigate from a specific location to a desired one. There are several algorithms developed for path planning, but several domain requirements make engineering of these algorithms difficult. In complex environments, considering single objective for searching and finding optimal or sub-optimal paths becomes insufficient. Thus, multi objective cases are distinguished and more complicated algorithms to be employed is required. It can be seen that more realistic and robust results can be obtained with these algorithms because they expand solution perspective into more than one criteria. Today, they are used in various games and simulation applications.
+
+On the other hand, most of these algorithms are off-line  and delimitate interactive behaviours and dynamics of real world into a stationary virtuality. This situation reduces the solution quality and boundaries. Hence, the necessity of solutions where multi objectivity is considered in a dynamic environment is obvious. With this motivation, in this work, a novel multi objective incremental algorithm, MOD* Lite, is proposed. It is  based on a known complete incremental search algorithm, D* Lite. Solution quality and execution time requirements of MOD* Lite are compared with existing complete multi objective off-line search algorithm, MOA*, and better results are obtained.
+\end{abstract}
+
+\begin{oz} \oneandhalfspacing
+Yol planlama, belirli elemanların (etmen veya robotların) tanımlanmış bir noktadan istenilen başka bir noktaya ulaşmasının söz konusu olduğu ortamlar için çok kritik bir problem oluşturmaktadır. Bilgisayar bilimleri ve robotbilim tarafından bu problemin çözümü için birçok algoritma ortaya atılmıştır. Fakat arama ve yönlendirme problemlerinin gerçek dünya uygulamalarına uyarlanması istendiğinde daha karmaşık durumlar ortaya çıkmaktadır. Bu tür karmaşık ortamlarda, en optimal veya optimale yakın yolun bulunması için tek bir kriterin göz önünde bulundurulması yetersiz kalmaktadır. Bunun bir sonucu olarak birden fazla kriteri göz önünde bulunduran yeni algoritmalar üzerinde çalışmalar yürütülmüştür. Bu algoritmaların, çözüm açısını birden fazla kriter üzerinde genişlettiği için daha gerçekçi ve daha sağlam sonuçlar ortaya koydukları gözlemlenmiştir. Günümüzde bu tür algoritmalar, oyun ve simulasyon uygulamalarında sıklıkla kullanılmaktadır.
+
+Diğer yandan, önerilen algoritmaların çoğu çevrimdışı çalışan algoritmalardır ve gerçek dünyanın dinamikliğini ve interaktif davranışlarını durağan, sabit bir sanallıkla sınırlan-dırmaktadır. Bu durum çözüm sınırlarını ve kalitesini düşürmektedir. Dolayısıyla dinamik ortamlar için birden çok kriteri göz önünde bulunduran çözümlere olan ihtiyaç aşikardır. Bu güdülenme çerçevesinde; birden çok kriteri göz önünde bulundurabilen, yeni bir artımlı yol arama ve planlama algoritması, MOD* Lite ortaya çıkarılmıştır. Bu algoritma, bilinen ve bütün olan D* Lite algoritması temel alınarak geliştirilmiştir. Bulunan sonuçların kalitesi ve hesaplama süresi, çok kriterli çevrimdışı çalışan MOA* algoritmasıyla karşılaştırılmış ve çok daha iyi sonuçlar elde edilmiştir.
+\end{oz} 
+
+\dedication{\textit{To My Dearest Family}}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\begin{acknowledgments} \oneandhalfspacing
+First of all, I would like to express my deepest gratitude to my supervisor, Prof. Dr. Faruk Polat for his guidance, advice, patience and priceless insight throughout my research.
+
+I cannot truly exaggerate my gratitude and love for my parents for their support, encouragement and love.
+
+Also I would like to thank to all my dearest friends and especially Burçin Kelez for their encouragement, support and bringing new ideas to my perspective.
+
+Lastly, I would like to thank to Türkiye Bilimsel ve Teknolojik Araştırma Kurumu (TÜBİTAK) / The Scientific and Technological Research Council of Turkey, for funding me during my studies.
+
+\end{acknowledgments}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{3pt}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\end{preliminaries}
+   
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\input{introduction/introduction.tex}
+\newpage
+
+\input{relatedwork/relatedwork.tex}
+\newpage
+
+\input{proposed/MODStarLiteAndMOGPP.tex}
+\newpage
+
+\input{experiments/experiments.tex}
+\newpage
+
+\input{conclusion/conclusion.tex}
+\newpage
+
+\bibliography{tugcem.thesis}{}
+\bibliographystyle{plain}
+
+%\appendix
+%\input{appendix1/appendix1.tex}
+
+\end{document}

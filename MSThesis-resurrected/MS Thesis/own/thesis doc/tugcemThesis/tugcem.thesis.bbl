@@ -1,0 +1,168 @@
+\begin{thebibliography}{10}
+
+\bibitem{LDAStarBayili:2008}
+Serhat Bayili and Faruk Polat.
+\newblock Limited-damage a*: A path search algorithm that considers damage as a
+  feasibility criterion.
+\newblock {\em Knowledge-Based Systems}, 24(4):501 -- 512, 2011.
+
+\bibitem{Bukhari:2010}
+Nabeel Bukhari, Ayesha Khan, Abdul~Rauf Baig, and Kashif Zafar.
+\newblock Optimization of route planning using simulated ant agent system.
+\newblock {\em International Journal of Computer Applications}, 4(8):1--4,
+  August 2010.
+\newblock Published by Foundation of Computer Science.
+
+\bibitem{Castillo:2007}
+Oscar Castillo, Leonardo Trujillo, and Patricia Melin.
+\newblock {Multiple Objective Genetic Algorithms for Path-planning Optimization
+  in Autonomous Mobile Robots}.
+\newblock {\em Soft Computing - A Fusion of Foundations, Methodologies and
+  Applications}, 11(3):269--279--279, February 2007.
+
+\bibitem{Coello:2000}
+Carlos~A. Coello.
+\newblock An updated survey of ga-based multiobjective optimization techniques.
+\newblock {\em ACM Comput. Surv.}, 32:109--143, June 2000.
+
+\bibitem{MOOUEA}
+Kalyanmoy Deb.
+\newblock {\em {Multi-Objective Optimization Using Evolutionary Algorithms}}.
+\newblock J.Wiley \& Sons, 1st edition, June 2001.
+
+\bibitem{Dijkstra:1959}
+Edsger.~W. Dijkstra.
+\newblock A note on two problems in connexion with graphs.
+\newblock {\em Numerische Mathematik}, 1:269--271, 1959.
+
+\bibitem{Dozier:1998}
+G.~Dozier, S.~McCullough, A.~Homaifar, E.~Tunstel, and L.~Moore.
+\newblock Multiobjective evolutionary path planning via fuzzy tournament
+  selection.
+\newblock In {\em Evolutionary Computation Proceedings, 1998. IEEE World
+  Congress on Computational Intelligence., The 1998 IEEE International
+  Conference on}, pages 684 --689, May 1998.
+
+\bibitem{Foo_Knutzon:2009}
+Jung~Leng Foo, Jared Knutzon, Vijay Kalivarapu, James Oliver, and Eliot Winer.
+\newblock Three-dimensional path planning of unmanned aerial vehicle in a
+  virtual battlespace using b-splines and particle swarm optimization.
+\newblock {\em Journal of Aerospace Computing Information and Communication},
+  6(April):271--290, 2009.
+
+\bibitem{Guo:2009}
+Feng Guo, Hongrui Wang, and Yantao Tian.
+\newblock Multi-objective path planning for unrestricted mobile.
+\newblock In {\em Automation and Logistics, 2009. ICAL '09. IEEE International
+  Conference}, pages 1046 --1051, 2009.
+
+\bibitem{AStarHart:1968}
+P.E. Hart, N.J. Nilsson, and B.~Raphael.
+\newblock A formal basis for the heuristic determination of minimum cost paths.
+\newblock {\em Systems Science and Cybernetics, IEEE Transactions on}, 4(2):100
+  --107, July 1968.
+
+\bibitem{Koenig:2002}
+Sven Koenig and Maxim Likhachev.
+\newblock D*lite.
+\newblock In {\em Eighteenth national conference on Artificial intelligence},
+  pages 476--483, Menlo Park, CA, USA, 2002. American Association for
+  Artificial Intelligence.
+
+\bibitem{LPAStarKoenig:2004}
+Sven Koenig, Maxim Likhachev, and David Furcy.
+\newblock Lifelong planning a*.
+\newblock {\em Artif. Intell.}, 155(1-2):93--146, May 2004.
+
+\bibitem{RTAStarKorf:1990}
+Richard~E. Korf.
+\newblock Real-time heuristic search.
+\newblock {\em Artificial Intelligence}, 42(2–3):189 -- 211, 1990.
+
+\bibitem{Mitchell:2009}
+I.M. Mitchell and S.~Sastry.
+\newblock Continuous path planning with multiple constraints.
+\newblock In {\em Decision and Control, 2003. Proceedings. 42nd IEEE Conference
+  on}, volume~5, pages 5502 -- 5507 Vol.5, 2003.
+
+\bibitem{Nasrollahy:2009}
+Amin~Zargar Nasrollahy and Hamid Haj~Seyyed Javadi.
+\newblock Using particle swarm optimization for robot path planning in dynamic
+  environments with moving obstacles and target.
+\newblock {\em Computer Modeling and Simulation, UKSIM European Symposium on},
+  0:60--65, 2009.
+
+\bibitem{Oral:2012}
+Tu\u{g}cem Oral and Faruk Polat.
+\newblock A multi-objective incremental path planning algorithm for mobile
+  agents.
+\newblock In {\em Proceedings of the 2012 IEEE/WIC/ACM International
+  Conferences on Web Intelligence and Intelligent Agent Technology}, WI-IAT
+  '12. IEEE Computer Society, 2012.
+\newblock Will be published by IEEE Computer Society in December 2012.
+
+\bibitem{Pangilinan}
+J.M.A. Pangilinan and G.K. Janssens.
+\newblock Evolutionary algorithms for the multiobjective shortest path problem.
+\newblock volume 21 (PWASET), pages 205--210.
+
+\bibitem{Peng_Xu_Zhang:2011}
+X~Peng, D~Xu, and F~Zhang.
+\newblock {\em UAV online path planning based on dynamic multiobjective
+  evolutionary algorithm}, pages 5424--5429.
+\newblock 2011.
+
+\bibitem{FocussedDStarStentz:1995}
+Anthony Stentz.
+\newblock The focussed d* algorithm for real-time replanning.
+\newblock In {\em Proceedings of the 14th international joint conference on
+  Artificial intelligence - Volume 2}, IJCAI'95, pages 1652--1659, San
+  Francisco, CA, USA, 1995. Morgan Kaufmann Publishers Inc.
+
+\bibitem{DStar:1994}
+Anthony~(Tony) Stentz.
+\newblock Optimal and efficient path planning for partially-known environments.
+\newblock In {\em Proceedings of the IEEE International Conference on Robotics
+  and Automation (ICRA '94)}, volume~4, pages 3310 -- 3317, May 1994.
+
+\bibitem{MOAStewart:1991}
+Bradley~S. Stewart and Chelsea~C. White, III.
+\newblock Multiobjective a*.
+\newblock {\em J. ACM}, 38(4):775--814, October 1991.
+
+\bibitem{Sun:2009}
+Xiaoxun Sun, William Yeoh, and Sven Koenig.
+\newblock Efficient incremental search for moving target search.
+\newblock In {\em Proceedings of the 21st international jont conference on
+  Artifical intelligence}, pages 615--620, San Francisco, CA, USA, 2009. Morgan
+  Kaufmann Publishers Inc.
+
+\bibitem{GFR-A*Sun:2010}
+Xiaoxun Sun, William Yeoh, and Sven Koenig.
+\newblock Generalized fringe-retrieving a*: faster moving target search on
+  state lattices.
+\newblock In {\em Proceedings of the 9th International Conference on Autonomous
+  Agents and Multiagent Systems: volume 1 - Volume 1}, AAMAS '10, pages
+  1081--1088, Richland, SC, 2010. International Foundation for Autonomous
+  Agents and Multiagent Systems.
+
+\bibitem{MT-D*Lite:2010}
+Xiaoxun Sun, William Yeoh, and Sven Koenig.
+\newblock Moving target d* lite.
+\newblock In {\em Proceedings of the 9th International Conference on Autonomous
+  Agents and Multiagent Systems: volume 1 - Volume 1}, AAMAS '10, pages 67--74,
+  Richland, SC, 2010. International Foundation for Autonomous Agents and
+  Multiagent Systems.
+
+\bibitem{Tarapata:2007}
+Zbigniew Tarapata.
+\newblock Selected multicriteria shortest path problems: An analysis of
+  complexity, models and adaptation of standard algorithms.
+\newblock {\em Int. J. Appl. Math. Comput. Sci.}, 17:269--287, June 2007.
+
+\bibitem{spea2:2001}
+Eckart Zitzler, Marco Laumanns, and Lothar Thiele.
+\newblock Spea2: Improving the strength pareto evolutionary algorithm.
+\newblock Technical report, 2001.
+
+\end{thebibliography}

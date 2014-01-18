@@ -1,0 +1,50 @@
+% RELATED WORK
+\chapter{Related Work}
+\label{chapter:relatedwork}
+
+The GRN control problem is a popular problem that has gained more attention with the advancements in
+molecular biology in the last decade. The idea of intervening with the genes became possible with the
+research on TFs and other dynamics in the protein biosynthesis. From the biological point of view, simple
+pathways of genes were formulated for explaining certain phenomena in the~cell.
+
+Lately, the research community has focused more on generic and complex interactions between genes, and GRNs
+became an important tool; intervention problems have been formulated using GRNs~\cite{Datta03,Pal08,Pal06}.
+Different mathematical frameworks and approaches have been used for devising mechanisms of intervention with
+genes in order to accomplish some non-trivial goals. There are numerous useful examples of this intervention
+mechanisms. For instance, targeted therapy is a cancer treatment technique based on suppressing the
+expression of some genes in order to prevent cancerous behavior in cells~\cite{Green04}. Employing
+mathematical models and computational techniques in undertaking the intervention problem would increase our
+ability to devise more complex intervention~mechanisms.
+
+Modeling the GRN control problem using PBNs is an approach widely used by the research
+community~\cite{Kauffman93}. PBN model network dynamics and different approaches can be used for solving
+control problems defined on this representation. Expressing the problem in terms of an MDP and using general
+purpose MDP solving algorithms is an approach well suited to PBN representation. Examples of methods that use
+Markovian and MDP concepts are the work of Shmulevich et al.~\cite{Shmulevich02} and the work of Datta et
+al.~\cite{Datta03} who studied the dynamics of PBN model in the probabilistic context of Markov chains. The
+work of Pal et al.~\cite{Pal05} explores an alternative model, namely context-sensitive probabilistic Boolean
+network for the intervention~problem.
+
+Our research group has already contributed to the control and intervention of GRN by developing novel
+approaches based on PBN formulation of the network and different formulations of the intervention problem,
+including MDP formulation~\cite{Abul04,Abul06,Tan08,Tan10,Tan10b}. The main focus on these previous works by
+our group was formulating the GRN in PBN model and trying to solve the MDP problem in different settings and
+exploring different aspects such as finite or infinite horizon reward mechanisms, factored representations of
+the MDP problems, and improved modeling and solution techniques for plain and factored MDP problems.
+Although our techniques have been effective and well received by the research
+community~\cite{Abul04,Abul06,Tan08,Tan10,Tan10b}, we realized the need for incorporating partial
+observability in the problem definition; and accordingly, the target of our approach described in this paper
+is to develop appropriate solutions for the problem augmented to be partially~observable.
+
+The need to cover partial observability has been realized by some other researchers; however, the problem has
+not yet received enough and comprehensive attention. Datta et al.~\cite{Datta03} developed a finite horizon
+control algorithms for GRNs; their algorithms can work with imperfect information. They modeled the gene
+regulatory network as a PBN and used Markovian probabilities for their control algorithm, which is basically
+an optimization algorithm based on dynamic programming. Bryce et al.~\cite{Bryce07} were first to model the
+GRN control problem as a POMDP. Their approach makes use of PBN representation of the problem and their POMDP
+formulation is similar to the PBN formulation. Their focus was on solving finite horizon problems, and
+obviously they did not use a POMDP solver for solving the derived POMDP problem. They applied a probabilistic
+planning algorithm for extracting an intervention mechanism for a finite horizon. Our approach described in
+this paper is a major contribution to the literature because to the best of our knowledge it is the first
+effort to develop a method that properly and comprehensively incorporates partial observability in handling
+the control~of~GRNs.

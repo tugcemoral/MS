@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+   <title></title>
+   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+   <style type="text/css">
+      tr,td {text-align:center;}
+      table  {margin-left:auto; margin-right:auto;}
+   </style>
+
+</head>
+<body>
+
+<table border="0">
+   <tr>
+      <td>
+
+         <script type="text/javascript">
+            var browser = navigator.appName;
+
+            document.write( '<object width="1000" height="650" type="application/x-java-applet" ' );
+
+            if( browser == "Microsoft Internet Explorer" ){
+               document.write( 'classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"' );
+            }else{
+               document.write( 'classid="java:D_applet.class"' );
+            }
+
+            document.write( '><param name="CODE" value="Lpa.class">' );
+            document.write( '<param name="type" value="application/x-java-applet;version=1.5"></object>' );
+         </script>
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>

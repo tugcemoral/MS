@@ -1,0 +1,2527 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% or ...
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multi Objective Path Planning in Virtual Environments
+\end_layout
+
+\begin_layout Author
+Tuğcem
+\begin_inset space ~
+\end_inset
+
+Oral
+\end_layout
+
+\begin_layout Institute
+Department of Computer Engineering
+\begin_inset Newline newline
+\end_inset
+
+Middle East Technical University
+\begin_inset Newline newline
+\end_inset
+
+Ankara,Turkey 
+\end_layout
+
+\begin_layout Date
+MSc Defense
+\begin_inset Newline newline
+\end_inset
+
+September 12, 2012
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{metu-ceng.jpg}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSection[]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{scriptsize}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{scriptsize}
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Outline
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tableofcontents[sections={1-4}]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Outline
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tableofcontents[sections={5-6}]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout BeginFrame
+Introduction
+\end_layout
+
+\begin_layout Itemize
+Path finding is popular and ongoing problem in computer society.
+\end_layout
+
+\begin_layout Itemize
+Could be classified into several categories.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Off-line path planning algorithms find the whole solution in advance before
+ starting execution whereas on-line search algorithms require the planning
+ and execution phases to be coupled, such that the agent repeatedly plans
+ and executes the next move.
+ In dynamic or partially known environments, off-line path planning algorithms
+ suffer from execution time, whereas on-line algorithms yield low quality
+ solutions in terms of path length.
+ Incremental heuristic search algorithms try to merge advantages of both
+ approaches to obtain better execution time without sacrificing optimality.
+ They reuse the information gained from previous iterations and improve
+ it instead of calculating from scratch like off-line search methods.
+ Soft computing algorithms generally come up with evolutionary solutions.
+ Their main perspective is to evaluate and evolve solution quality by time.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Existing algorithms focus on single criteria, e.g.
+ path length minimization.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+However, in many real-world problem domains we see that there are several
+ objectives to be optimized concerning the solution (path) quality.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+The Problem Definition
+\end_layout
+
+\begin_layout Itemize
+A Multi-objective real-time path planning algorithm should come up.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ex.
+ Minimum path length (or associated time), minimum exposure to a hostile
+ observer, safest path ...
+ 
+\end_layout
+
+\begin_layout Itemize
+Objectives must be at least two, but also the algorithm should accept 
+\emph on
+n 
+\emph default
+objectives.
+\end_layout
+
+\begin_layout Itemize
+Domination between non-interacting objectives.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Environment differs & matters!
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dynamic and partially observable environments are much more realistic and
+ appropriate to adapt virtual environments.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Existing solutions suffer from fast re-planning.
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite is proposed.
+\end_layout
+
+\begin_layout Section
+Related Work
+\end_layout
+
+\begin_layout Subsection
+Related Studies
+\end_layout
+
+\begin_layout BeginFrame
+Related Studies
+\end_layout
+
+\begin_layout Itemize
+Guo et.
+ al considers multi-objective path planning (MOPP) for the ball and plate
+ system.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The goal of MOPP is to obtain the safe (without colliding hazardous obstacles)
+ and shortest path for the ball to follow.
+ The environment is represented by distance map (the euclidean distances
+ between initial and target cells) and hazard map (which represents possible
+ collisions between the ball and the obstacles).
+ They use entropy method to calculate weights of objectives for each grid
+ node.
+ Simply, Dijkstra algorithm is employed as a solution.
+ In simulation results, the path obtained by multi-objective method is much
+ safer compared with single-objective A* algorithm.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tarapata presents selected multi-objective approaches to shortest path problems
+ in his paper.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+He gives a classification of multi-objective shortest path (MOSP) problems.
+ and discuss different models of them.
+ Also he present methods of solving the formulated optimization problems.
+ Analysis of the complexity of the presented methods and ways of adapting
+ of classical algorithms for solving MOSP problems are described in detail.
+ The comparison of the effectiveness of solving selected MOSP problems are
+ defined as mathematical programming problems (using by the CPLEX 7.0 solver)
+ and multi weighted graph problems (using modified Dijkstra’s algorithm).
+ Experimental results of using the presented methods for multi criteria
+ path selection in a terrain-based grid network are given.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mitchell et al.
+ examine the problem through a low dimensional continuous state space subject
+ to upper bounds on several additive cost metrics.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Mitchell et al.
+ examine the problem of planning a path through a low dimensional continuous
+ state space subject to upper bounds on several additive cost metrics.
+ For the single cost case, their previously published research has proposed
+ constructing the paths by gradient descent on a local minimal free value
+ function.
+ This value function is the solution of the 
+\emph on
+Eikonal partial differential equation
+\emph default
+, and efficient algorithms have been designed to compute it.
+ In their paper, they propose an auxiliary partial differential equation
+ with which they evaluate multiple additive cost metrics for paths which
+ are generated by value functions; solving this auxiliary equation adds
+ little more work to the value function computation.
+ They also propose an algorithm which generates paths whose costs lie on
+ the Pareto optimal surface for each possible destination locations, and
+ a path can be chosen from these paths those which satisfy the constraints.
+ The procedure is practical when the sum of the state space dimension and
+ number of cost metrics is roughly six or below.
+ Their paper includes heavy mathematical notations that it is hard to keep
+ track of reading.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Related Studies - Evolutionary Based Methods
+\end_layout
+
+\begin_layout Itemize
+Pangilinan et al.
+ introduce an evolutionary algorithm for multi-objective shortest path problem.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+introduce an evolutionary algorithm for multi-objective shortest path problem
+ (MOSSP).
+ They draw the picture of their 2-D static (stable obstacles and target)
+ environment as a graph.
+ Initial population is created by randomly generated individuals where each
+ has a random ordered path from initial position to goal position.
+ They use binary tournament selection for mating.
+ Strength Pareto Evolutionary Algorithm (SPEA2) evaluates fitness values
+ of individuals and selects them for survival.
+ They define density function of fitness evaluation to avoid from genetic
+ drift.
+ For genetic operators, they use one-point crossover and mutation.
+ Their results show that their algorithm is a good alternative in finding
+ a subset of efficient solutions for multi-objective shortest path problems
+ when performance issues like complexity, diversity and non-dominal optimal
+ solutions become obstructions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Castillo et al.
+ define a genetic 
+\emph on
+offline
+\emph default
+ point-to-point agent path planner to find valid paths towards target.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+They define a genetic 
+\emph on
+offline
+\emph default
+ point-to-point agent path planner which tries to find valid paths.
+ They concentrate on two constraints which are path length and difficulty
+ (each path has a difficulty which calculated from predefined weights) in
+ their 2-D static grid environment.
+ They compare their results with papers from 90's and get better results.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nasrollahy et al.
+ proposes a PSO algorithm as a multi-agent search technique for dynamic
+ fully observable environments.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Nasrollahy et al.
+ proposes a particle swarm optimization algorithm as a multi-agent search
+ technique, for path planning in dynamic and known environments in order
+ to minimize total path planning time while avoiding the local optimums.
+ They create a small-scale model of search system moving goal position and
+ obstacles.
+ These obstacles are defined as circular shapes and agents get around of
+ these obstacles.
+ They try to optimize global best path through the goal position.
+ Although they mention about effectivity of proposed algorithm, they don't
+ give concrete results and comparisons with other methods.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+D* Lite
+\end_layout
+
+\begin_layout BeginFrame
+D* Lite Overview
+\end_layout
+
+\begin_layout Itemize
+Incremental version of A* and based on LPA*
+\end_layout
+
+\begin_layout Itemize
+Reuse data from previous searches.
+\end_layout
+
+\begin_layout Itemize
+When a weight has changed, replan only considering corresponding states.
+\end_layout
+
+\begin_layout Itemize
+Initial running yields same result with A*.
+\end_layout
+
+\begin_layout BeginFrame
+Variables & Invariants
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ is the finite set of states of the search graph
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Succ(s)\subseteq S$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $Pred(s)\subseteq S$
+\end_inset
+
+ are successors and predecessors of state 
+\begin_inset Formula $s\in S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c(s,s')$
+\end_inset
+
+ is the moving cost from state 
+\begin_inset Formula $s$
+\end_inset
+
+ to 
+\begin_inset Formula $s'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $rhs(s)$
+\end_inset
+
+ is one-step-lookeahead values of 
+\begin_inset Formula $g(s)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Uses heuristics: 
+\begin_inset Formula $h(s,s_{goal})$
+\end_inset
+
+ (non-negative and consistent)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $h(s_{goal},s_{goal})=0$
+\end_inset
+
+ and 
+\begin_inset Formula $h(s,s_{goal})\leq c(s,s')+h(s',s_{goal})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Variables & Invariants (cont'd)
+\end_layout
+
+\begin_layout Itemize
+rhs values are used to evaluate change to cost values.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $rhs(s)=\begin{cases}
+0 & s=s_{start}\\
+min_{s'\in Pred(s)}(g(s')+c(s',s)) & otherwise
+\end{cases}$
+\end_inset
+
+ (Invariant 1)
+\end_layout
+
+\begin_layout Itemize
+if 
+\begin_inset Formula $rhs(s)=g(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-consistent, 
+\emph default
+o/w
+\emph on
+ locally-inconsistent
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $g(s)>rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-overconsistent
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g(s)<rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-underconsistent
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+No need to make all states locally consistent.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+after some edge costs have changed.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Instead, uses heuristics and updates relevant g-values.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A priority queue (U) which holds 
+\series bold
+only
+\series default
+ 
+\emph on
+locally-inconsistent
+\emph default
+ states (Invariant 2) is keeped up.
+\end_layout
+
+\begin_layout BeginFrame
+Variables & Invariants (cont'd)
+\end_layout
+
+\begin_layout Itemize
+Priority of a state in the priority queue is always the same as its key
+ (Invariant 3), where;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k(s)=[k_{1}(s);k_{2}(s)]$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $k_{1}(s)=min(g(s),rhs(s))+h(s,s_{goal})+k_{m}$
+\end_inset
+
+ (
+\begin_inset Formula $f(x)$
+\end_inset
+
+ function in A*)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{2}(s)=min(g(s),rhs(s))$
+\end_inset
+
+ (
+\begin_inset Formula $g(x)$
+\end_inset
+
+ function in A*)
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+D* Lite Execution Summary
+\end_layout
+
+\begin_layout Itemize
+Can be used to solve goal-directed navigation problem in unknown and dynamic
+ environments.
+\end_layout
+
+\begin_layout Itemize
+Searches from goal state to start state.
+\end_layout
+
+\begin_layout Itemize
+Guarantees that each state is expanded no more than two times.
+\end_layout
+
+\begin_layout Subsection
+MOA*
+\end_layout
+
+\begin_layout BeginFrame
+MOA* Overview
+\end_layout
+
+\begin_layout Itemize
+Considers more than one objectives at the same time.
+\end_layout
+
+\begin_layout Itemize
+Based on A*
+\end_layout
+
+\begin_layout Itemize
+Gives same results under one criteria.
+\end_layout
+
+\begin_layout Itemize
+Uses evaluation function 
+\begin_inset Formula $F(n)=G(n)+H(n)$
+\end_inset
+
+ like A*
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+vectors instead of scalar values.
+ Size of the vector is the number of objectives to be optimized.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Provides complete and optimal solutions when heuristic function is admissible
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+which means the heuristic estimation of every objective is not overestimated
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+MOA* Details
+\end_layout
+
+\begin_layout Itemize
+Keeps track of state expansions using OPEN (to be processed nodes) and CLOSED
+ (already processed nodes) sets.
+ 
+\end_layout
+
+\begin_layout Itemize
+Non-dominated states are maintained in a subset of OPEN named ND.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+which is formed by the elements that are not dominated by any other element
+ of this set and any of the discovered solutions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+At each iteration of the algorithm, the best alternative is selected from
+ ND and expanded until it becomes empty.
+ 
+\end_layout
+
+\begin_layout Itemize
+Finally, solution paths are generated by following back-pointers from goal
+ to start.
+\end_layout
+
+\begin_layout Section
+MOD* Lite
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout BeginFrame
+Motivation
+\end_layout
+
+\begin_layout Itemize
+Assume that a UAV is trying to shoot an enemy unit in an unknown dynamic
+ environment.
+\end_layout
+
+\begin_layout Itemize
+Need to optimize path length (fuel consumption), safety, etc...
+ 
+\emph on
+as fast as possible.
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite could be adapted on such environment.
+\end_layout
+
+\begin_layout BeginFrame
+Overview
+\end_layout
+
+\begin_layout Itemize
+As considering more than one criteria, all scalar values are considered
+ in terms of 
+\emph on
+vectors.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $n$
+\end_inset
+
+ dimensions for 
+\begin_inset Formula $n$
+\end_inset
+
+ non-interacting objectives.
+\end_layout
+
+\begin_layout Itemize
+non-domination between vectors might occur.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+All operations are considered as multi objectively.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $u$
+\end_inset
+
+ 
+\emph on
+dominates
+\emph default
+ 
+\begin_inset Formula $v$
+\end_inset
+
+ iff 
+\begin_inset Formula $\forall x\in u$
+\end_inset
+
+, 
+\begin_inset Formula $\forall y\in v$
+\end_inset
+
+, 
+\begin_inset Formula $x$
+\end_inset
+
+ dominates 
+\begin_inset Formula $y$
+\end_inset
+
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Greater than situation for scalar values.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $v_{1}=[3,\,4]$
+\end_inset
+
+, 
+\begin_inset Formula $v_{2}=[4,\,6]$
+\end_inset
+
+ and 
+\begin_inset Formula $v_{3}=[6,\,2]$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ dominates 
+\begin_inset Formula $v_{2}$
+\end_inset
+
+ but 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $v_{3}$
+\end_inset
+
+ are non-dominated.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+MOD* Lite assumes objectives are 
+\emph on
+not transferrable to 
+\emph default
+and 
+\emph on
+do not interact with each other.
+\end_layout
+
+\begin_layout Subsection
+Environmental Properties
+\end_layout
+
+\begin_layout BeginFrame
+Environmental Properties
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+3cm
+\end_layout
+
+\begin_layout Itemize
+Environment
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+2D Grid, partially observable & dynamic, target is stationary and in a known
+ loc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Agent
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+moves into four directions(up, down, left, right), sensor range, Only knows
+ the location of target and observed environment at time 
+\emph on
+t, 
+\emph default
+Should re-plan its path every time step if environment is updated or sensor
+ range has changed.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Obstacles 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Might be both stationary and mobile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Threats
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Might be both stationary and mobile, Have 
+\emph on
+threat zones 
+\emph default
+where they have probability to shoot agent within (The closer the agent,
+ the more probable to shoot.
+ - 
+\emph on
+shoot risk percent
+\emph default
+), Do not try to catch or pursuit the agent.
+ The secondary objective criterion.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/75x75envPropertiesExample.eps
+	lyxscale 90
+	display false
+	scale 26
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+The Components and Variables
+\end_layout
+
+\begin_layout BeginFrame
+The Components & Variables
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite is based on D* Lite.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Components, variables and used structures are similar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ is the finite set of states on search graph
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Succ(s)\subseteq S$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $Pred(s)\subseteq S$
+\end_inset
+
+ are successors and predecessors of state 
+\begin_inset Formula $s\in S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c(s,s')$
+\end_inset
+
+ is the moving cost from state 
+\begin_inset Formula $s$
+\end_inset
+
+ to 
+\begin_inset Formula $s'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $rhs(s)$
+\end_inset
+
+ is one-step-lookeahead values of 
+\begin_inset Formula $g(s)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Uses heuristics: 
+\begin_inset Formula $h(s,s_{goal})$
+\end_inset
+
+ (non-negative and consistent)
+\end_layout
+
+\begin_layout Itemize
+All the functions are represented by vectors
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+instead of scalars.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+The Components & Variables (cont'd)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $rhs(s)=\begin{cases}
+[0,0,\ldots,0]\, OR\,[\infty,\infty,\ldots,\infty] & s=s_{start}\\
+nonDom_{s'\in Pred(s)}(sum(g(s'),\, c(s',s))) & otherwise
+\end{cases}$
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ObjectiveVector.MIN stands for a vector with n minimum values for n dimensional
+ problem.
+ An objective vector is a structure that holds values for each objective
+ defined by problem.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+if 
+\begin_inset Formula $rhs(s)=g(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-consistent, 
+\emph default
+o/w
+\emph on
+ locally-inconsistent
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $g(s)\succ rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-overconsistent
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g(s)\prec rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-underconsistent
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g(s)\sim rhs(s)$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ is 
+\emph on
+locally-non-consistent
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Priority Queue vs DAG
+\end_layout
+
+\begin_layout Itemize
+Due to the 
+\emph on
+non-domination
+\emph default
+ situation, queue structure of D* Lite could not be used.
+\end_layout
+
+\begin_layout Itemize
+Instead, a directed acyclic graph is presented.
+\end_layout
+
+\begin_layout Itemize
+Vertices represents states (with their key values) and edges represents
+ 
+\emph on
+domination status
+\emph default
+ of connected vertices.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Multi objectively equality and non-domination could not yield an edge between
+ two vertices.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Topological sorted list of vertices by incoming degrees.
+\end_layout
+
+\begin_layout BeginFrame
+DAG Representation
+\end_layout
+
+\begin_layout ColumnsCenterAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/graph1v2.eps
+	lyxscale 90
+	display false
+	scale 30
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/graph2v2.eps
+	lyxscale 90
+	display false
+	scale 30
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Key Formulation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k(s)=[k_{1}(s);k_{2}(s)]$
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+these components are set of objective vectors.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $k_{1}(s)=sum(h(s,s_{goal}),k_{m},k_{2}(s))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{2}(s)=nonDom(g(s),rhs(s))$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Details of MOD* Lite
+\end_layout
+
+\begin_layout BeginFrame
+MOD* Lite Execution Summary
+\end_layout
+
+\begin_layout Itemize
+Searching order is from goal to start state, like D* Lite.
+\end_layout
+
+\begin_layout Itemize
+The idea is expanding 
+\emph on
+s 
+\emph default
+and updating 
+\emph on
+g(s)
+\emph default
+ value where 
+\emph on
+s
+\emph default
+ is taken from the top of topological list.
+\end_layout
+
+\begin_layout Itemize
+For any changed cost, corresponding states and costs are calculated.
+\end_layout
+
+\begin_layout Itemize
+After updates are done, multi objective paths are constructed using back
+ pointers.
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite can be used in any dynamic and partially observable environment
+ with 
+\emph on
+n 
+\emph default
+objective.
+\end_layout
+
+\begin_layout Section
+MOGPP
+\end_layout
+
+\begin_layout BeginFrame
+MOGPP - Overview
+\end_layout
+
+\begin_layout Itemize
+Evolutionary methods can be applied to many NP-hard problems
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+As indicated before, there exist for multi-objective path finding.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To show that MOD* Lite gives feasible and qualified solutions, MOGPP is
+ proposed.
+\end_layout
+
+\begin_layout Itemize
+MOGPP is based on a classical evolutionary algorithm structure.
+\end_layout
+
+\begin_layout Itemize
+Tries to evolve solution quality by time.
+\end_layout
+
+\begin_layout BeginFrame
+Chromosome Representation
+\end_layout
+
+\begin_layout Itemize
+Each individual represents a valid path from initial location to target,
+ a legal solution for the problem.
+\end_layout
+
+\begin_layout Itemize
+Each gene in chromosome is a state in this valid path.
+\end_layout
+
+\begin_layout Itemize
+Each valid path has a multi objective cost.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Path length, exposured risk value.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Fitness Function
+\end_layout
+
+\begin_layout Itemize
+Fitness function is important to evaluate a chromosome in the population.
+\end_layout
+
+\begin_layout Itemize
+As the genetic algorithm proceeds, it is expected the fitness value of the
+ ”best” chromosome to increase as well as the total fitness of the population
+ as a whole.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F(i)=\left[\frac{1}{pathLength(i)^{2}}\right],\left[\frac{1}{exposuredRisk(i)^{2}}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+This function is represented by a vector of objectives.
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+first objective is inverse of path length square, second objective is inverse
+ of calculated exposured risk square during this path
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The purpose of fitness function is to yield better results when an individual’s
+ path is shorter and safer.
+\end_layout
+
+\begin_layout BeginFrame
+Genetic Operations
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/mogpp/xover.eps
+	lyxscale 90
+	display false
+	scale 22
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Crossover operation is used to vary the chromosomes and generate new individuals
+ from existing ones.
+ 
+\end_layout
+
+\begin_layout Itemize
+MOGPP uses roulette-wheel selection method is for parent selection.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Greater fitness evaluation owner chromosomes have bigger opportunity to
+ be selected.
+ 
+\end_layout
+
+\begin_layout Itemize
+Selected parents must be intersect at least one cell.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+New generated children also represents a valid path.
+\end_layout
+
+\begin_layout Itemize
+Swapped sub-paths of two parent's paths from randomly selected intersected
+ point.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/mogpp/mutation.eps
+	lyxscale 90
+	display false
+	scale 22
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Mutation is used to maintain genetic diversity of the population.
+\end_layout
+
+\begin_layout Itemize
+MOGPP selects a random cell and randomly creates a sub-path from this cell
+ to target.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+MOGPP Execution Summary
+\end_layout
+
+\begin_layout Itemize
+The population is initialized randomly.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Random valid paths from initial location to the target are generated for
+ each individual.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+All individuals are evaluated.
+\end_layout
+
+\begin_layout Itemize
+Number of elite individuals are transferred directly to new population.
+ Genetic operations are applied.
+\end_layout
+
+\begin_layout Itemize
+At the end of execution, elites of final population are returned.
+\end_layout
+
+\begin_layout Itemize
+Population size, maximum iteration count of evolution, number of elites,
+ crossover and mutation probabilities must be set before execution.
+\end_layout
+
+\begin_layout Section
+Experimental Evaluation
+\end_layout
+
+\begin_layout BeginFrame
+Experiments Overview
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite is compared with MOA* and MOGPP.
+\end_layout
+
+\begin_layout Itemize
+Tests are done in 3 categories with different size of maps.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+full observable tests, partially observable tests, multi objectivity tests.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Comparison is done by path quality and execution times.
+\end_layout
+
+\begin_layout Itemize
+MOGPP is tuned for tests;
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Number of elitists, 5,
+\end_layout
+
+\begin_layout Itemize
+Population count and maximum iteration, 50
+\end_layout
+
+\begin_layout Itemize
+Crossover ratio, 0.8 and mutation ratio, 0.05
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Fully Observable Tests
+\end_layout
+
+\begin_layout BeginFrame
+Fully Observable Tests - Randomized Maps
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/randomized.eps
+	lyxscale 90
+	display false
+	scale 25
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+7cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/randomizedmaps_pathcosts.png
+	lyxscale 90
+	display false
+	scale 40
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Fully Observable Tests - Handcrafted Maps
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/handcrafted.eps
+	lyxscale 90
+	display false
+	scale 25
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+7cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/handcraftedmaps_pathcosts.png
+	lyxscale 90
+	display false
+	scale 40
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Partially Observable Tests
+\end_layout
+
+\begin_layout BeginFrame
+Partially Observable Tests
+\end_layout
+
+\begin_layout Columns
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/75x75SensorRange.eps
+	lyxscale 90
+	display false
+	scale 22
+	noUnzip
+	groupId p_obs
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+6cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/100x100SensorRange.eps
+	lyxscale 90
+	display false
+	scale 22
+	noUnzip
+	groupId p_obs
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Partially Observable Tests (cont'd)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/125x125SensorRange.eps
+	lyxscale 90
+	display false
+	scale 30
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Multi Objectivity Tests
+\end_layout
+
+\begin_layout BeginFrame
+75 x 75 on Different Threat Zones
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/experimental/75x75ThreatZonePercent.eps
+	lyxscale 90
+	display false
+	scale 30
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusions & Future Work
+\end_layout
+
+\begin_layout BeginFrame
+Conclusions
+\end_layout
+
+\begin_layout Itemize
+A novel navigation algorithm for multi objective dynamic environments, MOD*
+ Lite is presented.
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite is based on D* Lite and brings multi objectivity to the solution
+ space successfully.
+\end_layout
+
+\begin_layout Itemize
+MOD* Lite is compared with known and complete multi objective off-line path
+ planning algorithm, MOA* and with a novel evolutionary solution, multi
+ objective genetic path planner, MOGPP based on solution quality and execution
+ time.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Experimental results show that MOD* Lite is able to optimize path quality
+ and is fast enough to be used in real-world multi-agent applications such
+ as robotics, computer games, or virtual simulations.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The one and the only incremental multi objective navigation algorithm.
+\end_layout
+
+\begin_layout BeginFrame
+Future Work
+\end_layout
+
+\begin_layout Itemize
+There is an obvious gap on moving target multi objective path planning area.
+\end_layout
+
+\begin_layout Itemize
+Further studies should be concentrated on moving target path planning problems
+ and its solutions.
+\end_layout
+
+\begin_layout BeginFrame
+Demo
+\end_layout
+
+\begin_layout Itemize
+The Demo...
+\end_layout
+
+\begin_layout BeginFrame
+Thanks for Listening
+\end_layout
+
+\begin_layout Standard
+\align center
+Any Questions and Comments?
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Additional Slides
+\end_layout
+
+\begin_layout Standard
+Additional Slides.
+\end_layout
+
+\begin_layout BeginFrame
+D* Lite Details
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+initialize():
+\emph default
+ initializes the graph
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+updateVertex(u):
+\emph default
+ updates rhs-values and the key of vertex 
+\emph on
+u
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+calculateKey(s):
+\emph default
+ calculates the priority queue key value of vertex 
+\emph on
+s
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+computeShortestPath():
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+updates rhs-values, checks consistency and add to / remove from queue
+\end_layout
+
+\begin_layout Itemize
+repeatedly expands inconsistent states in the order of their priorities
+ until 
+\begin_inset Formula $s_{goal}$
+\end_inset
+
+ is consistent
+\end_layout
+
+\begin_layout Itemize
+checks priority key and update queue responsibly.
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Overview of Algorithm
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+8cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scriptsize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Searching order is from goal to start state, like D* Lite.
+\end_layout
+
+\begin_layout Itemize
+First, 
+\emph on
+initialize()
+\emph default
+ function is called.
+\end_layout
+
+\begin_layout Itemize
+This function calculates the key value for goal state, adds it into U and
+ sets the rhs value to a MIN objective vector.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+computeMOPaths()
+\emph default
+ function is initialized to construct multi objective paths.
+ 
+\end_layout
+
+\begin_layout Itemize
+The termination criteria of this function is where the key of 
+\begin_inset Formula $s_{start}$
+\end_inset
+
+ dominates all the top keys returned from U.
+\end_layout
+
+\begin_layout Itemize
+Until it terminates, the top state is sequentially selected from top states
+ of U and expanded.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scriptsize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/modstar_computemopaths.png
+	lyxscale 90
+	display false
+	scale 40
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_layout BeginFrame
+Overview of Algorithm
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+8cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scriptsize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+While expanding a state, the domination between g and rhs values of correspondin
+g state is observed.
+ 
+\end_layout
+
+\begin_layout Itemize
+If rhs(s) values completely dominate g(s) values, update g value with rhs
+ and update weight for all predecessors of s with updateVertex().
+ 
+\end_layout
+
+\begin_layout Itemize
+If g(s) values completely dominate rhs(s) values, the case is locally overconsis
+tency.
+ Simply g value for this state is set as MAX objective vector and current
+ state weight is updated with its predecessors’ weight.
+\end_layout
+
+\begin_layout Itemize
+If g(s) and rhs(s) values can not completely dominate each other, locally
+ non-consistency is the case, g(s) value is updated with non-dominated values
+ of g(s) and rhs(s) values and again predecessors of current state is updated.
+ Keeping non-dominated values of g(s) and rhs(s) enables to keep track of
+ each non-dominated successors’ information.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scriptsize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/modstar_updatevertex.png
+	lyxscale 90
+	display false
+	scale 45
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Overview of Algorithm
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+7cm
+\end_layout
+
+\begin_layout Itemize
+Main loop of the algorithm, 
+\emph on
+plan() 
+\emph default
+waits for any change to occur.
+ Then,
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Heap variable is updated.
+\end_layout
+
+\begin_layout Itemize
+For any changed cost, corresponding states and costs are calculated.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+After any updates done, multi objective paths are generated using back pointers.
+\end_layout
+
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/modstarlite/modstar_plan.png
+	lyxscale 90
+	display false
+	scale 50
+	noUnzip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

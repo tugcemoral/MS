@@ -1,0 +1,167 @@
+\begin{thebibliography}{10}
+
+\bibitem{Abul06}
+O.~Abul, R.~Alhajj, and F.~Polat.
+\newblock {Optimal Multi-Objective Control Method for Discrete Genetic
+  Regulatory Networks}.
+\newblock In {\em BioInformatics and BioEngineering, 2006. BIBE 2006. Sixth
+  IEEE Symposium on}, pages 281--284. IEEE, 2006.
+
+\bibitem{Abul04}
+Osman Abul, Reda Alhajj, and Faruk Polat.
+\newblock Markov decision processes based optimal control policies for
+  probabilistic boolean network.
+\newblock In {\em IEEE BIBE}, pages 337--344, 2004.
+
+\bibitem{Bellman61}
+Richard~E. Bellman.
+\newblock {\em Adaptive control processes - A guided tour}.
+\newblock Princeton University Press, 1961.
+
+\bibitem{Bittner00}
+M.~Bittner, P.~Meltzer, Y.~Chen, Y.~Jiang, E.~Seftor, M.~Hendrix, and \~{et
+  al.}
+\newblock Molecular classification of cutaneous malignant melanoma by gene
+  expression profiling.
+\newblock {\em Nature}, 406(6795):536--40, 2000.
+
+\bibitem{Boutilier95}
+Craig Boutilier, Richard Dearden, and Moises Goldszmidt.
+\newblock Exploiting structure in policy construction.
+\newblock In {\em IJCAI}, pages 1104--1111, 1995.
+
+\bibitem{Bryce06}
+D.~Bryce and S.~Kim.
+\newblock Planning for gene regulatory network intervention.
+\newblock In {\em Life Science Systems and Applications Workshop, 2006.
+  IEEE/NLM}, pages 1--2. IEEE, 2006.
+
+\bibitem{Bryce07}
+Daniel Bryce and Seungchan Kim.
+\newblock Planning for gene regulatory network intervention.
+\newblock In {\em IJCAI}, pages 1834--1839, 2007.
+
+\bibitem{Cassandra94}
+Anthony~R. Cassandra.
+\newblock Optimal policies for partially observable markov decision processes.
+\newblock Technical report, Brown University, Providence, RI, USA, 1994.
+
+\bibitem{Cassandra98}
+Anthony~Rocco Cassandra.
+\newblock {\em Exact and approximate algorithms for partially observable markov
+  decision processes}.
+\newblock PhD thesis, Brown University, Providence, RI, USA, 1998.
+\newblock AAI9830418.
+
+\bibitem{Datta04}
+A.~Datta, A.~Choudhary, M.L. Bittner, and E.R. Dougherty.
+\newblock External control in markovian genetic regulatory networks: the
+  imperfect information case.
+\newblock {\em Bioinformatics}, 20(6):924, 2004.
+
+\bibitem{Datta03}
+Aniruddha Datta, Ashish Choudhary, Michael~L. Bittner, and Edward~R. Dougherty.
+\newblock External control in markovian genetic regulatory networks.
+\newblock {\em Machine Learning}, 52(1-2):169--191, 2003.
+
+\bibitem{Green04}
+Mark~R. Green.
+\newblock {Targeting Targeted Therapy}.
+\newblock {\em N Engl J Med}, 350(21):2191--2193, 2004.
+
+\bibitem{Kaelbling98}
+L.P. Kaelbling, M.L. Littman, and A.R. Cassandra.
+\newblock {Planning and acting in partially observable stochastic domains}.
+\newblock {\em Artificial Intelligence}, 101(1-2):99--134, 1998.
+
+\bibitem{Kauffman93}
+Stuart~A. Kauffman.
+\newblock {\em The Origins of Order: Self-Organization and Selection in
+  Evolution}, chapter~5, pages 182--235.
+\newblock Oxford University Press, USA, 1 edition, June 1993.
+
+\bibitem{Kim02}
+Seungchan Kim, Huai Li, Edward~R. Dougherty, Nanwei Cao, Yidong Chen, Michael
+  Bittner, and Edward~B. Suh.
+\newblock Can markov chain models mimic biological regulation?.
+\newblock {\em Journal of Biological Systems}, 10(4):337, 2002.
+
+\bibitem{Kveton06}
+Branislav Kveton, Milos Hauskrecht, and Carlos Guestrin.
+\newblock Solving factored mdps with hybrid state and action variables.
+\newblock {\em Journal of Artificial Intelligence Research}, 27:2006, 2006.
+
+\bibitem{littman95}
+Michael~L. Littman, Thomas~L. Dean, and Leslie~P. Kaelbling.
+\newblock On the complexity of solving markov decision problems.
+\newblock In {\em Proceedings of the Eleventh Annual Conference on Uncertainty
+  in Artificial Intelligence (UAI--95)}, pages 394--402, Montreal, Qu\'ebec,
+  Canada, 1995.
+
+\bibitem{Pal05}
+Ranadip Pal, Aniruddha Datta, Michael~L. Bittner, and Edward~R. Dougherty.
+\newblock {Intervention in context-sensitive probabilistic Boolean networks}.
+\newblock {\em Bioinformatics}, 21(7):1211--1218, 2005.
+
+\bibitem{Pal06}
+Ranadip Pal, Aniruddha Datta, and Edward~R. Dougherty.
+\newblock Optimal infinite-horizon control for probabilistic boolean networks.
+\newblock {\em IEEE Transactions on Signal Processing}, 54(6-2):2375--2387,
+  2006.
+
+\bibitem{Pal08}
+Ranadip Pal, Aniruddha Datta, and Edward~R. Dougherty.
+\newblock Robust intervention in probabilistic boolean networks.
+\newblock {\em IEEE Transactions on Signal Processing}, 56(3):1280--1294, 2008.
+
+\bibitem{Poupart05}
+Pascal Poupart.
+\newblock {\em Exploiting structure to efficiently solve large scale partially
+  observable markov decision processes}.
+\newblock PhD thesis, University of Toronto, Toronto, Ont., Canada, Canada,
+  2005.
+
+\bibitem{schut02}
+Martijn Schut, Michael Wooldridge, and Simon Parsons.
+\newblock On partially observable mdps and bdi models.
+\newblock In {\em Selected papers from the UKMAS Workshop on Foundations and
+  Applications of Multi-Agent Systems}, pages 243--260, London, UK, 2002.
+  Springer-Verlag.
+
+\bibitem{Shmulevich02}
+Ilya Shmulevich, Edward~R. Dougherty, and Wei Zhang.
+\newblock {Gene perturbation and intervention in probabilistic Boolean
+  networks}.
+\newblock {\em Bioinformatics}, 18(10):1319--1331, 2002.
+
+\bibitem{Smith07}
+Trey Smith, David~R. Thompson, and David~S. Wettergreen.
+\newblock Generating exponentially smaller {POMDP} models using conditionally
+  irrelevant variable abstraction.
+\newblock In {\em Int. Conf. on Applied Planning and Scheduling}, 2007.
+
+\bibitem{Tan08}
+M.~Tan, R.~Alhajj, and F.~Polat.
+\newblock {Large-scale approximate intervention strategies for probabilistic
+  Boolean networks as models of gene regulation}.
+\newblock In {\em BioInformatics and BioEngineering, 2008. BIBE 2008. 8th IEEE
+  International Conference on}, pages 1--6. IEEE, 2008.
+
+\bibitem{Tan10}
+Mehmet Tan, Reda Alhajj, and Faruk Polat.
+\newblock Automated large-scale control of gene regulatory networks.
+\newblock {\em Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE
+  Transactions on}, 40(2):286 --297, April 2010.
+
+\bibitem{Tan10b}
+Mehmet Tan, Reda Alhajj, and Faruk Polat.
+\newblock Scalable approach for effective control of gene regulatory networks.
+\newblock {\em Artif. Intell. Med.}, 48(1):51--59, 2010.
+
+\bibitem{Yu02}
+Jing Yu, V.~Anne Smith, Paul~P. Wang, Er~J. Hartemink, and Erich~D. Jarvis.
+\newblock Using bayesian network inference algorithms to recover molecular
+  genetic regulatory networks.
+\newblock In {\em International Conference on Systems Biology}, 2002.
+
+\end{thebibliography}

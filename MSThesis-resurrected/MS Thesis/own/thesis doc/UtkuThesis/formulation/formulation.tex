@@ -1,0 +1,159 @@
+\chapter{POMDP Model Formulation for GRN Control Problem}
+\label{chapter:formulation}
+
+In order to use the POMDP model for handling a partially observable GRN control problem in hand, we need to
+define each model element in terms of the GRN control problem. Our goal is to solve the formulated POMDP
+problem by using a conventional POMDP solver. However, we intend to decompose the problem into subproblems
+before attempting to produce a solution; and we intend to make use of the factored representation in this
+decomposition. Thus, the POMDP model formulation presented in this paper constructs a factored~POMDP.
+
+\section{States}
+A joint expression level vector of all genes in the network is a state in the sense of representing the gene
+expression control problem as a POMDP. For a flat representation of states, we need to consider all the joint
+expression level space. However, for a factored representation, it is easy to represent each gene as a state
+variable.
+
+The most important question about accuracy of this state representation is whether all the necessary genes
+are included in this expression level network. In the ideal sense, since we do not know all the interactions
+in the cell, we can never be certain that the expression level of a gene that is not included in the problem
+does not affect the problem. However in reality, for known problems it might be possible to identify related
+genes, and we can assume that the state vector contains all genes related to the control problem. This
+assumption might be crude for the gene expression control problem, but the assumption is strong in the
+generalized case.
+
+Another important point to consider is related to components of the gene expression vector. The source for
+gene expression levels is generally experimental data, possibly from multiple sources. The data format only
+affects the solution process. However, if the gene expression levels are continuous then we have a continuous
+state POMDP, and this should be taken into consideration. In gene expression, there is not much distinction
+between minor differences in the expression of a gene. And for the general case, it is possible to restrict
+the ideas here to discrete state POMDP problems. In this work, we assumed all gene expression levels are
+discretized to a multi-value set.
+
+In all examples and experiments, we used a binary set for discretizing gene expression levels. So each state
+variable has two values: \texttt{off} and \texttt{on}. For a network of $n$ genes, we have $n$ state
+variables in factored form, each with $2$ values; this corresponds to $2^n$ states for a flat representation.
+
+\section{Actions}
+Actions in the gene expression control problem are intervening with the network, setting expression levels of
+some inputs. These inputs might be any biological agent. As long as the input is part of the network and the
+relationship between the input and any of the genes can be expressed as the relationship between two genes,
+the biological characteristics are not significant.
+
+In this work, we assume that some of the nodes in the GRN can be controlled directly. There are no joint
+actions. Each action sets the expression level of a single gene either \texttt{off} or \texttt{on}. We also
+assume that action \texttt{noop} is available to represent the case of not intervening with the dynamics of
+the network. The set of actions are specified as control parameters.
+
+\section{Transition Function}
+The transition function of the gene expression control problem expresses the interaction between genes. The
+gene expression problem itself does not dictate a transition function. Given a graph of the gene expression
+network, it is possible to formulate a transition function using the graph structure.
+
+However, it is also possible to deduce the transition function by using the gene expression data available. We developed a method for analyzing the gene expression data and extracting state transitions by using the available analysis results. This method has two advantages :
+\begin{inparaenum}[\itshape i\upshape)]
+\item Since already computed values are used there is no need to re-process the data;
+\item using analysis results leads to a formulation more consistent with the decomposition, which is also done using the analysis results.
+\end{inparaenum}
+ The details of the method are described in Chapter~\ref{chapter:dataanalysis}.
+
+In the ideal case, this transition function forumlation is an approximation and we can never be sure 
+that the constructed transition function captures all the relationships between genes. However, this 
+is a minor problem for transition functions, since we can use methods that construct a transition function 
+that models the premises (the graph of the GRN or the gene expression data) as close as possible. Assuming 
+our construction actually builds a closed model, the only reason behind missing influences in the transition 
+function could be imprecise premises. We may have the chance for building up better premises to construct 
+the transition function.  However, if it is not the case, we have to stick to the premise in hand, 
+and we have to model a transition function that fits the premises as much as possible.
+
+\section{Observations and Observation Function}
+\label{section:observation}
+The gene expression problem has many unknown components in reality. Most of the time, what we know about
+genes are one of the following two items:
+
+\begin{itemize}
+  \item Gene expression data that describes expression levels of a set of genes as snapshots
+  \item Correlations between expression levels of genes, derived from biological research
+\end{itemize}
+
+In order to formulate a model for GRNs, it is common practice to use any modeling structure and to assume
+that such structure approximates the GRN. If the dynamics of the system is accessible from the point of view of a manipulator, then the problem is
+ fully observable. This approach is successful in modeling simple
+isolated gene expression networks; it is capable of producing policies for controlling the modeled networks.
+If we focus on representing GRNs as MDP problems, this modeling approach assumes that the GRN is fully
+observable. The generated policies are expressed in terms of the expression levels of genes. This view is
+only sound under certain assumptions. In reality, there are a number of aspects that are not fully
+observable; some possible scenarios are described next:
+
+\begin{enumerate}
+\item The gene regulatory network modeling the interactions between genes is usually deduced from gene
+expression data by computational methods, or empirically. Regardless of the confidence level of the method
+used, there is always room for error and the actual interaction scheme between genes can not be fully
+observed.
+
+\item The traditional biological approach explains certain processes in the cell by pathways. Each gene causes another gene to get activated or suppressed and at the end of the chain reaction a target gene is activated. The control policies defined on simple linear pathways are simply intervening with the gene that starts the chain reaction.
+
+Since there is no restriction on the interactions between genes, more complex interactions are possible. The
+control problem turns to be more complicated in many ways when the interactions between genes become more
+complex. When the problem becomes more complicated, one important point related to observability is the fact
+that only more complicated policies can achieve optimal or near-optimal results for the control problem.
+Typically, a more complicated policy requires monitoring the gene expression levels when executing the
+policy, and taking different actions for different situations. This is not a strong assumption. When
+intervening with a set of genes; generally it might not be possible to observe the activation levels
+simultaneously.
+\end{enumerate}
+
+If we concentrate on the second factor mentioned here, instead of defining the control problem as fully
+observable, it is more realistic to identify an observation set. This observation set is typically direct or
+indirect information on the expression levels of some genes. One might be the capability to monitor the
+expression levels of some of the genes directly, or via some marker related to the controlled genes.
+
+Of course, for modeling the problem as POMDP, we also need to build an observation function. The observation
+function is directly related to the definition of the observation set. However, there is one important thing
+to mention here: each observation on the GRN is related to a single gene if the observation is simply the
+expression level of a gene. Then, the observation function can be defined trivially. It might be possible to
+define more complex observations (e.g., a marker that is related to two genes and observed only when both
+genes are expressed) and thus the observation function might get more complicated.
+
+In this work, we assume that a given proper subset of genes in the GRN are observable and this observation is
+perfect. Other genes in the GRN are not observable and we do not have any direct information on their
+expression levels. The set of observable genes are specified as control parameters.
+
+\begin{equation}
+\O(s,a,o) = 
+\begin{cases} 
+1 & \text{if } \forall g \in O, s(g) = o(g), \\
+0 & else
+\end{cases}
+\end{equation} 
+
+\section{Reward Function}
+Generally, the goal of controlling a gene regulatory network is to satisfy some condition over genes (e.g.,
+prevent the expression of a gene, provided that two genes are expressed inclusively). This condition can be
+expressed as a boolean expression. If the state representation is discrete, it is possible to enumerate
+states satisfying the goal. In general, it is always possible to test a state in order to determine whether
+it satisfies the goal.
+
+In this work, we use a reward template which is specified as follows:
+\begin{equation*}
+R(s,a) =
+\begin{cases}
+\alpha & \text{if $goal(s)$ and $a = noop$,}\\
+\alpha-1 & \text{if $goal(s)$ and $a \ne noop$,}\\
+0 & \text{if $\neg goal(s)$ and $a = noop$,}\\
+-1 & \text{if $\neg goal(s)$ and $a \ne noop$.}
+\end{cases}
+\end{equation*}
+
+This reward template is based on two factors: (1)~whether the goal description is satisfied or not, and
+(2)~the action executed; the \emph{noop} action is a special \emph{no action}. It is possible to read this
+template as a linear combination of two reward templates. The goal reward template assigns reward $\alpha$
+whenever the goal description is satisfied and the action reward template assigns reward $-1$ whenever an
+action is executed. Since these two events are independent, their summation is used as the general reward
+template. If the goal description is satisfied, a reward of $\alpha$ is granted, reduced by 1 whenever an
+action is executed. Similarly, no reward is granted when the goal is not realized, even reduced by $-1$
+whenever an action is executed.
+
+In the experiments, we typically used $\alpha=10$. The ratio of this value and the cost of an action~(1~in
+this work) determine the significance of satisfying the goal compared to the cost of intervention; it is a
+parameter of the control problem that should to be specified.
+

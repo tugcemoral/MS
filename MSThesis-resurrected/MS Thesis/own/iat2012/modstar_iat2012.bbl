@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+
+\bibitem{DStar:1994}
+A.~T. Stentz, ``Optimal and efficient path planning for partially-known
+  environments,'' in {\em Proceedings of the IEEE International Conference on
+  Robotics and Automation (ICRA '94)}, vol.~4, pp.~3310 -- 3317, May 1994.
+
+\bibitem{Koenig:2002}
+S.~Koenig and M.~Likhachev, ``D*lite,'' in {\em Eighteenth national conference
+  on Artificial intelligence}, (Menlo Park, CA, USA), pp.~476--483, American
+  Association for Artificial Intelligence, 2002.
+
+\bibitem{Dijkstra:1959}
+E.~W. Dijkstra, ``A note on two problems in connexion with graphs.,'' {\em
+  Numerische Mathematik}, vol.~1, pp.~269--271, 1959.
+
+\bibitem{AStarHart:1968}
+P.~Hart, N.~Nilsson, and B.~Raphael, ``A formal basis for the heuristic
+  determination of minimum cost paths,'' {\em Systems Science and Cybernetics,
+  IEEE Transactions on}, vol.~4, pp.~100 --107, july 1968.
+
+\bibitem{RTAStarKorf:1990}
+R.~E. Korf, ``Real-time heuristic search,'' {\em Artificial Intelligence},
+  vol.~42, pp.~189--211, Mar. 1990.
+
+\bibitem{FocussedDStarStentz:1995}
+A.~Stentz, ``The focussed d* algorithm for real-time replanning,'' in {\em
+  Proceedings of the 14th international joint conference on Artificial
+  intelligence - Volume 2}, IJCAI'95, (San Francisco, CA, USA), pp.~1652--1659,
+  Morgan Kaufmann Publishers Inc., 1995.
+
+\bibitem{MOAStewart:1991}
+B.~S. Stewart and C.~C. White, III, ``Multiobjective a*,'' {\em J. ACM},
+  vol.~38, pp.~775--814, Oct. 1991.
+
+\bibitem{LDAStarBayili:2008}
+S.~Bayili and F.~Polat, ``Limited-damage a*: A path search algorithm that
+  considers damage as a feasibility criterion,'' {\em Knowledge-Based Systems},
+  vol.~24, no.~4, pp.~501 -- 512, 2011.
+
+\bibitem{Tarapata:2007}
+Z.~Tarapata, ``Selected multicriteria shortest path problems: An analysis of
+  complexity, models and adaptation of standard algorithms,'' {\em Int. J.
+  Appl. Math. Comput. Sci.}, vol.~17, pp.~269--287, June 2007.
+
+\bibitem{Guo:2009}
+F.~Guo, H.~Wang, and Y.~Tian, ``Multi-objective path planning for unrestricted
+  mobile,'' in {\em Automation and Logistics, 2009. ICAL '09. IEEE
+  International Conference on}, pp.~1046 --1051, 2009.
+
+\bibitem{Pangilinan}
+J.~Maria, A.~Pangilinan, and G.~K. Janssens, ``Evolutionary algorithms for the
+  multiobjective shortest path planning problem,'' in {\em International
+  journal of computer and information science and engineering}, pp.~54--59,
+  2007.
+
+\bibitem{Castillo:2007}
+O.~Castillo, L.~Trujillo, and P.~Melin, ``{Multiple Objective Genetic
+  Algorithms for Path-planning Optimization in Autonomous Mobile Robots},''
+  {\em Soft Computing - A Fusion of Foundations, Methodologies and
+  Applications}, vol.~11, pp.~269--279--279, Feb. 2007.
+
+\bibitem{Bukhari:2010}
+N.~Bukhari, A.~Khan, A.~R. Baig, and K.~Zafar, ``Optimization of route planning
+  using simulated ant agent system,'' {\em International Journal of Computer
+  Applications}, vol.~4, pp.~1--4, August 2010.
+\newblock Published By Foundation of Computer Science.
+
+\bibitem{MOOUEA}
+K.~Deb and D.~Kalyanmoy, {\em {Multi-Objective Optimization Using Evolutionary
+  Algorithms}}.
+\newblock J.Wiley \& Sons, 1~ed., June 2001.
+
+\bibitem{LPAStarKoenig:2004}
+S.~Koenig, M.~Likhachev, and D.~Furcy, ``Lifelong planning a*,'' {\em
+  Artificial Intelligence}, vol.~155, pp.~93--146, May 2004.
+
+\bibitem{Peng_Xu_Zhang:2011}
+P.~Xingguang, X.~Demin, and Z.~Fubin, ``Uav online path planning based on
+  dynamic multiobjective evolutionary algorithm,'' in {\em Control Conference
+  (CCC), 2011 30th Chinese}, pp.~5424 --5429, july 2011.
+
+\bibitem{Foo_Knutzon:2009}
+J.~L. Foo, J.~Knutzon, V.~Kalivarapu, J.~Oliver, and E.~Winer,
+  ``Three-dimensional path planning of unmanned aerial vehicle in a virtual
+  battlespace using b-splines and particle swarm optimization,'' {\em Journal
+  of Aerospace Computing Information and Communication}, vol.~6, no.~April,
+  pp.~271--290, 2009.
+
+\end{thebibliography}

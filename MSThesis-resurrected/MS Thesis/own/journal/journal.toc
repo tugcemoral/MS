@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {I}Multi Objective A* (MOA*)}{4}
+\contentsline {section}{\numberline {II}D* Lite}{5}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Overview}{5}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}The Algorithm}{6}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-B}1}Notation \& Formulation}{6}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-B}2}Core Components and Details}{6}
+\contentsline {section}{\numberline {III}Motivation}{8}
+\contentsline {section}{\numberline {IV}Multi Objective D* Lite : MOD* Lite}{8}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Overview}{8}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Environmental Properties}{9}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}The Components and Variables}{9}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Key Formulation}{11}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Details of MOD* Lite}{12}
+\contentsline {section}{\numberline {V}A Multi Objective Genetic Path Planner : MOGPP}{13}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Overview}{13}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Chromosome Representation}{13}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Fitness Function}{13}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Crossover Operation}{13}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-E}}Mutation Operation}{14}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-F}}Details of Algorithm}{14}
+\contentsline {section}{\numberline {VI}Fully Observable Tests}{15}
+\contentsline {section}{\numberline {VII}Partially Observable Tests}{17}
+\contentsline {section}{\numberline {VIII}Multi Objectivity Tests}{17}

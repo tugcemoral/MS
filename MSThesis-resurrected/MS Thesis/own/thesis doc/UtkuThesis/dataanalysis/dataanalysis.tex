@@ -1,0 +1,413 @@
+\chapter{Gene Expression Data Analysis and Formulation Steps Based on This Analysis}
+\label{chapter:dataanalysis}
+
+In this chapter, we present details of the gene expression data analysis method used in our work. The goal of
+this method is exploring similarities between state variables, and then use these similarities in formulating
+a more compact POMDP that utilizes actual behavior of the system.
+
+\section{Gene Expression Data Analysis}
+\label{section:dataanalysis}
+
+The motivation behind this analysis is the importance of the gene expression data for GRN related problems.
+Mostly, gene expression data is the primary source of information for gene interactions. Using this data,
+GRNs are constructed by empirical studies or computational methods. One can use the POMDP (or any other)
+representation of GRNs to explore similarities between genes; however, analyzing gene expression data would
+give a much precise result.
+
+The basic analysis algorithm used in this study outputs a similarity matrix for genes. Each entry $e_{i,j}$
+represents the degree of similarity in the expression levels of the two genes $i$ and $j$. Genes labelled as
+similar are also returned as a list of pairs.
+
+The algorithm works on the discretized version of the gene expression data. The data is padded with don't
+care values and all genes have the same number of samples. For each gene pair, the algorithm compares the
+expression levels of genes, for each sample in a fixed size window. If the frequency of samples where the two
+genes have same expression levels is above some threshold, the two genes are labelled as similar for the
+specific position of the window. The window is shifted all through the data and the comparison is performed
+for each window position. If the frequency of the window positions with similar expression levels is above
+some threshold, the two genes are labelled as globally similar. This frequency is recorded as the degree of
+similarity; it roughly reflects the percentage of data for which the two genes behave similarly.
+
+The above described similarity analysis is illustrated in Figure~\ref{figure:window}, where we analyze the
+gene expression data of 3~genes; sample size of 10 and window size is 3. Values of both local and global
+similarity thresholds are 50\%. The two expression levels \texttt{on} and \texttt{off} are shown with values
+$1$ and $0$, respectively. Table~\ref{table:exampleresult} presents the results of the analysis. Each row in
+the table corresponds to a step of the algorithm, and each + or - sign is a positive or negative result of
+the local similarity test. For example, the entry + at \emph{Step 5} and \emph{2-3} indicates that the two
+genes~2 and~3 exhibit similar expression levels when the window is on samples 5, 6 and 7. This result follows
+from $gene_2[5]\neq gene_3[5],\;\;gene_2[6] = gene_3[6] = 0 \text{ and } gene_2[7] = gene_3[7] = 1$. Since
+$2/3 = 0.67\%$ of the samples are equivalent (which is greater than the threshold 50\%), the two genes~2
+and~3 are locally similar for \emph{Step 5}. Note that only the two genes~1 and~2 are globally similar by
+considering all the steps; for all other pairs, the frequencies of local similarities are less than 50\%.
+
+%\begin{figure}
+%\centering
+%  \includegraphics[scale=0.275]{windows-ex.png}
+% \caption{An example of shifting window for similarity analysis. Each position of the
+%windows is a step in the algorithm. At each step, expression levels of all samples in the window are compared
+%for each pair of genes.}\label{figure:window}
+%\end{figure}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[node distance=0.2cm,scale=0.5]
+
+\matrix (data1)[matrix of nodes,nodes={draw,text width=0.5cm,scale=0.5}]
+{
+0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+};
+\matrix (data2)[below=of data1,matrix of nodes,nodes={draw,text width=0.5cm,scale=0.5}]
+{
+0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+};
+\node [below=of data2,yshift=0.2cm](p){\ldots};
+\matrix (data10)[below=of p,matrix of nodes,nodes={draw,text width=0.5cm,scale=0.5},yshift=0.2cm]
+{
+0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1\\
+};
+\foreach \x in {1,...,10}
+{
+\node [above=of data1-1-\x,scale=0.5,yshift=-0.3cm] (sl\x) {\small{\x}};
+}
+
+\node [above=of data1-1-11,scale=0.5,yshift=-0.3cm] (sl11) {\small{1}};
+\node [above=of data1-1-12,scale=0.5,yshift=-0.3cm] (sl12) {\small{2}};
+
+\node [above=of sl5,scale=0.5,yshift=-0.6cm] {\small{Samples}};
+
+\foreach \step in {1,2,10}
+{
+\foreach \x in {1,...,3}
+{
+\node [left=of data\step-\x-1,scale=0.5] (gl\x) {\small{\x}};
+}
+\node [left=of gl2,text width=10pt,text centered,scale=0.5] (geneslabel) {\small{G\\e\\n\\e\\s\\}};
+\node [left=of geneslabel,red,scale=0.5] {Step \step};
+
+\begin{pgfonlayer}{background}
+\pgfmathadd{\step}{2}
+\node [draw=red!100,fit=(data\step-1-\step)(data\step-3-\pgfmathresult),yshift=-1pt,ultra thick,scale=0.5] (win\step) {};
+\node [below=of win\step,red,yshift=0.2cm,scale=0.5] {\small{Window}};
+\end{pgfonlayer}
+}
+\end{tikzpicture}
+\end{center}
+ \caption{An example of shifting window for similarity analysis. Each position of the
+windows is a step in the algorithm. At each step, expression levels of all samples in the window are compared
+for each pair of genes. Window is shifter circularly.}\label{figure:window}
+\end{figure}
+\begin{table}
+\begin{center}
+ \caption{Results of the example similarity analysis carried on in
+Figure~\ref{figure:window}}\label{table:exampleresult}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & 1-2 & 1-3 & 2-3\\ \hline
+Step 1 & + & + & - \\ %\hline
+Step 2 & + & + & - \\ %\hline
+Step 3 & + & - & - \\ %\hline
+Step 4 & + & - & - \\ %\hline
+Step 5 & + & - & + \\ %\hline
+Step 6 & + & - & + \\ %\hline
+Step 7 & + & - & - \\ %\hline
+Step 8 & + & - & - \\
+Step 9 & + & - & - \\
+Step 10 & + & - & - \\ \hline\hline
+Global & + & - & - \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Figure \ref{figure:window} visualizes the search process with the sliding window. At each step, for each 
+positioning of the window, local similarity measure between each pairs of genes are calculated as following:
+
+\begin{equation}
+\gamma^p(g_i,g_j) = \sum_{k=p}^{p +WS}
+\begin{cases}
+1 & \text{if} EL_k(g_i) = EL_k(g_j)\\
+0 & \text{else}\\
+\end{cases}
+\end{equation}
+
+\begin{equation}
+SML^p(g_i,g_j) = \frac{\gamma^p(g_i,g_j)}{WS}
+\end{equation}
+
+Function $\gamma$ calculates the number of identical positions for a specific positioning of the window ( at 
+$[p, p+ WS$])  where $WS$ is the window size and $EL_k(g)$ is the expression level of gene $g$ at sample 
+$k$. Thus $SML$ function, calculating the frequency of samples with identical expression values for both genes,
+ gives the local similarity measure between two genes for a specific positioning 
+of the window. By using the $SML$ function, it is possible to calculate the similarity measure as following:
+
+\begin{equation}
+\delta(g_i,g_j)=\sum_{k=1}^{\# of samples} 
+\begin{cases}
+1 & \text{if} SML^k(g_i,g_j) > \theta_l \\
+0 & \text{else}\\
+\end{cases}
+\end{equation}
+
+\begin{equation}
+SM(g_i,g_j) = \frac{\delta(g_i,g_j)}{\# of samples}
+\end{equation}
+
+Function $\delta$ calculates the number of window positionings where local similarity measure $SML$ 
+exceeds a threshold $\theta_l$. Thus by calculating the frequency of local similarities exceeding this 
+threshold value, we obtain similarity measure function $SM$ which maps a pair of genes to $[0,1]$.
+
+Among the two threshold values used, the first one is called \emph{local similarity threshold}; it is used in
+comparing the expression values of genes for a fixed placement of the window. This threshold determines how
+strong we define the similarity concept for our purpose. When this threshold is low, for each placement of
+the window, the expression levels of the two analyzed genes are marked similar more often. When this
+threshold is high, the two analyzed genes have similar expression levels for a placement of the window only
+when they follow exactly the same pattern.
+
+The second threshold value is called \emph{global similarity threshold}; it is used in deciding whether two
+genes are globally similar. This threshold determines the allowed degree of locality for observing the
+similarity between two genes in order to mark them globally similar. When this threshold is high, the
+similarity between the two genes should be observed in all the gene expression data (i.e., for all placements
+of the window) for marking them similar. When this threshold is low, only local similarities might be
+sufficient for marking the two genes similar.
+
+In our experiments, we selected values for both thresholds empirically by running some initial tests and we
+compared different values. In this work, for the gene expression data, it is important for us to have high
+confidence in the similarity of the expression levels. And the gene expression data is known to have very
+small number of samples. So, we always used very high values for both similarity thresholds, typically
+over~75\%.
+
+Another parameter used in the method is window size. The size of the window determines the number of samples
+compared at each iteration of the algorithm. In a way, window size defines the locality. When the window size
+is small, only a small number of samples are compared at each step. When the window size is large, a
+significant portion of the whole data is compared for each step. Here it is worth noting that we are using a
+twofold comparison scheme; first we compare all the values inside a sample and decide on local similarity;
+and second we repeat this process by sliding the window through the data and accordingly decide on global
+similarity. In the conducted experiments, we concluded that when both thresholds have similar values the
+twofold process produces similar results for any choice of the window size. It is also possible for the
+reader to grasp this result by considering the two extreme cases, where window size is~1 and windows size is
+equal to the sample size, respectively.
+
+When the window size is equal to~1, values for a single sample are compared at each step. Two genes are
+marked as similar if they have the same expression level, regardless of the value of the local similarity
+threshold (since there is a single sample, it is not possible to calculate a frequency). For deciding whether
+two genes are similar globally, we test whether the frequency of the local similarity is higher than the
+global similarity threshold. Consider two genes with expression data of $10110101$ and $01000110$. When the window size is equal to one, each position of the data produces a separate local similarity. And we decide whether they are similar or not, based on the global similarity threshold. If this threshold is 50\%, we mark these two genes as not similar since only 2 of 8 local similarity checks  succeed.
+
+When the window size is equal to the sample size, there is a single step for testing local similarity, where
+all samples are compared (the window surrounds the whole data). Two genes are marked as similar if the
+frequency of the samples at which the two genes have the same expression level is larger than the local
+similarity threshold. This process is not repeated and two genes are marked as globally similar if they are
+locally~similar. Consider the same genes again with expression data of $10110101$ and $01000110$. When the window size is equal to 8, we determine local similarity based on the whole data. If the local similarity threshold is 60\%, then the whole data will not be marked as locally similar, since only 2 samples are equal. Since the only local similarity check does not succeed, two genes are marked as dissimilar.
+
+
+Note that these two cases become identical in case the global similarity threshold and the local similarity
+threshold are equivalent. In both cases, the two genes are similar if the frequency of samples with similar
+expression levels for the two genes is above the threshold. This conclusion similarly follows for any window
+size.
+
+Since we are using a window to compare gene expression values locally, our approach is sensitive to the order of samples. The windows used is shifted through the data circularly and theoretically it is possible that two different orderings of the samples might produce different results for the analysis we carry on.
+
+In this work, we assumed that the gene expression data is given in a specific ordering which  is treated as a problem parameter, where the sampling methods or strategy might have some meaning as in the case of time-series data. We do not attempt to reorder the samples, or consider different permutations of samples. We assume that the order in which the samples are given is better than any other alternative, unless we have prior knowledge. There are two reasons for this assumption. First, without any further knowledge on the correct ordering of data, it is only possible to consider all permutations of samples, which is a computationally intractable task. Second, especially in the case of real biological data we know that the original order of the data might have a real life impact on the dataset.
+
+Note that the effect of ordering on analysis results is also related to the windows size. Consider expression data for two genes $10101010$ and $11111111$. For a window of size 1 and global similarity threshold 60\%, these two genes would be marked as dissimilar, since none of the local similarity test succeeds. For a window size of 4 with local similarity threshold of 60\% and global similarity thresholds 25\%, these genes would be marked dissimilar again. When we reorder the samples of the first gene as $11110000$, first analysis still produces the same result; however second analysis would mark the genes similar, since three of the local similarity tests succeed. Larger  windows decrease the coincidental positive or negative effects of ordering and leads to more accurate analysis results generally.
+
+In experimental evaluation chapter we also present an independent study on the order of samples. This study also shows that preserving the original ordering of data does not seem to reduce the correctness of the analysis, on the contrary original ordering produces slightly more confident results than the average case.
+
+We have also improved this simple comparison algorithm in order to deal with noise in the data, namely
+shifted windows. For each window position, the comparison is actually performed multiple times, each time
+shifting the expression data for one of the genes. The genes are labelled similar for the actual window
+position if any of these comparisons succeeds. The improved version of the process is given as
+Algorithm~\ref{algorithm:partition}.
+
+{\small
+\begin{algorithm}
+\dontprintsemicolon
+\KwIn{$m \times n$ gene expression data matrix $D$ ($m$ genes, $n$ samples), gene set $G$ ($m$ elements), window size $w$, window shift amount $s$, similarity threshold $\theta_l$, global similarity threshold $\theta_g$}
+\KwResult{Similarity matrix $SM$, similarity list $SL$}
+Initialize $SM$ to all zero \; \For(shift window through all samples circularly){$i = 0$ to $n - w$} {
+    $wp_1 \longleftarrow [i, i+W]th$ columns in $D$ \;
+    \ForEach {gene pair $g_1,g_2  (g_1 != g_2)$}{
+        \For(shift one window){$j = -$$s$ to $s$}{
+            $wp_2 \longleftarrow D [i+j, i+W+j]th$ columns in $D$ \;
+            sim $\longleftarrow$ number of identical entries in $g_1^{th}$ row of $wp_1$ and $g_2^{th}$ row of $wp_2$ \;
+            \If{sim $> \theta_l * w$}{
+                $SM[g_1,g_2] += 1$ \;
+                $SM[g_2,g_1] += 1$ \;
+                \SetKw{Break}{break for}
+                \Break\;
+            }
+        }
+    }
+} Divide all entries in $SM$ by $n$ \; \ForEach {gene pair $g_1,g_2  (g_1 != g_2)$}{
+    \lIf{$SM[g_1,g_2] > \theta_g$}{add $(g_1,g_2)$ to $SL$}
+} \caption{Gene Expression Data Analysis}~\label{algorithm:partition}
+\end{algorithm}
+}
+
+The result of Algorithm~\ref{algorithm:partition} is used to serve two purposes in this work, namely
+identifying classes of genes and constructing the transition function; details are discussed in the~sequel.
+
+\section{Identifying Classes of Genes}
+The similarity relation calculated in the previous subsection is used in our work for decomposing the
+formulated POMDP problem into subproblems; each subproblem contains problem components closely related to
+each other, but not coupled with other subproblems and other problem component.
+
+For the GRN control problem, the similarity relation provides an appropriate way for guiding the
+decomposition. In the POMDP formulation of the problem, the expression level of each gene is a state
+variable, intervening and observing the expression level of each gene is a potential action and observation.
+So it is possible to define each subproblem in terms of a set of genes. Each subproblem defined in this
+fashion, is only related to the set of genes, as if these genes are closely coupled as a group; isolating
+this group leads to isolate a part of the control problem.
+
+The similarity relation introduced in the previous subsection is clearly an equivalence relation by
+definition. Thus, the relation can be used to partition the gene set into classes. Each class is simply a set
+of genes. Our aim is to define a POMDP subproblem for each class. In the classification process, we use the
+similarity list produced by the gene expression data analysis. The process for constructing classes is
+described in Algorithm~\ref{algorithm:analyze}. Chapter~\ref{chapter:decomposition} presents how subproblems are
+created by using these classes.
+
+{\small
+\begin{algorithm} \dontprintsemicolon \KwIn{Similarity list SL, gene set $G$ ($m$ elements)}
+\KwResult{$A$ partition of gene set $P$} $P \longleftarrow \emptyset$ \ForEach{gene $g$ in $G$}{
+    \uIf{empty(P)} {
+        $P \longleftarrow \{\{g\}\}$\;
+    }
+    \Else{
+        \ForEach{class $c$ in $P$}{
+            \lIf{SL contains $(g,g')$ for each $g' \in c$}{add $g$ to $c$}
+        }
+        \lIf{$g$ is not added to any class}{$P \longleftarrow P \bigcup \{\{g\}\}$}\;
+    }
+} \caption{Forming classes of genes}~\label{algorithm:analyze}
+\end{algorithm}
+}
+
+\section{Constructing the Transition Function}
+\label{section:transitionf} The similarity matrix produced from the gene expression data analysis is used in
+the POMDP formulation of the GRN control problem. The entry at position ($i$,$j$) in the matrix is used as
+the conditional probability value $Pr(gene_i = on | gene_j = on)$. This probability value is used for
+constructing the transition function of the POMDP problem.
+
+When constructing the transition function for the factored representation, we do not need a joint probability
+distribution of state changes.  For each state variable~$s$, we need a probability distribution of the value
+of the state variable, given values of other related states at the previous state of~$s$. By ``related
+variables", we mean state variables that are known to influence the next value of~$s$.
+
+For the GRN control problem, since each state variable is a gene, we need a probability distribution over the
+expression level of a gene, given the expression levels of related genes. The ``related genes" can easily be
+found by using the GRN.
+
+{\small
+\begin{table}
+\begin{center}
+\caption{An Example on Inferring Conditional Probabilities Between Genes}\label{geneitable}
+\begin{tabular}{|c|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+
+  $gene_j$ & $gene_k$ & \multicolumn{2}{c|}{$gene_i$} \\ \cline{3-4}
+    & & On & Off \\
+    \hline
+  On & On &  0.85 * 0.55 = 0.47 / 0.87 & 0.15 * 0.45 = 0.07 / 0.13 \\
+  On & Off & 0.85 * 0.45 = 0.38 / 0.83 & 0.15 * 0.55 = 0.08 / 0.17 \\
+  Off & On & 0.15 * 0.55 = 0.08 / 0.17 & 0.85 * 0.45 = 0.38 / 0.83 \\
+  Off & Off & 0.15 * 0.45 = 0.07 / 0.13 & 0.85 * 0.55 = 0.47 / 0.87 \\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+}
+
+
+For constructing the probability distributions, we assumed that the relationship between two genes is
+always independent of the other relationships. Thus, if a gene is influenced by multiple genes, each
+interaction is considered as an independent event. This assumption simplifies the calculation of the
+transition function.Also we assumed that genes behave according to a linear model. Thus a
+gene only effects other genes positively or negatively and the effected gene is influenced by
+a linear combination of all influences.
+
+Our transition function formulation has two steps:
+
+\begin{enumerate}
+\item Gene expression data is analyzed and similarity on the behavior of genes is extracted. Details 
+of this analysis is presented in Section \ref{section:dataanalysis}. The output of this analysis step 
+is a function $SM$ defined $G \times G \to [0,1]$ where $G$ is the set of genes in GRN. This function 
+represent the similarity of any two genes, where value 1 indicates two genes behave identically for the
+data we analyzed.
+
+\item We use the similarity measure function $SM$ produced at the previous step and the GRN to formulate 
+the transition function of the POMDP model. We make use of the factored representation in this step 
+to simplify the process. Each gene is conceived as a state variable and the transition function is calculated 
+for each gene separately.
+
+We assume that only a limited number of other genes directly effect the expression level of a gene. 
+This assumption is also used in PBN model, where each node is connected to only a limited number of 
+other nodes. For determining which genes effect a given gene directly, we refer to the gene regulatory
+network. A gene $g_i$ is assumed to be directly influenced by another gene $g_j$ if there is a directed
+edge $(g_j,g_i)$ in the gene regulatory network.
+
+Assume that for each gene $g_i$, the gene is influenced by only genes $g_i ^1, g_i^2,... g_i^j$
+directly. Then we formulate factored transition function $T$ that determines the expression level of 
+gene $g_i$ at next time step, given expression levels of genes  $g_i ^1, g_i^2,... g_i^j$ by using 
+probabilities:
+\begin{multline}
+Pr(g_i = on , g_i ^1, g_i^2,... g_i^j ) = \\
+ \prod_{x = 1}^j 
+\begin{cases}
+SM(g_i,g_i^x) & \text{if } g_j^x = on,\\
+1 - SM(g_i,g_i^x) & \text{if } g_j^x = off.
+\end{cases}
+\end{multline}
+\begin{multline}
+Pr(g_i = off , g_i ^1, g_i^2,... g_i^j ) = \\
+\prod_{x = 1}^j 
+\begin{cases}
+SM(g_i,g_i^x) & \text{if } g_j^x = off,\\
+1 - SM(g_i,g_i^x) & \text{if } g_j^x = on.
+\end{cases}
+\end{multline}
+
+For factored representation, the state space is expressed in terms of each state variable seperately. 
+Thus it is possible to directly use these probability values as descriptors of 
+state variables. The POMDP planer will take care of calculating the plain transition function where
+necessary.
+
+It is possible to formalize this function in the plain POMDP notation equivalently. One need to calculate
+joint probability values by assuming that each probability calculated is independent of each other. This 
+assumption is compatible with our previous assumption, where each gene is only influenced by genes it is 
+connected to in th GRN.
+
+Calculating joint transition probabilities by using these values gives us the transition function with no 
+intervention action \emph{noop} performed (such as $T'(s,s')$ that does not depend to any action. 
+If $A$ is the action function over $S \to S$ we can derive $T$ for other actions as:
+
+\begin{equation}
+T(s,noop,s') = T'(s,s')
+\end{equation}
+\begin{equation}
+T(s,a,s') = T'(A(s),s')
+\end{equation}
+\end{enumerate}
+
+As we stated before, since we use the factored POMDP representation, our formulation only need to express
+transition probabilities for each gene and action descriptions. When action descriptions and state transitions 
+are given together, plain representation of the state transition function can easily be generated by the planner.
+
+
+To illustrate the process, assume gene $i$ is influenced by genes $j$ and~$k$. The
+similarity matrix contains the values $SM(j, i) = 0.85$ and $SM(k, i) = 0.55$. Then the conditional
+probability distribution of gene $i$ is computed as given in Table~\ref{geneitable}.
+
+Also gene expression levels do not change instantly; we assumed that the expression level of each gene
+depends on the expression level of the previous state. To reflect this, all the probabilities are multiplied
+by~0.9 on the condition that the expression level does not change, and they are multiplied by 0.1 on the
+condition that the expression level changes. For example, the value 0.47 that reflects $Pr(gene_i^t = On |
+gene_j^{t-1} = On, gene_k^{t-1} = On)$ is further refined as $Pr(gene_i^t = On | gene_j^{t-1} = On,
+gene_k^{t-1} = On, gene_i^{t-1} = On) = 0.9 \times 0.47 = 0.42$ and $Pr(gene_i^t = On | gene_j^{t-1} = On,
+gene_k^{t-1} = On, gene_i^{t-1} = Off) = 0.1 \times 0.47 = 0.04$.
+
+Note that these values are not actual probability distribution. We need to normalize these values in order to
+use them as transition probabilities. The values shown after the / in Table \ref{geneitable} are normalized values. Note that values in a row add up to 1.

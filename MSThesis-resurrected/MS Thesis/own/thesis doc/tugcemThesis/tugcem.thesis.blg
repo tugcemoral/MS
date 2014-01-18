@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: tugcem.thesis.aux
+The style file: plain.bst
+Database file #1: tugcem.thesis.bib
+Warning--string name "aug." is undefined
+--line 151 of file tugcem.thesis.bib
+Warning--string name "dec." is undefined
+--line 164 of file tugcem.thesis.bib
+Warning--empty booktitle in Pangilinan
+Warning--empty year in Pangilinan
+Warning--empty publisher in Peng_Xu_Zhang:2011
+Warning--empty institution in spea2:2001
+You've used 26 entries,
+            2118 wiz_defined-function locations,
+            696 strings with 9399 characters,
+and the built_in function-call counts, 10475 in all, are:
+= -- 1090
+> -- 381
+< -- 14
++ -- 155
+- -- 124
+* -- 720
+:= -- 1593
+add.period$ -- 86
+call.type$ -- 26
+change.case$ -- 140
+chr.to.int$ -- 0
+cite$ -- 30
+duplicate$ -- 435
+empty$ -- 855
+format.name$ -- 124
+if$ -- 2309
+int.to.chr$ -- 0
+int.to.str$ -- 26
+missing$ -- 27
+newline$ -- 135
+num.names$ -- 52
+pop$ -- 143
+preamble$ -- 1
+purify$ -- 114
+quote$ -- 0
+skip$ -- 348
+stack$ -- 0
+substring$ -- 845
+swap$ -- 150
+text.length$ -- 14
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 4
+while$ -- 101
+width$ -- 28
+write$ -- 305
+(There were 6 warnings)

@@ -1,0 +1,27 @@
+\contentsline {nodots}{\numberline {}FIGURES}{1}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Block Diagram of the proposed POMDP Formulation and Solution Framework}}{3}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Value Iteration Algorithm}}{14}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Factored dependencies of the problem}}{25}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces An example of shifting window for similarity analysis. Each position of the windows is a step in the algorithm. At each step, expression levels of all samples in the window are compared for each pair of genes. Window is shifter circularly.}}{33}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Gene Expression Data Analysis}}{38}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Forming classes of genes}}{40}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces POMDP Decomposition and Execution}}{45}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Example gene regulatory network}}{54}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Problem formulation module execution times for two different networks}}{57}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Execution times for policy generation}}{58}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Execution times for policy execution}}{59}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Average Rewards}}{59}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Problem formulation module execution times for four different networks.}}{60}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Execution times for policy generation}}{60}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Execution times for policy execution}}{60}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Average Rewards}}{60}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Comparison of solution similarity for different permutations of data samples}}{62}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Comparison of reduction in decomposed problem size for networks with different connectiviy and size}}{63}
+\addvspace {10pt}

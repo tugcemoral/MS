@@ -1,0 +1,165 @@
+% INTRODUCTION
+\chapter{Introduction}
+\label{chapter:introduction}
+
+It is true that each cell in a living organism contain the same DNA sequence; but except primitive organisms,
+each living organism has different kinds of cells specialized in some functions. The mechanism behind this
+differentiation is the existence of factors effecting the transcription process. 
+
+Some of the factors influencing the transcription process are proteins themselves; they bind to DNA sequences
+and promote or suppress the transcription process. They are called \emph{transcription factors} (TFs). Since
+TFs are proteins, they are the product of protein biosynthesis and other genes contain the genetic
+information necessary to carry on the biosynthesis of the TFs. One gene might influence the expression level
+of another gene via TFs. So, if we leave the external factors out, protein biosynthesis is controlled by
+interaction between a number of genes.
+
+The amount of RNA produced by a gene is known as \emph{gene expression level}; it is a fundamental 
+metric for measuring how much a gene is involved in protein biosynthesis.
+ In other words, upon a certain condition, cancer for example, genes
+start to behave differently due to some changes in the genetic code or due to an effect from other genes or
+from external conditions. Accurate identification of the genes that behave differently in diseases or in any
+set of conditions is essential to understand the changes in the cell as a system.  The intention of our
+research described in this paper is to help in identifying the malfunctioning molecules by developing a more
+natural approach capable of deriving policies for the gene regulatory network (GRN) control problem.
+
+Exploring the interaction between genes is an important research problem for biologists; thus computational
+methods are being developed for inferencing and modeling these interactions. GRN is a commonly used model
+for interactions between genes. It is a network structure with positive and negative links representing
+promoting and suppressing interactions,~respectively.
+
+In this paper, we focus on the GRN control problem. The problem requires maintaining certain expression level
+for a single gene or certain expression levels for a group of genes. With the recent discoveries on functions
+of genes, we can identify harmful genes (e.g., genes causing cancer) or we can establish relationships
+between certain genes and certain biological conditions in organisms (e.g., genes causing insulin synthesis).
+By using this knowledge, it might be possible to promote or suppress a certain gene in order to prevent or
+promote related biological~activities.
+
+There are known TFs that can be used to control the expression levels of some genes. They are called
+\emph{inputs}. However, it is not possible to control most of the genes directly. The GRN control problem can
+be solved by regulating known inputs in order to maintain desired expression levels for \emph{target genes}.
+
+Described in the literature, there are numerous mathematical models for simulating GRNs. However, not all
+modeling approaches are equally effective; there are some facts that could be used to give preference to
+certain models. For instance, the relationship between two genes is not purely functional, but stochastic.
+Also, the dynamic nature of the network should be represented by the model. Thus, probabilistic models, such
+as Probabilistic Boolean Networks (PBN) and Dynamic Bayesian Networks (DBN) are appropriate for modeling a
+gene expression network~\cite{Kauffman93}. The control problem can also be modeled as a Markov Decision
+Process (MDP). The states and transition function of the MDP reflect network dynamics; actions and rewards
+represent the inputs to the network and target genes. Solving the MDP problem produces a policy which can be
+used for controlling the network.
+
+One of the important aspects of GRN control problem is that it is not possible to obtain complete state information. Expression levels of genes are typically measured imprecisely using different bio-techniques and sometimes it is not even possible to measure expression level of some genes. Due to the imprecise measurement of real states of a biological process, states can only be partially observable. Moreover, the problem of finding optimal/good policies for the control of GRNs gets complicated because of partial observability of real states.
+
+In this paper, we are proposing to model the GRN control problem in a more natural and realistic way, mainly
+as a Partially Observable Markov Decision Process (POMDP). In fact, there are some aspects of the problem
+that are not fully observable, and unfortunately all the above mentioned models assume full observability and
+hence simplify the problem. We argue that it is only possible to solve the GRN control problem in a realistic
+setting if partially observability is properly accounted in the model.
+
+%\begin{figure}
+%\centering
+%  \includegraphics[scale=0.375]{block-diagram.png}
+%\caption{Block Diagram of the proposed POMDP Formulation and Solution Framework} \label{figure:block}
+%\end{figure}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text badly centered, rounded corners, font=\small, inner
+sep=0pt, text width=2.5cm,minimum height=1cm,node distance=0.5cm and 0.5cm,scale=0.75] \tikzstyle{line} = [draw]
+\tikzstyle{point} = [coordinate]
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+
+\node [block] (grn) {Gene Regulatory Network};
+\node [block, below=of grn] (ged) {Gene Expression Data};
+\node [block, right=of ged] (fpomdp) {Factored POMDP Problem};
+\node [block, right=of fpomdp] (controlparams) {Control Parameters};
+\node [block, below right=of ged] (decomposition) {POMDP Decomposition};
+
+\node [block, below left=of decomposition] (sub1) {subproblem 1};
+\node [block, right=of sub1] (sub2){subproblem 2};
+\node [block, right=of sub2,xshift=2cm] (subn) {subproblem n};
+\node [point,below=of decomposition,yshift=0.75cm] (p1) {};
+\node [right=of sub2]{...};
+\node [above=of subn,text width=15em,font=\small,text centered,xshift=-0.6cm,yshift=-0.25cm,scale=0.75]{\hfill Efficient POMDP\\\hfill Decomposition and Solution};
+
+\node [block, below=of sub2,xshift=1.5cm] (main) {Main Policy Generator};
+\node [block, below=of main] (solver) {POMDP Solver};
+
+\path [line,dashed,-] (grn) -- (ged);
+\path [line,-latex'] (grn) -| (fpomdp);
+\path [line,-latex'] (ged) -- (fpomdp);
+\path [line,-latex',yshift=-1cm] (ged) |- (decomposition);
+\path [line,-latex'] (controlparams) -- (fpomdp);
+\path [line,-latex'] (fpomdp) -- (decomposition);
+\path [line] (decomposition) -- (p1);
+\path [line,-latex'] (p1) -| (sub1);
+\path [line,-latex'] (p1) -| (sub2);
+\path [line,-latex'] (p1) -| (subn);
+\path [line,-] (sub1) |- (main);
+\path [line,-] (sub2) |- (main);
+\path [line,-] (subn) |- (main);
+\path [line,-] (main) -- (solver);
+
+\begin{pgfonlayer}{background}
+\node [fill=black!10,draw=black!50,fit=(sub1)(sub2)(subn)(decomposition)(main),scale=0.75] {};
+\end{pgfonlayer}
+
+\end{tikzpicture}
+\end{center}
+\caption{Block Diagram of the proposed POMDP Formulation and Solution Framework} \label{figure:block}
+\end{figure}
+An abstract block diagram of the approach is given in Figure~\ref{figure:block}. This diagram shows the main
+building blocks of our approach which is based on GRNs and gene expression data. It is possible to sample
+some gene expression data from a gene expression network; and similarly it is possible to infer a GRN from
+some given gene expression data. Our approach makes use of both alternatives; so if only one of them is
+available, it is necessary to infer or sample the other. In this work, we used existing gene expression networks inferred from real data. Also, we constructed \emph{random} gene regulatory networks and sampled synthetic gene expression data from these networks. We do not use an inference mechanism to generate gene regulatory networks from real data.
+
+The first step of our approach is realizing the control problem in the POMDP framework based on gene
+expression data, the GRN and control parameters (i.e., input genes, target genes, and goal). We devise a
+method for constructing a factored representation of a POMDP problem by presenting all components of the
+problem in a factored way. The target of all the steps following POMDP formulation is to efficiently solve
+the POMDP problem. These steps make use of gene expression data for POMDP decomposition; however it is
+possible to adapt them to any POMDP problem by slightly modifying the decomposition scheme. The main idea in
+this part is decomposing the POMDP problem into subproblems. The motivation is the fact that POMDP problems
+are known to be intractable and can only be solved for small state spaces. In order to reduce the
+computational cost of the problem, we decompose the problem and solve it in terms of subproblems. This method
+utilizes the factored representation of the POMDP problem. The goal of the method is exploring the
+relationship between genes and partitioning the problem accordingly. Thus unrelated genes are classified into
+different groups. The produced subproblems have smaller state spaces and some of them can be completely
+ignored.
+
+The main policy generator component is the part responsible for coordinating all the subproblems, solving
+them by interacting with a POMDP solver, and generating a policy by combining the policies generated as
+solutions to the subproblems. By performing the decomposition and solving the POMDP problem in terms of
+subproblems, what we are trying to achieve is solving the control problem in a more realistic setting without
+suffering from high computational cost. The method used is optimized for the GRN control problem; however, it
+is possible to adapt the method to similar problems in other domains, even to the general class of POMDP
+problems.
+
+In summary, contributions of the problem solving method described in this paper can be enumerated as follows:
+\begin{enumerate}
+
+\item We realized that the partially observability of the GRN control problem has been mostly ignored or has
+received little attention in the literature. Our work is among very few approaches that take partial
+observability into consideration; while all the other methods try to solve the GRN control problem in finite
+horizon, to the best of our knowledge, our work is the first attempt that considers both partial
+observability and infinite horizon.
+
+\item We focus on integrating existing POMDP solving techniques and POMDP solvers. Thus, the method proposed
+in this work can benefit from more efficient and robust POMDP solving algorithms.
+
+\item We propose a method for decomposing and solving POMDP problems. The goal of the proposed method is to
+reduce the complexity of the POMDP problem solving method by utilizing domain specific properties of the
+problem. Thus, the proposed method contributes a novel way to handle the scalability problem of POMDP solving
+methods.
+
+\item We conducted experiments using both synthetics and real GRNs; we compared the proposed approach with
+the other existing approaches by considering space and time utilization.
+\end{enumerate}
+
+The rest of this paper is organized as follows. Chapter~\ref{chapter:relatedwork} briefly overviews the
+related work and Chapter \ref{chapter:background} introduces some background material. Chapter~\ref{chapter:formulation} presents the proposed method of using POMDP in handling the GRN control
+problem. Chapter~\ref{chapter:dataanalysis} covers gene expression data analysis. Chapter~\ref{chapter:decomposition}
+describes the process developed for the decomposition of POMDP problem. Chapter~\ref{chapter:experiments} describes the
+conducted experiments and discusses the results. Chapter~\ref{chapter:conclusion} is conclusions and future research
+directions
+

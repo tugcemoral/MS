@@ -1,0 +1,167 @@
+\documentclass[11pt,oneandhalf,chaparabic]{metu}
+%
+%*********************************************************************************
+%
+% 	Do not change/edit any of the items below till the \author comment
+%
+%*********************************************************************************
+%\usepackage{appendix}
+% \usepackage{multicol}
+% \usepackage{multirow}
+% \usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{txfonts}
+\usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{slashbox}
+\usepackage{verbatim}
+\usepackage[hypertex,plainpages=false,pdfpagelabels]{hyperref}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\usepackage{hhline}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\eod}{$\quad\triangleleft$}
+\newenvironment{defn}{\begin{definition}}{\hfill$\blacksquare$\end{definition}}
+\newenvironment{defn*}{\begin{definition}}{\end{definition}}
+\newenvironment{proof}{\noindent{\bf Proof.}}{\hfill$\blacksquare$}
+%
+%*********************************************************************************
+%
+\author{Name of the Author}
+\authoruppercase{NAME OF THE AUTHOR}
+% \graduateschool is the name of the graduate school
+\graduateschool{Informatics Institute}
+% \shortdegree should be M.S., M.A. or Ph.D.
+\shortdegree{M.Sc.}
+% \director is the director of the graduate school
+\director{The Director of The Graduate School}
+% \headofdept is the head of department of the thesis author
+\headofdept{The Head of Department}
+%
+%*********************************************************************************
+%
+%	Thesis Information
+%
+%*********************************************************************************
+%
+\title{TITLE OF THE THESIS - ALL CAPS}
+% \degree should be Master of Science, Master of Arts or Philosophy of Doctorate
+\degree{Master of Science}
+% \department is the department of the thesis author, ex. Aerospace Engineering.
+\department{Information Systems}
+% \date is the date of thesis submission, ex. February 2008
+\date{December 2009}
+% \supervisor is the supervisor of the thesis author
+\supervisor{SUPERVISOR OF THE THESIS AUTHOR}
+% \departmentofsupervisor is the department of supervisor, ex. Aerospace Engineering
+\departmentofsupervisor{Department of Information Systems}
+%
+% \cosupervisor{Dr. Xxxxx Yyyyy}
+% \departmentofcosupervisor{CompanyXYZ}
+%
+% \keywords are the keyword that will appear on your thesis abstract page.
+% number of keywords cannot exceed 5.
+\keywords{keyword1, keyword2, keyword3, keyword4, keyword5}
+%
+\turkishtitle{TEZ BASLIGI}
+% \turkishdegree should be Yuksek Lisans or Doktora
+\turkishdegree{Y\"uksek Lisans}
+% \turkishdepartment is the department of thesis author in Turkish, ex. Bilisim Sistemleri
+\turkishdepartment{Bili\c{s}im Sistemleri B\"ol\"um\"u}
+% \date is the date of thesis submission, ex. February 2008
+\turkishdate{Aral{\i}k 2009}
+% \turkishsupervisor is the same as \supervisor
+\turkishsupervisor{Supervisor}
+% \anahtarklm are the keywords that will appear on your thesis öz page.
+% number of anahtarklm cannot exceed 5 and they should be Turkish.
+\anahtarklm{anahtarklm1, anahtarklm2, anahtarklm3, anahtarklm4, anahtarklm5}
+%
+%*********************************************************************************
+%
+% Examining Committee Member Information
+% 1st Committee Member must be the Head of Examining Committee.
+% 2nd Committee Member must be the supervisor.
+% The rest of the Committee Members must be in alphabetical surname order.
+%
+%*********************************************************************************
+%
+\committeememberi{}
+\committeememberii{}
+\committeememberiii{}
+\committeememberiv{}
+\committeememberv{}
+\affiliationi{METU, II}
+\affiliationii{METU, II}
+\affiliationiii{METU, II}
+\affiliationiv{METU, II}
+\affiliationv{METU, CENG}
+%
+%*********************************************************************************
+%
+\begin{document}
+\begin{preliminaries}
+  \maketitle
+  \makeapproval
+  \plagiarism
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{10pt}
+% Abstract
+  \begin{abstract}\oneandhalfspacing
+% Write abstract of the thesis here.
+  \end{abstract}
+% Oz
+  \begin{oz}\oneandhalfspacing
+% TURKCE
+% Buraya tezin ozu yazilacak.
+% TURKCE - SON -
+  \end{oz}
+% Dedication
+  \dedication{\textit{dedicated to ...}}
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{10pt}
+% Acknowledgment
+  \begin{acknowledgments}\oneandhalfspacing
+% Write acknowledgments here...
+  \end{acknowledgments}
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{3pt}
+% Table of Contents (do not try to edit ) 
+  \tableofcontents
+\listoftables
+\listoffigures
+\end{preliminaries}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+% It is easier if you put each chapter and related files of that chapter in a
+% separate directory.
+\input{ch1-introduction/chapter1.tex}
+\newpage
+\input{ch2/chapter2.tex}
+\newpage
+\input{ch3/chapter3.tex}
+\newpage
+\input{ch4/chapter4.tex}
+\newpage
+\input{ch5-conclusion/chapter5.tex}
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{referanslar}
+\newpage
+
+\appendix
+\input{appendix1/appendix1.tex}
+\newpage
+\input{appendix2/appendix2.tex}
+\newpage
+\input{appendix4/appendix4.tex}
+\newpage
+\input{appendix3/appendix3.tex}
+\end{document}
