@@ -62,8 +62,10 @@ public class GridMODStarPlanning {
 	
 	private static ObjectiveArray actualPathCost = ObjectiveArray.SINGLE_ZERO;
 	
-	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/randomized/40x40/40x40";
-//	private static final String EXECUTION_FILE = "/demo/full_obs";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/80x80/80x80_40(25)";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/handcrafted/160x160/160x160";
+	//	private static final String EXECUTION_FILE = "/demo/full_obs";
 //	private static final String EXECUTION_FILE = "/demo/partial_obs";
 //	private static final String EXECUTION_FILE = "/demo/partial_obs2";
 	
@@ -86,7 +88,6 @@ public class GridMODStarPlanning {
 
 //	"2012-03-26_22:04:24.properties");
 //	"2012-05-03_00:23:45.properties"); // FIXME: bunda sanki ortadaki bitane path i bulamadi!!!
-
 //	"2012-04-12_02:54:52.properties");
 //	"2012-04-11_01:20:12.properties");
 //	"2012-03-22_02:51:46.properties");
@@ -178,12 +179,31 @@ public class GridMODStarPlanning {
 					// .println("# of solutions found by MOD*Lite: "
 					// + paths.size());
 					//TODO : this should be parameterized.
+					
+					if(paths.size() == 0 && !Arrays.equals(sm.getTmpGoal(), sm.getGoal())) {
+						
+						IntCoord tmpGoal = sm.updateTmpGoal();
+						modStar.updateGoal(tmpGoal);
+						prevTmpGoal = tmpGoal;
+						mp.setShape(
+								"TmpGoal",
+								dot,
+								AffineTransform.getTranslateInstance(
+										(double) sm.getTmpGoal()[0] + 0.5,
+										(double) sm.getTmpGoal()[1] + 0.5), Color.BLUE,
+								dotStroke);
+
+						needToReplan.set(true);
+//						System.out.println("Replanning throught: "
+//								+ Arrays.toString(tmpGoal.getInts()));
+					}
 					if (paths.size() > 0) {
 						if (!Arrays.equals(sm.getCurrentAgentLocation()
 								.getInts(), sm.getGoal())) {
 
-							int index = findMiddlePathIndex(paths);
-							drawPath(mp, paths.get(index));
+//							int index = findMiddlePathIndex(paths);
+							Path<Coordinate> middlePath = findMiddlePathIndex(paths);
+							drawPath(mp, middlePath);
 //							drawPath(mp, paths.get(paths.size()-1));
 							
 //							if (paths.size() > 1) {
@@ -197,7 +217,7 @@ public class GridMODStarPlanning {
 //							} else {
 //								operateOnPath(0, paths, modStar, mp,1);
 //							}
-							operateOnPath(index, paths, modStar, mp,1);
+							operateOnPath(middlePath, modStar, mp,1);
 						} else {
 							System.out.println("Reached Goal: "
 									+ sm.getTmpGoal().toString());
@@ -218,25 +238,26 @@ public class GridMODStarPlanning {
 		}
 	}
 
-	private int findMiddlePathIndex(List<Path<Coordinate>> paths) {
+	private Path<Coordinate> findMiddlePathIndex(List<Path<Coordinate>> paths) {
 		if(paths.size() == 1){
-			return 0;
+			return paths.get(0);
 		}else {
 			List<Path<Coordinate>> newPaths = new Vector<Path<Coordinate>>();
 			newPaths.addAll(paths);
 			Collections.sort(newPaths, pathComparator);
 			paths = newPaths;
-			return (int) Math.ceil(paths.size()/2);
+			return paths.get((int) Math.ceil(paths.size()/2));
+//			return paths.get(paths.size()-1);
 		}
 	}
 
-	private void operateOnPath(int pathNumber, List<Path<Coordinate>> paths,
+	private void operateOnPath(Path<Coordinate> path,
 			MODStarLiteImpl modStar, MapPanel mp, int index)
 			throws InterruptedException {
 
 		IntCoord newAgentLoc;
 		try {
-			newAgentLoc = (IntCoord) paths.get(pathNumber).get(index);
+			newAgentLoc = (IntCoord) path.get(index);
 			actualPathCost = MultiObjectiveUtils.sum(actualPathCost,
 					new ObjectiveArray(new Objective(1,
 							ObjectiveBehaviour.MINIMIZED), new Objective(sm
@@ -253,6 +274,7 @@ public class GridMODStarPlanning {
 				(double) newAgentLoc.get(1) + 0.5), Color.CYAN, dotStroke);
 
 		cleanViewingFrustum(mp, sm.getvFrustumArea());
+		sm.clearPossibleTmpGoals();
 
 		modStar.updateAgentLocation(newAgentLoc);
 		sm.setCurrentAgentLocation(newAgentLoc);
@@ -263,7 +285,7 @@ public class GridMODStarPlanning {
 
 		if (tmpGoal.equals(prevTmpGoal)) {
 //			Thread.sleep(500);
-			operateOnPath(pathNumber, paths, modStar, mp, index + 1);
+			operateOnPath(path, modStar, mp, index + 1);
 		} else {
 			sm.clearBackpointers();
 			modStar.updateGoal(tmpGoal);
@@ -277,10 +299,10 @@ public class GridMODStarPlanning {
 					dotStroke);
 
 			needToReplan.set(true);
-			System.out.println("Replanning throught: "
-					+ Arrays.toString(tmpGoal.getInts()));
+//			System.out.println("Replanning throught: "
+//					+ Arrays.toString(tmpGoal.getInts()));
 			//TODO: this sleep should be parameterized.
-//			Thread.sleep(500);
+//			Thread.sleep(200);
 		}
 	}
 
@@ -348,14 +370,14 @@ public class GridMODStarPlanning {
 		if (path == null) {
 			// JOptionPane.showMessageDialog(mp, "No Path Found!", "Warning",
 			// JOptionPane.WARNING_MESSAGE);
-			System.out.println("No path found!");
+//			System.out.println("No path found!");
 
 			for (int i = 1; i < oldPathSize - 1; i++)
 				mp.removeShape("p" + i);
 
 			oldPathSize = 0;
 		} else {
-			System.out.println("Solution path: " + path);
+//			System.out.println("Solution path: " + path);
 
 			for (int i = 1; i < path.size() - 1; i++) {
 				Coordinate c = path.get(i);

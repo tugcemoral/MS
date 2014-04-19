@@ -63,7 +63,9 @@ public class MOAStarPlanning {
 
 	private static ObjectiveArray actualPathCost = ObjectiveArray.SINGLE_ZERO;
 	
-	private static final String EXECUTION_FILE = "/experimental/handcrafted/125x125/2012-06-05_01:36:13";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/80x80/80x80_40(25)";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/handcrafted/160x160/160x160";
 	
 	private static final String EXECUTION_FILE_PROPERTIES = EXECUTION_FILE + ".properties";
 
@@ -151,44 +153,53 @@ public class MOAStarPlanning {
 							.findPath_MOAStar();
 					op.updatePanel(foundPaths);
 
-//					if (foundPaths != null) {
-//						if (!Arrays.equals(sm.getCurrentAgentLocation()
-//								.getInts(), sm.getGoal())) {
-//
-//							int index = findMiddlePathIndex(foundPaths);
-//							if (foundPaths.get(index) == null) {
-//								System.out.println("###Total Execution Time: "
-//										+ moaStar.getTotalExecTime());
-//							}
-//							drawPath(mp, foundPaths.get(foundPaths.size()-1));
-//
-//							// if (foundPaths.size() > 1) {
-//							// op.displaySelectPathInfo();
-//							// synchronized (op.concurrentObj) {
-//							// op.concurrentObj.wait();
-//							// }
-//							// operateOnPath(
-//							// OperationsPanel.getCurrentDrawnPath(),
-//							// foundPaths, moaStar, mp,1);
-//							// } else {
-//							// operateOnPath(0, foundPaths, moaStar, mp,1);
-//							// }
-//							operateOnPath(foundPaths.size()-1, foundPaths, moaStar, mp, 1);
-//						} else {
-//							System.out.println("Reached Goal: "
-//									+ sm.getTmpGoal().toString());
-//							break;
-//						}
-//					} else {
-//						drawPath(mp, null);
-//						System.out.println("###Total Execution Time: "
-//								+ moaStar.getTotalExecTime());
-//					}
+					if (foundPaths != null) {
+						if (!Arrays.equals(sm.getCurrentAgentLocation()
+								.getInts(), sm.getGoal())) {
 
-					 if (foundPaths != null) {
-					 drawPath(mp, foundPaths.get(0));
+							int index = findMiddlePathIndex(foundPaths);
+//							index = foundPaths.size()-1;
+							
+							if(foundPaths.size() == 0 && !Arrays.equals(sm.getTmpGoal(), sm.getGoal())) {
+								
+								IntCoord tmpGoal = sm.updateTmpGoal();
+								moaStar.updateGoal(tmpGoal);
+								prevTmpGoal = tmpGoal;
+								mp.setShape(
+										"TmpGoal",
+										dot,
+										AffineTransform.getTranslateInstance(
+												(double) sm.getTmpGoal()[0] + 0.5,
+												(double) sm.getTmpGoal()[1] + 0.5), Color.BLUE,
+										dotStroke);
+
+								needToReplan.set(true);
+//								System.out.println("Replanning throught: "
+//										+ Arrays.toString(tmpGoal.getInts()));
+								
+							}else {
+								if (foundPaths.get(index) == null) {
+									System.out.println("###Total Execution Time: "
+											+ moaStar.getTotalExecTime());
+								}
+								drawPath(mp, foundPaths.get(foundPaths.size()-1));
+								operateOnPath(foundPaths.size()-1, foundPaths, moaStar, mp, 1);
+							}
+						} else {
+							System.out.println("Reached Goal: "
+									+ sm.getTmpGoal().toString());
+							break;
+						}
+					} else {
+						drawPath(mp, null);
+						System.out.println("###Total Execution Time: "
+								+ moaStar.getTotalExecTime());
+					}
+
+					 if (foundPaths.size() > 0) {
+						 drawPath(mp, foundPaths.get(0));
 					 } else {
-					 drawPath(mp, null);
+						 drawPath(mp, null);
 					 }
 				}
 			}
@@ -232,7 +243,9 @@ public class MOAStarPlanning {
 				dotStroke);
 
 		cleanViewingFrustum(mp, sm.getvFrustumArea());
-
+		//also clean tried possible tmp goals array.
+		sm.clearPossibleTmpGoals();
+		
 		// moaStar.updateAgentLocation(newAgentLoc);
 		sm.setStart(newAgentLoc.getInts());
 		sm.setCurrentAgentLocation(newAgentLoc);
@@ -257,8 +270,8 @@ public class MOAStarPlanning {
 					dotStroke);
 
 			needToReplan.set(true);
-			System.out.println("Replanning throught: "
-					+ Arrays.toString(tmpGoal.getInts()));
+//			System.out.println("Replanning throught: "
+//					+ Arrays.toString(tmpGoal.getInts()));
 			// TODO: this sleep should be parameterized.
 			// Thread.sleep(500);
 		}
@@ -276,6 +289,7 @@ public class MOAStarPlanning {
 				// (double) j + 0.5), MISTY_GRAY, dotStroke);
 			}
 		}
+
 	}
 
 	private void reDrawViewingFrustum(MapPanel mp, List<MOState> vFrustumArea) {
@@ -297,14 +311,14 @@ public class MOAStarPlanning {
 		if (path == null) {
 			// JOptionPane.showMessageDialog(mp, "No Path Found!", "Warning",
 			// JOptionPane.WARNING_MESSAGE);
-			System.out.println("No path found!");
+//			System.out.println("No path found!");
 
 			for (int i = 0; i < oldPathSize; i++)
 				mp.removeShape("p" + i);
 
 			oldPathSize = 0;
 		} else {
-			System.out.println("Solution path: " + path);
+//			System.out.println("Solution path: " + path);
 			// XXX: Notice that MOA* paths does not contain neither start nor
 			// goal.
 			for (int i = 0; i < path.size(); i++) {
