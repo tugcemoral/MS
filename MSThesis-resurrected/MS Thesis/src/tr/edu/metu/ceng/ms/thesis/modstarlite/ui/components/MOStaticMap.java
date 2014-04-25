@@ -34,6 +34,8 @@ public class MOStaticMap implements MOGridMap {
 
 	private int[] tmpGoal;
 
+	private List<MOState> possibleTmpGoals;
+
 	private int length = 0;
 
 	private int objectiveCount;
@@ -47,8 +49,8 @@ public class MOStaticMap implements MOGridMap {
 	private int[] viewingFrustumBorders;
 
 	private ExecutionType executionType;
-	
-	protected MOStaticMap(){
+
+	protected MOStaticMap() {
 	}
 
 	public MOStaticMap(int... sizes) {
@@ -98,7 +100,7 @@ public class MOStaticMap implements MOGridMap {
 	}
 
 	private int index(int x, int y) {
-		return index(new int[] { x, y });
+		return index(new int[]{x, y});
 	}
 
 	public int length() {
@@ -326,17 +328,23 @@ public class MOStaticMap implements MOGridMap {
 		if (PropertiesReader.getTmpGoalStrategy().equals(
 				TemporaryGoalStrategy.NEAREST_BY_SP)) {
 
+			MOState tmpGoalState = null;
 			double minMDist = Double.POSITIVE_INFINITY;
 			for (MOState state : getvFrustumArea()) {
 				if (!state.hasObstacle()) {
 					double mDist = CoordUtils.mdist(state.getCoords(),
 							goalState);
-					if (mDist < minMDist) {
+					if ((mDist < minMDist) && (!state.isPossibleTmpGoal())) {
 						minMDist = mDist;
-						tmpGoal = state.getCoords();
+						tmpGoalState = state;
 					}
 				}
 			}
+
+			tmpGoalState.setPossibleTmpGoal(true);
+			getPossibleTmpGoals().add(tmpGoalState);
+
+			tmpGoal = tmpGoalState.getCoords();
 		} else {
 			double minRisk = Double.POSITIVE_INFINITY;
 			// create a list..
@@ -361,6 +369,13 @@ public class MOStaticMap implements MOGridMap {
 		}
 
 		return tmpGoal;
+	}
+
+	public void clearPossibleTmpGoals() {
+		for (MOState possibleTmpGoal : getPossibleTmpGoals()) {
+			possibleTmpGoal.setPossibleTmpGoal(false);
+		}
+		getPossibleTmpGoals().clear();
 	}
 
 	public void addToVFrustumArea(MOState state) {
@@ -393,7 +408,7 @@ public class MOStaticMap implements MOGridMap {
 	}
 
 	public void setCurrentAgentLocation(Coordinate newLocation) {
-		this.currentAgentLocation = ((IntCoord)newLocation).getInts();
+		this.currentAgentLocation = ((IntCoord) newLocation).getInts();
 
 		int xPosBorder = this.getCurrentAgentLocation().getInts()[0]
 				+ this.getViewingFrustumBorders()[0];
@@ -447,6 +462,13 @@ public class MOStaticMap implements MOGridMap {
 
 	public void setObjectiveBehaviours(ObjectiveBehaviour[] objectiveBehaviours) {
 		this.objectiveBehaviours = objectiveBehaviours;
+	}
+
+	private List<MOState> getPossibleTmpGoals() {
+		if (possibleTmpGoals == null) {
+			possibleTmpGoals = new Vector<MOState>();
+		}
+		return possibleTmpGoals;
 	}
 
 }

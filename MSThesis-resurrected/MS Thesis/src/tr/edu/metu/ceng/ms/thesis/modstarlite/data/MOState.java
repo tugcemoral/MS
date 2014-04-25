@@ -26,6 +26,8 @@ public class MOState {
 
 	private boolean isInViewingFrustum = false;
 
+	private boolean isPossibleTmpGoal = false;
+	
 	private boolean isTraversable;
 
 	private IntCoord coords;
@@ -188,5 +190,13 @@ public class MOState {
 
 	public void setCoords(IntCoord coords) {
 		this.coords = coords;
+	}
+
+	public boolean isPossibleTmpGoal() {
+		return isPossibleTmpGoal;
+	}
+
+	public void setPossibleTmpGoal(boolean isPossibleTmpGoal) {
+		this.isPossibleTmpGoal = isPossibleTmpGoal;
 	}
 }

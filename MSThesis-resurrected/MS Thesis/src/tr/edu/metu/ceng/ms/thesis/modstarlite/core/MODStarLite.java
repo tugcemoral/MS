@@ -108,12 +108,12 @@ public abstract class MODStarLite<State extends Coordinate> {
 //		nonDominatedPathsMap.put(start, initializeFirstPathFromStart());
 
 		startTimer();
-		System.out.println("plan() initialized");
+//		System.out.println("plan() initialized");
 		// compute the shortest path.
 		computeShortestPath();
 		
-		System.out.println("shortest path calculated.");
-		System.out.println("Remaining size of U : " + U.size());
+//		System.out.println("shortest path calculated.");
+//		System.out.println("Remaining size of U : " + U.size());
 		
 		// dumping U, g and rhs to a *.states file under resources.
 //		 dumpActualStatesToFile();
@@ -121,11 +121,11 @@ public abstract class MODStarLite<State extends Coordinate> {
 		//initialize fastly generate solution paths.
 		solutionPaths = new CopyOnWriteArrayList<Path<Coordinate>>();
 		generateMOPathsWithBackpointers();
-		System.err.println("# of found paths to eliminate: " + solutionPaths.size());
+//		System.err.println("# of found paths to eliminate: " + solutionPaths.size());
 		eliminateDominatedPaths();
 		stopTimer();
-		System.out.println("paths generated.");
-		System.out.println("# of solutions: " + solutionPaths.size());
+//		System.out.println("paths generated.");
+//		System.out.println("# of solutions: " + solutionPaths.size());
 		
 		return solutionPaths;
 	}
@@ -471,7 +471,7 @@ public abstract class MODStarLite<State extends Coordinate> {
 //			loopCounter++;
 		}
 		
-		System.out.println("Backpointers are set.");
+//		System.out.println("Backpointers are set.");
 		// reached to goal state and all backpointers are set. just follow them.
 		
 //		System.err.println("(23, 55) parents: " + getState(23d, 55d).getParents());
@@ -824,7 +824,7 @@ public abstract class MODStarLite<State extends Coordinate> {
 			loopCount++;
 		}
 		
-		System.out.println("### LC: " + loopCount);
+//		System.out.println("### LC: " + loopCount);
 
 	}
 	

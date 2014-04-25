@@ -1,5 +1,7 @@
 package tr.edu.metu.ceng.ms.thesis.mogpp.core;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -8,6 +10,7 @@ import org.apache.log4j.Logger;
 import tr.edu.metu.ceng.ms.thesis.modstarlite.data.ObjectiveArray;
 import tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path;
 import tr.edu.metu.ceng.ms.thesis.modstarlite.ui.components.MOStaticMap;
+import tr.edu.metu.ceng.ms.thesis.mogpp.core.exception.TempGoalShouldBeUpdatedException;
 import tr.edu.metu.ceng.ms.thesis.mogpp.core.ga.Individual;
 import tr.edu.metu.ceng.ms.thesis.mogpp.core.ga.Population;
 import tr.edu.metu.ceng.ms.thesis.robotutils.data.Coordinate;
@@ -43,7 +46,12 @@ public class MOGeneticPathPlanner {
 		startTimer();
 		
 		// initialize the population.
-		Population initialPopulation = new Population(start, goal);
+		Population initialPopulation;
+		try {
+			initialPopulation = new Population(start, goal);
+		} catch (TempGoalShouldBeUpdatedException e) {
+			return Collections.emptyList();
+		}
 
 //		// current population' s best fitness
 //		System.out.println("Best Fitness of initial population: "
@@ -80,13 +88,13 @@ public class MOGeneticPathPlanner {
 	
 	protected void startTimer() {
 		startTime = System.nanoTime();
-		logger.info("Timer Started.");
+//		logger.info("Timer Started.");
 	}
 	
 	protected void stopTimer() {
 		stopTime = System.nanoTime();
 		long execTime = (long) ((stopTime - startTime) / Math.pow(10, 6));
-		logger.info("Timer Stopped, execution time: " + execTime + " ms");
+//		logger.info("Timer Stopped, execution time: " + execTime + " ms");
 //		StateWriter.getWriter().dumpTime(iterationCount, execTime, executionFilePath);
 //		iterationCount++;
 		totalExecTime += execTime;

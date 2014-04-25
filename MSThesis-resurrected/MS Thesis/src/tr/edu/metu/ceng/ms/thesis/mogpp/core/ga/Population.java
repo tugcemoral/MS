@@ -10,6 +10,7 @@ import tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path;
 import tr.edu.metu.ceng.ms.thesis.modstarlite.util.MultiObjectiveUtils;
 import tr.edu.metu.ceng.ms.thesis.mogpp.core.ds.MOGPPlannerDAG;
 import tr.edu.metu.ceng.ms.thesis.mogpp.core.env.MOGeneticMap;
+import tr.edu.metu.ceng.ms.thesis.mogpp.core.exception.TempGoalShouldBeUpdatedException;
 import tr.edu.metu.ceng.ms.thesis.robotutils.data.Coordinate;
 
 public class Population {
@@ -35,7 +36,7 @@ public class Population {
 
 	// private double totalFitness;
 
-	public Population(Coordinate start, Coordinate goal) {
+	public Population(Coordinate start, Coordinate goal) throws TempGoalShouldBeUpdatedException {
 		MOGeneticMap gmap = MOGeneticMap.getInstance();
 		// individuals = new Individual[POP_SIZE];
 		// individuals = new Vector<Individual>();
@@ -44,10 +45,16 @@ public class Population {
 		// init population
 		for (int i = 0; i < gmap.getPopulationSize(); i++) {
 			Individual individual = new Individual();
-			individual.generateRandomPath((int) start.get(0),
+			boolean isGenerated = individual.generateRandomPath((int) start.get(0),
 					(int) start.get(1), (int) goal.get(0), (int) goal.get(1));
+			
+			//instantly break if any individual failed to construct a path.
+			if(!isGenerated) {
+				throw new TempGoalShouldBeUpdatedException();
+			}
 			getIndividualsDAG().insert(individual);
 		}
+		
 		// evaluate current population.
 		this.evaluate(getIndividualsDAG().size());
 	}

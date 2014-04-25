@@ -62,7 +62,7 @@ public class GridMODStarPlanning {
 	
 	private static ObjectiveArray actualPathCost = ObjectiveArray.SINGLE_ZERO;
 	
-	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/80x80/80x80_40(25)";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/120x120/120x120_10(19)";
 //	private static final String EXECUTION_FILE = "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
 //	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/handcrafted/160x160/160x160";
 	//	private static final String EXECUTION_FILE = "/demo/full_obs";
@@ -175,9 +175,7 @@ public class GridMODStarPlanning {
 				synchronized (modStar) {
 					List<Path<Coordinate>> paths = modStar.plan();
 					op.updatePanel(paths);
-					// System.out
-					// .println("# of solutions found by MOD*Lite: "
-					// + paths.size());
+					// System.out.println("# of solutions found by MOD*Lite: " + paths.size());
 					//TODO : this should be parameterized.
 					
 					if(paths.size() == 0 && !Arrays.equals(sm.getTmpGoal(), sm.getGoal())) {
@@ -302,7 +300,7 @@ public class GridMODStarPlanning {
 //			System.out.println("Replanning throught: "
 //					+ Arrays.toString(tmpGoal.getInts()));
 			//TODO: this sleep should be parameterized.
-//			Thread.sleep(200);
+//			Thread.sleep(500);
 		}
 	}
 

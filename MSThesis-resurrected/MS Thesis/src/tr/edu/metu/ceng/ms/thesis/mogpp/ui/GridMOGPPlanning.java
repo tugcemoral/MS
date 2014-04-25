@@ -62,7 +62,16 @@ public class GridMOGPPlanning {
 
 	private static ObjectiveArray actualPathCost = ObjectiveArray.SINGLE_ZERO;
 
-	private static final String EXECUTION_FILE = "/experimental/vfrustum/125x125/125_25(32)";
+	// private static final String EXECUTION_FILE =
+	// "/experimental/vfrustum/125x125/125_25(32)";
+
+	// private static final String EXECUTION_FILE =
+	// "/experimental/journal-tests/fullyobservable/randomized/80x80/80x80";
+	// private static final String EXECUTION_FILE =
+	// "/experimental/journal-tests/fullyobservable/handcrafted/160x160/160x160";
+	// private static final String EXECUTION_FILE =
+	// "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/80x80/80x80_50(28)";
 
 	private static final String EXECUTION_FILE_PROPERTIES = EXECUTION_FILE
 			+ ".properties";
@@ -94,7 +103,7 @@ public class GridMOGPPlanning {
 		OperationsPanel op = new VisualizedOperationsPanel(mp, gmap);
 		// LogViewerPanel lv = new LogViewerPanel(mp, sm);
 
-		JFrame jf = new JFrame("MOD*Lite");
+		JFrame jf = new JFrame("MOGPP");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// jf.setResizable(false);
 		jf.setMinimumSize(new Dimension(900, 600));
@@ -130,21 +139,38 @@ public class GridMOGPPlanning {
 				(double) gmap.getGoal()[0] + 0.5,
 				(double) gmap.getGoal()[1] + 0.5), Color.RED, dotStroke);
 
-		// Execute MOD* search FOREVER
+		// Execute MOGPP search FOREVER
 		while (true) {
 			if (needToReplan.getAndSet(false)) {
 				synchronized (mogpp) {
 					List<Path<Coordinate>> paths = mogpp.plan();
 					op.updatePanel(paths);
-					System.out.println("# of solutions found by MOD*Lite: "
-							+ paths.size());
-					// TODO : this should be parameterized.
+//					System.out.println("# of solutions found by MOGPP: "
+//							+ paths.size());
+
+					if (paths.size() == 0
+							&& !Arrays.equals(gmap.getTmpGoal(), gmap.getGoal())) {
+
+						IntCoord tmpGoal = gmap.updateTmpGoal();
+						mogpp.updateGoal(tmpGoal);
+						prevTmpGoal = tmpGoal;
+						mp.setShape("TmpGoal", dot, AffineTransform
+								.getTranslateInstance(
+										(double) gmap.getTmpGoal()[0] + 0.5,
+										(double) gmap.getTmpGoal()[1] + 0.5),
+								Color.BLUE, dotStroke);
+
+						needToReplan.set(true);
+//						System.out.println("Replanning throught: "
+//								+ Arrays.toString(tmpGoal.getInts()));
+					}
+
 					if (paths.size() > 0) {
 						if (!Arrays.equals(gmap.getCurrentAgentLocation()
 								.getInts(), gmap.getGoal())) {
 
 							int index = findMiddlePathIndex(paths);
-							drawPath(mp, paths.get(index));
+//							drawPath(mp, paths.get(index));
 							// drawPath(mp, paths.get(paths.size()-1));
 
 							// if (paths.size() > 1) {
@@ -158,7 +184,7 @@ public class GridMOGPPlanning {
 							// } else {
 							// operateOnPath(0, paths, modStar, mp,1);
 							// }
-							operateOnPath(index, paths, mogpp, mp, 1);
+							 operateOnPath(index, paths, mogpp, mp, 1);
 						} else {
 							System.out.println("Reached Goal: "
 									+ gmap.getTmpGoal().toString());
@@ -219,8 +245,9 @@ public class GridMOGPPlanning {
 				dotStroke);
 
 		cleanViewingFrustum(mp, gmap.getvFrustumArea());
+		gmap.clearPossibleTmpGoals();
 
-//		mogpp.updateAgentLocation(newAgentLoc);
+		// mogpp.updateAgentLocation(newAgentLoc);
 		gmap.setCurrentAgentLocation(newAgentLoc);
 
 		reDrawViewingFrustum(mp, gmap.getvFrustumArea());
@@ -244,8 +271,8 @@ public class GridMOGPPlanning {
 					dotStroke);
 
 			needToReplan.set(true);
-			System.out.println("Replanning throught: "
-					+ Arrays.toString(tmpGoal.getInts()));
+//			System.out.println("Replanning throught: "
+//					+ Arrays.toString(tmpGoal.getInts()));
 			// TODO: this sleep should be parameterized.
 			// Thread.sleep(500);
 		}
@@ -315,14 +342,14 @@ public class GridMOGPPlanning {
 		if (path == null) {
 			// JOptionPane.showMessageDialog(mp, "No Path Found!", "Warning",
 			// JOptionPane.WARNING_MESSAGE);
-			System.out.println("No path found!");
+//			System.out.println("No path found!");
 
 			for (int i = 1; i < oldPathSize - 1; i++)
 				mp.removeShape("p" + i);
 
 			oldPathSize = 0;
 		} else {
-			System.out.println("Solution path: " + path);
+//			System.out.println("Solution path: " + path);
 
 			for (int i = 1; i < path.size() - 1; i++) {
 				Coordinate c = path.get(i);

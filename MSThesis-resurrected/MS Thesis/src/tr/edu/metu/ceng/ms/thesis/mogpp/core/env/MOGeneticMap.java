@@ -155,4 +155,8 @@ public class MOGeneticMap extends MOStaticMap {
 		return nbrs;
 	}
 
+	public int getPossibleMaxSize(int startX, int startY, int goalX, int goalY) {
+		return Math.abs( (goalX - startX) * (goalY - startY));
+	}
+
 }

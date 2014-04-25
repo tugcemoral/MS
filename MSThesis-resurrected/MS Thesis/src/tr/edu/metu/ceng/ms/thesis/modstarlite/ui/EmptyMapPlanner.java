@@ -10,9 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -34,7 +31,10 @@ public class EmptyMapPlanner {
 
 	// private static Random rnd = new Random();
 
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/100x100/100x100_10(16)";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
 	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/randomized/default";
+//	private static final String EXECUTION_FILE = "/experimental/journal-tests/fullyobservable/randomized/160x160/160x160";
 	
 	private static final String EXECUTION_FILE_PROPERTIES = EXECUTION_FILE + ".properties";
 
@@ -66,8 +66,9 @@ public class EmptyMapPlanner {
 			sm = mapGen.generateMap();
 			tzRatio = calculateTZRatioManually(sm);
 			obstacleRatio = calculateObstacleRatioManually(sm);
+			System.out.println(tzRatio + " : " + obstacleRatio);
 		}
-		while(tzRatio <= 10d /* || tzRatio > 40d */ || obstacleRatio <= 14d);
+		while(false  /* || tzRatio <= 40d  /* || tzRatio > 40d  || obstacleRatio <= 13d */);
 
 		Rectangle2D mapBounds = new Rectangle2D.Double(0.0, 0.0, sm.size(0),
 				sm.size(1));

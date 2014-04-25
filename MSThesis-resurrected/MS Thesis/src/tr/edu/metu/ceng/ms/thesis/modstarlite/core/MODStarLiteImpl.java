@@ -313,13 +313,13 @@ public class MODStarLiteImpl extends MODStarLite<IntCoord> {
 
 	protected void startTimer() {
 		startTime = System.nanoTime();
-		logger.info("Timer Started.");
+		logger.debug("Timer Started.");
 	}
 
 	protected void stopTimer() {
 		stopTime = System.nanoTime();
 		long execTime = (long) ((stopTime - startTime) / Math.pow(10, 6));
-		logger.info("Timer Stopped, execution time: " + execTime + " ms");
+		logger.debug("Timer Stopped, execution time: " + execTime + " ms");
 //		StateWriter.getWriter().dumpTime(iterationCount, execTime, executionFilePath);
 		iterationCount++;
 		totalExecTime += execTime;

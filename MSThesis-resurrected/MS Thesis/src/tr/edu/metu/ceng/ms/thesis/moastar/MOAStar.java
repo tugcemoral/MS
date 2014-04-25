@@ -2,6 +2,7 @@ package tr.edu.metu.ceng.ms.thesis.moastar;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -33,7 +34,7 @@ public class MOAStar {
 
 	protected int numRows, numCols;
 
-//	protected Agent agent;
+	// protected Agent agent;
 
 	protected Cell startCell;
 	protected Cell goalCell;
@@ -61,9 +62,9 @@ public class MOAStar {
 	protected final String AGENT = "AGENT";
 
 	private MOStaticMap smap;
-	
+
 	private static long totalExecTime = 0;
-	
+
 	private String executionFilePath;
 
 	private static long iterationCount = 1;
@@ -109,13 +110,17 @@ public class MOAStar {
 		map[r][c].setFlag(Cell.GOAL);
 
 		// agent properties.
-//		agent = new Agent();
+		// agent = new Agent();
 
 		// obstacle properties.
 		obstacles = smap.getObstacles();
 		for (Obstacle obstacle : obstacles) {
+			try {
 				map[obstacle.getCoords().getInts()[1]][obstacle.getCoords()
 						.getInts()[0]].setOccupier(Cell.OBSTACLE);
+			} catch (Exception aioobe) {
+				continue;
+			}
 		}
 
 		// threat properties.
@@ -455,19 +460,19 @@ public class MOAStar {
 		// create a new list of my-way paths.
 		List<tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate>> realPaths = new Vector<tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate>>();
 
-		System.out.println("Solutions:");
+//		System.out.println("Solutions:");
 		for (int i = 0; i < solutions.size(); i++) {
 
-//			System.out.println("\n" + (i + 1)
-//					+ ": --------------------------------------------");
+			// System.out.println("\n" + (i + 1)
+			// + ": --------------------------------------------");
 			dummyElem = solutions.elementAt(i);
-			System.out.println("Path length: "
-					+ Math.round(100.0 * dummyElem.value1) / 100.0);
-			System.out.println("Damage taken: " + dummyElem.value2);
+//			System.out.println("Path length: "
+//					+ Math.round(100.0 * dummyElem.value1) / 100.0);
+//			System.out.println("Damage taken: " + dummyElem.value2);
 			// System.out.println(dummyElem.finishTime);
 			timeused = Math.round((dummyElem.finishTime - startTime) / 10000.0) / 100.0;
-//			System.out.println("CPU time to reach this solution: " + timeused
-//					+ " msec");
+			// System.out.println("CPU time to reach this solution: " + timeused
+			// + " msec");
 			dummyElem.isADiscoveredSolution = true;
 			if (printMaps) {
 				markShortestPath_MOAStar(dummyElem);
@@ -478,11 +483,12 @@ public class MOAStar {
 
 		long execTime = (long) ((stopTime - startTime) / Math.pow(10, 6));
 		totalExecTime += execTime;
-		System.out.println("Total Execution Time: " + execTime + " ms");
-//		StateWriter.getWriter().dumpTime(iterationCount , execTime, executionFilePath);
+//		System.out.println("Total Execution Time: " + execTime + " ms");
+		// StateWriter.getWriter().dumpTime(iterationCount , execTime,
+		// executionFilePath);
 		iterationCount++;
-		System.out
-				.println("\n------------- END OF EXACT SOLUTIONS --------------");
+//		System.out
+//				.println("\n------------- END OF EXACT SOLUTIONS --------------");
 		return realPaths;
 	}
 
@@ -669,24 +675,25 @@ public class MOAStar {
 		if (kk < 0 || kk > 3)
 			throw new Exception("out of bounds");
 		switch (kk) {
-		case 0: // right
-			r = thisRow;
-			c = rightCol;
-			break;
-		case 1: // bottom
-			r = bottomRow;
-			c = thisCol;
-			break;
-		case 2: // left
-			r = thisRow;
-			c = leftCol;
-			break;
-		case 3:// top
-			r = topRow;
-			c = thisCol;
-			break;
+			case 0 : // right
+				r = thisRow;
+				c = rightCol;
+				break;
+			case 1 : // bottom
+				r = bottomRow;
+				c = thisCol;
+				break;
+			case 2 : // left
+				r = thisRow;
+				c = leftCol;
+				break;
+			case 3 :// top
+				r = topRow;
+				c = thisCol;
+				break;
 		}
-		if (r <= 0 || r >= numRows - 1 || c <= 0 || c >= numCols - 1 || !smap.isInViewingFrustumArea(c, r))
+		if (r <= 0 || r >= numRows - 1 || c <= 0 || c >= numCols - 1
+				|| !smap.isInViewingFrustumArea(c, r))
 			return null;
 		return map[r][c];
 	}
@@ -1027,99 +1034,113 @@ public class MOAStar {
 	public tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate> simplePrint_MOAStarPaths()
 			throws Exception {
 
-		// create a real path for this solution.
-		tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate> path = new tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate>();
-		//add start cell to path.
-//		path.add(new IntCoord(startCell.getCol(), startCell.getRow()));
+		List<Cell> path = new Vector<Cell>();
+		
+		// add start cell to path.
+		// path.add(new IntCoord(startCell.getCol(), startCell.getRow()));
 
 		int r, c;
 		if (map == null) {
 			throw new Exception("The map is not loaded!");
 		}
-//		System.out.print("\n   ");
-//		for (c = 1; c < numCols - 1; c++) {
-//			if (c < 10)
-//				System.out.print("" + c + " ");
-//			else
-//				System.out.print("" + (c % 100));
-//		}
-//		System.out.println();
+		// System.out.print("\n   ");
+		// for (c = 1; c < numCols - 1; c++) {
+		// if (c < 10)
+		// System.out.print("" + c + " ");
+		// else
+		// System.out.print("" + (c % 100));
+		// }
+		// System.out.println();
 		for (r = 1; r < numRows - 1; r++) {
-//			if (r < 10)
-//				System.out.print("" + r + "   ");
-//			else if (r < 100)
-//				System.out.print("" + r + "  ");
-//			else
-//				System.out.print("" + r + " ");
+			// if (r < 10)
+			// System.out.print("" + r + "   ");
+			// else if (r < 100)
+			// System.out.print("" + r + "  ");
+			// else
+			// System.out.print("" + r + " ");
 			for (c = 1; c < numCols - 1; c++) {
 
-//				if (map[r][c].getFlag() == Cell.GOAL) {
-//
-//					// IntCoord goalCoord = new IntCoord(r + 1, c + 1);
-//					// path.addLast(goalCoord);
-//
-//					System.out.print("G");
-//				} else if (map[r][c].getFlag() == Cell.START) {
-//
-//					// IntCoord startCoord = new IntCoord(r + 1, c + 1);
-//					// path.add(startCoord);
-//
-//					System.out.print("S");
-//				} else if (map[r][c].isCurrentlyOpen)
-//					System.out.print("*");
-//				else if (map[r][c].isInOpen)
-//					System.out.print("+");
-//				// else if(map[r][c].isInClosed) System.out.print("-");
-// 
-//				else if (map[r][c].getOccupier() == Cell.OBSTACLE)
-//					System.out.print("X");
-//				else if (map[r][c].getOccupier() == Cell.THREAT_SOURCE)
-//					System.out.print("o");
-//				else {
-//					if (map[r][c].isInShortestPath) {
-//						System.out.print("");
-//					} else {
-//						if (map[r][c].isVisited()) {
-//							System.out.print("/");
-//						} else {
-//							System.out.print(".");
-//						}
-//					}
-//				}
+				// if (map[r][c].getFlag() == Cell.GOAL) {
+				//
+				// // IntCoord goalCoord = new IntCoord(r + 1, c + 1);
+				// // path.addLast(goalCoord);
+				//
+				// System.out.print("G");
+				// } else if (map[r][c].getFlag() == Cell.START) {
+				//
+				// // IntCoord startCoord = new IntCoord(r + 1, c + 1);
+				// // path.add(startCoord);
+				//
+				// System.out.print("S");
+				// } else if (map[r][c].isCurrentlyOpen)
+				// System.out.print("*");
+				// else if (map[r][c].isInOpen)
+				// System.out.print("+");
+				// // else if(map[r][c].isInClosed) System.out.print("-");
+				//
+				// else if (map[r][c].getOccupier() == Cell.OBSTACLE)
+				// System.out.print("X");
+				// else if (map[r][c].getOccupier() == Cell.THREAT_SOURCE)
+				// System.out.print("o");
+				// else {
+				// if (map[r][c].isInShortestPath) {
+				// System.out.print("");
+				// } else {
+				// if (map[r][c].isVisited()) {
+				// System.out.print("/");
+				// } else {
+				// System.out.print(".");
+				// }
+				// }
+				// }
 				/*
 				 * if(map[r][c].getOccupier() == Cell.AGENT) {
 				 * System.out.print("A"); }
 				 */
+				
 				if (map[r][c].isInShortestPath
 						&& map[r][c].getFlag() != Cell.START
 						&& map[r][c].getFlag() != Cell.GOAL) {
+					
+					path.add(map[r][c]);
 
-					IntCoord pathStateCoord = new IntCoord(c, r);
-					path.add(pathStateCoord);
+//					IntCoord pathStateCoord = new IntCoord(c, r);
+//					path.add(pathStateCoord);
 
-//					int num = map[r][c].numberInShortestPath % 100;
-//					if (num < 10) {
-//						System.out.print("" + num + " ");
-//					} else {
-//						System.out.print("" + num);
-//					}
-				} 
-//				else if (map[r][c].isVisited()) {
-//					System.out.print(" ");
-//				} else {
-//					System.out.print(" ");
-//				}
+					// int num = map[r][c].numberInShortestPath % 100;
+					// if (num < 10) {
+					// System.out.print("" + num + " ");
+					// } else {
+					// System.out.print("" + num);
+					// }
+				}
+				// else if (map[r][c].isVisited()) {
+				// System.out.print(" ");
+				// } else {
+				// System.out.print(" ");
+				// }
 			}
-//			System.out.println();
+			// System.out.println();
 		}
-		//add goal cell to path.
-//		path.add(new IntCoord(goalCell.getCol(), goalCell.getRow()));
+		// add goal cell to path.
+		// path.add(new IntCoord(goalCell.getCol(), goalCell.getRow()));
 
-//		printIntoFile();
-		path.addFirst(smap.get(smap.getStart()).getCoords());
-		path.addLast(smap.get(smap.getTmpGoal()).getCoords());
-		calculatePathCost(path);
-		return path;
+		
+		Collections.sort(path, new CellOrderComparator());
+		
+		// create a real path for this solution.
+		tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate> orderedPath = new tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate>();
+
+		for (Cell cell : path) {
+			IntCoord pathStateCoord = new IntCoord(cell.col, cell.row);
+			orderedPath.add(pathStateCoord);
+		}
+		
+		// printIntoFile();
+		orderedPath.addFirst(smap.get(smap.getStart()).getCoords());
+		orderedPath.addLast(smap.get(smap.getTmpGoal()).getCoords());
+		calculatePathCost(orderedPath);
+		return orderedPath;
 	}
 
 	private void printIntoFile() throws IOException {
@@ -1192,23 +1213,23 @@ public class MOAStar {
 
 	public void updateAgentLocation(Coordinate newAgentLoc) throws Exception {
 
-		//update old cell as empty cell.
+		// update old cell as empty cell.
 		int r = smap.getStart()[1];
 		int c = smap.getStart()[0];
-//		startCell = map[r][c];
+		// startCell = map[r][c];
 		map[r][c].setOccupier(Cell.EMPTY);
 		map[r][c].setFlag(Cell.NONE);
-		
+
 		startCell = map[(int) newAgentLoc.get()[1]][(int) newAgentLoc.get()[0]];
-		map[(int) newAgentLoc.get()[1]][(int) newAgentLoc.get()[0]].setOccupier(Cell.AGENT);
-		map[(int) newAgentLoc.get()[1]][(int) newAgentLoc.get()[0]].setFlag(Cell.START);
-		
+		map[(int) newAgentLoc.get()[1]][(int) newAgentLoc.get()[0]]
+				.setOccupier(Cell.AGENT);
+		map[(int) newAgentLoc.get()[1]][(int) newAgentLoc.get()[0]]
+				.setFlag(Cell.START);
+
 	}
 
 	public void updateGoal(IntCoord tmpGoal) throws Exception {
-		
-		
-		
+
 		solutionPaths = new Vector<Path>(0, 1);
 		solutions = new Vector<TwoElement>(0, 1);
 		solution_costs = new Vector<TwoElement>(0, 1);
@@ -1216,7 +1237,7 @@ public class MOAStar {
 		open = new Vector<Cell>(0, 1);
 		closed = new Vector<Cell>(0, 1);
 		ND = new Vector<TwoElement>(0, 1);
-		
+
 		for (int i = 0; i < numRows; i++) {
 			if (i == 0 || i == numRows - 1) {
 				continue;
@@ -1246,7 +1267,7 @@ public class MOAStar {
 		map[r][c].setFlag(Cell.GOAL);
 
 		// agent properties.
-//		agent = new Agent();
+		// agent = new Agent();
 
 		// obstacle properties.
 		obstacles = smap.getObstacles();
@@ -1254,14 +1275,15 @@ public class MOAStar {
 			map[obstacle.getCoords().getInts()[1]][obstacle.getCoords()
 					.getInts()[0]].setOccupier(Cell.OBSTACLE);
 		}
-		
+
 	}
-	
-	public long getTotalExecTime(){
+
+	public long getTotalExecTime() {
 		return totalExecTime;
 	}
-	
-	protected void calculatePathCost(tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate> drawnPath) {
+
+	protected void calculatePathCost(
+			tr.edu.metu.ceng.ms.thesis.modstarlite.data.Path<Coordinate> drawnPath) {
 		double totalPathRisk = 0d;
 		for (Coordinate currentCoord : drawnPath.getRoute()) {
 			IntCoord intCoord = (IntCoord) currentCoord;

@@ -14,6 +14,8 @@ import tr.edu.metu.ceng.ms.thesis.robotutils.data.IntCoord;
 
 public class Individual extends Vertex {
 
+	private static final int UTOPIC_TERMINATION_COEFFICIENT = 9000;
+
 	private Path path;
 
 	private ObjectiveArray fitnessValue;
@@ -88,6 +90,8 @@ public class Individual extends Vertex {
 
 		// final locations to finish.
 		// int goalX = n, goalY = n;
+		
+		int possibleMaxSize = gmap.getPossibleMaxSize(startX, startY, goalX, goalY);
 
 		boolean randomPathFound = false;
 		while (!randomPathFound) {
@@ -115,6 +119,11 @@ public class Individual extends Vertex {
 					randomPathFound = true;
 					break;
 				}
+				
+				if(this.getPath().size() == possibleMaxSize * UTOPIC_TERMINATION_COEFFICIENT) {
+					return false;
+				}
+				
 			}
 		}
 		
