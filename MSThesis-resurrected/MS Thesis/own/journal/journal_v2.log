@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.7.19)  30 JAN 2014 15:01
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.7.19)  1 MAY 2014 19:01
 entering extended mode
  %&-line parsing enabled.
-**journal.tex
-(./journal.tex
+**journal_v2.tex
+(./journal_v2.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
@@ -690,37 +690,35 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 (/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
 \subfig@top=\skip61
 \subfig@bottom=\skip62
-) (./journal.aux)
-\openout1 = `journal.aux'.
+) (./journal_v2.aux)
+\openout1 = `journal_v2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-
-ABD: EveryShipout initializing macros (./introduction/introduction.tex)
-(./relatedwork/relatedwork.tex [1
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+ ABD: EveryShipout initializing macros [1
 
 
 ]
-Underfull \hbox (badness 2626) in paragraph at lines 15--16
+Underfull \hbox (badness 2626) in paragraph at lines 91--92
 []\OT1/ptm/m/n/10 Evolutionary meth-ods were also pro-posed for multi-
  []
 
 [2]
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 107.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 107.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -737,10 +735,8 @@ Missing character: There is no ™ in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-File: ./figures/dstarlite/dStarLiteExample.eps Graphic file (type eps)
-
-<./figures/dstarlite/dStarLiteExample.eps> [3]
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
 [] \OT1/ptm/b/n/9 re-turn $\OT1/cmr/m/n/9 [\OML/cmm/m/it/9 min\OT1/cmr/m/n/9 (\
 OML/cmm/m/it/9 g\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 s\OT1/cmr/m/n/9 )\OML/cmm/m/it/
 9 ; rhs\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 s\OT1/cmr/m/n/9 )) + \OML/cmm/m/it/9 h\O
@@ -748,129 +744,121 @@ T1/cmr/m/n/9 (\OML/cmm/m/it/9 s[]; s\OT1/cmr/m/n/9 ) +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 [] \OT1/ptm/b/n/9 while $\OML/cmm/m/it/9 U:topKey\OT1/cmr/m/n/9 () \OML/cmm/m/i
 t/9 < calculateKey\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 s[]\OT1/cmr/m/n/9 )$ $\OMS/cm
 sy/m/n/9 jj$
  []
 
-[4]) (./proposed/MODStarLiteAndMOGPP.tex [5]
-File: ./figures/modstarlite/75x75envPropertiesExample.eps Graphic file (type ep
-s)
-
-<./figures/modstarlite/75x75envPropertiesExample.eps>
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 27--28
- [][] 
- []
-
-[6]
-Overfull \hbox (37.17297pt too wide) detected at line 39
+[4] [5]
+Overfull \hbox (34.39519pt too wide) detected at line 280
 \OML/cmm/m/it/10 rhs\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) = []
  []
 
-[7]
+[6]
 File: ./figures/modstarlite/graph1v2.eps Graphic file (type eps)
  <./figures/modstarlite/graph1v2.eps>
 File: ./figures/modstarlite/graph2v2.eps Graphic file (type eps)
  <./figures/modstarlite/graph2v2.eps>
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 122.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 363.
 
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
- [8]
-Underfull \hbox (badness 4108) in paragraph at lines 168--169
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 363.
+ [7]
+Underfull \hbox (badness 4108) in paragraph at lines 409--410
 []\OT1/ptm/m/n/10 To up-date a weight of a state, MOD* Lite uses
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
 [] \OT1/ptm/b/n/9 if \OT1/ptm/m/n/9 eC.equals(cC) OR
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 [] \OT1/ptm/b/n/9 if \OT1/ptm/m/n/9 s'.parents.contains(s) AND !ex-pand-
  []
 
-[9]
+[8]
 File: ./figures/mogpp/xover.eps Graphic file (type eps)
- <./figures/mogpp/xover.eps>
+ <./figures/mogpp/xover.eps> [9]
 File: ./figures/mogpp/newMutation.eps Graphic file (type eps)
- <./figures/mogpp/newMutation.eps> [10])
-(./experiments/experiments.tex [11]
+ <./figures/mogpp/newMutation.eps> [10]
 File: ./figures/experimental/randomized_normal.eps Graphic file (type eps)
 
 <./figures/experimental/randomized_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 24--25
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 599--600
  [][] 
  []
 
 File: ./figures/experimental/handcrafted_normal.eps Graphic file (type eps)
 <./figures/experimental/handcrafted_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 78--79
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 654--655
  [][] 
  []
 
-[12]
+[11]
 File: ./figures/experimental/initialSearch.eps Graphic file (type eps)
  <./figures/experimental/initialSearch.eps>
 File: ./figures/experimental/60x60_partially_normal.eps Graphic file (type eps)
 
 
 <./figures/experimental/60x60_partially_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 155--156
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 731--732
  [][] 
  []
 
 File: ./figures/experimental/80x80_partially_normal.eps Graphic file (type eps)
 
 <./figures/experimental/80x80_partially_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 162--163
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 739--740
  [][] 
  []
 
 File: ./figures/experimental/100x100_partially_normal.eps Graphic file (type ep
 s)
 <./figures/experimental/100x100_partially_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 169--170
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 746--747
  [][] 
  []
 
 File: ./figures/experimental/120x120_partially_normal.eps Graphic file (type ep
 s)
 <./figures/experimental/120x120_partially_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 176--177
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 753--754
  [][] 
  []
 
 File: ./figures/experimental/60x60_multiobj_normal.eps Graphic file (type eps)
 <./figures/experimental/60x60_multiobj_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 183--184
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 760--761
  [][] 
  []
 
 File: ./figures/experimental/80x80_multiobj_normal.eps Graphic file (type eps)
 <./figures/experimental/80x80_multiobj_normal.eps>
-Overfull \hbox (6.11029pt too wide) in paragraph at lines 190--191
+Overfull \hbox (6.11029pt too wide) in paragraph at lines 767--768
  [][] 
  []
 
-) [13] (./conclusion/conclusion.tex [14]) (./journal.bbl
+[12] [13] (./journal_v2.bbl
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
-) [15] (./journal.aux) ) 
+ [14]) [15
+
+] (./journal_v2.aux) ) 
 Here is how much of TeX's memory you used:
- 14435 strings out of 495062
- 253392 string characters out of 1182644
- 351407 words of memory out of 3000000
- 17236 multiletter control sequences out of 15000+50000
+ 14408 strings out of 495062
+ 252833 string characters out of 1182644
+ 355400 words of memory out of 3000000
+ 17233 multiletter control sequences out of 15000+50000
  34642 words of font info for 91 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 56i,10n,55p,2662b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,10n,55p,2636b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on journal.dvi (15 pages, 132356 bytes).
+Output written on journal_v2.dvi (15 pages, 127600 bytes).

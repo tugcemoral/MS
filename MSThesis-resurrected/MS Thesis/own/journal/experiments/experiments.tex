@@ -5,7 +5,7 @@ MOD* Lite is a domain independent algorithm and can be applied to any virtual en
 
 The algorithm is tested on various environments with different scenarios. However, as it is not possible to exemplify all possible cases, specific and several extreme conditions are selected for experiments. MOD* Lite is compared with MOA* that guarantees optimal solutions in fully observable multi objective environments and MOGPP, a classic genetic solution which can be used for finding paths with multi objective cases.
 
-For testing, all algorithms are implemented in Java language and run under Linux environment which has Intel Core2 Quad CPU running at 2.33GHz and 4 GB of RAM.
+For testing, all algorithms are implemented in Java language and run under Linux environment which has Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz and 8 GB of RAM with -Xmx6192m parameter for JVM.
 
 All tests are done on 2-D grid maps as detailed in Subsection \ref{envProperties}. In these tests, the agent tries to find available non-dominated best paths with respect to two objectives, path length and risk taken from threat zones. Thus, the agent endeavours to minimize both objectives and tries to find \textit{shortest} and \textit{safest} paths.
 
@@ -15,53 +15,67 @@ For all test cases, several parameters of MOGPP algorithm must be tuned. For ins
 
 First of all, it must be shown that MOD* Lite is complete and gives optimal and/or sub-optimal results in fully observable environments. The performance comparison is done in two dimensions, execution times and paths they generate (path quality), respectively.
 
-In the first set of tests, randomly generated fully observable maps with different sizes (25 x 25, 50 x 50, 75 x 75, 100 x 100, 125 x 125 and 150 x 150), are used. Each of these maps have nearly 30\%-32\% percent threat zone and 14\%-16\% percent obstacle ratio. Agent's initial and target locations are also taken randomly. For this case, execution times and generated paths' costs for different sized maps are given in Figure \ref{fig:rand_fully} and Table \ref{table:randPaths}. As seen from path qualities, MOA* finds optimal results and MOD* Lite finds optimal and/or sub-optimal results while gradually increases on the computation time manner. Although MOGPP works on similar times with MOA*
- especially for large scaled maps, it fails to find optimal or sub-optimal paths. One could set maximum iteration and population count to larger numbers to converge path quality to optimality, but this case increases execution time exponentially. Thus, more modest parameters are chosen for MOGPP to enforce the algorithm to yield reasonable results within expected time. 
+In the first set of tests, randomly generated fully observable maps with different sizes (20 x 20, 40 x 40, 60 x 60, 80 x 80, 100 x 100, 120 x 120, 140 x 140 and 160 x 160), are used. Each of these maps have nearly 25\%-30\% percent threat zone and 14\%-16\% percent obstacle ratio. Agent's initial and target locations are taken as farmost cells on diagonal. For this case, execution times and generated paths' costs for different sized maps are given in Figure \ref{fig:rand_fully} and Table \ref{table:randPaths}. As seen from path qualities, MOA* finds optimal results and MOD* Lite finds optimal and/or sub-optimal results while gradually increases on the computation time manner. Although MOGPP works on similar times with MOD* Lite, it fails to find optimal or sub-optimal paths  especially for large scaled maps. One could set maximum iteration and population count to larger numbers to converge path quality to optimality, but this case increases execution time exponentially. Thus, more modest parameters are chosen for MOGPP to enforce the algorithm to yield reasonable results within expected time. 
  
 Notice that taken risk values depend on environmental properties and should not be compared between different sized maps.
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/randomized}
+\includegraphics[width=2.5in, angle=270]{experimental/randomized_normal}
 \caption{Execution Times of Randomly Generated Fully Observable Maps}
 \label{fig:rand_fully}
 \end{figure}
 
 \begin{table}[ht]
-	\caption{Non-dominated Path Costs For Randomized Maps} % title of Table
+	\caption{Non-dominated Path Costs For Randomized Maps}
 	\centering
     \begin{tabular}{l l l l}
         \hline
-        Map Size  &  MOD* Lite  &  MOA*  &  MOGPP \\ [0.5ex] \hline
-        25 x 25   &  (49, 571)  &  (49, 571)  &  (49, 3523)
-		   \cr    &  (51, 10)   &  (51, 10) &  (51, 764) 
-		   \cr	 &			   &				&  (53, 58)\\ 
-        50 x 50   & (99, 982)   & (99, 982)  &  (103, 7399)
-		   \cr	  &	(101, 0)   &  (101, 0)  &  (121, 178)
-		   \cr	 &			   &				&  (123, 0)\\
-        75 x 75   & (149, 1549) & (149, 115) & (175, 730)
-		   \cr	  &  (151, 221) & (153, 0) & (187, 272)
-		   \cr	  &  (153, 0)	&			& (201, 0)\\
-        100 x 100 & (199, 10) & (199, 10) & (301, 2357)
-		   \cr    & (201, 4) & (201, 4) & (329, 1087)
-		   \cr    & (203, 0) & (203, 0) & (349, 746)\\ 
-        125 x 125 & (90, 1036) & (90, 1036) & (225, 10677)
-		   \cr	  & (92, 293) & (92, 293) & (239, 2249)
-		   \cr	  & (94, 165) & (94, 165) &
-		   \cr	  & (96, 101) & (96, 101) &				\\
-        150 x 150 & (126, 128) & (126, 128) & (191, 14720)
-		   \cr	 &			   &				&  (207, 5316)        
-    		   \cr	 &			   &				&  (211, 312) \\ [1ex]
+        Map Size	&  MOD* Lite	&	MOA*		&	MOGPP \\ [0.5ex] \hline
+        20 x 20		&	(39,90)		&	(39,90)		&	(41,916)
+		   \cr		&	(43,0)		&	(43,0)		&	(43,408)\\
+		   \\ 
+        40 x 40		&	(79,9)		&	(79,9)		&	(89,2789)
+		   \cr		&	(81,0)		&	(81,0)		&	(103,1239)
+		   \cr		&				&				&	(105,296)\\
+		   \\
+		60 x 60		& 	(119,0)		&	(119,0)		&	(151,1970)
+		   \cr		&				&				&	(169,549)
+		   \cr		&			  	&				&	(181,426)\\
+		   \\
+        80 x 80		& 	(159,198)	&	(159,58)	&	(213,6382)
+		   \cr		& 	(161,0)		&	(161,0)		&	(237,2007)
+		   \cr		& 				&				& 	(263,1581)
+		   \cr		& 				&				& 	(269,955)
+		   \cr		& 				&				& 	(285,942)\\
+		   \\
+        100 x 100	&	(199,885)	&	(199,885)	&	(285,15804)	
+		   \cr    	&	(201,708)	&	(201,708)	&	(295,14130)
+		   \cr    	&	(203,0)		&	(203,0)		&	(299,14099)
+		   \cr	  	& 				&				&	(305,10979)
+		   \cr	  	& 				&				&	(341,9851)
+		   \cr	  	& 				&				&	(377,177)\\		   
+		   \\
+        120 x 120	&	(239,0)		&	(238,0)		&	(371,12817)
+		   \cr		&				&				&	(399,7346)\\
+		   \\
+        140 x 140	&	(279,45)	&	(279,45)	&	(445,10920)
+		   \cr		&	(281,42)	&	(285,12)	&	(483,5281)        
+    	   \cr		&				&	(303,0)		&	(515,4000)
+ 		   \cr		&				&			 	&	(517,3520)\\
+ 		   \\
+        160 x 160	&	(319,0)		&	(319,0)		&	(545,7530)
+		   \cr		& 			 	&			 	&	(547,4602)\\ [1ex]
         \hline
     \end{tabular}
 	\label{table:randPaths}
 \end{table}
 
-In the second set of tests, each algorithm is executed on handcrafted maps with same sizes, threat zone and obstacle ratio with randomized tests as indicated in previous test case. These maps are also assumed fully observable and agent's initial and target locations are taken randomly. All handcrafted test environments \textit{guarantee} that at least two non-dominated paths will be available. Execution times are shown in Figure \ref{fig:hand_fully} and generated paths' costs are given in Table \ref{table:handPaths}.
+In the second set of tests, each algorithm is executed on handcrafted maps with same sizes, threat zone and obstacle ratio with randomized tests as indicated in previous test case. These maps are also assumed fully observable and agent's initial and target locations are as farmost cells on diagonal. All handcrafted test environments \textit{guarantee} that at least two non-dominated paths will be available. Execution times are shown in Figure \ref{fig:hand_fully} and generated paths' costs are given in Table \ref{table:handPaths}.
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/handcrafted}
+\includegraphics[width=2.5in, angle=270]{experimental/handcrafted_normal}
 \caption{Execution Times of Handcrafted Fully Observable Maps}
 \label{fig:hand_fully}
 \end{figure}
@@ -71,27 +85,49 @@ In the second set of tests, each algorithm is executed on handcrafted maps with 
 	\centering
     \begin{tabular}{l l l l}
         \hline
-        Map Size  &  MOD* Lite  &  MOA*  &  MOGPP\\ [0.5ex] \hline
-        25 x 25   &  (49, 722)  &  (49, 722)  &  (53, 1227)
-		   \cr    &  (51, 505)   &  (51, 505)  &  (56, 938)
-   		   \cr    &  (55, 216)   &  (55, 216)  &  (59, 216)\\ 
-        50 x 50   & (99, 14)   & (99, 14)  &  (101, 1871)
-		   \cr	  &	(101, 0)   &  (101, 0)  &  (125, 1156)
-		   \cr	 &			   &				&  (151, 736)\\
-        75 x 75   & (149, 1927) & (149, 1927) &  (235, 737)
-		   \cr	  &  (151, 1329) & (151, 1329) &  (261, 372)
-		   \cr	  &  (153, 279)	&	(153, 279) & (279, 0)
-   		   \cr	  &  (159, 0)	&	(159, 0) & \\
-        100 x 100 & (199, 1077) & (199, 144) & (297, 4390)
-		   \cr	  & (201, 20) & (201, 20) & (315, 3710)
-		   \cr	  & (205, 0) & (205, 0) & (395, 1861)\\
-        125 x 125 & (249, 15) & (249, 15) & (391, 9516)
-		   \cr    & 			 & (257, 0)  &  (445, 5358)
-		   \cr	 &			   &				&  (451, 365)		   
-		   \cr	 &			   &				&  (561, 0)\\
-        150 x 150 & (301, 20) & (299, 145) & (266, 6110)
-    		   \cr	  & 			 & (301, 20) & (270, 5915)
-   		   \cr	  & 		  & (315, 0) & (284, 4530)\\ [1ex]
+        Map Size  &  MOD* Lite  & 	 MOA*  		&  	MOGPP\\ [0.5ex] \hline
+        20 x 20   &	(39,264)	&	(39,264)	&	(39,1614)
+		   \cr    &	(41,258)	&	(43,6)		&	(41,394)
+   		   \cr    &	(45,0)		&	(45,0)		&	(47,264)
+   		   \cr	  &				&				&	(49,0)\\ 
+   		   \\
+        40 x 40   & (79,528)	&	(79,528)	&	(95,1637)
+		   \cr	  &	(81,352)	&	(81,352)	&	(115,880)
+		   \cr	  &	(91,156)	&	(91,156)	&  
+		   \cr	  &	(97,0)		&	(97,0)		& \\
+		   \\
+        60 x 60   & (119,243)	&	(119,243)	&	(159,4761)
+		   \cr	  & (123,33)	&	(123,33)	&	(165,1979)
+   		   \cr	  & (127,0)		&	(127,0)		&	(167,165)
+   		   \cr	  &				&				&	(233,99)\\ 
+   		   \\
+        80 x 80   & (159,129)	&	(159,129)	&	(223,2327)
+		   \cr	  &	(161,69)	&	(161,69)	&	(291,1627)
+		   \cr	  &	(163,0)		&	(163,0)		& \\
+		   \\
+        100 x 100 &	(199,30)	&	(199,30)	&	(311,4827)
+		   \cr	  &	(201,6)		&	(201,6)		&	(327,3042)
+		   \cr	  &	(203,0)		&	(203,0)		&	(341,1989)
+   		   \cr	  &				&				&	(353,45)
+   		   \cr	  &				&				&	(365,0)\\ 
+   		   \\
+        120 x 120 & (239,77)	&	(239,77)	&	(363,11340)
+		   \cr	  & (241,44)	&	(241,44)	&	(413,8821)
+		   \cr	  &			   	&	(261,0)		&	(417,4613)		   
+		   \cr	  &			   	&				&	(455,3830)
+		   \cr	  &			   	&				&	(517,1292)\\
+		   \\
+        140 x 140 & (210,1774)	&	(210,1774)	&	(306,16134)
+           \cr	  & (212,1728)	&	(212,1344)	&	(336,10836)           
+   		   \cr	  & (214,40)	&	(214,40)	&	(368,6510)
+		   \cr	  &	(244,0)	   	&	(244,0)		&	(390,4876) 
+		   \cr	  &			   	&				&	(500,3335)   
+		   \cr	  &			   	&				&	(514,2328)\\
+		   \\
+        160 x 160 & (319,913)	&	(319,601)	&	(497,41016)
+           \cr	  & (321,581)	&	(321,354)	&	(563,19675)
+   		   \cr	  & (323,0)		&	(323,0)		&	(719,14811)
+		   \cr	  &			   	&				&	(859,9448)\\ [1ex]
         \hline
     \end{tabular}
 	\label{table:handPaths}
@@ -99,15 +135,15 @@ In the second set of tests, each algorithm is executed on handcrafted maps with 
 
 In execution times in Figure \ref{fig:hand_fully}, it can be seen that MOGPP increases gradually instead of an exponential growth especially on large scaled maps. However, its path quality is not good enough when compared to MOD* Lite and MOA*' s results.
 
-There exists a remarkable point that MOA* has nearly similar results with MOD* Lite in both path quality and execution time. This case shows that even MOD* Lite is based on partially observable dynamic environments, it could also give \textit{as good results as} MOA* on stationary and fully observable environments and can be applied on those environments.
+There exists a remarkable point that MOA* has nearly similar results with MOD* Lite in path quality manner. This case shows that even MOD* Lite is based on partially observable dynamic environments, it could also give \textit{as good results as} MOA* on stationary and fully observable environments and can be applied on those environments.
 
 \subsection{Partially Observable Tests}
 
-As discussed in previous sections; the main difference of MOD* Lite from existing classic path planning or evolutionary based algorithms is its adaptivity to partially observable dynamic environments. To show this advantage, partially observable tests are done with randomized maps of sizes 75 x 75, 100 x 100 and 125 x 125. On these maps, agent's initial and target locations are chosen to be the furthermost cells in the environment. For each map, agent' s sensor range was set between 20\% to 60\% and execution times were observed. An example search space of MOD* Lite with 30\% sensor range can be seen in Figure \ref{fig:initialSearch}. In this figure, agent is depicted with a cyan dot. The fogged gray area represents agent' s sensor range and drawn purple path through temporary goal (blue dot) can be seen.
+As discussed in previous sections; the main difference of MOD* Lite from existing classic path planning or evolutionary based algorithms is its adaptivity to partially observable dynamic environments. To show this advantage, partially observable tests are done with randomized maps of sizes 60 x 60, 80 x 80, 100 x 100 and 120 x 120. On these maps, agent's initial and target locations are chosen to be the furthermost cells in the environment. For each map, agent' s sensor range was set between 10\% to 60\% and execution times were observed. An example search space of MOD* Lite with 30\% sensor range can be seen in Figure \ref{fig:initialSearch}. In this figure, agent is depicted with a cyan dot. The fogged gray area represents agent' s sensor range and drawn purple path through temporary goal (blue dot) can be seen.
 
 \begin{figure}
 \centering
-\includegraphics[width=3.5in]{experimental/initialSearch}
+\includegraphics[width=2.5in, angle=270]{experimental/initialSearch}
 \caption{A 100x100 Partially Observable Map with 30\% Sensor Range}
 \label{fig:initialSearch}
 \end{figure}
@@ -116,30 +152,44 @@ In these tests, the agent starts to plan a path towards the nearest available ce
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/75x75SensorRange}
-\caption{75x75 Partially Observable Map on Different Sensor Ranges}
-\label{fig:75x75sensor}
+\includegraphics[width=2.5in, angle=270]{experimental/60x60_partially_normal}
+\caption{60x60 Partially Observable Map on Different Sensor Ranges}
+\label{fig:60x60sensor}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/100x100SensorRange}
+\includegraphics[width=2.5in, angle=270]{experimental/80x80_partially_normal}
+\caption{80x80 Partially Observable Map on Different Sensor Ranges}
+\label{fig:80x80sensor}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.5in, angle=270]{experimental/100x100_partially_normal}
 \caption{100x100 Partially Observable Map on Different Sensor Ranges}
 \label{fig:100x100sensor}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/125x125SensorRange}
-\caption{125x125 Partially Observable Map on Different Sensor Ranges}
-\label{fig:125x125sensor}
+\includegraphics[width=2.5in, angle=270]{experimental/120x120_partially_normal}
+\caption{120x120 Partially Observable Map on Different Sensor Ranges}
+\label{fig:120x120sensor}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=2.5in, angle=270]{experimental/w_mogpp/new75x75ThreatZonePercent}
-\caption{Execution times of 75x75 Fully Observable Map on Different Threat Zone Percents}
-\label{fig:tzratio}
+\includegraphics[width=2.5in, angle=270]{experimental/60x60_multiobj_normal}
+\caption{Execution times of 60x60 Fully Observable Map on Different Threat Zone Percents}
+\label{fig:tzratio60}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.5in, angle=270]{experimental/80x80_multiobj_normal}
+\caption{Execution times of 80x80 Fully Observable Map on Different Threat Zone Percents}
+\label{fig:tzratio80}
 \end{figure}
 
 %\begin{table}[ht]
@@ -158,8 +208,8 @@ In these tests, the agent starts to plan a path towards the nearest available ce
 %	\label{table:mogpp125vFrustum}
 %\end{table}
 
-The fundamental advantage of MOD* Lite can be seen very clearly on these tests. While MOD* Lite has the capability of updating only the effected states due to its incremental nature, MOA* re-plans the overall path from scratch when new parts become known and the weights of some cells have changed. This situation causes MOA* and MOGPP to work on exponentially long times. Total execution times to reach to the target for these test cases are given in Figures \ref{fig:75x75sensor}, \ref{fig:100x100sensor} and \ref{fig:125x125sensor}. As can be seen from results, MOD* Lite can easily handle the dynamical issues of the environment where MOA* and MOGPP fails. Due to discovering different parts of the environment during execution, actual traversed path's costs of MOD* Lite, MOA* and MOGPP might be slightly different from each other, where MOD* Lite could follow a better path with respect to MOA* or MOGPP or vice versa.
+The fundamental advantage of MOD* Lite can be seen very clearly on these tests. While MOD* Lite has the capability of updating only the effected states due to its incremental nature, MOA* re-plans the overall path from scratch when new parts become known and the weights of some cells have changed. This situation causes MOA* and MOGPP to work on exponentially long times. Total execution times to reach to the target for these test cases are given in Figures \ref{fig:60x60sensor}, \ref{fig:80x80sensor}, \ref{fig:100x100sensor} and \ref{fig:120x120sensor}. As can be seen from results, MOD* Lite can easily handle the dynamical issues of the environment where MOA* and MOGPP fails. Due to discovering different parts of the environment during execution, actual traversed path's costs of MOD* Lite, MOA* and MOGPP might be slightly different from each other, where MOD* Lite could follow a better path with respect to MOA* or MOGPP or vice versa.
 
 \subsection{Multi Objectivity Tests}
 
-As threat zones and their risk values are used as the second objective, percentages of these zones also effect execution time and generated path quality. In this set of tests different threat zone percents are tested on a fully observable 75 x 75 map and results are given in Figure \ref{fig:tzratio}. It could be observed that increasing one of the objective' s ratio, or risks of threat zones for this test, does not effect performance of  MOD* Lite and MOGPP too much, they find results in approximately similar times. However, MOA* is tightly coupled with it and execution time increases gradually as the threat percentage increases.
+As threat zones and their risk values are used as the second objective, percentages of these zones also effect execution time and generated path quality. In this set of tests different threat zone percents are tested on a fully observable 60 x 60 and 80 x 80 map and results are given in Figure \ref{fig:tzratio60} and \ref{fig:tzratio80}, respectively. It could be observed that increasing one of the objective' s ratio, or risks of threat zones for this test, does not effect performance of  MOD* Lite and MOGPP too much, they find results in approximately similar times. However, MOA* is tightly coupled with it and execution time increases gradually as the threat percentage increases.
