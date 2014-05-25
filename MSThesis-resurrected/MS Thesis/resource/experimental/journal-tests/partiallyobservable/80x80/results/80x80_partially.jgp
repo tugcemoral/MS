@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jGNUplot_config>
+    <version>0.1.2</version>
+    <plot_tile>Different Sensor Ranges on 80x80 Map</plot_tile>
+    <plot_type>TWO_DIM</plot_type>
+    <max_x_range/>
+    <min_x_range/>
+    <max_y_range/>
+    <min_y_range/>
+    <min_z_range/>
+    <min_z_range/>
+    <x_label>Sensor Range Percents</x_label>
+    <y_label>Seconds</y_label>
+    <z_label>Seconds</z_label>
+    <logscale_x_axis>false</logscale_x_axis>
+    <logscale_y_axis>true</logscale_y_axis>
+    <logscale_z_axis>true</logscale_z_axis>
+    <pre_plot_string/>
+    <datasets>
+        <dataset id="0">
+            <class>jgp.JGPDataSet</class>
+            <filename>/home/mustafa/Desktop/tugcem/journal-tests/partiallyobservable/80x80/modstarlite</filename>
+            <datastring>2:xticlabels(1)</datastring>
+            <dataset_title>MOD* Lite</dataset_title>
+            <color>000099</color>
+            <style>linespoints</style>
+            <add_style_opt/>
+            <do_plot>true</do_plot>
+            <pre_process_program/>
+        </dataset>
+        <dataset id="1">
+            <class>jgp.JGPDataSet</class>
+            <filename>/home/mustafa/Desktop/tugcem/journal-tests/partiallyobservable/80x80/moastar</filename>
+            <datastring>2:xticlabels(1)</datastring>
+            <dataset_title>MOA*</dataset_title>
+            <color>990000</color>
+            <style>linespoints</style>
+            <add_style_opt/>
+            <do_plot>true</do_plot>
+            <pre_process_program/>
+        </dataset>
+        <dataset id="2">
+            <class>jgp.JGPDataSet</class>
+            <filename>/home/mustafa/Desktop/tugcem/journal-tests/partiallyobservable/80x80/mogpp</filename>
+            <datastring>2:xticlabels(1)</datastring>
+            <dataset_title>MOGPP</dataset_title>
+            <color>006633</color>
+            <style>linespoints</style>
+            <add_style_opt/>
+            <do_plot>true</do_plot>
+            <pre_process_program/>
+        </dataset>
+    </datasets>
+    <labels/>
+    <variables/>
+</jGNUplot_config>
