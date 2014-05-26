@@ -80,11 +80,10 @@ This paper is organized as follows: Section 2 gives the background and related w
 
 In the literature, there are several algorithms focusing on path planning. In this section, existing studies are introduced relevant to our work where the motivation is to handle existence of multiple objectives and partial observability in path planning.
 
-In  \cite{LDAStarBayili:2008}, Bayili and Polat introduced a multi-objective path planning algorithm, Limited Damage A*,  considering damage as a feasibility criterion in addition to distance.
-%When an agent navigates in a threat zone, it is exposed to an additive damage. An upper bound is predefined for maximum damage that can be exposed and the algorithm discontinues the search on paths with damage score exceeding this threshold.
-The algorithm was shown to find suboptimal solutions with a reasonable time performance compared to MOA*.
+In  \cite{LDAStarBayili:2008}, Bayili and Polat introduced a multi-objective path planning algorithm, Limited Damage A*,  considering damage as a feasibility criterion in addition to distance. When an agent navigates in a threat zone, it is exposed to an additive damage. An upper bound is predefined for maximum damage that can be exposed and the algorithm discontinues the search on paths with damage score exceeding this threshold. The algorithm was shown to find suboptimal solutions with a reasonable time performance compared to MOA*.
 
-Tarapata presented multi-objective approaches to shortest path problems in his study \cite{Tarapata:2007}. He gave a classification of multi-objective shortest path (MOSP) problems and discussed different models of them. He also presented methods of solving the formulated optimization problems. Analysis of the complexity of the presented methods and ways of adapting of classical algorithms for solving MOSP problems were described in detail. The comparison of the effectiveness of solving selected MOSP problems were given as mathematical programming problems and multi-weighted graph problems with experimental results.
+Tarapata presented multi-objective approaches to shortest path problems in his study \cite{Tarapata:2007}. He gave a classification of multi-objective shortest path (MOSP) problems and presented methods of solving the formulated optimization problems. Analysis of the complexity of the presented methods and ways of adapting of classical algorithms for solving MOSP problems were described in detail.
+%Effectiveness comparison of solutions for selected MOSP problems were given as multi-weighted graph problems with experimental results.
 
 %Might be excluded.
 Guo et al. concentrated on the problem of multi-objective path planning (MOPP) for the ball and plate system in their study \cite{Guo:2009}. The goal of MOPP was to obtain the safe -without colliding with hazardous obstacles- and shortest path for the ball to follow. They used an entropy-based method to calculate weights of objectives for each grid node. In simulation results, the path obtained by multi-objective method was much safer when compared to single-objective A* algorithm.
@@ -101,9 +100,11 @@ Castillo et al. also worked on evolutionary algorithms for MOPP in their study \
 
 Bukhari et al. came up with an optimization technique for dynamic online path planning for unknown environments \cite{Bukhari:2010}. A simulated ant agent system is proposed using modified ant colony optimization algorithm for dealing with online path planning. It is compared with evolutionary techniques on randomly generated environments; with constraints like different obstacle ratio and grid sizes. The proposed algorithm generates and optimizes paths in complex and large environments with several constraints.
 
-Nasrollahy et al. proposed a particle swarm optimization algorithm as a multi-agent search technique, for path planning in dynamic and known (fully observable) environments in order to minimize total path planning time while avoiding local optima \cite{Nasrollahy:2009}. They created a small-scale model of search system moving goal position and obstacles. They tried to optimize global best path through the goal position. Although they mentioned about effectivity of proposed algorithm, they did not give concrete results and comparisons with other methods.
+Nasrollahy et al. proposed a particle swarm optimization algorithm as a multi-agent search technique, for path planning in dynamic and known (fully observable) environments in order to minimize total path planning time while avoiding local optima \cite{Nasrollahy:2009}.
+%They created a small-scale model of search system moving goal position and obstacles.
+They tried to optimize global best path through the goal position. Although they mentioned about effectivity of proposed algorithm, they did not give concrete results and comparisons with other methods.
 
-Dozier et al. gave a new selection method for multi objective path planning (MOPP) in \cite{Dozier:1998}. They introduced fuzzy tournament selection algorithm which combines fuzzy inference with tournament selection to select candidate solution paths. This selection was based on the euclidean distance from initial to goal position, the sum of the changes and the average change in the slope of a path.
+%Dozier et al. gave a new selection method for multi objective path planning (MOPP) in \cite{Dozier:1998}. They introduced fuzzy tournament selection algorithm which combines fuzzy inference with tournament selection to select candidate solution paths. This selection was based on the euclidean distance from initial to goal position, the sum of the changes and the average change in the slope of a path.
 
 Complete discussion of multi-objective evolutionary algorithms (MOEA) can be found in \cite{MOOUEA}. Also \cite{Coello:2000}, gives a summary of current approaches in MOEA and emphasizes the importance of new approaches in exploiting the capabilities of evolutionary algorithms in multi-objective optimization.
 
@@ -241,7 +242,7 @@ Thus, the key with the smallest value is taken from the priority queue and expan
 
 The D* Lite algorithm first initializes the priority queue \textit{U} to an empty set, the heap reordering variable $k_{m}$ to zero, and the \textit{g} and \textit{rhs-values} of all vertices to infinity. Initially, $s_{start}$ is the only consistent vertex and is inserted into the empty priority queue with its calculated key $k(s_{start})$. This initialization guarantees that the first iteration performs an A* search that it expands the same vertices as A* would, in exactly the same order.
 
-After the first iteration, a loop is processed until reaching to $s_{goal}$. In each iteration, when $g(s_{goal})$ is observed as $\infty$, it can be inferred that there is no known path between $s_{start}$ and $s_{goal}$. If this is the case, the algorithm can be terminated. Else, next vertex to move is determined as new $s_{start}$ with the equation $s_{start} = argmin_{s' \in succ(s_{start})}(c(s_{start},s') + g(s'));$, where minimum cost adjacent of current $s_{start}$.
+After the first iteration, a loop is processed until reaching to $s_{goal}$. In each iteration, when $g(s_{goal})$ is observed as $\infty$, it can be inferred that there is no known path between $s_{start}$ and $s_{goal}$. If this is the case, the algorithm can be terminated. Else, next vertex to move is determined as new $s_{start}$ with the equation $s_{start} = argmin_{s' \in succ(s_{start})}(c(s_{start},s') + g(s'))$, where minimum cost adjacent of current $s_{start}$.
 
 At this point, a change in the edge costs is waited in the environment. If any edge costs have changed, the heap variable $k_{m}$ is cumulatively updated with heuristic function of last visited and $s_{start}$ vertices. Then; for all changed edge costs, new cost $c(s, s')$ is recalculated and the \textit{rhs-values} and keys of the vertices potentially affected by the changed edge costs are recomputed. In addition, priority queue is adjusted by locally-consistency. 
 %The $k_{m}$ variable is important because repeated reordering of priority queue $U$ is expensive since it often contains large number of vertices. By cumulatively adding heuristic value between last visited vertex and start, whenever new priorities are computed, the variable $k_{m}$ has to be added to key value's first components. In this way, the order of vertices in the priority queue is unaffected when the agent moves and the priority queue doesn't need to be reordered.
@@ -264,9 +265,9 @@ At the end of the algorithm execution, one can trace back a shortest path from $
 \label{chapter:proposedAlgorithm}
 
 \subsection{Motivation}
-Assume that an unmanned aerial vehicle (UAV) is taking off from an initial location. Its goal is to discover an enemy unit on a predefined target location in an unknown dynamic environment. However, the enemy unit is protected by air defense units scattered on the terrain having different capabilities (hit ratios) and coverage areas. Each defense unit scans the space within its coverage areas to detect any threat. Due to its limited sensor capability, a UAV can only partially observe the environment. The air defense zones produce computable risk values for UAVs when they enter UAV's perceived sensor range. On the other hand, UAV has limited fuel and time, so it must locate and monitor the target quickly but the risk of being hit by an air defense unit must be minimized. This means that the UAV should find both the shortest and safest path \textit{as quickly as possible}.
+Assume that an unmanned aerial vehicle (UAV) is taking off from an initial location. Its goal is to discover an enemy unit on a predefined target location in an unknown dynamic environment. However, the enemy unit is protected by air defense units scattered on the terrain having different capabilities (hit ratios) and coverage areas. Each defense unit scans the space within its coverage area to detect any threat. Due to its limited sensor capability, a UAV can only partially observe the environment. The air defense zones produce computable risk values for UAVs when they enter UAV's perceived sensor range. On the other hand, UAV has limited fuel and time, so it must locate and monitor the target quickly but the risk of being hit by an air defense unit must be minimized. This means that the UAV should find both the shortest and safest path \textit{as quickly as possible}.
 
-In this real-world problem, the UAV has to execute a planner and quickly find available paths. Also it needs to re-plan the current  path when an unknown part of the environment become known, or known parts are changed (i.e., a visible defense unit's coverage area changes, shrinks or enlarges; or defense unit is disabled / enabled) as it navigates. Mostly, evolutionary search algorithms focus on this issue and come up with several solutions like \cite{Peng_Xu_Zhang:2011}, \cite{Foo_Knutzon:2009}. However, It is obvious that these algorithms are insufficient for reflecting and adapting the dynamics of the environment as they are not incremental. One alternative could be to adapt off-line MOA* to unknown environments but it is grossly inefficient as it has to be restarted from scratch every time when some unknown part of the environment becomes known, or known part changes.
+In this real-world problem, the UAV has to execute a planner and quickly find available paths. Also it needs to re-plan the current path when an unknown part of the environment become known, or known parts are changed (i.e., a visible defense unit's coverage area changes, shrinks or enlarges; or defense unit is disabled / enabled) as it navigates. Mostly, evolutionary search algorithms focus on this issue and come up with several solutions like \cite{Peng_Xu_Zhang:2011}, \cite{Foo_Knutzon:2009}. However, It is obvious that these algorithms are insufficient for reflecting and adapting the dynamics of the environment as they are not incremental. One alternative could be to adapt off-line MOA* to unknown environments but it is grossly inefficient as it has to be restarted from scratch every time when some unknown part of the environment becomes known, or known part changes.
 
 In this study, a multi objective incremental path planning algorithm is developed based on non-optimized version of D* lite \cite{Koenig:2002} to meet these requirements. The algorithm is called multi objective D* lite, or MOD* Lite \cite{Oral:2012}. To prove effectiveness of MOD* Lite,  an alternative solution based that makes use of evolutionary computation, Multi Objective Genetic Path Planner (MOGPP) is also developed. 
 
@@ -276,7 +277,7 @@ Multi-objective problems focus on considering more than one objective concurrent
 
 We say that $u$ \textit{dominates} $v$ if $u$ is better than $v$ in at least one objective. In other words, there is no objective of $v$ which is better than any objective of $u$. Moreover, $u$ and $v$ are said to be \textit{non-dominated} if for at least one objective,  $u$ is better but for at least some other objective, $v$ is better. For instance, assume that we have two objectives to be minimized and let $u=[3,4], v=[4,6], w=[6,2] $. Here $u$ dominates $v$, but $u$ and $w$ are non-dominated.
 
-MOD* Lite enables a user to define a set of objectives, $O_1, O_2, \cdots, O_n$ to be used in the evaluation of the quality of the candidate paths explored by an incremental algorithm. In that respect MOD* Lite is a domain-independent path search algorithm that can be used in any search problem where the environment is partially or fully observable. Note that for each objective $O_i$, the user needs to define whether $O_i$ is to be minimized or maximized. Each objective is assumed \textit{not to be transferable} to and \textit{non-interacting} with other objectives.  For the sake of simplicity, we assume that there are two objectives to be minimized and describe MOD* Lite accordingly. Note that the algorithms can easily be instantiated to work with more than two objectives. For the experimental study, MOD* Lite is is realized in the UAV domain example which has been introduced above with two objectives to be minimized, namely the distance and the degree of risk of danger. 
+MOD* Lite enables a user to define a set of objectives, $O_1, O_2, \cdots, O_n$ to be used in the evaluation of the quality of the candidate paths explored by an incremental algorithm. In that respect MOD* Lite is a domain-independent path search algorithm that can be used in any search problem where the environment is partially or fully observable. Note that for each objective $O_i$, the user needs to define whether $O_i$ is to be minimized or maximized. Each objective is assumed \textit{not to be transferable} to and \textit{non-interacting} with other objectives.  For the sake of simplicity, we assume that there are two objectives to be minimized and describe MOD* Lite accordingly. Note that the algorithms can easily be instantiated to work with more than two objectives. For the experimental study, MOD* Lite is is realized in the UAV domain example which has been introduced above with two objectives to be minimized, namely the distance and the degree of risk of danger.
 
 \subsection{Environmental Properties}
 \label{envProperties}
@@ -517,14 +518,14 @@ P(j)=\lbrace \varsigma, ..., c_{j-1}, c_{j}, c_{j+1}, ..., \tau \rbrace
 \end{gather*}
 for $i$ and $j$ individuals. $\varsigma$ and $\tau$ shows initial and target locations, respectively. While crossover, an intersected cell of these paths is determined. Then, each path is split up into two sub-paths referencing by this cell. If this cell is $c_{i} = c_{j}$, the splitting operation is done as follows
 \begin{gather*}
-P(i)_{1}=\lbrace \varsigma, ..., c_{i-1} \rbrace \\
+P(i)_{1}=\lbrace \varsigma, ..., c_{i-1} \rbrace, 
 P(i)_{2}=\lbrace c_{i}, c_{i+1}, ..., \tau \rbrace \\
-P(j)_{1}=\lbrace \varsigma, ..., c_{j-1} \rbrace \\
+P(j)_{1}=\lbrace \varsigma, ..., c_{j-1} \rbrace, 
 P(j)_{2}=\lbrace c_{j}, c_{j+1}, ..., \tau \rbrace
 \end{gather*}
 The concatenation of swapped sub-paths generate new individuals
 \begin{gather*}
-P'(i)=\lbrace P(i)_{1}, P(j)_{2} \rbrace \\
+P'(i)=\lbrace P(i)_{1}, P(j)_{2} \rbrace, 
 P'(j)=\lbrace P(j)_{1}, P(i)_{2} \rbrace 
 \end{gather*}
 $P'(i)$ and $P'(j)$ are the new paths for parents $i$ and $j$.
@@ -610,7 +611,7 @@ For all test cases, several parameters of MOGPP algorithm must be tuned. For ins
 
 First of all, it must be shown that MOD* Lite is complete and gives optimal and/or acceptably sub-optimal results in fully observable environments. The performance comparison is done in two dimensions, execution times and paths they generate (path quality), respectively.
 
-In the first set of tests, randomly generated fully observable maps with different sizes $m \times m$ (20 x 20, 40 x 40, 60 x 60, 80 x 80, 100 x 100, 120 x 120, 140 x 140 and 160 x 160), are used. Each of these maps have nearly 25\%-30\% percent threat zone and 14\%-16\% percent obstacle ratio. Agent's initial and target locations are taken as farmost cells ($1 \times 1$ and $m \times m$) on the diagonal. For this case, execution times and generated paths' costs for different sized maps are given in Figure \ref{fig:rand_fully} and Table \ref{table:randPaths}. Note that in Table \ref{table:randPaths}, solutions reported by the algorithms are given as pairs of two numbers, the first one is the length of the path, the second one is the accumulated risk value through that path, both of which to be minimized. Concerning solution quality, MOA* finds optimal results and MOD* Lite finds optimal or acceptably sub-optimal results while its running times are better than those of MOA*. Although MOGPP works on similar times with MOD* Lite, it fails to find optimal or sub-optimal paths  especially for large scaled maps.We could set maximum iteration and population count to larger numbers to have converge on path quality, but this would increases execution times exponentially. Thus, more modest parameters are chosen for MOGPP to enforce the algorithm to yield reasonable results within expected time. 
+In the first set of tests, randomly generated fully observable maps with different sizes $m \times m$ (20 x 20, 40 x 40, 60 x 60, 80 x 80, 100 x 100, 120 x 120, 140 x 140 and 160 x 160), are used. Each of these maps have nearly 25\%-30\% percent threat zone and 14\%-16\% percent obstacle ratio. Agent's initial and target locations are taken as farmost cells ($1 \times 1$ and $m \times m$) on the diagonal. For this case, execution times and generated paths' costs for different sized maps are given in Figure \ref{fig:rand_fully} and Table \ref{table:randPaths}. Note that in Table \ref{table:randPaths}, solutions reported by the algorithms are given as pairs of two numbers, the first one is the length of the path, the second one is the accumulated risk value through that path, both of which to be minimized. Concerning solution quality, MOA* finds optimal results and MOD* Lite finds optimal or acceptably sub-optimal results while its running times are better than those of MOA*. Although MOGPP works on similar times with MOD* Lite, it fails to find optimal or sub-optimal paths  especially for large scaled maps. We could set maximum iteration and population count to larger numbers to have converge on path quality, but this would increases execution times exponentially. Thus, more modest parameters are chosen for MOGPP to enforce the algorithm to yield reasonable results within expected time. 
  
 Notice that taken risk values depend on environmental properties and should not be compared between different sized maps.
 
@@ -672,7 +673,7 @@ In the second set of tests, each algorithm is executed on handcrafted maps of th
 \begin{figure}
 \centering
 %\includegraphics[width=3.7in, height=3in]{experimental/handcrafted_normal}
-\includegraphics[width=2.2in, angle=270]{experimental/handcrafted_normal}
+\includegraphics[width=3.2in]{experimental/handcrafted_normal}
 \caption{Execution Times of Handcrafted Fully Observable Maps}
 \label{fig:hand_fully}
 \end{figure}
@@ -740,7 +741,7 @@ As discussed in previous sections; the main difference of MOD* Lite from existin
 
 \begin{figure}
 \centering
-\includegraphics[width=2.2in, angle=270]{experimental/initialSearch}
+\includegraphics[width=2.5in]{experimental/initialSearch}
 \caption{A 100x100 Partially Observable Map with 30\% Sensor Range}
 \label{fig:initialSearch}
 \end{figure}
@@ -749,7 +750,7 @@ In these tests, the agent starts to plan a path towards the nearest available ce
 
 \begin{figure}
 \centering
-\includegraphics[width=2.2in, angle=270]{experimental/60x60_partially_normal}
+\includegraphics[width=2.5in]{experimental/60x60_partially_normal}
 \caption{60x60 Partially Observable Map on Different Sensor Ranges}
 \label{fig:60x60sensor}
 \end{figure}
@@ -757,38 +758,38 @@ In these tests, the agent starts to plan a path towards the nearest available ce
 \begin{figure}
 \centering
 %\includegraphics[width=3in, height=2in]{experimental/80x80_partially_normal}
-\includegraphics[width=2.2in, angle=270]{experimental/80x80_partially_normal}
+\includegraphics[width=2.0in,angle=270]{experimental/80x80_partially_normal}
 \caption{80x80 Partially Observable Map on Different Sensor Ranges}
 \label{fig:80x80sensor}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=2.2in, angle=270]{experimental/100x100_partially_normal}
+\includegraphics[width=2.0in,angle=270]{experimental/100x100_partially_normal}
 \caption{100x100 Partially Observable Map on Different Sensor Ranges}
 \label{fig:100x100sensor}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=2.2in, angle=270]{experimental/120x120_partially_normal}
+\includegraphics[width=2.5in]{experimental/120x120_partially_normal}
 \caption{120x120 Partially Observable Map on Different Sensor Ranges}
 \label{fig:120x120sensor}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=2.2in, angle=270]{experimental/60x60_multiobj_normal}
-\caption{Execution times of 60x60 Fully Observable Map on Different Threat Zone Percents}
-\label{fig:tzratio60}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=2.2in, angle=270]{experimental/80x80_multiobj_normal}
-\caption{Execution times of 80x80 Fully Observable Map on Different Threat Zone Percents}
-\label{fig:tzratio80}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=2.5in]{experimental/60x60_multiobj_normal}
+%\caption{Execution times of 60x60 Fully Observable Map on Different Threat Zone Percents}
+%\label{fig:tzratio60}
+%\end{figure}
+%
+%\begin{figure}
+%\centering
+%\includegraphics[width=2.5in]{experimental/80x80_multiobj_normal}
+%\caption{Execution times of 80x80 Fully Observable Map on Different Threat Zone Percents}
+%\label{fig:tzratio80}
+%\end{figure}
 
 %\begin{table}[ht]
 %	\caption{MOGPP Execution Times on a 125x125 Partially Observable Map}
@@ -844,9 +845,9 @@ In these tests, the agent starts to plan a path towards the nearest available ce
 	\label{table:partiallyObsPathLengths}
 \end{table}
 
-The fundamental advantage of MOD* Lite can be seen very clearly on these tests. While MOD* Lite has the capability of updating only the effected states due to its incremental nature, MOA* re-plans the overall path from scratch when new parts become known and the weights of some cells have changed. This situation causes MOA* and MOGPP to work on exponentially long times. Total execution times to reach to the target for these test cases are given in Figures \ref{fig:60x60sensor}, \ref{fig:80x80sensor}, \ref{fig:100x100sensor} and \ref{fig:120x120sensor}. As can be seen from results, MOD* Lite can easily handle the dynamical issues of the environment where MOA* and MOGPP fails. Due to discovering different parts of the environment during execution, actual traversed path's costs of MOD* Lite, MOA* and MOGPP might be slightly different from each other, where MOD* Lite could follow a better path with respect to MOA* or MOGPP or vice versa.
+The fundamental advantage of MOD* Lite can be seen very clearly on these tests. While MOD* Lite has the capability of updating only the effected states due to its incremental nature, MOA* re-plans the overall path from scratch when new parts become known and the weights of some cells have changed. This situation causes MOA* and MOGPP to work on exponentially long times. Total execution times to reach to the target for these test cases are given in Figures \ref{fig:60x60sensor}, \ref{fig:80x80sensor}, \ref{fig:100x100sensor} and \ref{fig:120x120sensor}. Also found paths' costs are given in Table \ref{table:partiallyObsPathLengths}. As can be seen from results, MOD* Lite can easily handle the dynamical issues of the environment where MOA* and MOGPP fails. Due to discovering different parts of the environment during execution, actual traversed path's costs of MOD* Lite, MOA* and MOGPP might be slightly different from each other, where MOD* Lite could follow a better path with respect to MOA* or MOGPP or vice versa.
 
-As threat zones and their risk values are used as the second objective, percentages of these zones also affect execution time and generated path quality. In this set of tests different threat zone percents are tested on a fully observable 60 x 60 and 80 x 80 maps and results are given in Figure \ref{fig:tzratio60} and \ref{fig:tzratio80}, respectively. It could be observed that increasing risks of threat zones does not affect performances of  MOD* Lite and MOGPP too much, they find results in approximately similar times. However, MOA* is tightly coupled with it and execution time increases gradually as the threat percentage increases.
+%As threat zones and their risk values are used as the second objective, percentages of these zones also affect execution time and generated path quality. In this set of tests different threat zone percents are tested on a fully observable 60 x 60 and 80 x 80 maps and results are given in Figure \ref{fig:tzratio60} and \ref{fig:tzratio80}, respectively. It could be observed that increasing risks of threat zones does not affect performances of  MOD* Lite and MOGPP too much, they find results in approximately similar times. However, MOA* is tightly coupled with it and execution time increases gradually as the threat percentage increases.
 
 \section{Conclusion and Future Work}
 \label{chapter:conclusion}

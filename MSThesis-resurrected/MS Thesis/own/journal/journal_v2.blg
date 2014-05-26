@@ -1,4 +1,5 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: journal_v2.aux
 The style file: ieeetr.bst
 Database file #1: journal.bib
@@ -10,45 +11,45 @@ Warning--empty booktitle in Pangilinan
 Warning--empty year in Pangilinan
 Warning--empty institution in spea2:2001
 Warning--empty publisher in Peng_Xu_Zhang:2011
-You've used 26 entries,
+You've used 25 entries,
             1876 wiz_defined-function locations,
-            677 strings with 8801 characters,
-and the built_in function-call counts, 8875 in all, are:
-= -- 942
-> -- 231
+            670 strings with 8482 characters,
+and the built_in function-call counts, 8469 in all, are:
+= -- 905
+> -- 214
 < -- 0
-+ -- 88
-- -- 62
-* -- 618
-:= -- 1131
-add.period$ -- 29
-call.type$ -- 26
-change.case$ -- 26
++ -- 82
+- -- 57
+* -- 589
+:= -- 1080
+add.period$ -- 28
+call.type$ -- 25
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 30
-duplicate$ -- 472
-empty$ -- 851
-format.name$ -- 62
-if$ -- 2223
+cite$ -- 29
+duplicate$ -- 449
+empty$ -- 812
+format.name$ -- 57
+if$ -- 2121
 int.to.chr$ -- 0
-int.to.str$ -- 26
-missing$ -- 27
-newline$ -- 84
-num.names$ -- 26
-pop$ -- 87
+int.to.str$ -- 25
+missing$ -- 26
+newline$ -- 81
+num.names$ -- 25
+pop$ -- 80
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 392
+skip$ -- 374
 stack$ -- 0
-substring$ -- 820
-swap$ -- 232
+substring$ -- 787
+swap$ -- 221
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 89
-width$ -- 28
-write$ -- 268
+while$ -- 86
+width$ -- 27
+write$ -- 259
 (There were 6 warnings)

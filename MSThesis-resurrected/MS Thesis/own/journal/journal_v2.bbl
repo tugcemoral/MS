@@ -85,13 +85,6 @@ A.~Z. Nasrollahy and H.~H.~S. Javadi, ``Using particle swarm optimization for
   target,'' {\em Computer Modeling and Simulation, UKSIM European Symposium
   on}, vol.~0, pp.~60--65, 2009.
 
-\bibitem{Dozier:1998}
-G.~Dozier, S.~McCullough, A.~Homaifar, E.~Tunstel, and L.~Moore,
-  ``Multiobjective evolutionary path planning via fuzzy tournament selection,''
-  in {\em Evolutionary Computation Proceedings, 1998. IEEE World Congress on
-  Computational Intelligence., The 1998 IEEE International Conference on},
-  pp.~684 --689, May 1998.
-
 \bibitem{MOOUEA}
 K.~Deb, {\em {Multi-Objective Optimization Using Evolutionary Algorithms}}.
 \newblock J.Wiley \& Sons, 1st~ed., June 2001.
