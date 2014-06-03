@@ -1,0 +1,139 @@
+İnanamadım	(inan)inan	+Verb(+yAmA)^DB+Verb+Able+Neg(+dH)+Past(+m)+A1sg
+müthiş	(mUthiS)müthiş+Adj
+bir	(bir)bir	+Det
+kadro	(kadro)kadro	+Noun+A3sg+Pnon+Nom
+,	,	+?
+müthiş	(mUthiS)müthiş+Adj
+bir	(bir)bir	+Det
+ekip	(ekib)ekip	+Noun+A3sg+Pnon+Nom
+(	(	+?
+yönetmen	(yOnetmen)yönetmen+Noun+A3sg+Pnon+Nom
+,	,	+?
+senarist	(senarist)senarist	+Noun+A3sg+Pnon+Nom
+,	,	+?
+yapımcılar	(yapImcI)yapımcı+Noun(+lAr)+A3pl+Pnon+Nom
+)	)	+?
+her	(her)her	+Det
+şey	(Sey)şey+Noun+A3sg+Pnon+Nom
+güzel	(gUzel)güzel+Adj
+ama	(ama)ama	+Conj
+resmen	(resmen)resmen	+Adverb
+fiyasko	(fiyasko)fiyasko	+Noun+A3sg+Pnon+Nom
+bir	(bir)bir	+Det
+film	(film)film	+Noun+A3sg+Pnon+Nom
+.	.	+?
+Adeta	(adeta)adeta	+Adverb
+oldu	(ol)ol	+Verb+Pos(+dH)+Past+A3sg
+bittiye	(bitti)bitti	+Noun+A3sg+Pnon(+yA)+Dat
+getirilmiş	(getir)getir	+Verb(+Hl)^DB+Verb+Pass+Pos(+mHS)+Narr+A3sg
+,	,	+?
+romantizm	(romantizm)romantizm	+Noun+A3sg+Pnon+Nom
+deseniz	(de)de	+Verb+Pos(+sA)+Desr(+nHz)+A2pl
+romantizm	(romantizm)romantizm	+Noun+A3sg+Pnon+Nom
+değil	(deGil)değil+Verb+Neg+Pres+A3sg
+,	,	+?
+siyasi	(siyasi)siyasi	+Adj
+deseniz	(de)de	+Verb+Pos(+sA)+Desr(+nHz)+A2pl
+o	(o)o	+Pron+Demons+A3sg+Pnon+Nom
+değil	(deGil)değil+Verb+Neg+Pres+A3sg
+adeta	(adeta)adeta	+Adverb
+ne	(ne)ne	+Pron+Ques+A3sg+Pnon+Nom
+olduğu	(ol)ol	+Verb+Pos(+dHk)^DB+Noun+PastPart+A3sg(+sH)+P3sg+Nom
+belirsiz	(belirsiz)belirsiz	+Adj
+saçma	(saCma)saçma+Adj
+sapan	(sap)sap	+Verb+Pos(+yAn)^DB+Adj+PresPart
+bir	(bir)bir	+Det
+iş	(iS)iş+Noun+A3sg+Pnon+Nom
+olmuş	(ol)ol	+Verb+Pos(+mHS)+Narr+A3sg
+.	.	+?
+Böyle	(bOyle)böyle+Adj
+ekip	(ekib)ekip	+Noun+A3sg+Pnon+Nom
+ama	(ama)ama	+Conj
+öyle	(Oyle)öyle+Adj
+bir	(bir)bir	+Det
+film	(film)film	+Noun+A3sg+Pnon+Nom
+gerçekten	(gerCekten)gerçekten+Adverb
+çok	(Cok)çok+Adj
+yazık	(yazIk)yazık+Noun+A3sg+Pnon+Nom
+olmuş	(ol)ol	+Verb+Pos(+mHS)+Narr+A3sg
+.	.	+?
+Beren	(bere)bere	+Noun+A3sg(+Hn)+P2sg+Nom
+Saat'ın	(saat)Saat	+Noun+Prop+A3sg+Pnon(+nHn)+Gen
+performansı	(performans)performans	+Noun+A3sg(+sH)+P3sg+Nom
+da	(da)da	+Conj
+ayrıca	(ayrIca)ayrıca+Adverb
+kötü	(kOtU)kötü+Adj
+.	.	+?
+Yağmur	(yaGmur)Yağmur+Noun+Prop+A3sg+Pnon+Nom
+Adam'la	(adam)Adam	+Noun+Prop+A3sg+Pnon(+ylA)+Ins
+ilgisi	(ilgi)ilgi	+Noun+A3sg(+sH)+P3sg+Nom
+yok	(yok)yok	+Adj
+diyen	(di)de	+Verb+Pos(+yAn)^DB+Adj+PresPart
+arkadaş	(arkadaS)arkadaş+Noun+A3sg+Pnon+Nom
+ya	(ya)ya	+Conj
+hayatında	(hayat)hayat	+Noun+A3sg(+sH)+P3sg(+ndA)+Loc
+Rain	(rain)Rain	+Noun+Prop+A3sg+Pnon+Nom
+Man	(man)Man	+Noun+Prop+A3sg+Pnon+Nom
+filmini	(film)film	+Noun+A3sg(+sH)+P3sg(+nH)+Acc
+izlememiş	(izle)izle	+Verb(+mA)+Neg(+mHS)+Narr+A3sg
+,	,	+?
+ya	(ya)ya	+Conj
+da	(da)da	+Conj
+fazlasıyla	(fazlasIyla)fazlasıyla+Adverb
+taraflı	(taraf)taraf	+Noun(+lH)+A3sg+Pnon+Nom^DB+Adj+With
+bir	(bir)bir	+Det
+biçimde	(biCim)biçim+Noun+A3sg+Pnon(+dA)+Loc
+yersiz	(yersiz)yersiz	+Adj
+bir	(bir)bir	+Det
+savunu	(savunu)savunu	+Noun+A3sg+Pnon+Nom
+yapmaya	(yap)yap	+Verb+Pos(+mA)^DB+Noun+Inf2+A3sg+Pnon(+yA)+Dat
+çalışmış	(CalIS)çalış+Verb+Pos(+mHS)+Narr+A3sg
+.	.	+?
+Film	(film)film	+Noun+A3sg+Pnon+Nom
+vizyona	(vizyon)vizyon	+Noun+A3sg+Pnon(+yA)+Dat
+girmeden	(gir)gir	+Verb+Pos(+mAdAn)^DB+Adverb+WithoutHavingDoneSo
+yorum	(yorum)yorum	+Noun+A3sg+Pnon+Nom
+yapanlara	(yap)yap	+Verb+Pos(+yAn)^DB+Adj+PresPart^DB+Noun+Zero(+lAr)+A3pl+Pnon(+yA)+Dat
+lanet	(lanet)lanet	+Noun+A3sg+Pnon+Nom
+okuyanlar	(oku)oku	+Verb+Pos(+yAn)^DB+Adj+PresPart^DB+Noun+Zero(+lAr)+A3pl+Pnon+Nom
+ve	(ve)ve	+Conj
+izlemeden	(izle)izle	+Verb+Pos(+mAdAn)^DB+Adverb+WithoutHavingDoneSo
+eleştirmekle	(eleStir)eleştir+Verb+Pos(+mAk)^DB+Noun+Inf1+A3sg+Pnon(+ylA)+Ins
+suçlayanlar	(suCla)suçla+Verb+Pos(+yAn)^DB+Adj+PresPart^DB+Noun+Zero(+lAr)+A3pl+Pnon+Nom
+ya	(ya)ya	+Conj
+vizyon	(vizyon)vizyon	+Noun+A3sg+Pnon+Nom
+öncesi	(Once)önce+Noun+A3sg(+sH)+P3sg+Nom
+Gala	(gala)gala	+Noun+A3sg+Pnon+Nom
+izlemelerinden	(izle)izle	+Verb+Pos(+mA)^DB+Noun+Inf2(+lArH)+A3pl+P3pl(+ndAn)+Abl
+haberleri	(haber)haber	+Noun(+lArH)+A3pl+P3pl+Nom
+yok	(yok)yok	+Adj
+,	,	+?
+ya	(ya)ya	+Conj
+da	(da)da	+Conj
+olumsuz	(olumsuz)olumsuz	+Adj
+fikirlere	(fikir)fikir	+Noun(+lAr)+A3pl+Pnon(+yA)+Dat
+tahammülleri	(tahammUl)tahammül+Noun(+lArH)+A3pl+P3pl+Nom
+yok	(yok)yok	+Adj
+.	.	+?
+Ayrıca	(ayrIca)ayrıca+Adverb
+şunu	(Su)şu+Pron+Demons+A3sg+Pnon(+nH)+Acc
+da	(da)da	+Conj
+belirteyim	(belir)belir	+Verb(+t)^DB+Verb+Caus+Pos(+yA)+Opt(+yHm)+A1sg
+;	;	+?
+bu	(bu)bu	+Det
+sektörde	(sektOr)sektör+Noun+A3sg+Pnon(+dA)+Loc
+çalışan	(CalIS)çalış+Verb+Pos(+yAn)^DB+Adj+PresPart
+pek	(pek)pek	+Adverb
+çok	(Cok)çok+Det
+kişinin	(kiSi)kişi+Noun+A3sg+Pnon(+nHn)+Gen
+bir	(bir)bir	+Det
+filmi	(film)film	+Noun+A3sg+Pnon(+yH)+Acc
+vizyona	(vizyon)vizyon	+Noun+A3sg+Pnon(+yA)+Dat
+girmeden	(gir)gir	+Verb+Pos(+mAdAn)^DB+Adverb+WithoutHavingDoneSo
+görme	(gOr)gör+Verb+Pos(+mA)^DB+Noun+Inf2+A3sg+Pnon+Nom
+şansı	(Sans)şans+Noun+A3sg(+sH)+P3sg+Nom
+var	(var)var	+Adj
+bunu	(bu)bu	+Pron+Demons+A3sg+Pnon(+nH)+Acc
+da	(da)da	+Conj
+unutmayın	(unut)unut	+Verb(+mA)+Neg+Imp(+yHn)+A2pl
+.	.	+?
