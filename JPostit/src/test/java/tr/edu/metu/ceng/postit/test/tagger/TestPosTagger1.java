@@ -1,15 +1,15 @@
-package tr.edu.metu.ceng.postit.test;
+package tr.edu.metu.ceng.postit.test.tagger;
 
 import org.junit.Test;
 
 import tr.edu.metu.ceng.postit.tagger.IPosTagger;
-import tr.edu.metu.ceng.postit.tagger.PosTagger2;
+import tr.edu.metu.ceng.postit.tagger.PosTagger1;
 
-public class TestPosTagger2 extends PosTaggerTestBase {
+public class TestPosTagger1 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence1() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun+Gen");
+		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun");
 	}
 
 	@Test
@@ -19,7 +19,7 @@ public class TestPosTagger2 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence2() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_2, "can", "Noun+Nom");
+		assertWordTagPair(NOUN_SENTENCE_2, "can", "Noun");
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class TestPosTagger2 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence3() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_3, "noktasi", "Noun+Nom");
+		assertWordTagPair(NOUN_SENTENCE_3, "noktasi", "Noun");
 	}
 
 	@Test
@@ -44,17 +44,17 @@ public class TestPosTagger2 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence4() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_4, "konunun", "Noun+Gen");
+		assertWordTagPair(NOUN_SENTENCE_4, "konunun", "Noun");
 	}
 
 	@Test
 	public void testConvertVerbToVerbToNounSentence3() throws Exception {
-		assertWordTagPair(VERB_TO_VERB_TO_NOUN_SENTENCE, "islenis", "Noun+Nom");
+		assertWordTagPair(VERB_TO_VERB_TO_NOUN_SENTENCE, "islenis", "Noun");
 	}
 
 	@Test
 	public void testConvertNounSentence5() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_5, "sekli", "Noun+Nom");
+		assertWordTagPair(NOUN_SENTENCE_5, "sekli", "Noun");
 	}
 
 	@Test
@@ -64,6 +64,7 @@ public class TestPosTagger2 extends PosTaggerTestBase {
 
 	@Override
 	protected IPosTagger getPosTagger() {
-		return new PosTagger2();
+		return new PosTagger1();
 	}
+
 }

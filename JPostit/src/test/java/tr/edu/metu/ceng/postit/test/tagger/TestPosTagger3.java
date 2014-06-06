@@ -1,15 +1,15 @@
-package tr.edu.metu.ceng.postit.test;
+package tr.edu.metu.ceng.postit.test.tagger;
 
 import org.junit.Test;
 
 import tr.edu.metu.ceng.postit.tagger.IPosTagger;
-import tr.edu.metu.ceng.postit.tagger.PosTagger1;
+import tr.edu.metu.ceng.postit.tagger.PosTagger3;
 
-public class TestPosTagger1 extends PosTaggerTestBase {
+public class TestPosTagger3 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence1() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun");
+		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun+Gen");
 	}
 
 	@Test
@@ -19,42 +19,42 @@ public class TestPosTagger1 extends PosTaggerTestBase {
 
 	@Test
 	public void testConvertNounSentence2() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_2, "can", "Noun");
+		assertWordTagPair(NOUN_SENTENCE_2, "can", "Noun+Nom");
 	}
 
 	@Test
 	public void testConvertVerbToAdjSentence1() throws Exception {
-		assertWordTagPair(VERB_TO_ADJ_SENTENCE_1, "alici", "Adj");
+		assertWordTagPair(VERB_TO_ADJ_SENTENCE_1, "alici", "Verb+Adj");
 	}
 
 	@Test
 	public void testConvertNounSentence3() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_3, "noktasi", "Noun");
+		assertWordTagPair(NOUN_SENTENCE_3, "noktasi", "Noun+Nom");
 	}
 
 	@Test
-	public void testConvertVerbToVerbToAdjSentence2() throws Exception {
-		assertWordTagPair(VERB_TO_VERB_TO_ADJ_SENTENCE, "islenmis", "Adj");
+	public void testConvertVerbToVerbToAdjSentence() throws Exception {
+		assertWordTagPair(VERB_TO_VERB_TO_ADJ_SENTENCE, "islenmis", "Verb+Adj");
 	}
 
 	@Test
 	public void testConvertVerbToAdjSentence2() throws Exception {
-		assertWordTagPair(VERB_TO_ADJ_SENTENCE_2, "olan", "Adj");
+		assertWordTagPair(VERB_TO_ADJ_SENTENCE_2, "olan", "Verb+Adj");
 	}
 
 	@Test
 	public void testConvertNounSentence4() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_4, "konunun", "Noun");
+		assertWordTagPair(NOUN_SENTENCE_4, "konunun", "Noun+Gen");
 	}
 
 	@Test
 	public void testConvertVerbToVerbToNounSentence3() throws Exception {
-		assertWordTagPair(VERB_TO_VERB_TO_NOUN_SENTENCE, "islenis", "Noun");
+		assertWordTagPair(VERB_TO_VERB_TO_NOUN_SENTENCE, "islenis", "Verb+Noun+Nom");
 	}
 
 	@Test
 	public void testConvertNounSentence5() throws Exception {
-		assertWordTagPair(NOUN_SENTENCE_5, "sekli", "Noun");
+		assertWordTagPair(NOUN_SENTENCE_5, "sekli", "Noun+Nom");
 	}
 
 	@Test
@@ -64,7 +64,6 @@ public class TestPosTagger1 extends PosTaggerTestBase {
 
 	@Override
 	protected IPosTagger getPosTagger() {
-		return new PosTagger1();
+		return new PosTagger3();
 	}
-
 }

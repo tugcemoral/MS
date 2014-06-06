@@ -1,4 +1,4 @@
-package tr.edu.metu.ceng.postit.test;
+package tr.edu.metu.ceng.postit.test.tagger;
 
 import static org.hamcrest.core.Is.is;
 
