@@ -8,6 +8,16 @@ import tr.edu.metu.ceng.postit.tagger.PosTagger1;
 public class TestPosTagger1 extends PosTaggerTestBase {
 
 	@Test
+	public void testConvertNounWithSingularHighVowelSentence() throws Exception {
+		assertWordTagPair(NOUN_WITH_SINGULAR_HIGHVOWEL_SENTENCE, "haftasonu", "Noun");
+	}
+	
+	@Test
+	public void testConvertNounGenSentence() throws Exception {
+		assertWordTagPair(NOUN_GEN_SENTENCE, "Saat", "Noun");
+	}
+	
+	@Test
 	public void testConvertNounSentence1() throws Exception {
 		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun");
 	}
@@ -61,7 +71,7 @@ public class TestPosTagger1 extends PosTaggerTestBase {
 	public void testConvertPunctuationSentence() throws Exception {
 		assertWordTagPair(PUNCTUATION_SENTENCE, ".", "?");
 	}
-
+	
 	@Override
 	protected IPosTagger getPosTagger() {
 		return new PosTagger1();

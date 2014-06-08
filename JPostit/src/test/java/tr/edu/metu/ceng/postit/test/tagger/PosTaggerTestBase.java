@@ -4,11 +4,16 @@ import static org.hamcrest.core.Is.is;
 
 import org.junit.Assert;
 
+import tr.edu.metu.ceng.postit.data.WordTagPair;
 import tr.edu.metu.ceng.postit.tagger.IPosTagger;
-import tr.edu.metu.ceng.postit.tagger.WordTagPair;
 
 public abstract class PosTaggerTestBase {
+	
+	protected static final String NOUN_GRN_SENTENCE = "Erdoğan'ın	(erdoGan)Erdoğan+Noun+Prop+A3sg+Pnon+Grn";
 
+	protected static final String NOUN_GEN_SENTENCE = "Saat'ın	(saat)Saat	+Noun+Prop+A3sg+Pnon(+nHn)+Gen";
+	protected static final String NOUN_WITH_SINGULAR_HIGHVOWEL_SENTENCE = "haftasonu	(haftason)haftasonu(+sH)	+Noun+A3sg+Pnon+Nom";
+	
 	protected static final String NOUN_SENTENCE_1 = "filmin ( film ) film+Noun+A3sg+Pnon(+nHn )+Gen";
 	protected static final String ADVERB_SENTENCE = "en ( en ) en+Adverb";
 	protected static final String NOUN_SENTENCE_2 = "can ( can ) can+Noun+A3sg+Pnon+Nom";
@@ -30,7 +35,7 @@ public abstract class PosTaggerTestBase {
 		// convert the sentence to word tag pair.
 		WordTagPair wtp = posTagger.convert(morphologicSentence);
 		// assert word and tags.
-		Assert.assertThat(wtp.getWord(), is(expectedWord));
+		Assert.assertThat(wtp.getOriginalWord(), is(expectedWord));
 		Assert.assertThat(wtp.getTag(), is(expectedTag));
 	}
 }

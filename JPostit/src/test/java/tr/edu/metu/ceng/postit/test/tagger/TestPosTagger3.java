@@ -6,6 +6,16 @@ import tr.edu.metu.ceng.postit.tagger.IPosTagger;
 import tr.edu.metu.ceng.postit.tagger.PosTagger3;
 
 public class TestPosTagger3 extends PosTaggerTestBase {
+	
+	@Test
+	public void testConvertNounWithSingularHighVowelSentence() throws Exception {
+		assertWordTagPair(NOUN_WITH_SINGULAR_HIGHVOWEL_SENTENCE, "haftasonu", "Noun+Nom");
+	}
+	
+	@Test
+	public void testConvertNounGenSentence() throws Exception {
+		assertWordTagPair(NOUN_GEN_SENTENCE, "Saat", "Noun+Gen");
+	}
 
 	@Test
 	public void testConvertNounSentence1() throws Exception {
