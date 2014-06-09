@@ -9,6 +9,8 @@ public interface IPosTagger {
 
 	public WordTagPair convert(String analysis);
 	
+	public String tag(String sentence, String trainingFilePath) throws IOException;
+	
 	public String tag(String sentence) throws IOException;
 	
 	//used for evaluation...

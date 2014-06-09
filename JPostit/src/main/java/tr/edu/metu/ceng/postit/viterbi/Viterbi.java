@@ -5,10 +5,10 @@ import tr.edu.metu.ceng.postit.data.Token;
 
 public class Viterbi {
 
-	// prior probability matrix
+	// prior probability matrix (instance of Transition)
 	private Matrix priorMatrix = null;
 
-	// likelihood matrix
+	// likelihood matrix (instance of Emission)
 	private Matrix likelihoodMatrix = null;
 
 	public Viterbi(Matrix priorMatrix, Matrix likelihoodMatrix) {
@@ -93,7 +93,7 @@ public class Viterbi {
 		int stepIndex = T;
 		String tag = backtrack[tagIndex][stepIndex];
 		while (tag != null && tag.length() != 0) {
-			// set tag
+			// set tag for this token.
 			Token token = tokens[stepIndex - 1];
 			token.setTag(tag);
 			res.addToken(token);

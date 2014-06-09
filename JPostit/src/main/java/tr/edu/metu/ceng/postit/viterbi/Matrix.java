@@ -1,9 +1,7 @@
 package tr.edu.metu.ceng.postit.viterbi;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import tr.edu.metu.ceng.postit.data.Corpus;
 
@@ -15,13 +13,9 @@ public abstract class Matrix {
 	// transition probability matrix <K,V> = <Tag,<Following Tag,Probability>>
 	protected Map<String, Map<String, Double>> bigramMatrix = new HashMap<String, Map<String, Double>>();
 
-	protected Map<String, Double> unigramMatrix = new HashMap<String, Double>();
-
 	private final Corpus corpus;
 
-	private Double oovForUnigram = 0.0;
-
-	private Double oovForBigram = 0.0;
+	protected Double oovForBigram = 0.0;
 
 	public Matrix(Corpus corpus) {
 		this.corpus = corpus;
@@ -29,67 +23,6 @@ public abstract class Matrix {
 
 	protected Corpus getCorpus() {
 		return this.corpus;
-	}
-
-	/**
-	 * Normalize matrix cells, counting probability
-	 */
-	protected void normalize() {
-		normalizeUnigram();
-		normalizeBigram();
-	}
-
-	private void normalizeUnigram() {
-		// total number of words
-		Iterator<Map.Entry<String, Double>> it = unigramMatrix.entrySet()
-				.iterator();
-		double count = 0;
-		while (it.hasNext()) {
-			Map.Entry<String, Double> entry = it.next();
-			count += entry.getValue();
-		}
-		oovForUnigram = 1.0 / (count + corpus.vocabularySize());
-
-		// normalize
-		it = unigramMatrix.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String, Double> entry = it.next();
-			Double numberOfword = entry.getValue();
-			// add one smoothing
-			Double prob = (numberOfword + 1)
-					/ (count + corpus.vocabularySize());
-			entry.setValue(prob);
-		}
-	}
-
-	public Double getItem(String word) {
-		Double prob = this.unigramMatrix.get(word);
-		if (prob == null) {
-			return oovForUnigram;
-		}
-		return prob;
-	}
-
-	private void normalizeBigram() {
-		Iterator<Map.Entry<String, Map<String, Double>>> it = bigramMatrix
-				.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String, Map<String, Double>> entry = it.next();
-			Map<String, Double> colList = entry.getValue();
-			double count = 0;
-			for (Entry<String, Double> ent : colList.entrySet()) {
-				count += ent.getValue();
-			}
-			oovForBigram = 1.0 / (count + corpus.vocabularySize());
-			// normalize
-			for (Entry<String, Double> ent : colList.entrySet()) {
-				// add 1 smoothing
-				Double prob = (ent.getValue() + 1)
-						/ (count + corpus.vocabularySize());
-				// Double prob = (ent.getValue() / count);
-				ent.setValue(prob);
-			}
-		}
 	}
 
 	/**

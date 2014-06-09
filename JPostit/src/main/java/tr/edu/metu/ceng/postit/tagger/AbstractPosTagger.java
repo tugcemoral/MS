@@ -61,20 +61,26 @@ public abstract class AbstractPosTagger implements IPosTagger {
 	
 	@Override
 	public String tag(String sentence) throws IOException {
+		//tag with default trained corpus
+		String defaultTrainingFilePath = getClass().getResource(MORPH_ANALYSIS_TRAINING_FILE_PATH).getFile();
+//		String filePath = "." + MORPH_ANALYSIS_TRAINING_FILE_PATH;
+		return tag(sentence, defaultTrainingFilePath);
+	}
+	
+	@Override
+	public String tag(String sentence, String trainingFilePath)
+			throws IOException {
 		// create an hmm instance.
 		HMM hmm = new HMM(this);
 		// train wrt train document.
 		System.out.print(MessageFormat.format(
-				"Training Viterbi HMM with {0} wrt training file... ", this
-						.getClass().getSimpleName()));
+				"Training Viterbi HMM with {0} wrt training file from {1}... ", this.getClass().getSimpleName(), trainingFilePath));
 		long t1 = System.currentTimeMillis();
-		String filePath = getClass().getResource(MORPH_ANALYSIS_TRAINING_FILE_PATH).getFile();
-//		String filePath = "." + MORPH_ANALYSIS_TRAINING_FILE_PATH;
-		hmm.train(filePath);
+		hmm.train(trainingFilePath);
 		long t2 = System.currentTimeMillis();
 		System.out.println(MessageFormat.format("Done training in {0} ms.",
 				(t2 - t1)));
-
+		
 		// do the actual tagging!
 		Sentence taggedSentence = hmm.tag(sentence);
 		return taggedSentence.toString();

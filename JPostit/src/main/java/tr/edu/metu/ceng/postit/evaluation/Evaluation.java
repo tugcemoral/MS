@@ -1,5 +1,8 @@
 package tr.edu.metu.ceng.postit.evaluation;
 
+import java.text.DecimalFormat;
+import java.text.MessageFormat;
+
 public class Evaluation {
 
 	private final int trueTagged;
@@ -33,12 +36,16 @@ public class Evaluation {
 
 	@Override
 	public String toString() {
-		double tt = (double)trueTagged/(double)totalNumberOfTagged*100;
-		double ft = (double)falseTagged/(double)totalNumberOfTagged*100;
-		return "[ " + tt + " % ]"; 
-//		return "[ True(" + tt + " %): " + trueTagged + " False(" + ft + " %) : " + falseTagged
-//				+ " Total Tagged: " + totalNumberOfTagged
-//				+ " Number of Sentences : " + numberOfSentences + " ]";
+
+		DecimalFormat df = new DecimalFormat("#.###");
+
+		double tt = (double) trueTagged / (double) totalNumberOfTagged * 100;
+//		double ft = (double) falseTagged / (double) totalNumberOfTagged * 100;
+
+		return MessageFormat.format(
+				"True tagged: {0}% ({1} / {2})\tout of {3} sentences",
+				df.format(tt), trueTagged, totalNumberOfTagged,
+				numberOfSentences);
 	}
 
 }

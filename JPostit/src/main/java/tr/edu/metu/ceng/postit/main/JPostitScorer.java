@@ -2,7 +2,6 @@ package tr.edu.metu.ceng.postit.main;
 
 import java.io.IOException;
 
-import tr.edu.metu.ceng.postit.evaluation.Evaluation;
 import tr.edu.metu.ceng.postit.tagger.IPosTagger;
 import tr.edu.metu.ceng.postit.tagger.PosTagger1;
 import tr.edu.metu.ceng.postit.tagger.PosTagger2;
@@ -33,33 +32,33 @@ public class JPostitScorer {
 		System.out
 				.println("Scores for " + posTagger.getClass().getSimpleName() + ":");
 		// train : merged, dev: merged.
-		System.out.print("Merged / Merged : ");
+		System.out.print("Merged / Merged\t: ");
 		System.out.println(posTagger.evaluate(MERGED_FILE, MERGED_FILE));
 		// train : merged, dev: train.
-		System.out.print("Merged / Train : ");
+		System.out.print("Merged / Train\t: ");
 		System.out.println(posTagger.evaluate(MERGED_FILE, TRAIN_FILE));
 		// train : merged, dev: development.
-		System.out.print("Merged / Dev : ");
+		System.out.print("Merged / Dev\t: ");
 		System.out.println(posTagger.evaluate(MERGED_FILE, DEVELOPMENT_FILE));
 		
 		// train : train, dev: merged.
-		System.out.print("Train / Merged : ");
+		System.out.print("Train / Merged\t: ");
 		System.out.println(posTagger.evaluate(TRAIN_FILE, MERGED_FILE));
 		// train : train, dev: train.
-		System.out.print("Train / Train : ");
+		System.out.print("Train / Train\t: ");
 		System.out.println(posTagger.evaluate(TRAIN_FILE, TRAIN_FILE));
 		// train : train, dev: development.
-		System.out.print("Train / Dev : ");
+		System.out.print("Train / Dev\t: ");
 		System.out.println(posTagger.evaluate(TRAIN_FILE, DEVELOPMENT_FILE));
 
 		// train : development, dev: merged.
-		System.out.print("Dev / Merged : ");
+		System.out.print("Dev / Merged\t: ");
 		System.out.println(posTagger.evaluate(DEVELOPMENT_FILE, MERGED_FILE));
 		// train : development, dev: train.
-		System.out.print("Dev / Train : ");
+		System.out.print("Dev / Train\t: ");
 		System.out.println(posTagger.evaluate(DEVELOPMENT_FILE, TRAIN_FILE));
 		// train : development, dev: development.
-		System.out.print("Dev / Dev : ");
+		System.out.print("Dev / Dev\t: ");
 		System.out.println(posTagger.evaluate(DEVELOPMENT_FILE, DEVELOPMENT_FILE));
 		
 		System.out.println("--------------------------------");
