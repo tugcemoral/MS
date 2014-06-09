@@ -14,7 +14,7 @@ import tr.edu.metu.ceng.postit.data.Token;
  */
 public class TransitionMatrix extends Matrix {
 
-	private List<String[]> bigram = new ArrayList<String[]>();
+	private List<String[]> bigrams = new ArrayList<String[]>();
 
 	private Map<String, Double> unigram = new HashMap<String, Double>();
 
@@ -27,26 +27,46 @@ public class TransitionMatrix extends Matrix {
 	}
 
 	private void initialize() {
-		// initialize bigram model and unigram model
+		// initialize bigrams model and unigram model
 		initializeModel();
 		// initialize matrix
 		initializeMatrix();
 	}
 
+	/**
+	 * Initialize bigrams model for tags
+	 */
+	private void initializeModel() {
+		List<Sentence> sentences = getCorpus().getSentences();
+		for (Sentence sentence : sentences) {
+			List<Token> tokens = sentence.getTokens();
+			for (int i = -1; i < tokens.size(); i++) {
+				//find (n-1)th and nth tag values.
+				String tag_n_1 = (i == -1) ? HMM.START_SYMBOL : tokens.get(i).getTag();
+				String tag_n = (i == tokens.size() - 1) ? HMM.END_SYMBOL : tokens.get(i + 1).getTag();  
+				//add tag sequence to bigrams.
+				bigrams.add(new String[] { tag_n_1, tag_n });
+				
+				//initiate unigram count.
+				Double count = 0.0;
+				if (unigram.containsKey(tag_n_1)) {
+					count = unigram.get(tag_n_1);
+				}
+				unigram.put(tag_n_1, ++count);
+			}
+		}
+	}
+	
 	private void initializeMatrix() {
 		initializeBigramMatrix();
 		initializeUnigramMatrix();
 	}
-
-	private void initializeUnigramMatrix() {
-		super.unigramMatrix = this.unigram;
-	}
-
+	
 	private void initializeBigramMatrix() {
-		for (String[] biStr : bigram) {
-			// Tag
+		for (String[] biStr : bigrams) {
+			// first tag.
 			String n_1 = biStr[0];
-			// Following Tag
+			// following tag
 			String n = biStr[1];
 			if (bigramMatrix.get(n_1) == null) {
 				Map<String, Double> priorMap = new HashMap<String, Double>();
@@ -60,41 +80,9 @@ public class TransitionMatrix extends Matrix {
 			bigramMatrix.get(n_1).put(n, ++value);
 		}
 	}
-
-	/**
-	 * Initialize bigram model for tags
-	 */
-	private void initializeModel() {
-		List<Sentence> sentences = getCorpus().getSentences();
-		for (Sentence sentence : sentences) {
-			List<Token> tokens = sentence.getTokens();
-			for (int i = -1; i < tokens.size(); i++) {
-				String tag_n_1 = "";
-				String tag_n = "";
-				// add in a start symbol
-				if (i == -1) {
-					tag_n_1 = HMM.START_SYMBOL;
-				} else {
-					Token token_n_1 = tokens.get(i);
-					tag_n_1 = token_n_1.getTag();
-				}
-				// append an end symbol
-				if (i == tokens.size() - 1) {
-					tag_n = HMM.END_SYMBOL;
-				} else {
-					Token token_n = tokens.get(i + 1);
-					tag_n = token_n.getTag();
-				}
-				String[] biStr = new String[] { tag_n_1, tag_n };
-				bigram.add(biStr);
-				// initialize unigram
-				tag_n_1 = tag_n_1.toUpperCase();
-				Double count = 0.0;
-				if (unigram.containsKey(tag_n_1)) {
-					count = unigram.get(tag_n_1);
-				}
-				unigram.put(tag_n_1, ++count);
-			}
-		}
+	
+	private void initializeUnigramMatrix() {
+		super.unigramMatrix = this.unigram;
 	}
+
 }

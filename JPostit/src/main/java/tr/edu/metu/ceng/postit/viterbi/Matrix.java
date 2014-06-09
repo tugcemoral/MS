@@ -104,23 +104,6 @@ public abstract class Matrix {
 		return (value == null) ? oovForBigram : value;
 	}
 
-	@Override
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(getClass().getName());
-		sb.append("\n------------------\n");
-		Iterator<Map.Entry<String, Map<String, Double>>> it = bigramMatrix
-				.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String, Map<String, Double>> entry = it.next();
-			sb.append("[" + entry.getKey() + "=");
-			sb.append(entry.getValue());
-			sb.append("]\n");
-		}
-
-		return sb.toString();
-	}
-
 	public Map<String, Double> getRow(String row) {
 		return bigramMatrix.get(row);
 	}

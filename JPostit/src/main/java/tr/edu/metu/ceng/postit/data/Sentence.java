@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Sentence Model
  */
-public class Sentence {
+public class Sentence implements Cloneable {
 
 	private List<Token> tokens = null;
 
@@ -92,5 +92,14 @@ public class Sentence {
 		} else if (!tokens.equals(other.tokens))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public Sentence clone() throws CloneNotSupportedException {
+		Sentence clone = new Sentence();
+		for (Token token : getTokens()) {
+			clone.addToken(token.clone());
+		}
+		return clone;
 	}
 }

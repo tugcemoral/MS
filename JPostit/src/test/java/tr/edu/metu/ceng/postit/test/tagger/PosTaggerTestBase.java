@@ -9,6 +9,7 @@ import tr.edu.metu.ceng.postit.tagger.IPosTagger;
 
 public abstract class PosTaggerTestBase {
 	
+	protected static final String NOUN_SENTENCE_0 = "Üzümcü'nün	(UzUmcU)Üzümcü+Noun+Prop+A3sg+Pnon(+nHn)+Nom";
 	protected static final String NOUN_GRN_SENTENCE = "Erdoğan'ın	(erdoGan)Erdoğan+Noun+Prop+A3sg+Pnon+Grn";
 
 	protected static final String NOUN_GEN_SENTENCE = "Saat'ın	(saat)Saat	+Noun+Prop+A3sg+Pnon(+nHn)+Gen";

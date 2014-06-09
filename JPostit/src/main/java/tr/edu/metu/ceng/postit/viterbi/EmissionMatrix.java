@@ -84,49 +84,49 @@ public class EmissionMatrix extends Matrix {
 		boolean oov = !(getCorpus().containsWord(word));
 		if (oov) {
 			return 0.5d;
-			// if (startsWithCapital(word) && word.toLowerCase().endsWith("s")
-			// && state.equals("NNPS")) {
-			// // NP
-			// return getHighestProbForNNPS();
-			// }
-			// if ((startsWithCapital(word)) && state.equals("NNP")) {
-			// // NP
-			// return getHighestProbForNNP();
-			// }
-			// if (startsWithNum(word) && state.equals("CD")) {
-			// // CD
-			// return getHighestProbForCD();
-			// }
-			// if (word.toLowerCase().endsWith("s")
-			// && (state.equals("NNS") || state.equals("VBZ"))) {
-			// // NNS and VBZ
-			// return getLowestProbForNNSAndVBZ();
-			// }
-			// if (word.toLowerCase().endsWith("ed") && state.equals("VBN")) {
-			// // VBN
-			// return getLowestProbForVBN();
-			// }
-			// if (word.toLowerCase().endsWith("ly") && state.equals("RB")) {
-			// // RB
-			// return getLowestProbForRB();
-			// }
-			// if ((word.toLowerCase().endsWith("able")
-			// || word.toLowerCase().endsWith("al") || word.contains("-"))
-			// && state.equals("JJ")) {
-			// // JJ
-			// return getLowestProbForJJ();
-			// }
-			// if (word.toLowerCase().endsWith("ion") && state.equals("NN")) {
-			// // NN
-			// return getLowestProbForNN();
-			// }
-			// if (word.toLowerCase().endsWith("ing") && state.equals("VBG")) {
-			// // NN
-			// return getLowestProbForVBG();
-			// } else {
-			// // use the lowest probabilities for NN and JJ.
-			// return getLowestProbForNNAndVB();
-			// }
+//			 if (startsWithCapital(word) && word.toLowerCase().endsWith("s")
+//			 && state.equals("NNPS")) {
+//			 // NP
+//			 return getHighestProbForNNPS();
+//			 }
+//			 if ((startsWithCapital(word)) && state.equals("NNP")) {
+//			 // NP
+//			 return getHighestProbForNNP();
+//			 }
+//			 if (startsWithNum(word) && state.equals("CD")) {
+//			 // CD
+//			 return getHighestProbForCD();
+//			 }
+//			 if (word.toLowerCase().endsWith("s")
+//			 && (state.equals("NNS") || state.equals("VBZ"))) {
+//			 // NNS and VBZ
+//			 return getLowestProbForNNSAndVBZ();
+//			 }
+//			 if (word.toLowerCase().endsWith("ed") && state.equals("VBN")) {
+//			 // VBN
+//			 return getLowestProbForVBN();
+//			 }
+//			 if (word.toLowerCase().endsWith("ly") && state.equals("RB")) {
+//			 // RB
+//			 return getLowestProbForRB();
+//			 }
+//			 if ((word.toLowerCase().endsWith("able")
+//			 || word.toLowerCase().endsWith("al") || word.contains("-"))
+//			 && state.equals("JJ")) {
+//			 // JJ
+//			 return getLowestProbForJJ();
+//			 }
+//			 if (word.toLowerCase().endsWith("ion") && state.equals("NN")) {
+//			 // NN
+//			 return getLowestProbForNN();
+//			 }
+//			 if (word.toLowerCase().endsWith("ing") && state.equals("VBG")) {
+//			 // NN
+//			 return getLowestProbForVBG();
+//			 } else {
+//			 // use the lowest probabilities for NN and JJ.
+//			 return getLowestProbForNNAndVB();
+//			 }
 		} else {
 			return super.getItem(state, word);
 		}
@@ -286,7 +286,10 @@ public class EmissionMatrix extends Matrix {
 
 	private double getLowestProbForNNAndVB() {
 		if (NN_AND_VB_PROB == 1.0) {
-			Map<String, Double> NNSMap = super.getRow("NN");
+			Map<String, Double> NNSMap = super.getRow("Noun");
+			if(NNSMap == null){
+				NNSMap = super.getRow("Noun+Nom");
+			}
 			Iterator<Entry<String, Double>> nnsIt = NNSMap.entrySet()
 					.iterator();
 			while (nnsIt.hasNext()) {
@@ -295,7 +298,7 @@ public class EmissionMatrix extends Matrix {
 					NN_AND_VB_PROB = prob;
 				}
 			}
-			Map<String, Double> VBZMap = super.getRow("VB");
+			Map<String, Double> VBZMap = super.getRow("Verb");
 			Iterator<Entry<String, Double>> vbzIt = VBZMap.entrySet()
 					.iterator();
 			while (vbzIt.hasNext()) {

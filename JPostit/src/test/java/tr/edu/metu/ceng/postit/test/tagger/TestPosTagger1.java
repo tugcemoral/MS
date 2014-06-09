@@ -18,6 +18,11 @@ public class TestPosTagger1 extends PosTaggerTestBase {
 	}
 	
 	@Test
+	public void testConvertNounSentence0() throws Exception {
+		assertWordTagPair(NOUN_SENTENCE_0, "Üzümcü", "Noun");
+	}
+	
+	@Test
 	public void testConvertNounSentence1() throws Exception {
 		assertWordTagPair(NOUN_SENTENCE_1, "filmin", "Noun");
 	}

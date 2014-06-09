@@ -4,7 +4,7 @@ package tr.edu.metu.ceng.postit.data;
 /**
  * Token Model. A list of tokens form a sentence.
  */
-public class Token implements Comparable<Token> {
+public class Token implements Comparable<Token>, Cloneable {
 
 	// index from original input
 	private int index;
@@ -36,5 +36,10 @@ public class Token implements Comparable<Token> {
 	@Override
 	public String toString() {
 		return wordTagPair.toString();
+	}
+	
+	@Override
+	protected Token clone() throws CloneNotSupportedException {
+		return new Token(this.index, this.wordTagPair.clone());
 	}
 }

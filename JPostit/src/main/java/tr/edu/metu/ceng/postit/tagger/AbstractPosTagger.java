@@ -6,11 +6,21 @@ import java.util.regex.Pattern;
 
 import tr.edu.metu.ceng.postit.data.Sentence;
 import tr.edu.metu.ceng.postit.data.WordTagPair;
+import tr.edu.metu.ceng.postit.evaluation.Evaluation;
 import tr.edu.metu.ceng.postit.viterbi.HMM;
 
 public abstract class AbstractPosTagger implements IPosTagger {
 
 	private static final String MORPH_ANALYSIS_TRAINING_FILE_PATH = "/training.txt";
+	
+	@Override
+	public Evaluation evaluate(String trainingFilePath, String developmentFilePath) throws IOException, CloneNotSupportedException {
+		//create an HMM and train it via development file path.
+		HMM hmm = new HMM(this);
+		hmm.train(trainingFilePath);
+		//compare and evaluate the results in given development file.
+		return hmm.evaluate(developmentFilePath);
+	}
 
 	@Override
 	public WordTagPair convert(String analysis) {
@@ -32,7 +42,7 @@ public abstract class AbstractPosTagger implements IPosTagger {
 			tag = possibleTagFragment;
 		} else if (hasPunctuation) {
 			// if word has punctuation, get rid of appendix.
-			String[] probableStemWithAppendix = word.split("\\W");
+			String[] probableStemWithAppendix = word.split("\\p{Punct}");
 			// oops, that would be alphabet punctuation longer than 1. (like
 			// "...")
 			if (probableStemWithAppendix.length == 0) {
@@ -58,8 +68,9 @@ public abstract class AbstractPosTagger implements IPosTagger {
 				"Training Viterbi HMM with {0} wrt training file... ", this
 						.getClass().getSimpleName()));
 		long t1 = System.currentTimeMillis();
-		hmm.train(getClass().getResource(MORPH_ANALYSIS_TRAINING_FILE_PATH)
-				.getFile());
+		String filePath = getClass().getResource(MORPH_ANALYSIS_TRAINING_FILE_PATH).getFile();
+//		String filePath = "." + MORPH_ANALYSIS_TRAINING_FILE_PATH;
+		hmm.train(filePath);
 		long t2 = System.currentTimeMillis();
 		System.out.println(MessageFormat.format("Done training in {0} ms.",
 				(t2 - t1)));
@@ -81,5 +92,5 @@ public abstract class AbstractPosTagger implements IPosTagger {
 	}
 
 	protected abstract String extractTag(String tagSentence);
-
+	
 }
