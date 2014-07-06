@@ -26,12 +26,12 @@ import com.journaldev.spring.model.Employee;
 public class EmployeeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
-	
+
 	//Map to store employees, ideally we should use database
 	Map<Integer, Employee> empData = new HashMap<Integer, Employee>();
 	
 	@RequestMapping(value = EmpRestURIConstants.DUMMY_EMP, method = RequestMethod.GET)
-	public @ResponseBody Employee getDummyEmployee() {
+	public Employee getDummyEmployee() {
 		logger.info("Start getDummyEmployee");
 		Employee emp = new Employee();
 		emp.setId(9999);
@@ -42,14 +42,14 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = EmpRestURIConstants.GET_EMP, method = RequestMethod.GET)
-	public @ResponseBody Employee getEmployee(@PathVariable("id") int empId) {
+	public Employee getEmployee(@PathVariable("id") int empId) {
 		logger.info("Start getEmployee. ID="+empId);
 		
 		return empData.get(empId);
 	}
 	
 	@RequestMapping(value = EmpRestURIConstants.GET_ALL_EMP, method = RequestMethod.GET)
-	public @ResponseBody List<Employee> getAllEmployees() {
+	public List<Employee> getAllEmployees() {
 		logger.info("Start getAllEmployees.");
 		List<Employee> emps = new ArrayList<Employee>();
 		Set<Integer> empIdKeys = empData.keySet();
@@ -60,7 +60,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = EmpRestURIConstants.CREATE_EMP, method = RequestMethod.POST)
-	public @ResponseBody Employee createEmployee(@RequestBody Employee emp) {
+	public Employee createEmployee(@RequestBody Employee emp) {
 		logger.info("Start createEmployee.");
 		emp.setCreatedDate(new Date());
 		empData.put(emp.getId(), emp);
