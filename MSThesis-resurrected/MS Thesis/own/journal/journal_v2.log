@@ -1,21 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.6.24)  27 MAY 2014 02:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2013.7.19)  28 MAY 2014 01:07
 entering extended mode
- restricted \write18 enabled.
  %&-line parsing enabled.
 **journal_v2.tex
 (./journal_v2.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, et
-hiopic, farsi, arabic, pinyin, croatian, bulgarian, ukrainian, russian, slovak,
- czech, danish, dutch, usenglishmax, ukenglish, finnish, french, basque, ngerma
-n, german, swissgerman, ngerman-x-2012-05-30, german-x-2012-05-30, monogreek, g
-reek, ibycus, ancientgreek, hungarian, bengali, tamil, hindi, telugu, gujarati,
- sanskrit, malayalam, kannada, assamese, marathi, oriya, panjabi, italian, lati
-n, latvian, lithuanian, mongolian, mongolianlmc, nynorsk, bokmal, indonesian, e
-speranto, coptic, welsh, irish, interlingua, serbian, serbianc, slovenian, friu
-lan, romansh, estonian, romanian, armenian, uppersorbian, turkish, afrikaans, i
-celandic, kurmanji, polish, portuguese, galician, catalan, spanish, swedish, lo
-aded.
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
 (./IEEEtran.cls
 Document Class: IEEEtran 2007/03/05 V1.7a by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
@@ -27,11 +17,11 @@ Document Class: IEEEtran 2007/03/05 V1.7a by Michael Shell
 \@IEEEtrantmptoksA=\toks14
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 373.
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
--- Using PDF output.
+-- Using DVI output.
 \@IEEEnormalsizeunitybaselineskip=\dimen104
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen105
@@ -100,10 +90,10 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtmpitemindent=\dimen116
 \c@IEEEbiography=\count90
 \@IEEEtranrubishbin=\box26
-) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \@emptytoks=\toks15
 \symAMSa=\mathgroup4
@@ -120,7 +110,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box27
 
-(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex
@@ -129,34 +119,26 @@ Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
 Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 
 (/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count91
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
@@ -182,21 +164,22 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 \pgf@yc=\dimen126
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count92
-\c@pgf@countb=\count93
-\c@pgf@countc=\count94
-\c@pgf@countd=\count95
+\c@pgf@counta=\count91
+\c@pgf@countb=\count92
+\c@pgf@countc=\count93
+\c@pgf@countd=\count94
 
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
-Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+Package pgfsys Info: Driver file for pgf: pgfsys-dvips.def on input line 900.
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+File: pgfsys-dvips.def 2008/04/03  (rcs-revision 1.20)
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
-File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-postscript.def
+File: pgfsys-common-postscript.def 2008/10/01  (rcs-revision 1.22)
+\pgf@objectcount=\count95
 )))
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
@@ -209,12 +192,11 @@ File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+(/etc/texmf/tex/latex/config/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Driver file: dvips.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
@@ -408,24 +390,24 @@ File: tikzlibraryfit.code.tex 2008/06/21 v2.10 (rcs-revision 1.3)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatri
 x.code.tex
 File: tikzlibrarymatrix.code.tex 2008/06/18 v2.10 (rcs-revision 1.2)
-) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks26
 \ex@=\dimen163
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen164
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count111
@@ -466,13 +448,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xy.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
-catcodes, docmode, (/usr/share/texlive/texmf-dist/tex/generic/xypic/xyrecat.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/xypic/xyidioms.tex)
+(/usr/share/texmf-texlive/tex/generic/xypic/xy.sty
+(/usr/share/texmf-texlive/tex/generic/xypic/xy.tex Bootstrap'ing: catcodes,
+docmode, (/usr/share/texmf-texlive/tex/generic/xypic/xyrecat.tex)
+(/usr/share/texmf-texlive/tex/generic/xypic/xyidioms.tex)
 
- Xy-pic version 3.8.8 <2012/05/24>
- Copyright (c) 1991-2011 by Kristoffer H. Rose <krisrose@tug.org>
+ Xy-pic version 3.7 <1999/02/16>
+ Copyright (c) 1991-1998 by Kristoffer H. Rose <krisrose@ens-lyon.fr>
  Xy-pic is free software: see the User's Guide for details.
 
 Loading kernel: messages; fonts; allocations: state,
@@ -524,16 +506,12 @@ utility macros; pictures: \xy, positions,
  decorations;
 kernel objects: directionals, circles, text; options; algorithms: directions,
 edges, connections;  Xy-pic loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package: xy 2012/05/24 Xy-pic version 3.8.8
+Package: xy 1999/02/16 Xy-pic version 3.7
 
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xyall.tex
- Xy-pic option: All features v.3.8
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xycurve.tex
- Xy-pic option: Curve and Spline extension v.3.12 curve,
+(/usr/share/texmf-texlive/tex/generic/xypic/xyall.tex
+ Xy-pic option: All features v.3.3
+(/usr/share/texmf-texlive/tex/generic/xypic/xycurve.tex
+ Xy-pic option: Curve and Spline extension v.3.7 curve,
 \crv@cnt@=\count127
 \crvpts@=\toks35
 \splinebox@=\box43
@@ -544,22 +522,22 @@ Package: xy 2012/05/24 Xy-pic version 3.8.8
  circles,
 \L@=\dimen204
  loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xyframe.tex
- Xy-pic option: Frame and Bracket extension v.3.14 loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xycmtip.tex
- Xy-pic option: Computer Modern tip extension v.3.7
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xytips.tex
- Xy-pic option: More Tips extension v.3.9 loaded) loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xyline.tex
- Xy-pic option: Line styles extension v.3.10
+(/usr/share/texmf-texlive/tex/generic/xypic/xyframe.tex
+ Xy-pic option: Frame and Bracket extension v.3.7 loaded)
+(/usr/share/texmf-texlive/tex/generic/xypic/xycmtip.tex
+ Xy-pic option: Computer Modern tip extension v.3.3
+(/usr/share/texmf-texlive/tex/generic/xypic/xytips.tex
+ Xy-pic option: More Tips extension v.3.3 loaded) loaded)
+(/usr/share/texmf-texlive/tex/generic/xypic/xyline.tex
+ Xy-pic option: Line styles extension v.3.6
 \xylinethick@=\dimen205
  loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xyrotate.tex
- Xy-pic option: Rotate and Scale extension v.3.8 loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xycolor.tex
- Xy-pic option: Colour extension v.3.11 loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xymatrix.tex
- Xy-pic option: Matrix feature v.3.14
+(/usr/share/texmf-texlive/tex/generic/xypic/xyrotate.tex
+ Xy-pic option: Rotate and Scale extension v.3.3 loaded)
+(/usr/share/texmf-texlive/tex/generic/xypic/xycolor.tex
+ Xy-pic option: Colour extension v.3.3 loaded)
+(/usr/share/texmf-texlive/tex/generic/xypic/xymatrix.tex
+ Xy-pic option: Matrix feature v.3.4
 \Row=\count128
 \Col=\count129
 \queue@=\toks36
@@ -568,22 +546,11 @@ Package: xy 2012/05/24 Xy-pic version 3.8.8
 \qcount@@=\count131
 \matrixsize@=\count132
  loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xyarrow.tex
- Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xygraph.tex
- Xy-pic option: Graph feature v.3.11 loaded) loaded)
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf.tex
- Xy-pic option: PDF driver v.1.7 Xy-pic pdf driver: `color' extension support
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf-co.tex loaded)
-Xy-pic pdf driver: `curve' extension support
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded)
-Xy-pic pdf driver: `frame' extension support
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf-fr.tex loaded)
-Xy-pic pdf driver: `line' extension support
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf-li.tex loaded)
-Xy-pic pdf driver: `rotate' extension support
-(/usr/share/texlive/texmf-dist/tex/generic/xypic/xypdf-ro.tex loaded) loaded))
-(/usr/share/texlive/texmf-dist/tex/latex/paralist/paralist.sty
+(/usr/share/texmf-texlive/tex/generic/xypic/xyarrow.tex
+ Xy-pic option: Arrow and Path feature v.3.5 path, \ar, loaded)
+(/usr/share/texmf-texlive/tex/generic/xypic/xygraph.tex
+ Xy-pic option: Graph feature v.3.7 loaded) loaded))
+(/usr/share/texmf-texlive/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \pltopsep=\skip47
 \plpartopsep=\skip48
@@ -591,63 +558,61 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \plparsep=\skip50
 \pl@lab=\toks38
 )
-(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+(/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen206
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
-Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2009/10/17 v2.4 Conversion with epstopdf on the fly (HO)
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+(/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2009/10/17 v2.4 Base part for package epstopdf
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
 )
+(/usr/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
 )
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-)))
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package epstopdf Warning: Other drivers than `pdftex.def' are not supported.
+
+)) (/usr/share/texmf-texlive/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+(/usr/share/texmf-texlive/tex/latex/algorithmicx/algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
@@ -663,11 +628,11 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip53
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+) (/usr/share/texmf-texlive/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count140
 \float@exts=\toks39
@@ -678,10 +643,10 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@algorithm=\toks41
 \c@algorithm=\count141
 )
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+(/usr/share/texmf-texlive/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2001/02/13 v0.1j Color table columns (DPC)
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen207
 \extrarowheight=\dimen208
@@ -692,11 +657,11 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \everycr=\toks43
 \minrowclearance=\skip56
 )
-(/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty
+(/usr/share/texmf-texlive/tex/latex/comment/comment.sty
 \CommentStream=\write5
 
 Excluding comment 'comment')
-(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texmf-texlive/tex/latex/tools/tabularx.sty
 Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 \TX@col@width=\dimen209
 \TX@old@table=\dimen210
@@ -706,7 +671,7 @@ Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 \TX@cols=\count142
 \TX@ftn=\toks44
 )
-(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip57
 \subfigcapskip=\skip58
@@ -722,11 +687,10 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
-(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
 \subfig@top=\skip61
 \subfig@bottom=\skip62
-)
-(./journal_v2.aux)
+) (./journal_v2.aux)
 \openout1 = `journal_v2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
@@ -741,32 +705,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
- ABD: EveryShipout initializing macros
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count147
-\scratchdimen=\dimen216
-\scratchbox=\box46
-\nofMPsegments=\count148
-\nofMParguments=\count149
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count150
-\MPscratchDim=\dimen217
-\MPnumerator=\count151
-\makeMPintoPDFobject=\count152
-\everyMPtoPDFconversion=\toks46
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2009/06/22 v3.00 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
-Package xypdf Info: Line width: 0.39998pt on input line 49.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ ABD: EveryShipout initializing macros [1
 
 
 ]
@@ -774,6 +713,15 @@ Underfull \hbox (badness 2626) in paragraph at lines 97--98
 []\OT1/ptm/m/n/10 Evolutionary meth-ods were also pro-posed for multi-
  []
 
+LaTeX Font Info:    Try loading font information for U+msa on input line 115.
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 115.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
@@ -786,62 +734,25 @@ Missing character: There is no ™ in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-[2] [3] [4]
+ [2] [3] [4]
 Overfull \hbox (34.39519pt too wide) detected at line 301
 \OML/cmm/m/it/10 rhs\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 ) = []
  []
 
 [5]
-Package epstopdf Info: Source file: <./figures/modstarlite/graph1v2.eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 900734 bytes
-(epstopdf)             Output file: <./figures/modstarlite/graph1v2-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:05
-(epstopdf)                    size: 23754 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/modstarlite/grap
-h1v2-eps-converted-to.pdf ./figures/modstarlite/graph1v2.eps>
-(epstopdf)             \includegraphics on input line 369.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures/modstarlite/graph1v2-eps-converted-to.pdf, id=34, 453.695pt x 303.13
-25pt>
-File: ./figures/modstarlite/graph1v2-eps-converted-to.pdf Graphic file (type pd
-f)
- <use ./figures/modstarlite/graph1v2-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/modstarlite/graph1v2-eps-converted-to.pdf us
-ed on input line 369.
-(pdftex.def)             Requested size: 144.54pt x 96.57422pt.
-Package epstopdf Info: Source file: <./figures/modstarlite/graph2v2.eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 1118382 bytes
-(epstopdf)             Output file: <./figures/modstarlite/graph2v2-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:06
-(epstopdf)                    size: 29367 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/modstarlite/grap
-h2v2-eps-converted-to.pdf ./figures/modstarlite/graph2v2.eps>
-(epstopdf)             \includegraphics on input line 378.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures/modstarlite/graph2v2-eps-converted-to.pdf, id=35, 472.76625pt x 361.
-35pt>
-File: ./figures/modstarlite/graph2v2-eps-converted-to.pdf Graphic file (type pd
-f)
- <use ./figures/modstarlite/graph2v2-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/modstarlite/graph2v2-eps-converted-to.pdf us
-ed on input line 378.
-(pdftex.def)             Requested size: 144.54pt x 110.479pt.
+File: ./figures/modstarlite/graph1v2.eps Graphic file (type eps)
+ <./figures/modstarlite/graph1v2.eps>
+File: ./figures/modstarlite/graph2v2.eps Graphic file (type eps)
+ <./figures/modstarlite/graph2v2.eps>
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 384.
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+(/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 384.
- [6 <./figures/modstarlite/graph1v2-eps-converted-to.pdf> <./figures/modstarlit
-e/graph2v2-eps-converted-to.pdf>]
+ [6]
 Underfull \hbox (badness 4108) in paragraph at lines 430--431
 []\OT1/ptm/m/n/10 To up-date a weight of a state, MOD* Lite uses
  []
@@ -857,212 +768,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 484--485
  []
 
 [7] [8]
-Package epstopdf Info: Source file: <./figures/experimental/randomized_normal.e
-ps>
-(epstopdf)                    date: 2014-05-26 00:40:39
-(epstopdf)                    size: 20913 bytes
-(epstopdf)             Output file: <./figures/experimental/randomized_normal-e
-ps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:07
-(epstopdf)                    size: 7938 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/ran
-domized_normal-eps-converted-to.pdf ./figures/experimental/randomized_normal.ep
-s>
-(epstopdf)             \includegraphics on input line 621.
-Package epstopdf Info: Output file is already uptodate.
+File: ./figures/experimental/randomized_normal.eps Graphic file (type eps)
+ <./figures/experimental/randomized_normal.eps> [9]
+File: ./figures/experimental/handcrafted_normal.eps Graphic file (type eps)
 
-<./figures/experimental/randomized_normal-eps-converted-to.pdf, id=61, 505.89pt
- x 722.7pt>
-File: ./figures/experimental/randomized_normal-eps-converted-to.pdf Graphic fil
-e (type pdf)
+<./figures/experimental/handcrafted_normal.eps>
+File: ./figures/experimental/initialSearch.eps Graphic file (type eps)
 
-<use ./figures/experimental/randomized_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/randomized_normal-eps-converted
--to.pdf used on input line 621.
-(pdftex.def)             Requested size: 158.99377pt x 227.1334pt.
- [9 <./figures/experimental/randomized_normal-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./figures/experimental/handcrafted_normal.
-eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 20913 bytes
-(epstopdf)             Output file: <./figures/experimental/handcrafted_normal-
-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 4270 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/han
-dcrafted_normal-eps-converted-to.pdf ./figures/experimental/handcrafted_normal.
-eps>
-(epstopdf)             \includegraphics on input line 676.
-Package epstopdf Info: Output file is already uptodate.
+<./figures/experimental/initialSearch.eps> [10]
+File: ./figures/experimental/60x60_partially_normal.eps Graphic file (type eps)
 
-<./figures/experimental/handcrafted_normal-eps-converted-to.pdf, id=70, 794.97p
-t x 614.295pt>
-File: ./figures/experimental/handcrafted_normal-eps-converted-to.pdf Graphic fi
-le (type pdf)
 
-<use ./figures/experimental/handcrafted_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/handcrafted_normal-eps-converte
-d-to.pdf used on input line 676.
-(pdftex.def)             Requested size: 231.26378pt x 178.70338pt.
-Package epstopdf Info: Source file: <./figures/experimental/initialSearch.eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 45495 bytes
-(epstopdf)             Output file: <./figures/experimental/initialSearch-eps-c
-onverted-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:07
-(epstopdf)                    size: 24445 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/ini
-tialSearch-eps-converted-to.pdf ./figures/experimental/initialSearch.eps>
-(epstopdf)             \includegraphics on input line 744.
-Package epstopdf Info: Output file is already uptodate.
+<./figures/experimental/60x60_partially_normal.eps>
+File: ./figures/experimental/80x80_partially_normal.eps Graphic file (type eps)
 
-<./figures/experimental/initialSearch-eps-converted-to.pdf, id=71, 603.25375pt 
-x 602.25pt>
-File: ./figures/experimental/initialSearch-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use ./figures/experimental/initialSearch-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/initialSearch-eps-converted-to.
-pdf used on input line 744.
-(pdftex.def)             Requested size: 180.67499pt x 180.37312pt.
 
-[10 <./figures/experimental/handcrafted_normal-eps-converted-to.pdf, page is ro
-tated 90 degrees>]
-Package epstopdf Info: Source file: <./figures/experimental/60x60_partially_nor
-mal.eps>
-(epstopdf)                    date: 2014-05-26 00:40:40
-(epstopdf)                    size: 20913 bytes
-(epstopdf)             Output file: <./figures/experimental/60x60_partially_nor
-mal-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 4130 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/60x
-60_partially_normal-eps-converted-to.pdf ./figures/experimental/60x60_partially
-_normal.eps>
-(epstopdf)             \includegraphics on input line 753.
-Package epstopdf Info: Output file is already uptodate.
+<./figures/experimental/80x80_partially_normal.eps>
+File: ./figures/experimental/100x100_partially_normal.eps Graphic file (type ep
+s)
 
-<./figures/experimental/60x60_partially_normal-eps-converted-to.pdf, id=78, 794
-.97pt x 614.295pt>
-File: ./figures/experimental/60x60_partially_normal-eps-converted-to.pdf Graphi
-c file (type pdf)
+<./figures/experimental/100x100_partially_normal.eps>
+File: ./figures/experimental/120x120_partially_normal.eps Graphic file (type ep
+s)
 
-<use ./figures/experimental/60x60_partially_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/60x60_partially_normal-eps-conv
-erted-to.pdf used on input line 753.
-(pdftex.def)             Requested size: 180.67499pt x 139.60704pt.
-Package epstopdf Info: Source file: <./figures/experimental/80x80_partially_nor
-mal.eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 21043 bytes
-(epstopdf)             Output file: <./figures/experimental/80x80_partially_nor
-mal-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:08
-(epstopdf)                    size: 7930 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/80x
-80_partially_normal-eps-converted-to.pdf ./figures/experimental/80x80_partially
-_normal.eps>
-(epstopdf)             \includegraphics on input line 761.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures/experimental/80x80_partially_normal-eps-converted-to.pdf, id=79, 505
-.89pt x 722.7pt>
-File: ./figures/experimental/80x80_partially_normal-eps-converted-to.pdf Graphi
-c file (type pdf)
-
-<use ./figures/experimental/80x80_partially_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/80x80_partially_normal-eps-conv
-erted-to.pdf used on input line 761.
-(pdftex.def)             Requested size: 144.54pt x 206.48993pt.
-Package epstopdf Info: Source file: <./figures/experimental/100x100_partially_n
-ormal.eps>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 20808 bytes
-(epstopdf)             Output file: <./figures/experimental/100x100_partially_n
-ormal-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 01:17:08
-(epstopdf)                    size: 7936 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/100
-x100_partially_normal-eps-converted-to.pdf ./figures/experimental/100x100_parti
-ally_normal.eps>
-(epstopdf)             \includegraphics on input line 768.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures/experimental/100x100_partially_normal-eps-converted-to.pdf, id=80, 5
-05.89pt x 722.7pt>
-File: ./figures/experimental/100x100_partially_normal-eps-converted-to.pdf Grap
-hic file (type pdf)
-
-<use ./figures/experimental/100x100_partially_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/100x100_partially_normal-eps-co
-nverted-to.pdf used on input line 768.
-(pdftex.def)             Requested size: 144.54pt x 206.48993pt.
-Package epstopdf Info: Source file: <./figures/experimental/120x120_partially_n
-ormal.eps>
-(epstopdf)                    date: 2014-05-26 00:40:39
-(epstopdf)                    size: 20558 bytes
-(epstopdf)             Output file: <./figures/experimental/120x120_partially_n
-ormal-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-05-26 00:40:41
-(epstopdf)                    size: 4090 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/experimental/120
-x120_partially_normal-eps-converted-to.pdf ./figures/experimental/120x120_parti
-ally_normal.eps>
-(epstopdf)             \includegraphics on input line 775.
-Package epstopdf Info: Output file is already uptodate.
-
-<./figures/experimental/120x120_partially_normal-eps-converted-to.pdf, id=81, 7
-94.97pt x 614.295pt>
-File: ./figures/experimental/120x120_partially_normal-eps-converted-to.pdf Grap
-hic file (type pdf)
-
-<use ./figures/experimental/120x120_partially_normal-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/experimental/120x120_partially_normal-eps-co
-nverted-to.pdf used on input line 775.
-(pdftex.def)             Requested size: 180.67499pt x 139.60704pt.
-
-[11 <./figures/experimental/initialSearch-eps-converted-to.pdf> <./figures/expe
-rimental/60x60_partially_normal-eps-converted-to.pdf, page is rotated 90 degree
-s> <./figures/experimental/80x80_partially_normal-eps-converted-to.pdf> <./figu
-res/experimental/100x100_partially_normal-eps-converted-to.pdf> <./figures/expe
-rimental/120x120_partially_normal-eps-converted-to.pdf, page is rotated 90 degr
-ees>] (./journal_v2.bbl
+<./figures/experimental/120x120_partially_normal.eps> [11] (./journal_v2.bbl
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
-) [12] (./journal_v2.aux) ) 
-Here is how much of TeX's memory you used:
- 15570 strings out of 493493
- 271176 string characters out of 3143797
- 377980 words of memory out of 3000000
- 18483 multiletter control sequences out of 15000+200000
- 48623 words of font info for 105 fonts, out of 3000000 for 9000
- 957 hyphenation exceptions out of 8191
- 56i,10n,55p,3242b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
-8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
-es/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on journal_v2.pdf (12 pages, 369796 bytes).
-PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 125 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
+[12]) [13
+
+] (./journal_v2.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 14385 strings out of 495062
+ 252407 string characters out of 1182644
+ 354328 words of memory out of 3000000
+ 17216 multiletter control sequences out of 15000+50000
+ 34135 words of font info for 90 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 56i,10n,55p,2636b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on journal_v2.dvi (13 pages, 109324 bytes).

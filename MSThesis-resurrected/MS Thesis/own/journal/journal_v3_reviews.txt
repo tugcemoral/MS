@@ -1,0 +1,119 @@
+=======
+Associate Editor Comments for Authors:
+
+Associate Editor
+Comments to the Author:
+Please make substantial revisions with consideration of all reviewers'
+comments.
+
+********************** Reviews **********************
+
+Referee: 1
+
+Recommendation: Prepare A Major Revision
+
+Comments: (There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
+
+Additional Questions:
+Summary of Evaluation: Fair
+
+Organization: 4
+
+Clarity: 3
+
+Length: 3
+
+References: 4
+
+Correctness: 3
+
+Significance: 3
+
+Originality: 3
+
+Attachments:
+
+If Survey Coverage:
+
+Contribution: 3
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.:
+
+What are the contributions of the paper?: This paper proposes the MOD* Lite, which is the multi-objective version of D* Lite method, for robotic path planning in partially observable dynamic environments. The MOD* Lite method is applied to 2D UAV problem, and two objectives, minimizations of length of path and risk of path, are considered. The simulation results have demonstrated the efficiency of MOD* Lite in terms of path length and safety.
+
+What are the additional ways in which the paper could be improved?: This paper is a well-writing paper, form my opinion. This paper employs the elegant mathematical system to represent the proposed method. However, there are several comments and questions with respect to this paper, as listed in below. 1. Please explain the difference between reference [9] and this paper. They are both presented the MOD* Lite methods. 2. Please check the type errors in the paper, such as "For the experimental study, MOD* Lite is is realized," in Page 5 (Line 4-5). I find several errors. In Section IV, the word "multi objective" does not have the '-'. But, in the previous sections, the word is "multi-objective." Please correct them. 3. In this paper, the MOD* Lite method is applied to 2D UAV problem whose environment is represented by the square cells. Please explain how to transform the cell-base environment to the real space in real application. 4. In Algorithm1, I suggest to put the PLAN() procedure to the top and indicate that it is the main procedure to avoid confusion. 5. In Section III, it seems not easy to be understand about the algorithms presented in this section. Can you illustrate the important concept of the algorithm by using another figure? 6. In Fig. 6, why MOA* requires the most computing time? 7. For MOGPP method, please explain that how to judge the chromosome is non-dominated and how to update or replace the old chromosome. 8. In Section V-B, page 10, the agent has found three paths with costs (15, 200), (18, 230) and (23, 260). The agent tends to choose the path with cost (18, 230). Please explain why it does not choose the path with (15, 200) since (15,200) dominates (18,230). 9. In Section V, both MOD* Lite and MOA* method require re-plan while the environment changes. Please state that why MOA* requires much time compared with MOD* Lite.
+
+
+Referee: 2
+
+Recommendation: Prepare A Major Revision
+
+Comments: The performance of MOD*-Lite should be compared with famous multiobjective GA such as SPEA2 or NSGA2 and with single objective path search algorithms such as D*-Lite based on weighted sum of multiple objectives.
+
+Additional Questions:
+Summary of Evaluation:
+
+Organization: 4
+
+Clarity: 3
+
+Length: 2
+
+References: 4
+
+Correctness:
+
+Significance: 3
+
+Originality: 3
+
+Attachments: 2
+
+If Survey Coverage: 3
+
+Contribution: 3
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.:
+
+What are the contributions of the paper?: This paper extends the D*-lite algorithm for path searching in unknown grid map to a multiobjective version MOD*Lite (Algorithm 1,2,3).The performance (path length and execution time) of MOD*-Lite are compared with two offline path search algorithms A* and MOGPP in fully and partially observable maps to show the advantage of incremental path search algorithm of MOD*-Lite.
+
+What are the additional ways in which the paper could be improved?: In test results shown in Tables 1,2,3, most results of MOD*-Lite and MOA* are the same. The authors should discuss why these two complete algorithms yield different results in some simulations. Inaddition, the column of MOGPP in tables should be described more clearly. MOGPP implementation does not show the Pareto front , which is an essential concept in multiobjective problems. Furthermore, the comparison should be made also with single -objective path search algorithms using weighted sum of multiple objective, and it would be more convincing if the MOGPP implementation is from the literature such as SPEA2 or NSGA2.
+
+
+Referee: 3
+
+Recommendation: Prepare A Major Revision
+
+Comments:
+
+This manuscript presents a MOD* Lite algorithm for multi-objective incremental path planning, which is an extension of traditional D* Lite algorithm. The primary results have been presented in [9]. Some comparisons are made between the existing algorithm and the proposed one. Some points are not clear as I read the paper. 1. In the description of D* Lite, I think that k_1(s) = min(g(s),rhs(s)+h(s,s_{goal}) ) should be k_1(s) = min(g(s),rhs(s)) + h(s,s_{goal}). 2. Novelty of the paper has not been highlight clearly. The authors claimed that they proposed a GA base multi-objective path planner. However, such GA based planner has been widely studied in literature. I cannot find the new thoughts in Section IV. Please rewrite this paragraph and clearly state what is new. In addition, the author extend single objective optimization to the multi-objective optimization, is this Pareto optimal result? Any differences and why the proposed methods are needed? 3. It is good to see that the authors use large paragraph to compare the results But I would like to see the authors analyze the time and space complexity of the algorithm. 4. Clear explanation of Figure 5 is necessary. 5. In the introduction part, authors claimed that current results are not the incremental method. I think you need to do a better literature review. Please be aware of following related papers on the GA multi-objective path planning, the pareto-optimal multi-objective optimization. "K-Order Surrounding Roadmaps Path Planner for Robot Path Planning", Journal of Intelligent & Robotic Systems September 2014, Volume 75, Issue 3-4, pp 493-516; "Sampling-based algorithms for optimal motion planning" International Journal of Robotics Research, Volume 30 Issue 7, June 2011; "Pareto-optimal coordination of multiple robots with safety guarantees" Autonomous Robots, 32(3): 189-205, 2012. Game theory-based negotiation for multiple robots task allocation, Robotica, DOI: 10.1017/S0263574713000192 . "Multiple Objective Genetic Algorithms for Path-planning Optimization in Autonomous Mobile Robots.", Soft Computing, DOI: 10.1007/s00500-006-0068-4.
+
+Additional Questions:
+Summary of Evaluation: Fair
+
+Organization: 3
+
+Clarity: 2
+
+Length: 3
+
+References: 2
+
+Correctness: 3
+
+Significance: 3
+
+Originality:
+
+Attachments: 3
+
+If Survey Coverage: 2
+
+Contribution: 3
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.:
+
+What are the contributions of the paper?:
+
+What are the additional ways in which the paper could be improved?:
+=======
