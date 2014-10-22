@@ -56,7 +56,7 @@
 \maketitle
 
 \begin{abstract}
-The need for determining a path from an initial location to a target one is a crucial task in many applications, such as virtual simulations, robotics and computer games. Almost all of the existing algorithms are designed to find optimal or sub-optimal solutions considering only a single objective, namely path length.  However, in many real life application path length is not the sole criteria for optimization, there are more than one criteria to be optimized that cannot be transformed to each other. In this paper, we introduce  a novel multi objective incremental algorithm, MOD* Lite built upon a well-known path planning algorithm, D* Lite. A number of experiments are designed to compare the solution quality and execution time requirements of MOD* Lite with the multi objective A* algorithm (MOA*) and an alternative genetic algorithm solution.
+The need for determining a path from an initial location to a target one is a crucial task in many applications, such as virtual simulations, robotics and computer games. Almost all of the existing algorithms are designed to find optimal or sub-optimal solutions considering only a single objective, namely path length.  However, in many real life application path length is not the sole criteria for optimization, there are more than one criteria to be optimized that cannot be transformed to each other. In this paper, we introduce  a novel multi-objective incremental algorithm, MOD* Lite built upon a well-known path planning algorithm, D* Lite. A number of experiments are designed to compare the solution quality and execution time requirements of MOD* Lite with the multi-objective A* algorithm (MOA*) and an alternative genetic algorithm solution.
 \end{abstract}
 
 % INTRODUCTION
@@ -69,7 +69,7 @@ Existing incremental algorithms for path planning problem attempt to minimize pa
 
 There is a need to generalize the notion of quality of a path to meet specific requirements of complex application domains where several objectives (criteria) that cannot be transformed to each other exist. For example, in our unmanned vehicle example, it is not possible to transform the distance metric to the safety metric, and vice versa. This requirement raises the problem of  decision making under multiple criteria at the same time. In this paper, an incremental path finding algorithm called Multi-Objective D* Lite (MOD* Lite) which extends an existing incremental algorithm, Dynamic A* Lite (D* Lite) \cite{Koenig:2002}, is introduced. MOD* Lite \cite{Oral:2012} can be used in the design of an autonomous mobile agent facing with the problem of navigation in a partially known environment that needs to optimize a predefined set of independent objectives (criteria). The agent might have limited sensor capability and hence observes the environment partially, and furthermore needs to optimize multiple objectives at the same time.
 
-In order to evaluate the performance of MOD* Lite, we also developed a multi objective genetic path planning (MOGPP) algorithm. This algorithm finds initial paths randomly and solution alternatives (the population) evolves according to a fitness function. MOD* Lite is both compared against MOGPP and MOA* algorithm \cite{MOAStewart:1991}, an offline algorithm, on some test environments that are fully observable. The performance of MOD* Lite is also tested on several partially observable environments guaranteeing the optimal solutions but outperforming the MOA* and MOGPP versions modified for unknown environments.
+In order to evaluate the performance of MOD* Lite, we also developed a multi-objective genetic path planning (MOGPP) algorithm. This algorithm finds initial paths randomly and solution alternatives (the population) evolves according to a fitness function. MOD* Lite is both compared against MOGPP and MOA* algorithm \cite{MOAStewart:1991}, an offline algorithm, on some test environments that are fully observable. The performance of MOD* Lite is also tested on several partially observable environments guaranteeing the optimal solutions but outperforming the MOA* and MOGPP versions modified for unknown environments.
 
 This paper is organized as follows: Section 2 gives the background and related work for this study. As MOA* is used in experimental studies and D* Lite is used as a base of proposed solution, these algorithms are also detailed in this section. The problem definition, characteristics of the environment and proposed solutions (MOD* Lite and MOGPP) are presented in Section 3 and 4. Experimental studies and their results are stated in Section 5. Finally, the conclusion and future studies are stated in Section 6.
 
@@ -104,15 +104,15 @@ Nasrollahy et al. proposed a particle swarm optimization algorithm as a multi-ag
 %They created a small-scale model of search system moving goal position and obstacles.
 They tried to optimize global best path through the goal position. Although they mentioned about effectivity of proposed algorithm, they did not give concrete results and comparisons with other methods.
 
-%Dozier et al. gave a new selection method for multi objective path planning (MOPP) in \cite{Dozier:1998}. They introduced fuzzy tournament selection algorithm which combines fuzzy inference with tournament selection to select candidate solution paths. This selection was based on the euclidean distance from initial to goal position, the sum of the changes and the average change in the slope of a path.
+%Dozier et al. gave a new selection method for multi-objective path planning (MOPP) in \cite{Dozier:1998}. They introduced fuzzy tournament selection algorithm which combines fuzzy inference with tournament selection to select candidate solution paths. This selection was based on the euclidean distance from initial to goal position, the sum of the changes and the average change in the slope of a path.
 
 Complete discussion of multi-objective evolutionary algorithms (MOEA) can be found in \cite{MOOUEA}. Also \cite{Coello:2000}, gives a summary of current approaches in MOEA and emphasizes the importance of new approaches in exploiting the capabilities of evolutionary algorithms in multi-objective optimization.
 
 Algorithms on incremental search aim to generate an initial sub-optimal path, and try to improve it during the consequent iterations to make it closer to the optimal. Stentz et al. proposed the Dynamic A*, D* \cite{DStar:1994} which guarantees to be optimal and is functionally equivalent to re-planning from scratch. Later, D* Lite was proposed by Koenig et al. \cite{Koenig:2002} which utilized the same navigation strategy with D* but algorithmically different. It was based on Lifelong Planning A* (LPA*) \cite{LPAStarKoenig:2004}. D* Lite basically works as A* in the first iteration, then only updates for changed weights in environment. They prove that D* Lite was at least as efficient as D*.
 
-\subsection{Multi Objective A* (MOA*)}
+\subsection{Multi-Objective A* (MOA*)}
 
-Classical A* \cite{AStarHart:1968} is a complete and optimal solution for the cases where only a single optimization criterion is crucial for path cost. On the other hand, real-world applications generally consider more than one criteria at the same time, which could not be converted, reduced or combined with each other. In this manner, multi objective A* (MOA*) \cite{MOAStewart:1991} extends classical A* to handle multiple objectives that inherently exist in many application domains. It uses the evaluation function $f(n) = g(n) + h(n)$ similar to A* but functions return vectors instead of scalar values. Size of the vector is the number of objectives to be optimized. If there is only one objective MOA* becomes standard A*. Like A*, it provides complete and optimal solutions when heuristic function is admissible which means the heuristic estimation of every objective is not overestimated.
+Classical A* \cite{AStarHart:1968} is a complete and optimal solution for the cases where only a single optimization criterion is crucial for path cost. On the other hand, real-world applications generally consider more than one criteria at the same time, which could not be converted, reduced or combined with each other. In this manner, multi-objective A* (MOA*) \cite{MOAStewart:1991} extends classical A* to handle multiple objectives that inherently exist in many application domains. It uses the evaluation function $f(n) = g(n) + h(n)$ similar to A* but functions return vectors instead of scalar values. Size of the vector is the number of objectives to be optimized. If there is only one objective MOA* becomes standard A*. Like A*, it provides complete and optimal solutions when heuristic function is admissible which means the heuristic estimation of every objective is not overestimated.
 
 MOA* keeps track of state expansions using {\it OPEN} (explored nodes) and {\it CLOSED} (expanded nodes) sets. Non-dominated states are maintained in a subset of {\it OPEN} named {\it ND} which is formed by the elements that are not dominated by any other element of this set and any of the discovered solutions.
 
@@ -261,7 +261,7 @@ At the end of the algorithm execution, one can trace back a shortest path from $
 %
 %At the end of the algorithm execution, one can trace back a shortest path from $s_{start}$ to $s_{goal}$ by always transitioning from the current vertex $s$, starting at $s_{goal}$ , to any predecessor $s'$ that minimizes $g(s') + c(s',s)$, breaking ties arbitrarily, until $s_{start}$ is reached.
 
-\section{Multi Objective D*  Lite : MOD* Lite}
+\section{Multi-Objective D*  Lite : MOD* Lite}
 \label{chapter:proposedAlgorithm}
 
 \subsection{Motivation}
@@ -269,7 +269,7 @@ Assume that an unmanned aerial vehicle (UAV) is taking off from an initial locat
 
 In this real-world problem, the UAV has to execute a planner and quickly find available paths. Also it needs to re-plan the current path when an unknown part of the environment become known, or known parts are changed (i.e., a visible defense unit's coverage area changes, shrinks or enlarges; or defense unit is disabled / enabled) as it navigates. Mostly, evolutionary search algorithms focus on this issue and come up with several solutions like \cite{Peng_Xu_Zhang:2011}, \cite{Foo_Knutzon:2009}. However, It is obvious that these algorithms are insufficient for reflecting and adapting the dynamics of the environment as they are not incremental. One alternative could be to adapt off-line MOA* to unknown environments but it is grossly inefficient as it has to be restarted from scratch every time when some unknown part of the environment becomes known, or known part changes.
 
-In this study, a multi objective incremental path planning algorithm is developed based on non-optimized version of D* lite \cite{Koenig:2002} to meet these requirements. The algorithm is called multi objective D* lite, or MOD* Lite \cite{Oral:2012}. To prove effectiveness of MOD* Lite,  an alternative solution based that makes use of evolutionary computation, Multi Objective Genetic Path Planner (MOGPP) is also developed. 
+In this study, a multi-objective incremental path planning algorithm is developed based on non-optimized version of D* lite \cite{Koenig:2002} to meet these requirements. The algorithm is called multi-objective D* lite, or MOD* Lite \cite{Oral:2012}. To prove effectiveness of MOD* Lite,  an alternative solution based that makes use of evolutionary computation, Multi-Objective Genetic Path Planner (MOGPP) is also developed. 
 
 \subsection{Overview}
 Multi-objective problems focus on considering more than one objective concurrently (at the same time). Consequently, \textit{all} objectives that are expressed with scalar values and atomic operations (like addition, checking for equality, etc.) on them need to be adapted to vectors of scalars and operations on them. This causes all functions (cost, heuristic, etc.) to have $n$ dimensions if there are $n$ non-interacting objectives to be optimized. For two scalars a and b, there are three outcomes: $a<b$, $a>b$ or $a=b$. However; for two vectors $u$ and $v$, besides $u<v$ ($u$ is dominated by $v$), $u>v$ ($u$ dominates $v$) and $u=v$ there is a fourth alternative that $u$ and $v$ cannot be compared. $u$ and $v$ are said to be \textit{equal} if all corresponding objective values are equal, or in other words;
@@ -277,7 +277,7 @@ Multi-objective problems focus on considering more than one objective concurrent
 
 We say that $u$ \textit{dominates} $v$ if $u$ is better than $v$ in at least one objective. In other words, there is no objective of $v$ which is better than any objective of $u$. Moreover, $u$ and $v$ are said to be \textit{non-dominated} if for at least one objective,  $u$ is better but for at least some other objective, $v$ is better. For instance, assume that we have two objectives to be minimized and let $u=[3,4], v=[4,6], w=[6,2] $. Here $u$ dominates $v$, but $u$ and $w$ are non-dominated.
 
-MOD* Lite enables a user to define a set of objectives, $O_1, O_2, \cdots, O_n$ to be used in the evaluation of the quality of the candidate paths explored by an incremental algorithm. In that respect MOD* Lite is a domain-independent path search algorithm that can be used in any search problem where the environment is partially or fully observable. Note that for each objective $O_i$, the user needs to define whether $O_i$ is to be minimized or maximized. Each objective is assumed \textit{not to be transferable} to and \textit{non-interacting} with other objectives.  For the sake of simplicity, we assume that there are two objectives to be minimized and describe MOD* Lite accordingly. Note that the algorithms can easily be instantiated to work with more than two objectives. For the experimental study, MOD* Lite is is realized in the UAV domain example which has been introduced above with two objectives to be minimized, namely the distance and the degree of risk of danger.
+MOD* Lite enables a user to define a set of objectives, $O_1, O_2, \cdots, O_n$ to be used in the evaluation of the quality of the candidate paths explored by an incremental algorithm. In that respect MOD* Lite is a domain-independent path search algorithm that can be used in any search problem where the environment is partially or fully observable. Note that for each objective $O_i$, the user needs to define whether $O_i$ is to be minimized or maximized. Each objective is assumed \textit{not to be transferable} to and \textit{non-interacting} with other objectives.  For the sake of simplicity, we assume that there are two objectives to be minimized and describe MOD* Lite accordingly. Note that the algorithms can easily be instantiated to work with more than two objectives. For the experimental study, MOD* Lite is realized in the UAV domain example which has been introduced above with two objectives to be minimized, namely the distance and the degree of risk of danger.
 
 \subsection{Environmental Properties}
 \label{envProperties}
@@ -325,23 +325,7 @@ Other multi-objective operations are introduced in following subsections. The ov
 	%\begin{spacing}{0.5}
 	{\fontsize{9}{9}\selectfont
     \begin{algorithmic}[1] % line numbering every line
-      \Function{calculateKey}{s}
-      	\State $k_{2}$(s)= nonDom(g(s), rhs(s))
-      	\State $k_{1}$(s) = sum(h($s_{start}$, s), $k_{m}$, $k_{2}$(s))
-      	\State \Return $[k_{1}(s), k_{2}(s)]$
-      \EndFunction
-   	  \Statex
-      \Function{initialize()}{}
-      	\State $U = \varnothing $
-      	\State $k_{m}$ = ObjectiveVector.MIN
-      	\ForAll{$s \in S$}
-     		\State rhs(s)=g(s)=ObjectiveVector.MAX
-     	\EndFor
-      	\State rhs($s_{goal}$) = ObjectiveVector.MIN
-      	\State U.insert($s_{goal}$, calculateKey($s_{goal}$))
-	  \EndFunction
-	  \Statex
-	  \Function{plan()}{}
+      \Function{plan()}{}
       	\State initialize()
       	\State computeMOPaths()
       	\While{$true$}
@@ -358,6 +342,22 @@ Other multi-objective operations are introduced in following subsections. The ov
     	      	\EndIf
 		\EndWhile
   	  \EndFunction
+      \Statex      
+      \Function{calculateKey}{s}
+      	\State $k_{2}$(s)= nonDom(g(s), rhs(s))
+      	\State $k_{1}$(s) = sum(h($s_{start}$, s), $k_{m}$, $k_{2}$(s))
+      	\State \Return $[k_{1}(s), k_{2}(s)]$
+      \EndFunction
+   	  \Statex
+      \Function{initialize()}{}
+      	\State $U = \varnothing $
+      	\State $k_{m}$ = ObjectiveVector.MIN
+      	\ForAll{$s \in S$}
+     		\State rhs(s)=g(s)=ObjectiveVector.MAX
+     	\EndFor
+      	\State rhs($s_{goal}$) = ObjectiveVector.MIN
+      	\State U.insert($s_{goal}$, calculateKey($s_{goal}$))
+	  \EndFunction
     \end{algorithmic}}
     %\end{spacing}
 \end{algorithm}
@@ -498,9 +498,9 @@ After organizing parents of $s'$, it is decided to expand it in following iterat
 
 When all non-dominated parents are properly set from start to goal state, these parents can be followed recursively starting from goal towards start state and multi-objective paths are constructed. Finally, all found paths have non-dominated path costs regarding to each other.
 
-\section{A Multi Objective Genetic Path Planner : MOGPP}
+\section{A Multi-Objective Genetic Path Planner : MOGPP}
 
-We developed a genetic algorithm, Multi Objective Genetic Path Planner (MOGPP), as an alternative method for finding paths on virtual environments considering multiple objectives to evaluate performance of MOD* Lite in terms of time and solution quality. 
+We developed a genetic algorithm, Multi-Objective Genetic Path Planner (MOGPP), as an alternative method for finding paths on virtual environments considering multiple objectives to evaluate performance of MOD* Lite in terms of time and solution quality. 
 
 In MOGPP, a chromosome encodes a valid path from an initial location to a target one specifying a legal solution for the problem. Each gene in a chromosome is a \textit{cell} in this valid path. Chromosomes are of varying lengths as solution paths are not fixed. The fitness function used in MOGPP is given as follows; \[F(i) = [\dfrac{1}{L(i)^{2}}, \dfrac{1}{R(i)^{2}}] \] where $F(i)$ is the fitness of chromosome $i$, $L(i)$ is the length of the path and $R(i)$ is the exposed risk of this path.  Our fitness calculation favors paths that are shorter and safer. 
 
@@ -581,17 +581,17 @@ Concerning mutation,  a cell from individual's path is selected randomly first. 
 
 As mentioned above, MOGPP is designed based on a simple classic genetic algorithm structure. At first, random valid paths from initial location ($\varsigma$) to the target ($\tau$) are generated. Notice that these paths do not contain any ties, to simplify and speed up genetic operators' processes.
 
-Each generated path represents an individual in population. These individuals are kept in a directed acyclic graph to cope with multi objectivity. The vertices and edges represent individuals and domination of multi objective path costs of these individuals, respectively. If a path cost of an individual dominates to other's, an edge is established between these individuals' vertices. Non domination and equality do not come up with an edge. When an individual is generated and desired to be added to population, the cost function of this individual is compared with existing individuals' costs and required edge connections are established. The directed acyclic graph structure has the same essence and representation with MOD* Lite' s priority structure, which was detailed in previous section.
+Each generated path represents an individual in population. These individuals are kept in a directed acyclic graph to cope with multi-objectivity. The vertices and edges represent individuals and domination of multi-objective path costs of these individuals, respectively. If a path cost of an individual dominates to other's, an edge is established between these individuals' vertices. Non domination and equality do not come up with an edge. When an individual is generated and desired to be added to population, the cost function of this individual is compared with existing individuals' costs and required edge connections are established. The directed acyclic graph structure has the same essence and representation with MOD* Lite' s priority structure, which was detailed in previous section.
 
-After population initialization, all individuals are evaluated with respect to their fitness functions. The evaluation gives better results when an individual's path is shorter and safer. Total fitness value is calculated by adding all individuals' fitness values multi objectively. This value increases while population is evolving. The evolution process is applied to all individuals of a population. When a population is evolving, predefined number of best individuals are transferred to new population first. Then, two individuals are selected as parents by roulette wheel selection method. This method gives higher chances to the individuals which have better fitness functions to be selected. After two parents are selected, crossover and mutation is applied with predefined distinct probabilities.
+After population initialization, all individuals are evaluated with respect to their fitness functions. The evaluation gives better results when an individual's path is shorter and safer. Total fitness value is calculated by adding all individuals' fitness values multi-objectively. This value increases while population is evolving. The evolution process is applied to all individuals of a population. When a population is evolving, predefined number of best individuals are transferred to new population first. Then, two individuals are selected as parents by roulette wheel selection method. This method gives higher chances to the individuals which have better fitness functions to be selected. After two parents are selected, crossover and mutation is applied with predefined distinct probabilities.
 
-After a predefined number of iterations (the maximum iteration count), algorithm is terminated and elite individuals are taken as multi objectively best results.
+After a predefined number of iterations (the maximum iteration count), algorithm is terminated and elite individuals are taken as multi-objectively best results.
 %Notice that the amount of initially generated individuals - population size -, maximum iteration count of evolution, number of elite individuals selected on each evolution phase, crossover and mutation probabilities should be predefined and set before the execution of MOGPP.
 
 \section{Experimental Results}
 \label{chapter:experiments}
 
-The algorithm is tested on various environments with different specifications. MOD* Lite is compared with MOA* that guarantees optimal solutions in fully observable multi objective problem settings. Our aim is to test the quality of solutions produced by MOD* Lite with respect to optimal ones generated by MOA* ignoring its huge running time costs. Note that MOA* requires exponential time and cannot be used for unknown or partially known environments.  Furthermore, we  compared MOA* with MOGPP, a classic genetic solution which can be used for finding paths with multi objective cases.
+The algorithm is tested on various environments with different specifications. MOD* Lite is compared with MOA* that guarantees optimal solutions in fully observable multi-objective problem settings. Our aim is to test the quality of solutions produced by MOD* Lite with respect to optimal ones generated by MOA* ignoring its huge running time costs. Note that MOA* requires exponential time and cannot be used for unknown or partially known environments.  Furthermore, we  compared MOA* with MOGPP, a classic genetic solution which can be used for finding paths with multi-objective cases.
 
 All algorithms are coded in Java and tested on a Linux environment with hardware Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz and 8 GB of RAM with -Xmx6192m parameter for JVM.
 
@@ -738,7 +738,7 @@ As discussed in previous sections; the main difference of MOD* Lite from existin
 \label{fig:initialSearch}
 \end{figure}
 
-In these tests, the agent starts to plan a path towards the nearest available cell within its sensor range -the temporary goal- to the actual goal with respect to Manhattan Distance. After planning, consider that agent has found three paths with costs $(15, 200)$, $(18, 230)$ and $(23, 260)$. In such cases, the agent tends to choose the path with cost $(18, 230)$, the median of paths. This ad-hoc strategy could be reconsidered according to the application domain. Afterwards, it starts to follow the chosen path. When new cells are available or a weight of a cell is changed within sensor range, agent reassigns the temporary goal and re-executes the path planner algorithm. This process iterates until the agent reaches to the desired goal location.
+In these tests, the agent starts to plan a path towards the nearest available cell within its sensor range -the temporary goal- to the actual goal with respect to Manhattan Distance. After planning, consider that agent has found three paths with costs $(15, 260)$, $(18, 230)$ and $(23, 200)$. In such cases, the agent tends to choose the path with cost $(18, 230)$, the median of paths. This ad-hoc strategy could be reconsidered according to the application domain. Afterwards, it starts to follow the chosen path. When new cells are available or a weight of a cell is changed within sensor range, agent reassigns the temporary goal and re-executes the path planner algorithm. This process iterates until the agent reaches to the desired goal location.
 
 \begin{figure}
 \centering
@@ -844,9 +844,9 @@ The fundamental advantage of MOD* Lite can be seen very clearly on these tests. 
 \section{Conclusion and Future Work}
 \label{chapter:conclusion}
 
-%Searching, path planning and navigation in real/virtual environments are vital issues and referred by many real-world applications in robotics. computer games, virtual simulations, etc.  Many solutions were introduced considering only a single optimization criteria; i.e., shortest path from an initial location to a target location. However, many real life problems require more complex situations with multiple objectives to be optimized. Furthermore, one should not ignore inaccessibility and dynamics of the real world and consider them for more realistic modeling. In a nutshell, a multi objective search algorithm which can work on partially observable dynamic environments is required to satisfy all of these requirements.
+%Searching, path planning and navigation in real/virtual environments are vital issues and referred by many real-world applications in robotics. computer games, virtual simulations, etc.  Many solutions were introduced considering only a single optimization criteria; i.e., shortest path from an initial location to a target location. However, many real life problems require more complex situations with multiple objectives to be optimized. Furthermore, one should not ignore inaccessibility and dynamics of the real world and consider them for more realistic modeling. In a nutshell, a multi-objective search algorithm which can work on partially observable dynamic environments is required to satisfy all of these requirements.
 
-In this paper, we propose a new method, MOD* Lite, for searching, planning and finding paths on known or unknown partially observable dynamic environments  where the agent needs to optimize more than one criteria that cannot be transformed to each other.  MOD* Lite is based on D* Lite and it brings multi objectivity to the solution space successfully, which is required in many real-world problems. It is a domain independent algorithm and could be applied to any partially/fully observable dynamic environment with $n \ge 1$ different non-interacting objectives. It is compared with known and complete multi objective off-line path planning algorithm, MOA*, and also with a novel evolutionary solution, multi objective genetic path planner, MOGPP, based on solution quality and execution times. Experimental results show that MOD* Lite is able to optimize path quality and is fast enough to be used in real-world complex applications. To our best knowledge, MOD* Lite is the only incremental search method that can be used for optimizing multiple objectives in dynamic and partially observable search domains, which is classified as the hardest class of problems in state space search.
+In this paper, we propose a new method, MOD* Lite, for searching, planning and finding paths on known or unknown partially observable dynamic environments  where the agent needs to optimize more than one criteria that cannot be transformed to each other.  MOD* Lite is based on D* Lite and it brings multi-objectivity to the solution space successfully, which is required in many real-world problems. It is a domain independent algorithm and could be applied to any partially/fully observable dynamic environment with $n \ge 1$ different non-interacting objectives. It is compared with known and complete multi-objective off-line path planning algorithm, MOA*, and also with a novel evolutionary solution, multi-objective genetic path planner, MOGPP, based on solution quality and execution times. Experimental results show that MOD* Lite is able to optimize path quality and is fast enough to be used in real-world complex applications. To our best knowledge, MOD* Lite is the only incremental search method that can be used for optimizing multiple objectives in dynamic and partially observable search domains, which is classified as the hardest class of problems in state space search.
 
 There exists several incremental {\it moving target} search algorithms in recent years \cite{Sun:2009}, \cite{GFR-A*Sun:2010}, \cite{MT-D*Lite:2010}. As a future research, we will attempt to extend our work for non-stationary targets. Also MOD* Lite could be reconsidered in multi agent environments where each agent autonomously executes its planner and cooperate with others to reach a target location. 
 
