@@ -154,7 +154,7 @@ Consistency of a vertex in the search graph could be considered in several condi
 Like A*, D* Lite also maintains a priority queue with heuristic information such that the most promising vertices are expanded first. This queue contains only the locally inconsistent vertices which are selected sequentially to be expanded according to their key values $k(s)$, a vector of two components:
 \begin{gather*}
 k(s) = [k_{1}(s); k_{2}(s)] \\
-k_{1}(s) = min(g(s), rhs(s) + h(s, s_{goal})) \\
+k_{1}(s) = min(g(s), rhs(s)) + h(s, s_{goal}) \\
 k_{2}(s) = min(g(s), rhs(s))
 \end{gather*}
 The first component of the key $k_{1}(s)$ corresponds to $f(s) = g^*(s) + h(s, s_{goal})$ which is the \textit{f-value} of A*, and the second component $k_{2}(s)$ corresponds to the \textit{g-value} of A*. Keys are compared (and maintained in the priority queue) in lexicographic order where $k(s) \leq k(s')$ iff either $k_{1}(s) < k_{1}(s')$ or $k_{1}(s) = k_{1}(s')$ and $k_{2}(s) \leq k_{2}(s')$.
@@ -316,7 +316,7 @@ D* Lite introduces local consistency and inconsistency concepts with respect to 
 A state is referred as \textit{locally non-consistent} if its $g(s)$ and $rhs(s)$ values are non-dominated to each other. This inconsistency condition causes the state to reside on more than one solution because it can be understood that two or more predecessors of $s$ are non-dominated to each other.
 \end{definition}
 
-Other multi-objective operations are introduced in following subsections. The overall flow of MOD* Lite is given in Algorithm \ref{algMain}.
+Other multi-objective operations are introduced in following subsections. The overall flow of MOD* Lite with PLAN() as main procedure is given in Algorithm \ref{algMain}.
 
 %% The main algorithm.
 \begin{algorithm}
