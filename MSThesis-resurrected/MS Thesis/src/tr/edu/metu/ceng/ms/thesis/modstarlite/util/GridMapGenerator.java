@@ -43,6 +43,7 @@ import tr.edu.metu.ceng.ms.thesis.mogpp.core.env.MOGeneticMap;
 import tr.edu.metu.ceng.ms.thesis.robotutils.data.Coordinate;
 import tr.edu.metu.ceng.ms.thesis.robotutils.data.IntCoord;
 import tr.edu.metu.ceng.ms.thesis.robotutils.util.CoordUtils;
+import tr.edu.metu.ceng.ms.thesis.spea2.integration.env.MOSPEA2GeneticMap;
 
 /**
  * Contains generation functions for simple 2D grid maps.
@@ -483,6 +484,102 @@ public class GridMapGenerator {
 		map.setPopulationSize(PropertiesReader.getPopulationSize());
 		map.setCrossoverRate(PropertiesReader.getCrossoverRate());
 		map.setMutationRate(PropertiesReader.getMutationRate());
+
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				MOState stateToAdd = null;
+				if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
+					stateToAdd = MOState.getInfiniteState(objBehaviours);
+					// Map borders are untraversable
+					map.set(stateToAdd, i, j);
+				} else {
+					stateToAdd = new MOState(i, j);
+					map.set(stateToAdd, i, j);
+					map.setInViewingFrustum(stateToAdd);
+				}
+			}
+		}
+
+		// set initial tmp goal state.
+		map.updateTmpGoal();
+
+		return map;
+	}
+
+	public MOSPEA2GeneticMap generateSPEA2Map() {
+		
+		
+		// get context-properties from corresponding file.
+		int width = PropertiesReader.getWidth();
+		int height = PropertiesReader.getHeight();
+
+		// initialize the 2D map.
+		MOSPEA2GeneticMap map = initializeMOSPEA2GeneticMap(width, height);
+
+		// locate all threats.
+		for (Threat threat : PropertiesReader.getThreats()) {
+			map.locateThreat(threat);
+		}
+
+		// locate all obstacles.
+		for (Obstacle obstacle : PropertiesReader.getObstacles()) {
+			map.locateObstacle(obstacle);
+		}
+
+		// calculate and set all objectives.
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
+					continue;
+				} else {
+					// create an objectives array.
+					ObjectiveArray objectives = createObjectives(map, i, j,
+							width, height);
+					map.get(i, j).setObjectives(objectives);
+					// map.get(i,j).getCoords().setRisk(map.get(i,j).getTotalRisk());
+				}
+			}
+		}
+
+		return map;
+	}
+
+	private MOSPEA2GeneticMap initializeMOSPEA2GeneticMap(int width, int height) {
+		
+		int[] start = PropertiesReader.getStart();
+		int[] goal = PropertiesReader.getGoal();
+
+		if (start[0] == -1 && start[1] == -1) {
+			start[0] = (int) Math.round(Math.random() * width);
+			start[1] = (int) Math.round(Math.random() * height);
+		}
+
+		if (goal[0] == -1 && goal[1] == -1) {
+			goal[0] = (int) Math.round(Math.random() * width);
+			goal[1] = (int) Math.round(Math.random() * height);
+		}
+
+		ObjectiveBehaviour[] objBehaviours = PropertiesReader
+				.getObjBehaviours();
+		
+		// create a new 2D genetic map instance.
+		MOSPEA2GeneticMap map = MOSPEA2GeneticMap.getInstance();
+		map.setStart(start);
+		map.setGoal(goal);
+		map.setCurrentAgentLocation(start);
+		map.setViewingFrustumBorders(PropertiesReader.getViewingFrustumBorders());
+		map.setExecutionType(PropertiesReader.getExecutionType());
+		map.setObjectiveBehaviours(objBehaviours);
+		map.resize(width, height);
+		
+		//set genetic map properties.
+		map.setMaxIteration(50); // 20
+		map.setArchiveSize(50); // 50
+		map.setPopulationSize(50); // 50
+		map.setCrossoverRate(0.8); // 0.8
+		map.setCrossoverDistIndex(20.0);
+		map.setMutationRate(0.05);
+		map.setMutationDistIndex(20.0);
 
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {

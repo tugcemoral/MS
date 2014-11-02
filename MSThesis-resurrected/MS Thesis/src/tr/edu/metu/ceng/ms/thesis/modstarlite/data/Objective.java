@@ -37,7 +37,7 @@ public class Objective {
 	}
 
 	public String toShortenString() {
-		return String.valueOf(this.getValue());
+		return String.valueOf((int)this.getValue());
 	}
 
 	private String getShortenedBehaviour() {

@@ -216,7 +216,7 @@ public class Path<T extends Coordinate> implements Cloneable {
 		// first, find intersected cells list.
 		List<T> intersectedCells = findIntersectedCells(path);
 		if(!(intersectedCells.size() > 0)){
-			System.err.println("intersected cell size is 0!");
+//			System.err.println("intersected cell size is 0!");
 			return null;
 		}else {
 			

@@ -82,7 +82,7 @@ public class ObjectiveArray {
 		String output = "[";
 		for (int i = 0; i < this.getObjectives().length; i++) {
 			if (i < this.getObjectives().length - 1) {
-				output += this.getObjectives()[i].toShortenString() + ", ";
+				output += this.getObjectives()[i].toShortenString() + ",";
 			} else {
 				output += this.getObjectives()[i].toShortenString();
 			}

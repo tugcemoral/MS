@@ -19,10 +19,10 @@
     <datasets>
         <dataset id="0">
             <class>jgp.JGPDataSet</class>
-            <filename>/home/mustafa/Desktop/tugcem/journal-tests/fullyobservable/randomized/modstarlite</filename>
-            <datastring>1:2</datastring>
+            <filename>/home/tugcem/Desktop/journal-tests/fullyobservable/randomized/results/modstarlite</filename>
+            <datastring>2:xticlabel(1)</datastring>
             <dataset_title>MOD* Lite</dataset_title>
-            <color>000099</color>
+            <color>3300ff</color>
             <style>linespoints</style>
             <add_style_opt/>
             <do_plot>true</do_plot>
@@ -30,8 +30,8 @@
         </dataset>
         <dataset id="1">
             <class>jgp.JGPDataSet</class>
-            <filename>/home/mustafa/Desktop/tugcem/journal-tests/fullyobservable/randomized/moastar</filename>
-            <datastring>1:2</datastring>
+            <filename>/home/tugcem/Desktop/journal-tests/fullyobservable/randomized/results/moastar</filename>
+            <datastring>2:xticlabel(1)</datastring>
             <dataset_title>MOA*</dataset_title>
             <color>990000</color>
             <style>linespoints</style>
@@ -41,10 +41,21 @@
         </dataset>
         <dataset id="2">
             <class>jgp.JGPDataSet</class>
-            <filename>/home/mustafa/Desktop/tugcem/journal-tests/fullyobservable/randomized/mogpp</filename>
-            <datastring>1:2</datastring>
+            <filename>/home/tugcem/Desktop/journal-tests/fullyobservable/randomized/results/mogpp</filename>
+            <datastring>2:xticlabel(1)</datastring>
             <dataset_title>MOGPP</dataset_title>
             <color>006633</color>
+            <style>linespoints</style>
+            <add_style_opt/>
+            <do_plot>true</do_plot>
+            <pre_process_program/>
+        </dataset>
+        <dataset id="3">
+            <class>jgp.JGPDataSet</class>
+            <filename>/home/tugcem/Desktop/journal-tests/fullyobservable/randomized/results/spea2</filename>
+            <datastring>2:xticlabel(1)</datastring>
+            <dataset_title>SPEA2</dataset_title>
+            <color>990099</color>
             <style>linespoints</style>
             <add_style_opt/>
             <do_plot>true</do_plot>

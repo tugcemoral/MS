@@ -71,7 +71,9 @@ public class GridMOGPPlanning {
 	// "/experimental/journal-tests/fullyobservable/handcrafted/160x160/160x160";
 	// private static final String EXECUTION_FILE =
 	// "/experimental/journal-tests/multiobjectivity/80x80/80x80_45";
-	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/80x80/80x80_50(28)";
+	
+	
+	private static final String EXECUTION_FILE = "/experimental/journal-tests/partiallyobservable/120x120/120x120_60(46)";
 
 	private static final String EXECUTION_FILE_PROPERTIES = EXECUTION_FILE
 			+ ".properties";
@@ -144,6 +146,7 @@ public class GridMOGPPlanning {
 			if (needToReplan.getAndSet(false)) {
 				synchronized (mogpp) {
 					List<Path<Coordinate>> paths = mogpp.plan();
+					System.out.println(paths.size());
 					op.updatePanel(paths);
 //					System.out.println("# of solutions found by MOGPP: "
 //							+ paths.size());

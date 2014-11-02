@@ -134,7 +134,7 @@ public class Individual extends Vertex {
 		return randomPathFound;
 	}
 
-	protected void calculatePathCost() {
+	public void calculatePathCost() {
 		double totalPathRisk = 0d;
 		for (Object currentCoord : this.getPath().getRoute()) {
 			IntCoord intCoord = (IntCoord) currentCoord;
