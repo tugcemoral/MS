@@ -1,0 +1,160 @@
+From: jwang@mae.cuhk.edu.hk
+Date: January 12, 2015 5:36:37 AM GMT+02:00
+To: polat@ceng.metu.edu.tr
+Subject: CYB-E-2014-05-0513.R1
+
+Dear Prof. Polat:
+
+Your manuscript MOD* Lite: An Incremental Path Planning Algorithm Taking Care of Multiple Objectives CYB-E-2014-05-0513.R1 has gone through the IEEE Transactions on Cybernetics  review process and publication is recommended for acceptance IF some minor revisions are made.  The paper will not be sent out again to the reviewers - the  Associate Editor and I will make sure the changes have been made, and return a final decision.
+
+Below are summary comments explaining minor revisions from the IEEE Transactions on Cybernetics reviewers. It is recommended that you resubmit your manuscript as revised in accordance with the reviewer  comments. You should submit your comments, detailing the changes you have made, in the comments to Editor-in-Chief box, accessible when the manuscript is resubmitted. Please also include them as the first page(s) of the revised manuscript.
+
+Please also be aware of TCYB page length policy with a cap of 12 pages plus two additional pages with a charge of $175/page, for a regular paper,  provided that you promise to pay the bill after the publication. No paper over 14 pages in the IEEE two-column format will be accepted.
+
+I noticed that there is NO reference from this very journal. To establish a close tie with this publication, we would appreciate if you could identify and add a few relevant references published in the transactions in recent years, if there are any and there is space in the manuscript, for the best interest of the authors as well as the journal.
+
+Please electronically resubmit your manuscript as a regular paper to IEEE Manuscript Central within one month.
+
+
+Sincerely,
+
+Prof. Jun Wang
+Editor-in-Chief, IEEE Transactions on Cybernetics
+------------------------------------------------------------
+Department of Mechanical & Automation Engineering
+The Chinese University of Hong Kong
+Shatin, New Territories, Hong Kong
++852 39438472 (tel.), +852-26036002 (fax)
+jwang@mae.cuhk.edu.hk
+http://www.mae.cuhk.edu.hk/~jwang
+Also
+School of Control Science and Engineering
+Dalian University of Technology
+#2 Ling Gong Road, New Hi-Tech District
+Dalian, Liaoning, 116023 China, Editor-in-Chief
+IEEE Transactions on Cybernetics
+
+
+Associate Editor Comments for Authors:
+
+Associate Editor
+Comments to the Author:
+Please make necessary revisions with consideration of the reviewers' comments.
+
+********************** Reviews **********************
+
+Referee: 1
+
+Recommendation: Accept With Minor Changes
+
+Comments:
+My comments have been addressed accordingly.
+
+Additional Questions:
+Summary of Evaluation: Good
+
+Organization: 4
+
+Clarity: 4
+
+Length: 3
+
+References: 5
+
+Correctness: 5
+
+Significance: 4
+
+Originality: 4
+
+Attachments: 5
+
+If Survey Coverage: 5
+
+Contribution: 4
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.: 
+
+What are the contributions of the paper?: 
+
+What are the additional ways in which the paper could be improved?: 
+
+
+Referee: 2
+
+Recommendation: Accept With Minor Changes
+
+Comments:
+(There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
+
+Additional Questions:
+Summary of Evaluation: Good
+
+Organization: 4
+
+Clarity: 4
+
+Length: 2
+
+References: 4
+
+Correctness: 4
+
+Significance: 4
+
+Originality: 4
+
+Attachments: 3
+
+If Survey Coverage: 4
+
+Contribution: 4
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.: 
+
+What are the contributions of the paper?: 
+
+What are the additional ways in which the paper could be improved?: 
+
+
+Referee: 3
+
+Recommendation: Accept With Minor Changes
+
+Comments:
+(There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
+
+Additional Questions:
+Summary of Evaluation: Good
+
+Organization: 4
+
+Clarity: 4
+
+Length: 2
+
+References: 3
+
+Correctness: 4
+
+Significance: 4
+
+Originality: 3
+
+Attachments: 
+
+If Survey Coverage: 
+
+Contribution: 4
+
+Please make very detailed technical and editorial comments and suggestions in your comments. If it is necessary to provide mathematical corrections, please email them to us as a pdf file. If you must get other information back to us that cannot be sent via email, please mail it to us. Your comments are an invaluable aid to the author to help in improving the overall technical quality, utility, and readability of the material. Such comments are not just useful, they are necessary to maintain the quality of the articles that are published in the SMC Transactions. Particular attention should be given to details that guide possible revisions, or that clearly explain reasons for rejection.: 
+
+What are the contributions of the paper?: This paper proposes the MOD* Lite, which is the multi-objective version of D* Lite method, for robotic path planning in partially observable dynamic environments. The MOD* Lite method is applied to 2D UAV problem, and two objectives, minimizations of length of path and risk of path, are considered. The simulation results have demonstrated the efficiency of MOD* Lite in terms of path length and safety.
+
+What are the additional ways in which the paper could be improved?: To review this paper, I learned something about path planning.
+
+Thank you for the authors!
+
+I accept the responses to my comments, but I still have a question.
+In the 8th comment, page 17, the authors stated that "The path costs are updated as (15, 260), (18, 230) and (23, 200) where none of the path costs could dominate
+each other." However, the authors did not explain why the agent select the (18, 230). Please explain it.
