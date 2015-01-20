@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: journal_v4.aux
+The style file: ieeetr.bst
+Database file #1: journal.bib
+Warning--string name "aug." is undefined
+--line 151 of file journal.bib
+Warning--string name "dec." is undefined
+--line 164 of file journal.bib
+Warning--empty booktitle in Pangilinan
+Warning--empty year in Pangilinan
+Warning--empty institution in spea2:2001
+Warning--empty publisher in Peng_Xu_Zhang:2011
+You've used 32 entries,
+            1876 wiz_defined-function locations,
+            728 strings with 9931 characters,
+and the built_in function-call counts, 10823 in all, are:
+= -- 1155
+> -- 300
+< -- 0
++ -- 113
+- -- 81
+* -- 760
+:= -- 1393
+add.period$ -- 35
+call.type$ -- 32
+change.case$ -- 32
+chr.to.int$ -- 0
+cite$ -- 36
+duplicate$ -- 573
+empty$ -- 1003
+format.name$ -- 81
+if$ -- 2707
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 33
+newline$ -- 102
+num.names$ -- 32
+pop$ -- 89
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 491
+stack$ -- 0
+substring$ -- 971
+swap$ -- 294
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 4
+while$ -- 108
+width$ -- 34
+write$ -- 331
+(There were 6 warnings)
