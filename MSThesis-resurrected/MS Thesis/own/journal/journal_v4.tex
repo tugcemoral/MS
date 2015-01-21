@@ -758,7 +758,7 @@ Example of the search space of MOD* Lite with 30\% sensor range is given in Figu
 \label{fig:initialSearch}
 \end{figure}
 
-In these tests, the agent starts to plan a path towards the nearest available cell within its sensor range -the temporary goal- to the actual goal with respect to Manhattan Distance. After planning, consider that agent has found three paths with costs $(15, 260)$, $(18, 230)$ and $(23, 200)$. In such cases, the agent tends to choose the path with cost $(18, 230)$, the median of paths. This ad-hoc strategy could be reconsidered according to the application domain. Afterwards, it starts to follow the chosen path. When new cells are available or a weight of a cell is changed within sensor range, agent reassigns the temporary goal and re-executes the path planner algorithm. This process iterates until the agent reaches to the desired goal location.
+In these tests, the agent starts to plan a path towards the nearest available cell within its sensor range -the temporary goal- to the actual goal with respect to Manhattan Distance. After planning, consider that agent has found three paths with costs $(15, 260)$, $(18, 230)$ and $(23, 200)$. If there are more than one non-dominated paths, one of them is selected randomly. We do this by picking up the median one. Any stochastic selection strategy can be employed according to application domain. In this case, the agent chooses the path with cost $(18, 230)$. Afterwards, it starts to follow the chosen path. When new cells are available or a weight of a cell is changed within sensor range, agent reassigns the temporary goal and re-executes the path planner algorithm. This process iterates until the agent reaches to the desired goal location.
 
 \begin{figure}
 \centering
@@ -881,7 +881,7 @@ University, Ankara, Turkey, in 2009 and 2012, respectively, where he is currentl
 
 \begin{IEEEbiography}{Faruk Polat}
 received the B.S. degree in computer engineering from Middle East Technical University,
-Ankara, Turkey, in 1987 and the M.S. and Ph.D. degrees in computer engineering and information sciences from Bilkent University, Ankara, in 1989 and 1993, respectively. He is currently a Professor with the Department of Computer Engineering, Middle East Technical University, Ankara. He conducted research as a Visiting NATO Science Scholar in the Department of Computer Science and Engineering, University of Minnesota, Minneapolis, during the academic year 1992--1993. His research interests include multi-agent systems, artificial intelligence, bioinformatics, and object-oriented data models.
+Ankara, Turkey, in 1987 and the M.S. and Ph.D. degrees in computer engineering and information sciences from Bilkent University, Ankara, in 1989 and 1993, respectively. He is currently a Professor with the Department of Computer Engineering, Middle East Technical University, Ankara. He conducted research as a Visiting NATO Science Scholar in the Department of Computer Science and Engineering, University of Minnesota, Minneapolis, during the academic year 1992--1993. His research interests include artificial intelligence, and autonomous agents and multiagent systems.
 \end{IEEEbiography} 
 
 \end{document}
